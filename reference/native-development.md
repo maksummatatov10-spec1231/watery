@@ -4,7 +4,7 @@
 Закреплённый host source: Horizon
 `b880384691b88d317553067109d28e785990bda3` (см. `horizon-source.json`).
 Соответствие этому commit установленной игре/launcher не подтверждено.
-Пакет `artifacts/watery-1.2.2-dev.hnmod` несёт пометку `1.2.2-dev`; фактическую
+Пакет `artifacts/watery-1.2.2-dev.1.hnmod` несёт пометку `1.2.2-dev.1`; фактическую
 установку и запуск в Horizon пока нельзя считать проверенными.
 
 ## Диагностическая область
@@ -59,12 +59,17 @@ runtime-корректности. Отдельные автономные GPU-т
 
 ## Как попробовать prerelease
 
+**Важно:** прежний prerelease `watery-1.2.2-dev` не собирался из-за двух
+отсутствующих функций в `projection`. Не запускайте Build снова для старой
+версии. Удалите её из тестового instance, затем добавьте исправленную
+`watery-1.2.2-dev.1` по ссылке ниже.
+
 Предварительно собранный development-файл находится в
-`artifacts/watery-1.2.2-dev.hnmod` (byte-identical копия — в корне репозитория).
+`artifacts/watery-1.2.2-dev.1.hnmod` (byte-identical копия — в корне репозитория).
 В Horizon Launcher выберите отдельный тестовый instance, откройте **Mods → Add
 from GitHub** и укажите точную ссылку на prerelease:
 
-<https://github.com/maksummatatov10-spec1231/watery/releases/tag/watery-1.2.2-dev>
+<https://github.com/maksummatatov10-spec1231/watery/releases/tag/watery-1.2.2-dev.1>
 
 У prerelease нет прикреплённого бинарного asset: Horizon Launcher получает
 `native-bundle/` из source archive, формирует `.hnmod` и проверяет его. Пакет

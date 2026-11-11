@@ -1,6 +1,6 @@
 [package]
 name="mod-watery"
-version="1.2.2-dev"
+version="1.2.2-dev.1"
 edition="2024"
 license="GPL-3.0-only"
 publish=false

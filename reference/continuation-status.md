@@ -18,7 +18,7 @@ adapter запускает только диагностическую обла�
 - Добавлен `.github/workflows/ci.yml`: pinned Horizon checkout, core-тесты,
   две последовательные сборки пакета с проверкой одинакового SHA, Horizon
   `Bundle::read` integration test и GPU pipeline/regression job на lavapipe.
-  Workflow создан, но в этой сессии не запускался на GitHub.
+  Workflow запускался на GitHub дважды, обе попытки завершились ошибкой; подробности ниже.
 - `tools/check_native.py` и `tools/check_horizon.py` больше не зависят только от
   Windows-пути `K:\Rust\...`; они используют `CARGO`/PATH с Windows fallback,
   `--locked` и project `target/`. Генераторы settings/uniforms аналогично ищут
@@ -28,12 +28,34 @@ adapter запускает только диагностическую обла�
   распакованный источник для GitHub Launcher's source-archive fallback.
   Integration test расширен проверкой исходников/шейдера/ресурсов/лицензии и
   равенства двух `.hnmod` файлов.
-- `git push` ветки выполнен. Попытка прикрепить `.hnmod` к GitHub Release упёрлась
-  в EOF на `uploads.github.com`, поэтому asset нельзя считать загруженным.
-  Для установки через Horizon `Add from GitHub` выбран fallback: release/tag
-  source archive содержит `native-bundle/`; пользовательская загрузка получает
-  исходный пакет и перепаковывает его launcher'ом. Сам `.hnmod` также лежит в
-  `artifacts/` репозитория, но не является release asset.
+- Ветка `arena/46e97339-watery` запушена; tag `watery-1.2.2-dev` указывает на
+  `1d066e9bcacd885184e5a6e6e633f9fd1384648f`. GitHub prerelease создан.
+  Попытка прикрепить `.hnmod` к release упёрлась в EOF на `uploads.github.com`,
+  поэтому asset отсутствует. Для Horizon `Add from GitHub` работает source-
+  fallback: codeload-архив тега содержит проверенный в GitHub tree `native-bundle/`;
+  launcher перепакует его сам. Готовый `.hnmod` также лежит в `artifacts/` и в
+  корне репозитория, но не является release asset.
+- Пользователь приложил Windows `build.log` из `main` (commit `47df5b8`). В нём
+  точный отказ компилятора: `E0425`, отсутствуют `projection::water_level` и
+  `projection::sand_layers` в `src/flow_sounds.rs`; `watery-core` завершился с
+  code 101. Повторное нажатие Build каждый раз запускало ту же неуспешную сборку;
+  сообщения `mimalloc` — предупреждения, не причина отказа.
+- Добавлены недостающие projection wrappers, использующие существующие
+  liquid/sand thresholds, и unit test для vanilla level/layer mapping. Собран
+  новый package `1.2.2-dev.1`; старый tag `watery-1.2.2-dev` намеренно не меняется.
+  Требуется удалить старую версию из тестового instance и добавить новый tag.
+- GitHub Actions runs 43107007344 и 43107372714 были failure: core job завершился
+  exit 101; GPU job — при установке Vulkan driver (exit 1), до GPU checks.
+  CI raw logs недоступны в этом окружении, поэтому совпадение core ошибки с
+  `build.log` не подтверждено, а точная причина GPU failure неизвестна. Workflow
+  теперь ищет Lavapipe ICD вместо предположения о единственном имени файла; новый
+  workflow run ещё не прошёл.
+- Версия `watery-1.2.2-dev.1` пересобрана дважды детерминированно: 207 entries,
+  SHA256 `43f62d359bc6174bb516beb557f7e99d4a761dcce33cc5128f63465a19d60cdd`;
+  root copy byte-identical, `native-bundle/` содержит исправленный `projection.rs`.
+  `tools/verify_reference.py`, Python `py_compile` и `git diff --check` прошли.
+  Cargo/rustc отсутствуют локально: Rust tests, Horizon package reader и новая
+  source-package compilation ещё не подтверждены; нужно дождаться CI.
 
 ## Технические детали адаптера, сохранённые в workspace
 
@@ -60,7 +82,8 @@ Collision boxes сохраняются до chunk invalidation; resolution 4 и�
   YAML распарсен PyYAML. Tree-sitter синтаксически проверил 38 Rust-файлов без
   ошибок; это не Rust typecheck и не сборка.
 - `cargo`, `rustc`, `rustfmt` и `rust-analyzer` сейчас отсутствуют в PATH;
-  Rust build/test, Horizon package reader test и GPU-check не выполнены.
+  локальные Rust checks не запускались. В CI `cargo test` был начат и завершился
+  ошибкой; Horizon package reader и GPU execution не были достигнуты.
 - Локальный путь `vendor/horizon/` отсутствует. Снимок Horizon найден только
   вне репозитория в `/tmp/watery_analysis/handoff/vendor/horizon`; его revision
   указан в `reference/horizon-source.json`.

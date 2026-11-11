@@ -22,6 +22,19 @@ pub fn target_layers(fullness: f32, speed: f32, previous: u8) -> u8 {
     candidate
 }
 
+/// Convert normalized liquid fullness to a vanilla fluid block level.
+/// Vanilla level zero is a full source block; `None` means empty.
+pub fn water_level(fullness: f32) -> Option<u8> {
+    let amount = target_amount(fullness, 0);
+    (amount != 0).then_some(8 - amount)
+}
+
+/// Convert normalized sand fullness to a vanilla layer count; `None` means empty.
+pub fn sand_layers(fullness: f32) -> Option<u8> {
+    let layers = target_layers(fullness, 0.0, 0);
+    (layers != 0).then_some(layers)
+}
+
 #[derive(Default)]
 pub struct Echoes { pending: HashMap<i64, (u8, i32)> }
 impl Echoes {
@@ -72,6 +85,17 @@ mod tests {
         assert_eq!(target_layers(0.04, 0.0, 1), 1);
         assert_eq!(target_layers(0.03125, 0.0, 1), 0);
         assert_eq!(target_layers(0.0625, 0.0, 0), 1);
+    }
+    #[test]
+    fn normalized_fullness_maps_to_vanilla_levels() {
+        assert_eq!(water_level(1.0), Some(0));
+        assert_eq!(water_level(0.5), Some(4));
+        assert_eq!(water_level(0.2), Some(6));
+        assert_eq!(water_level(0.0), None);
+
+        assert_eq!(sand_layers(1.0), Some(8));
+        assert_eq!(sand_layers(0.5), Some(4));
+        assert_eq!(sand_layers(0.0), None);
     }
     #[test]
     fn echoes_mismatch_expiration_and_java_wrap() {

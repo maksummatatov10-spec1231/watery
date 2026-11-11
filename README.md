@@ -18,8 +18,8 @@
 - `native/src/` — Horizon hooks для **диагностической** области около камеры:
   получение collision snapshot, загрузка текстур материала, команды, GPU-запись
   кадров и асинхронный block-fill readback для звуковых событий.
-- `artifacts/watery-1.2.2-dev.hnmod` — воспроизводимый development-пакет;
-  `watery-1.2.2-dev.hnmod` в корне — его byte-identical копия для удобства.
+- `artifacts/watery-1.2.2-dev.1.hnmod` — воспроизводимый development-пакет;
+  `watery-1.2.2-dev.1.hnmod` в корне — его byte-identical копия для удобства.
   Проверка пакета через `Bundle::read` находится в `native/tests/package.rs`.
 - `.github/workflows/ci.yml` — CI для core/native/package reader и GPU-регрессий.
   Используется закреплённый снимок Horizon из `reference/horizon-source.json`.
@@ -40,11 +40,16 @@ GPU execution должны подтверждаться выполнением �
 
 ## Как попробовать development-сборку
 
-Готовый development-файл лежит в [`artifacts/watery-1.2.2-dev.hnmod`](artifacts/watery-1.2.2-dev.hnmod)
+**Исправление сборки:** прежний `watery-1.2.2-dev` не компилировался из-за
+отсутствующих `projection::water_level` и `projection::sand_layers`. Не нажимай
+Build снова для этой старой версии — удали её из тестового instance и добавь
+исправленный `watery-1.2.2-dev.1`.
+
+Готовый development-файл лежит в [`artifacts/watery-1.2.2-dev.1.hnmod`](artifacts/watery-1.2.2-dev.1.hnmod)
 (тот же файл находится в корне репозитория). В Horizon Launcher выбери отдельный
 тестовый instance → **Mods → Add from GitHub** и вставь ссылку на точный prerelease:
 
-<https://github.com/maksummatatov10-spec1231/watery/releases/tag/watery-1.2.2-dev>
+<https://github.com/maksummatatov10-spec1231/watery/releases/tag/watery-1.2.2-dev.1>
 
 Подтверди предупреждение о доверии только если готов запускать native-код из
 этого репозитория: `.hnmod` не sandboxed и получает права игры/пользователя.
@@ -94,7 +99,7 @@ cargo run --locked --manifest-path tools/gpu-check/Cargo.toml
 
 GPU execution требует Vulkan-совместимый адаптер; CI использует Mesa lavapipe.
 `tools/check_native.py` также доступен в режиме `cargo check` без `--test`.
-Сборка пакета намеренно помечена `1.2.2-dev`; она не является релизной
+Сборка пакета намеренно помечена `1.2.2-dev.1`; она не является релизной
 установкой мода.
 
 Оригинальный мод: Watery 1.2.2, Fabric, Minecraft 26.3, Java ≥25,

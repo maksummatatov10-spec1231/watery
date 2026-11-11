@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "id": "watery",
-  "version": "1.2.2-dev",
+  "version": "1.2.2-dev.1",
   "game": "26.3",
   "horizon": "b880384691b88d317553067109d28e785990bda3",
   "mixins": "5a64af938ec86b00d53d16a408aabc0038fb3e57"

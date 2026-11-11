@@ -11,11 +11,11 @@ def put(path,data):
     if isinstance(data,str): data=data.encode('utf-8')
     if path in files: raise ValueError('Duplicate package path: '+path)
     files[path]=data
-put('horizon-native.json',json.dumps(dict(schema=1,id='watery',version='1.2.2-dev',game='26.3',horizon=REV,mixins='5a64af938ec86b00d53d16a408aabc0038fb3e57'),indent=2)+'\n')
-put(PREFIX+'horizon-mixin.toml',f'[mod]\nid="watery"\nversion="1.2.2-dev"\n[compatibility]\nhorizon_revision="{REV}"\n[api]\npath="api"\n')
+put('horizon-native.json',json.dumps(dict(schema=1,id='watery',version='1.2.2-dev.1',game='26.3',horizon=REV,mixins='5a64af938ec86b00d53d16a408aabc0038fb3e57'),indent=2)+'\n')
+put(PREFIX+'horizon-mixin.toml',f'[mod]\nid="watery"\nversion="1.2.2-dev.1"\n[compatibility]\nhorizon_revision="{REV}"\n[api]\npath="api"\n')
 put(PREFIX+'api/Cargo.toml',f'''[package]
 name="mod-watery"
-version="1.2.2-dev"
+version="1.2.2-dev.1"
 edition="2024"
 license="GPL-3.0-only"
 publish=false
@@ -42,7 +42,7 @@ put(PREFIX+'api/README.md',(ROOT/'reference/native-development.md').read_bytes()
 for p in sorted((ROOT/'reference/original/assets').rglob('*')):
     if p.is_file(): put(PREFIX+'api/data/original-assets/'+p.relative_to(ROOT/'reference/original/assets').as_posix(),p.read_bytes())
 if len(files)>512 or sum(map(len,files.values()))>64*1024*1024: raise ValueError('Package exceeds host limits')
-DEST=ROOT/'artifacts/watery-1.2.2-dev.hnmod'
+DEST=ROOT/'artifacts/watery-1.2.2-dev.1.hnmod'
 DEST.parent.mkdir(exist_ok=True)
 with zipfile.ZipFile(DEST,'w',zipfile.ZIP_DEFLATED) as z:
     for name,data in sorted(files.items()):

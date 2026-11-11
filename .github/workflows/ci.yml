@@ -56,10 +56,10 @@ jobs:
       - name: Verify deterministic development package
         run: |
           python3 tools/package_native.py
-          cmp artifacts/watery-1.2.2-dev.hnmod watery-1.2.2-dev.hnmod
-          sha256sum artifacts/watery-1.2.2-dev.hnmod > /tmp/watery-package.sha256
+          cmp artifacts/watery-1.2.2-dev.1.hnmod watery-1.2.2-dev.1.hnmod
+          sha256sum artifacts/watery-1.2.2-dev.1.hnmod > /tmp/watery-package.sha256
           python3 tools/package_native.py
-          cmp artifacts/watery-1.2.2-dev.hnmod watery-1.2.2-dev.hnmod
+          cmp artifacts/watery-1.2.2-dev.1.hnmod watery-1.2.2-dev.1.hnmod
           sha256sum --check /tmp/watery-package.sha256
 
       - name: Compile adapter and read the package with Horizon
@@ -96,11 +96,16 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends libvulkan1 mesa-vulkan-drivers
-          test -f /usr/share/vulkan/icd.d/lvp_icd.x86_64.json
+          icd="$(find /usr/share/vulkan/icd.d /etc/vulkan/icd.d -maxdepth 1 -type f -print 2>/dev/null | grep -Ei 'lvp|lavapipe' | head -n 1 || true)"
+          if [ -z "$icd" ]; then
+            echo "Lavapipe ICD was not installed; available Vulkan ICDs:"
+            find /usr/share/vulkan/icd.d /etc/vulkan/icd.d -maxdepth 1 -type f -print 2>/dev/null || true
+            exit 1
+          fi
+          echo "Using Vulkan ICD: $icd"
+          echo "VK_ICD_FILENAMES=$icd" >> "$GITHUB_ENV"
 
       - name: Run GPU pipeline and simulation checks
-        env:
-          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.x86_64.json
         run: cargo run --locked --manifest-path tools/gpu-check/Cargo.toml
 
       - name: Save GPU check report
