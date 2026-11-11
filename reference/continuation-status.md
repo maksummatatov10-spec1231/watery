@@ -60,6 +60,12 @@ adapter запускает только диагностическую обла�
   `tools/verify_reference.py`, Python `py_compile` и `git diff --check` прошли.
   Создан prerelease `watery-1.2.2-dev.1` на commit `0ecbb406e8692f183c59a7a1b3723086e2eabeba`;
   у него нет release assets, installation идёт через GitHub source archive.
+- Пользователь подтвердил запуск `watery-1.2.2-dev.1` на Horizon 0.1.0 и Radeon
+  RX 580 (Vulkan): игра загрузила мир, зарегистрировала Watery-команды, а
+  `/watery diagnostic water` создал регион `[3, 103, 3]`, сетка `24×24×24`
+  (13 824 ячейки), `paused=false`, `sections=1`, `terrain_pending=false`.
+  Присланный фрагмент без ошибок; пользователь пока не описал видимый рендер и
+  поведение симуляции, поэтому это smoke test запуска/команд, не gameplay parity.
 
 ## Технические детали адаптера, сохранённые в workspace
 
@@ -68,20 +74,21 @@ adapter запускает только диагностическую обла�
 Collision boxes сохраняются до chunk invalidation; resolution 4 использует
 `SolidCache`, прочие resolution — worker voxelization. Block-fill readback
 использует `map_async` и `try_recv`, без ожидания GPU на render thread.
-Эти пути остаются неподтверждёнными компилятором и runtime.
+Core, Horizon adapter и чтение пакета прошли CI compilation/test; поведение этих
+GPU-путей внутри игры всё ещё требует визуальной проверки.
 
 ## Проверено в текущем окружении
 
 - `python3 tools/verify_reference.py` — PASS: JAR SHA256 не изменился,
   проверены 713 inventory entries и 165 byte-identical ресурсов.
-- После обновления документации, GPU-комментариев и сборщика
-  `python3 tools/package_native.py` запущен дважды: обе сборки совпали, а `cmp`
-  подтвердил идентичность `artifacts/watery-1.2.2-dev.hnmod` и корневой копии.
-  Пакет: 207 entries, 2 379 406 expanded bytes, SHA256
+- Историческая версия `watery-1.2.2-dev` собиралась детерминированно: 207 entries,
+  2 379 406 expanded bytes, SHA256
   `2c52b8899c003730ef9017d9412a74c19be6cf29df1f927ac65b616a9f383f94`.
-  `zipfile.testzip()` вернул `None`; JSON checksum совпадает с артефактом.
-  Проверено наличие adapter/core/GPU source, composite shader, original GLSL,
-  LICENSE и NOTICE.
+- Для `watery-1.2.2-dev.1` сборщик запускался дважды; ZIP CRC и JSON checksum
+  проверены, `artifacts/` и корневой `.hnmod` byte-identical. Пакет содержит
+  207 entries / 2 380 711 expanded bytes, SHA256
+  `43f62d359bc6174bb516beb557f7e99d4a761dcce33cc5128f63465a19d60cdd`.
+  Source archive bundle включает исправленные `water_level` и `sand_layers`.
 - `python3 -m py_compile` прошёл для изменённых Python-инструментов; workflow
   YAML распарсен PyYAML. Tree-sitter синтаксически проверил 38 Rust-файлов без
   ошибок; это не Rust typecheck и не сборка.
@@ -91,7 +98,10 @@ Collision boxes сохраняются до chunk invalidation; resolution 4 и�
 - Локальный путь `vendor/horizon/` отсутствует. Снимок Horizon найден только
   вне репозитория в `/tmp/watery_analysis/handoff/vendor/horizon`; его revision
   указан в `reference/horizon-source.json`.
-- Реальный Horizon runtime/GPU и сравнительный прогон Java/Rust не проверялись.
+- Был один пользовательский runtime smoke test в Horizon 0.1.0 на Radeon RX 580:
+  startup + diagnostic command успешны. Визуальное отображение/движение воды, GPU
+  kernels в пользовательской сцене, другие материалы и сравнение Java/Rust ещё не
+  подтверждены.
 
 ## Ранее записанные результаты — исторические, не перепроверены сейчас
 
@@ -105,13 +115,11 @@ checks, а также запуск 60 compute pipelines и сцен GPU на Rad
 
 ## Следующие шаги
 
-1. Обеспечить Rust toolchain согласно `rust-toolchain.toml` и разместить
-   закреплённый Horizon source в `vendor/horizon/`.
-2. Запустить `python3 tools/check_native.py --test` после
-   `python3 tools/package_native.py`; устранить ошибки typecheck/build и
-   подтвердить `Bundle::read` на настоящем пакете.
-3. Запустить `cargo run --locked --manifest-path tools/gpu-check/Cargo.toml`
-   на GPU или lavapipe, затем проверить job в `.github/workflows/ci.yml`.
-4. Проверить мод в отдельной тестовой установке Horizon, затем сравнить
-   одинаковые игровые сцены с Java-оригиналом. Не распространять как завершённый
-   порт до проверки паритета и незавершённых игровых функций.
+1. Уточнить у пользователя, видны ли поверхность и движение воды в игре; при
+   необходимости получить скриншот/видео и продолжение лога после команды.
+2. Разобрать failure GPU regression run `43110851912` (exit 101); raw log и
+   artifact пока не удалось скачать.
+3. Проверить `sand`, `lava`, `slime`, pause/clear и устойчивость в disposable
+   world; не трогать основной instance/save.
+4. Сравнить одинаковые игровые сцены с Java-оригиналом и закрыть игровые пробелы.
+   Не распространять как завершённый порт до проверки паритета.

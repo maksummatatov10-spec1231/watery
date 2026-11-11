@@ -24,9 +24,11 @@
 - `.github/workflows/ci.yml` — CI для core/native/package reader и GPU-регрессий.
   Используется закреплённый снимок Horizon из `reference/horizon-source.json`.
 
-Перечень встроенных функций не означает, что они уже проверены внутри самой
-игры. В частности, компиляция Horizon adapter, чтение `.hnmod` через Horizon и
-GPU execution должны подтверждаться выполнением соответствующих CI jobs.
+Пользовательский smoke test на Horizon 0.1.0 с Radeon RX 580 (Vulkan)
+подтвердил запуск игры, вход в мир и создание диагностического региона через
+`/watery diagnostic water`. Это ещё не подтверждает видимый рендер, движение
+жидкости или игровой паритет. На commit `0ecbb40` CI подтвердил core tests,
+компиляцию Horizon adapter и чтение `.hnmod`; GPU regression job пока падает.
 
 ## Диагностический режим
 
