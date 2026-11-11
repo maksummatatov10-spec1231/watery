@@ -1,0 +1,20 @@
+Compiled from "DeltaTrackerTimerMixin.java"
+public class me.blue.client.mixin.DeltaTrackerTimerMixin {
+  public me.blue.client.mixin.DeltaTrackerTimerMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private boolean realisticWater$interpolateWhileRendering(boolean);
+    Code:
+         0: iload_1
+         1: ifne          13
+         4: invokestatic  #7                  // Method me/blue/client/water/ClipRecorder.get:()Lme/blue/client/water/ClipRecorder;
+         7: invokevirtual #13                 // Method me/blue/client/water/ClipRecorder.isRecording:()Z
+        10: ifeq          17
+        13: iconst_1
+        14: goto          18
+        17: iconst_0
+        18: ireturn
+}

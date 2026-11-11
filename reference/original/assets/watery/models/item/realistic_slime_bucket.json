@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "watery:item/realistic_slime_bucket"
+  }
+}

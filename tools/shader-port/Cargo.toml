@@ -1,0 +1,11 @@
+[package]
+name = "watery-shader-port"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+license = "GPL-3.0-only"
+
+[dependencies]
+naga = { path = "../../vendor/horizon/third_party/naga", features = ["glsl-in", "wgsl-in", "wgsl-out"] }
+
+[workspace]

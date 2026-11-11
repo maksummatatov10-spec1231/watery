@@ -1,0 +1,24 @@
+Compiled from "MinecraftMixin.java"
+public class me.blue.client.mixin.MinecraftMixin {
+  public me.blue.client.mixin.MinecraftMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private long realisticWater$clipClock(long);
+    Code:
+         0: invokestatic  #7                  // Method me/blue/client/water/ClipRecorder.get:()Lme/blue/client/water/ClipRecorder;
+         3: lload_1
+         4: invokevirtual #13                 // Method me/blue/client/water/ClipRecorder.gameClockMillis:(J)J
+         7: lreturn
+
+  private void realisticWater$captureClipFrame(boolean, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #7                  // Method me/blue/client/water/ClipRecorder.get:()Lme/blue/client/water/ClipRecorder;
+         3: aload_0
+         4: checkcast     #17                 // class net/minecraft/client/Minecraft
+         7: iload_1
+         8: invokevirtual #19                 // Method me/blue/client/water/ClipRecorder.captureFrame:(Lnet/minecraft/client/Minecraft;Z)V
+        11: return
+}

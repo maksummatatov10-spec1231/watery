@@ -1,0 +1,226 @@
+Compiled from "Protocol.java"
+public final class me.blue.protocol.Protocol {
+  public static final int VERSION = 1;
+
+  public static final java.lang.String NAMESPACE = "blue";
+
+  public static final java.lang.String CORE_CHANNEL = "blue:core";
+
+  public static final int MAX_CLIENTBOUND_PAYLOAD = 1048576;
+
+  public static final int MAX_SERVERBOUND_PAYLOAD = 32767;
+
+  public static final int MAX_ASSET_SIZE = 16777216;
+
+  public static final long MAX_CACHE_SIZE = 2147483648l;
+
+  public static final int MAX_CACHE_FILES = 8192;
+
+  public static final int MAX_CHUNK_SIZE = 262144;
+
+  public static final int MAX_QUERY_IDS = 256;
+
+  public static final int MAX_DELETE_IDS = 1024;
+
+  public static final int MAX_FEATURES = 256;
+
+  public static final int MAX_ASSET_ID_LENGTH = 64;
+
+  public static final int MAX_MOD_VERSION_LENGTH = 32;
+
+  public static final int MAX_FAILURE_REASON_LENGTH = 256;
+
+  private static final java.util.regex.Pattern FEATURE_ID;
+
+  private static final java.util.regex.Pattern ASSET_ID;
+
+  private static final java.util.Set<java.lang.String> WINDOWS_RESERVED;
+
+  private me.blue.protocol.Protocol();
+    Code:
+         0: aload_0
+         1: invokespecial #3                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  public static java.lang.String featureChannel(java.lang.String);
+    Code:
+         0: aload_0
+         1: invokedynamic #9,  0              // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+         6: areturn
+
+  public static boolean isValidFeatureId(java.lang.String);
+    Code:
+         0: aload_0
+         1: ifnull        30
+         4: aload_0
+         5: ldc           #13                 // String core
+         7: invokevirtual #15                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        10: ifne          30
+        13: getstatic     #21                 // Field FEATURE_ID:Ljava/util/regex/Pattern;
+        16: aload_0
+        17: invokevirtual #25                 // Method java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+        20: invokevirtual #31                 // Method java/util/regex/Matcher.matches:()Z
+        23: ifeq          30
+        26: iconst_1
+        27: goto          31
+        30: iconst_0
+        31: ireturn
+
+  public static boolean isValidAssetId(java.lang.String);
+    Code:
+         0: aload_0
+         1: ifnull        42
+         4: aload_0
+         5: invokevirtual #37                 // Method java/lang/String.isEmpty:()Z
+         8: ifne          42
+        11: aload_0
+        12: invokevirtual #40                 // Method java/lang/String.length:()I
+        15: bipush        64
+        17: if_icmpgt     42
+        20: aload_0
+        21: ldc           #44                 // String .
+        23: invokevirtual #46                 // Method java/lang/String.endsWith:(Ljava/lang/String;)Z
+        26: ifne          42
+        29: getstatic     #50                 // Field ASSET_ID:Ljava/util/regex/Pattern;
+        32: aload_0
+        33: invokevirtual #25                 // Method java/util/regex/Pattern.matcher:(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+        36: invokevirtual #31                 // Method java/util/regex/Matcher.matches:()Z
+        39: ifne          44
+        42: iconst_0
+        43: ireturn
+        44: aload_0
+        45: bipush        46
+        47: invokevirtual #53                 // Method java/lang/String.indexOf:(I)I
+        50: istore_1
+        51: getstatic     #57                 // Field WINDOWS_RESERVED:Ljava/util/Set;
+        54: iload_1
+        55: ifge          62
+        58: aload_0
+        59: goto          68
+        62: aload_0
+        63: iconst_0
+        64: iload_1
+        65: invokevirtual #61                 // Method java/lang/String.substring:(II)Ljava/lang/String;
+        68: invokeinterface #65,  2           // InterfaceMethod java/util/Set.contains:(Ljava/lang/Object;)Z
+        73: ifne          80
+        76: iconst_1
+        77: goto          81
+        80: iconst_0
+        81: ireturn
+
+  public static java.lang.String requireAssetId(java.lang.String);
+    Code:
+         0: aload_0
+         1: invokestatic  #70                 // Method isValidAssetId:(Ljava/lang/String;)Z
+         4: ifne          21
+         7: new           #73                 // class me/blue/protocol/ProtocolException
+        10: dup
+        11: aload_0
+        12: invokedynamic #75,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+        17: invokespecial #76                 // Method me/blue/protocol/ProtocolException."<init>":(Ljava/lang/String;)V
+        20: athrow
+        21: aload_0
+        22: areturn
+
+  static {};
+    Code:
+         0: ldc           #79                 // String [a-z0-9_]{1,32}
+         2: invokestatic  #81                 // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+         5: putstatic     #21                 // Field FEATURE_ID:Ljava/util/regex/Pattern;
+         8: ldc           #85                 // String [a-z0-9_-][a-z0-9_.-]*
+        10: invokestatic  #81                 // Method java/util/regex/Pattern.compile:(Ljava/lang/String;)Ljava/util/regex/Pattern;
+        13: putstatic     #50                 // Field ASSET_ID:Ljava/util/regex/Pattern;
+        16: bipush        22
+        18: anewarray     #16                 // class java/lang/String
+        21: dup
+        22: iconst_0
+        23: ldc           #87                 // String con
+        25: aastore
+        26: dup
+        27: iconst_1
+        28: ldc           #89                 // String prn
+        30: aastore
+        31: dup
+        32: iconst_2
+        33: ldc           #91                 // String aux
+        35: aastore
+        36: dup
+        37: iconst_3
+        38: ldc           #93                 // String nul
+        40: aastore
+        41: dup
+        42: iconst_4
+        43: ldc           #95                 // String com1
+        45: aastore
+        46: dup
+        47: iconst_5
+        48: ldc           #97                 // String com2
+        50: aastore
+        51: dup
+        52: bipush        6
+        54: ldc           #99                 // String com3
+        56: aastore
+        57: dup
+        58: bipush        7
+        60: ldc           #101                // String com4
+        62: aastore
+        63: dup
+        64: bipush        8
+        66: ldc           #103                // String com5
+        68: aastore
+        69: dup
+        70: bipush        9
+        72: ldc           #105                // String com6
+        74: aastore
+        75: dup
+        76: bipush        10
+        78: ldc           #107                // String com7
+        80: aastore
+        81: dup
+        82: bipush        11
+        84: ldc           #109                // String com8
+        86: aastore
+        87: dup
+        88: bipush        12
+        90: ldc           #111                // String com9
+        92: aastore
+        93: dup
+        94: bipush        13
+        96: ldc           #113                // String lpt1
+        98: aastore
+        99: dup
+       100: bipush        14
+       102: ldc           #115                // String lpt2
+       104: aastore
+       105: dup
+       106: bipush        15
+       108: ldc           #117                // String lpt3
+       110: aastore
+       111: dup
+       112: bipush        16
+       114: ldc           #119                // String lpt4
+       116: aastore
+       117: dup
+       118: bipush        17
+       120: ldc           #121                // String lpt5
+       122: aastore
+       123: dup
+       124: bipush        18
+       126: ldc           #123                // String lpt6
+       128: aastore
+       129: dup
+       130: bipush        19
+       132: ldc           #125                // String lpt7
+       134: aastore
+       135: dup
+       136: bipush        20
+       138: ldc           #127                // String lpt8
+       140: aastore
+       141: dup
+       142: bipush        21
+       144: ldc           #129                // String lpt9
+       146: aastore
+       147: invokestatic  #131                // InterfaceMethod java/util/Set.of:([Ljava/lang/Object;)Ljava/util/Set;
+       150: putstatic     #57                 // Field WINDOWS_RESERVED:Ljava/util/Set;
+       153: return
+}

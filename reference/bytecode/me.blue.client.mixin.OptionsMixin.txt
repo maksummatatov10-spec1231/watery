@@ -1,0 +1,26 @@
+Compiled from "OptionsMixin.java"
+public abstract class me.blue.client.mixin.OptionsMixin {
+  public me.blue.client.mixin.OptionsMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void blue$guiBlur(org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Integer>);
+    Code:
+         0: invokestatic  #7                  // Method me/blue/client/gui/ClientGuis.blur:()I
+         3: istore_2
+         4: iload_2
+         5: iflt          16
+         8: aload_1
+         9: iload_2
+        10: invokestatic  #13                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        13: invokevirtual #19                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+        16: return
+
+  private void blue$shaderOptions(java.lang.Object, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: aload_1
+         1: invokestatic  #25                 // Method me/blue/client/shader/ShaderOptions.processOptions:(Ljava/lang/Object;)V
+         4: return
+}

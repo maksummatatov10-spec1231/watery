@@ -1,0 +1,18 @@
+Compiled from "RealisticWaterFluid.java"
+public class me.blue.fluid.RealisticWaterFluid$Source extends me.blue.fluid.RealisticWaterFluid {
+  public me.blue.fluid.RealisticWaterFluid$Source();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method me/blue/fluid/RealisticWaterFluid."<init>":()V
+         4: return
+
+  public int getAmount(net.minecraft.world.level.material.FluidState);
+    Code:
+         0: bipush        8
+         2: ireturn
+
+  public boolean isSource(net.minecraft.world.level.material.FluidState);
+    Code:
+         0: iconst_1
+         1: ireturn
+}

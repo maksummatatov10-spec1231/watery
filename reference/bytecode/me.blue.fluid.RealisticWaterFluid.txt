@@ -1,0 +1,147 @@
+Compiled from "RealisticWaterFluid.java"
+public abstract class me.blue.fluid.RealisticWaterFluid extends net.minecraft.world.level.material.FlowingFluid {
+  public me.blue.fluid.RealisticWaterFluid();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method net/minecraft/world/level/material/FlowingFluid."<init>":()V
+         4: return
+
+  public net.minecraft.world.level.material.Fluid getFlowing();
+    Code:
+         0: getstatic     #7                  // Field me/blue/ModContent.FLOWING_REALISTIC_WATER:Lnet/minecraft/world/level/material/FlowingFluid;
+         3: areturn
+
+  public net.minecraft.world.level.material.Fluid getSource();
+    Code:
+         0: getstatic     #13                 // Field me/blue/ModContent.REALISTIC_WATER:Lnet/minecraft/world/level/material/FlowingFluid;
+         3: areturn
+
+  public net.minecraft.world.item.Item getBucket();
+    Code:
+         0: getstatic     #16                 // Field me/blue/ModContent.REALISTIC_WATER_BUCKET:Lnet/minecraft/world/item/Item;
+         3: areturn
+
+  public static boolean isRealistic(net.minecraft.world.level.material.FluidState);
+    Code:
+         0: aload_0
+         1: invokevirtual #20                 // Method net/minecraft/world/level/material/FluidState.isEmpty:()Z
+         4: ifne          21
+         7: aload_0
+         8: invokevirtual #26                 // Method net/minecraft/world/level/material/FluidState.getType:()Lnet/minecraft/world/level/material/Fluid;
+        11: instanceof    #30                 // class me/blue/fluid/RealisticWaterFluid
+        14: ifeq          21
+        17: iconst_1
+        18: goto          22
+        21: iconst_0
+        22: ireturn
+
+  public void tick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FluidState);
+    Code:
+         0: return
+
+  public net.minecraft.core.particles.ParticleOptions getDripParticle();
+    Code:
+         0: getstatic     #32                 // Field net/minecraft/core/particles/ParticleTypes.DRIPPING_WATER:Lnet/minecraft/core/particles/SimpleParticleType;
+         3: areturn
+
+  protected boolean canConvertToSource(net.minecraft.server.level.ServerLevel);
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  protected void beforeDestroyingBlock(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: aload_3
+         1: invokevirtual #38                 // Method net/minecraft/world/level/block/state/BlockState.hasBlockEntity:()Z
+         4: ifeq          17
+         7: aload_1
+         8: aload_2
+         9: invokeinterface #43,  2           // InterfaceMethod net/minecraft/world/level/LevelAccessor.getBlockEntity:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+        14: goto          18
+        17: aconst_null
+        18: astore        4
+        20: aload_3
+        21: aload_1
+        22: aload_2
+        23: aload         4
+        25: invokestatic  #49                 // Method net/minecraft/world/level/block/Block.dropResources:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+        28: return
+
+  protected void entityInside(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.world.entity.InsideBlockEffectApplier);
+    Code:
+         0: aload         4
+         2: getstatic     #55                 // Field net/minecraft/world/entity/InsideBlockEffectType.EXTINGUISH:Lnet/minecraft/world/entity/InsideBlockEffectType;
+         5: invokeinterface #61,  2           // InterfaceMethod net/minecraft/world/entity/InsideBlockEffectApplier.apply:(Lnet/minecraft/world/entity/InsideBlockEffectType;)V
+        10: return
+
+  public int getSlopeFindDistance(net.minecraft.world.level.LevelReader);
+    Code:
+         0: iconst_4
+         1: ireturn
+
+  public net.minecraft.world.level.block.state.BlockState createLegacyBlock(net.minecraft.world.level.material.FluidState);
+    Code:
+         0: getstatic     #67                 // Field me/blue/ModContent.REALISTIC_WATER_BLOCK:Lnet/minecraft/world/level/block/Block;
+         3: invokevirtual #71                 // Method net/minecraft/world/level/block/Block.defaultBlockState:()Lnet/minecraft/world/level/block/state/BlockState;
+         6: getstatic     #75                 // Field net/minecraft/world/level/block/LiquidBlock.LEVEL:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+         9: aload_1
+        10: invokestatic  #81                 // Method getLegacyLevel:(Lnet/minecraft/world/level/material/FluidState;)I
+        13: invokestatic  #85                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        16: invokevirtual #91                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        19: checkcast     #39                 // class net/minecraft/world/level/block/state/BlockState
+        22: getstatic     #95                 // Field me/blue/block/RealisticWaterBlock.INFINITE:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        25: aload_1
+        26: invokevirtual #101                // Method net/minecraft/world/level/material/FluidState.isSource:()Z
+        29: invokestatic  #104                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        32: invokevirtual #91                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        35: checkcast     #39                 // class net/minecraft/world/level/block/state/BlockState
+        38: areturn
+
+  public boolean isSame(net.minecraft.world.level.material.Fluid);
+    Code:
+         0: aload_1
+         1: getstatic     #13                 // Field me/blue/ModContent.REALISTIC_WATER:Lnet/minecraft/world/level/material/FlowingFluid;
+         4: if_acmpeq     14
+         7: aload_1
+         8: getstatic     #7                  // Field me/blue/ModContent.FLOWING_REALISTIC_WATER:Lnet/minecraft/world/level/material/FlowingFluid;
+        11: if_acmpne     18
+        14: iconst_1
+        15: goto          19
+        18: iconst_0
+        19: ireturn
+
+  public int getDropOff(net.minecraft.world.level.LevelReader);
+    Code:
+         0: iconst_1
+         1: ireturn
+
+  public int getTickDelay(net.minecraft.world.level.LevelReader);
+    Code:
+         0: iconst_5
+         1: ireturn
+
+  public boolean canBeReplacedWith(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.material.Fluid, net.minecraft.core.Direction);
+    Code:
+         0: aload         5
+         2: getstatic     #109                // Field net/minecraft/core/Direction.DOWN:Lnet/minecraft/core/Direction;
+         5: if_acmpne     23
+         8: aload         4
+        10: getstatic     #115                // Field net/minecraft/tags/FluidTags.WATER:Lnet/minecraft/tags/TagKey;
+        13: invokevirtual #121                // Method net/minecraft/world/level/material/Fluid.is:(Lnet/minecraft/tags/TagKey;)Z
+        16: ifne          23
+        19: iconst_1
+        20: goto          24
+        23: iconst_0
+        24: ireturn
+
+  protected float getExplosionResistance();
+    Code:
+         0: ldc           #127                // float 100.0f
+         2: freturn
+
+  public java.util.Optional<net.minecraft.sounds.SoundEvent> getPickupSound();
+    Code:
+         0: getstatic     #128                // Field net/minecraft/sounds/SoundEvents.BUCKET_FILL:Lnet/minecraft/sounds/SoundEvent;
+         3: invokestatic  #134                // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+         6: areturn
+}

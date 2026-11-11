@@ -1,0 +1,10 @@
+Compiled from "RenderTargetAccessor.java"
+public interface me.blue.client.mixin.RenderTargetAccessor {
+  public abstract com.mojang.renderpearl.api.textures.GpuTexture blue$colorTexture();
+
+  public abstract void blue$setColorTexture(com.mojang.renderpearl.api.textures.GpuTexture);
+
+  public abstract com.mojang.renderpearl.api.textures.GpuTextureView blue$colorTextureView();
+
+  public abstract void blue$setColorTextureView(com.mojang.renderpearl.api.textures.GpuTextureView);
+}

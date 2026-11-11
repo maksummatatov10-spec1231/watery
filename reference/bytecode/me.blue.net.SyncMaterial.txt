@@ -1,0 +1,58 @@
+Compiled from "SyncMaterial.java"
+public final class me.blue.net.SyncMaterial {
+  public static final byte WATER = 0;
+
+  public static final byte SAND = 1;
+
+  public static final byte LAVA = 2;
+
+  public static final byte SLIME = 3;
+
+  private me.blue.net.SyncMaterial();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  public static net.minecraft.world.level.block.Block block(byte);
+    Code:
+         0: iload_0
+         1: tableswitch   { // 1 to 3
+
+                       1: 28
+
+                       2: 34
+
+                       3: 40
+                 default: 46
+            }
+        28: getstatic     #7                  // Field me/blue/ModContent.REALISTIC_SAND:Lnet/minecraft/world/level/block/Block;
+        31: goto          49
+        34: getstatic     #13                 // Field me/blue/ModContent.REALISTIC_LAVA_BLOCK:Lnet/minecraft/world/level/block/Block;
+        37: goto          49
+        40: getstatic     #16                 // Field me/blue/ModContent.REALISTIC_SLIME_BLOCK:Lnet/minecraft/world/level/block/Block;
+        43: goto          49
+        46: getstatic     #19                 // Field me/blue/ModContent.REALISTIC_WATER_BLOCK:Lnet/minecraft/world/level/block/Block;
+        49: areturn
+
+  public static java.lang.String label(byte);
+    Code:
+         0: iload_0
+         1: tableswitch   { // 1 to 3
+
+                       1: 28
+
+                       2: 33
+
+                       3: 38
+                 default: 43
+            }
+        28: ldc           #22                 // String sand
+        30: goto          45
+        33: ldc           #24                 // String lava
+        35: goto          45
+        38: ldc           #26                 // String slime
+        40: goto          45
+        43: ldc           #28                 // String water
+        45: areturn
+}

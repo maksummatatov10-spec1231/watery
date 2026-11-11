@@ -1,0 +1,8 @@
+target/
+/vendor/horizon/
+/reference/horizon-*.zip
+/dist/
+__pycache__/
+*.py[cod]
+.venv/
+.env

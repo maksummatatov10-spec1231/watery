@@ -1,0 +1,12 @@
+Compiled from "RealisticWaterClient.java"
+class me.blue.client.RealisticWaterClient$1 implements net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler {
+  me.blue.client.RealisticWaterClient$1();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  public void renderFluid(net.minecraft.client.renderer.block.FluidRenderer, net.minecraft.core.BlockPos, net.minecraft.client.renderer.block.BlockAndTintGetter, net.minecraft.client.renderer.block.FluidRenderer$Output, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FluidState);
+    Code:
+         0: return
+}

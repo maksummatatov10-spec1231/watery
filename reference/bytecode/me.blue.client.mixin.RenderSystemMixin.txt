@@ -1,0 +1,25 @@
+Compiled from "RenderSystemMixin.java"
+public abstract class me.blue.client.mixin.RenderSystemMixin {
+  public me.blue.client.mixin.RenderSystemMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private static com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline blue$shaderPipeline(com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline, com.mojang.renderpearl.api.pipeline.RenderPipeline);
+    Code:
+         0: aload_0
+         1: ifnull        9
+         4: aload_1
+         5: aload_0
+         6: invokestatic  #7                  // Method me/blue/client/shader/PipelineTwins.rememberVanilla:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;)V
+         9: aload_1
+        10: invokestatic  #13                 // Method me/blue/client/shader/ShaderRenderer.swap:(Lcom/mojang/renderpearl/api/pipeline/RenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;
+        13: astore_2
+        14: aload_2
+        15: ifnull        22
+        18: aload_2
+        19: goto          23
+        22: aload_0
+        23: areturn
+}

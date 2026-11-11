@@ -1,0 +1,4 @@
+Compiled from "PipelineCacheAccessor.java"
+public interface me.blue.client.mixin.PipelineCacheAccessor {
+  public abstract com.mojang.renderpearl.api.pipeline.ShaderSource blue$shaderSource();
+}

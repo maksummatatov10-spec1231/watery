@@ -1,0 +1,16 @@
+Compiled from "RenderSystemAccessor.java"
+public interface me.blue.client.mixin.RenderSystemAccessor {
+  public static com.mojang.blaze3d.pipeline.PipelineCache blue$currentPipelineCache();
+    Code:
+         0: new           #1                  // class java/lang/AssertionError
+         3: dup
+         4: invokespecial #3                  // Method java/lang/AssertionError."<init>":()V
+         7: athrow
+
+  public static com.mojang.blaze3d.pipeline.PipelineCache blue$fallbackPipelineCache();
+    Code:
+         0: new           #1                  // class java/lang/AssertionError
+         3: dup
+         4: invokespecial #3                  // Method java/lang/AssertionError."<init>":()V
+         7: athrow
+}

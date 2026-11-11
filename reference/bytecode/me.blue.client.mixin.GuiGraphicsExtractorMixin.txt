@@ -1,0 +1,19 @@
+Compiled from "GuiGraphicsExtractorMixin.java"
+public abstract class me.blue.client.mixin.GuiGraphicsExtractorMixin {
+  public me.blue.client.mixin.GuiGraphicsExtractorMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void blue$widgetHover(int, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+         0: invokestatic  #7                  // Method me/blue/client/gui/WidgetHover.current:()Ljava/lang/Boolean;
+         3: astore        4
+         5: aload         4
+         7: ifnull        16
+        10: aload_3
+        11: aload         4
+        13: invokevirtual #13                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+        16: return
+}

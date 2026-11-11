@@ -1,0 +1,14 @@
+Compiled from "FrontendCommandEncoderMixin.java"
+public abstract class me.blue.client.mixin.FrontendCommandEncoderMixin {
+  public me.blue.client.mixin.FrontendCommandEncoderMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private com.mojang.renderpearl.api.commands.RenderPassDescriptor blue$outputs(com.mojang.renderpearl.api.commands.RenderPassDescriptor);
+    Code:
+         0: aload_1
+         1: invokestatic  #7                  // Method me/blue/client/shader/ShaderRenderer.withOutputs:(Lcom/mojang/renderpearl/api/commands/RenderPassDescriptor;)Lcom/mojang/renderpearl/api/commands/RenderPassDescriptor;
+         4: areturn
+}

@@ -1,0 +1,154 @@
+Compiled from "RealisticWaterClient.java"
+public class me.blue.client.RealisticWaterClient implements net.fabricmc.api.ClientModInitializer {
+  public me.blue.client.RealisticWaterClient();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  public void onInitializeClient();
+    Code:
+         0: invokestatic  #7                  // Method me/blue/client/water/WaterSettings.load:()V
+         3: invokestatic  #12                 // Method registerInvisibleFluid:()V
+         6: invokestatic  #17                 // InterfaceMethod me/blue/client/mixin/FogRendererAccessor.realisticWater$environments:()Ljava/util/List;
+         9: new           #23                 // class me/blue/client/water/SlimeFogEnvironment
+        12: dup
+        13: invokespecial #25                 // Method me/blue/client/water/SlimeFogEnvironment."<init>":()V
+        16: invokeinterface #26,  2           // InterfaceMethod java/util/List.addFirst:(Ljava/lang/Object;)V
+        21: invokestatic  #32                 // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+        24: astore_1
+        25: getstatic     #38                 // Field net/fabricmc/fabric/api/client/command/v2/ClientCommandRegistrationCallback.EVENT:Lnet/fabricmc/fabric/api/event/Event;
+        28: invokedynamic #44,  0             // InvokeDynamic #0:register:()Lnet/fabricmc/fabric/api/client/command/v2/ClientCommandRegistrationCallback;
+        33: invokevirtual #48                 // Method net/fabricmc/fabric/api/event/Event.register:(Ljava/lang/Object;)V
+        36: getstatic     #52                 // Field net/fabricmc/fabric/api/client/event/lifecycle/v1/ClientTickEvents.END_CLIENT_TICK:Lnet/fabricmc/fabric/api/event/Event;
+        39: aload_1
+        40: dup
+        41: invokestatic  #57                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+        44: pop
+        45: invokedynamic #63,  0             // InvokeDynamic #1:onEndTick:(Lme/blue/client/water/WaterWorld;)Lnet/fabricmc/fabric/api/client/event/lifecycle/v1/ClientTickEvents$EndTick;
+        50: invokevirtual #48                 // Method net/fabricmc/fabric/api/event/Event.register:(Ljava/lang/Object;)V
+        53: getstatic     #52                 // Field net/fabricmc/fabric/api/client/event/lifecycle/v1/ClientTickEvents.END_CLIENT_TICK:Lnet/fabricmc/fabric/api/event/Event;
+        56: invokedynamic #67,  0             // InvokeDynamic #2:onEndTick:()Lnet/fabricmc/fabric/api/client/event/lifecycle/v1/ClientTickEvents$EndTick;
+        61: invokevirtual #48                 // Method net/fabricmc/fabric/api/event/Event.register:(Ljava/lang/Object;)V
+        64: getstatic     #70                 // Field net/fabricmc/fabric/api/client/event/lifecycle/v1/ClientChunkEvents.CHUNK_LOAD:Lnet/fabricmc/fabric/api/event/Event;
+        67: aload_1
+        68: dup
+        69: invokestatic  #57                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+        72: pop
+        73: invokedynamic #75,  0             // InvokeDynamic #3:onChunkLoad:(Lme/blue/client/water/WaterWorld;)Lnet/fabricmc/fabric/api/client/event/lifecycle/v1/ClientChunkEvents$Load;
+        78: invokevirtual #48                 // Method net/fabricmc/fabric/api/event/Event.register:(Ljava/lang/Object;)V
+        81: getstatic     #79                 // Field net/fabricmc/fabric/api/client/event/lifecycle/v1/ClientChunkEvents.CHUNK_UNLOAD:Lnet/fabricmc/fabric/api/event/Event;
+        84: aload_1
+        85: dup
+        86: invokestatic  #57                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+        89: pop
+        90: invokedynamic #82,  0             // InvokeDynamic #4:onChunkUnload:(Lme/blue/client/water/WaterWorld;)Lnet/fabricmc/fabric/api/client/event/lifecycle/v1/ClientChunkEvents$Unload;
+        95: invokevirtual #48                 // Method net/fabricmc/fabric/api/event/Event.register:(Ljava/lang/Object;)V
+        98: getstatic     #86                 // Field net/fabricmc/fabric/api/client/networking/v1/ClientPlayConnectionEvents.DISCONNECT:Lnet/fabricmc/fabric/api/event/Event;
+       101: aload_1
+       102: invokedynamic #91,  0             // InvokeDynamic #5:onPlayDisconnect:(Lme/blue/client/water/WaterWorld;)Lnet/fabricmc/fabric/api/client/networking/v1/ClientPlayConnectionEvents$Disconnect;
+       107: invokevirtual #48                 // Method net/fabricmc/fabric/api/event/Event.register:(Ljava/lang/Object;)V
+       110: getstatic     #95                 // Field net/fabricmc/fabric/api/client/event/lifecycle/v1/ClientLifecycleEvents.CLIENT_STOPPING:Lnet/fabricmc/fabric/api/event/Event;
+       113: aload_1
+       114: invokedynamic #100,  0            // InvokeDynamic #6:onClientStopping:(Lme/blue/client/water/WaterWorld;)Lnet/fabricmc/fabric/api/client/event/lifecycle/v1/ClientLifecycleEvents$ClientStopping;
+       119: invokevirtual #48                 // Method net/fabricmc/fabric/api/event/Event.register:(Ljava/lang/Object;)V
+       122: return
+
+  private static void registerInvisibleFluid();
+    Code:
+         0: new           #104                // class net/minecraft/client/renderer/block/FluidModel$Unbaked
+         3: dup
+         4: new           #106                // class net/minecraft/client/resources/model/sprite/Material
+         7: dup
+         8: ldc           #108                // String block/water_still
+        10: invokestatic  #110                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+        13: invokespecial #116                // Method net/minecraft/client/resources/model/sprite/Material."<init>":(Lnet/minecraft/resources/Identifier;)V
+        16: new           #106                // class net/minecraft/client/resources/model/sprite/Material
+        19: dup
+        20: ldc           #119                // String block/water_flow
+        22: invokestatic  #110                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+        25: invokespecial #116                // Method net/minecraft/client/resources/model/sprite/Material."<init>":(Lnet/minecraft/resources/Identifier;)V
+        28: new           #106                // class net/minecraft/client/resources/model/sprite/Material
+        31: dup
+        32: ldc           #121                // String block/water_overlay
+        34: invokestatic  #110                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+        37: invokespecial #116                // Method net/minecraft/client/resources/model/sprite/Material."<init>":(Lnet/minecraft/resources/Identifier;)V
+        40: invokestatic  #123                // Method net/minecraft/client/color/block/BlockTintSources.water:()Lnet/minecraft/client/color/block/BlockTintSource;
+        43: invokespecial #129                // Method net/minecraft/client/renderer/block/FluidModel$Unbaked."<init>":(Lnet/minecraft/client/resources/model/sprite/Material;Lnet/minecraft/client/resources/model/sprite/Material;Lnet/minecraft/client/resources/model/sprite/Material;Lnet/minecraft/client/color/block/BlockTintSource;)V
+        46: astore_0
+        47: new           #132                // class me/blue/client/RealisticWaterClient$1
+        50: dup
+        51: invokespecial #134                // Method me/blue/client/RealisticWaterClient$1."<init>":()V
+        54: astore_1
+        55: getstatic     #135                // Field me/blue/ModContent.REALISTIC_WATER:Lnet/minecraft/world/level/material/FlowingFluid;
+        58: getstatic     #141                // Field me/blue/ModContent.FLOWING_REALISTIC_WATER:Lnet/minecraft/world/level/material/FlowingFluid;
+        61: aload_0
+        62: aload_1
+        63: invokestatic  #144                // Method net/fabricmc/fabric/api/client/render/fluid/v1/FluidRenderingRegistry.register:(Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/client/renderer/block/FluidModel$Unbaked;Lnet/fabricmc/fabric/api/client/render/fluid/v1/FluidRenderHandler;)V
+        66: new           #104                // class net/minecraft/client/renderer/block/FluidModel$Unbaked
+        69: dup
+        70: new           #106                // class net/minecraft/client/resources/model/sprite/Material
+        73: dup
+        74: ldc           #149                // String block/lava_still
+        76: invokestatic  #110                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+        79: invokespecial #116                // Method net/minecraft/client/resources/model/sprite/Material."<init>":(Lnet/minecraft/resources/Identifier;)V
+        82: new           #106                // class net/minecraft/client/resources/model/sprite/Material
+        85: dup
+        86: ldc           #151                // String block/lava_flow
+        88: invokestatic  #110                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+        91: invokespecial #116                // Method net/minecraft/client/resources/model/sprite/Material."<init>":(Lnet/minecraft/resources/Identifier;)V
+        94: new           #106                // class net/minecraft/client/resources/model/sprite/Material
+        97: dup
+        98: ldc           #153                // String block/lava_overlay
+       100: invokestatic  #110                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       103: invokespecial #116                // Method net/minecraft/client/resources/model/sprite/Material."<init>":(Lnet/minecraft/resources/Identifier;)V
+       106: ldc           #155                // int 16777215
+       108: invokestatic  #156                // Method net/minecraft/client/color/block/BlockTintSources.constant:(I)Lnet/minecraft/client/color/block/BlockTintSource;
+       111: invokespecial #129                // Method net/minecraft/client/renderer/block/FluidModel$Unbaked."<init>":(Lnet/minecraft/client/resources/model/sprite/Material;Lnet/minecraft/client/resources/model/sprite/Material;Lnet/minecraft/client/resources/model/sprite/Material;Lnet/minecraft/client/color/block/BlockTintSource;)V
+       114: astore_2
+       115: getstatic     #160                // Field me/blue/ModContent.REALISTIC_LAVA:Lnet/minecraft/world/level/material/FlowingFluid;
+       118: getstatic     #163                // Field me/blue/ModContent.FLOWING_REALISTIC_LAVA:Lnet/minecraft/world/level/material/FlowingFluid;
+       121: aload_2
+       122: aload_1
+       123: invokestatic  #144                // Method net/fabricmc/fabric/api/client/render/fluid/v1/FluidRenderingRegistry.register:(Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/client/renderer/block/FluidModel$Unbaked;Lnet/fabricmc/fabric/api/client/render/fluid/v1/FluidRenderHandler;)V
+       126: new           #104                // class net/minecraft/client/renderer/block/FluidModel$Unbaked
+       129: dup
+       130: new           #106                // class net/minecraft/client/resources/model/sprite/Material
+       133: dup
+       134: ldc           #108                // String block/water_still
+       136: invokestatic  #110                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       139: invokespecial #116                // Method net/minecraft/client/resources/model/sprite/Material."<init>":(Lnet/minecraft/resources/Identifier;)V
+       142: new           #106                // class net/minecraft/client/resources/model/sprite/Material
+       145: dup
+       146: ldc           #119                // String block/water_flow
+       148: invokestatic  #110                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       151: invokespecial #116                // Method net/minecraft/client/resources/model/sprite/Material."<init>":(Lnet/minecraft/resources/Identifier;)V
+       154: new           #106                // class net/minecraft/client/resources/model/sprite/Material
+       157: dup
+       158: ldc           #121                // String block/water_overlay
+       160: invokestatic  #110                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       163: invokespecial #116                // Method net/minecraft/client/resources/model/sprite/Material."<init>":(Lnet/minecraft/resources/Identifier;)V
+       166: ldc           #166                // int 8313692
+       168: invokestatic  #156                // Method net/minecraft/client/color/block/BlockTintSources.constant:(I)Lnet/minecraft/client/color/block/BlockTintSource;
+       171: invokespecial #129                // Method net/minecraft/client/renderer/block/FluidModel$Unbaked."<init>":(Lnet/minecraft/client/resources/model/sprite/Material;Lnet/minecraft/client/resources/model/sprite/Material;Lnet/minecraft/client/resources/model/sprite/Material;Lnet/minecraft/client/color/block/BlockTintSource;)V
+       174: astore_3
+       175: getstatic     #167                // Field me/blue/ModContent.REALISTIC_SLIME:Lnet/minecraft/world/level/material/FlowingFluid;
+       178: getstatic     #170                // Field me/blue/ModContent.FLOWING_REALISTIC_SLIME:Lnet/minecraft/world/level/material/FlowingFluid;
+       181: aload_3
+       182: aload_1
+       183: invokestatic  #144                // Method net/fabricmc/fabric/api/client/render/fluid/v1/FluidRenderingRegistry.register:(Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/client/renderer/block/FluidModel$Unbaked;Lnet/fabricmc/fabric/api/client/render/fluid/v1/FluidRenderHandler;)V
+       186: return
+
+  private static void lambda$onInitializeClient$1(me.blue.client.water.WaterWorld, net.minecraft.client.Minecraft);
+    Code:
+         0: invokestatic  #173                // Method me/blue/client/shader/ShaderPacks.shutdown:()V
+         3: aload_0
+         4: invokevirtual #178                // Method me/blue/client/water/WaterWorld.shutdown:()V
+         7: return
+
+  private static void lambda$onInitializeClient$0(me.blue.client.water.WaterWorld, net.minecraft.client.multiplayer.ClientPacketListener, net.minecraft.client.Minecraft);
+    Code:
+         0: aload_0
+         1: invokevirtual #179                // Method me/blue/client/water/WaterWorld.clear:()V
+         4: return
+}

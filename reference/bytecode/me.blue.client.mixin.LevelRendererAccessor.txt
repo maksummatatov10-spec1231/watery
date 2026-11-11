@@ -1,0 +1,8 @@
+Compiled from "LevelRendererAccessor.java"
+public interface me.blue.client.mixin.LevelRendererAccessor {
+  public abstract net.minecraft.client.renderer.ViewArea blue$viewArea();
+
+  public abstract net.minecraft.client.renderer.chunk.SectionRenderDispatcher blue$sectionRenderDispatcher();
+
+  public abstract com.mojang.renderpearl.api.textures.GpuSampler blue$chunkLayerSampler();
+}

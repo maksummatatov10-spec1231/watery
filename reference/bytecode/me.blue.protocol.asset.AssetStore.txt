@@ -1,0 +1,16 @@
+Compiled from "AssetStore.java"
+public interface me.blue.protocol.asset.AssetStore {
+  public abstract long size(java.lang.String);
+
+  public abstract me.blue.protocol.asset.AssetHash hash(java.lang.String) throws java.io.IOException;
+
+  public abstract java.util.List<java.lang.String> ids();
+
+  public abstract long totalSize();
+
+  public abstract int fileCount();
+
+  public abstract void write(java.lang.String, byte[]) throws java.io.IOException;
+
+  public abstract void delete(java.lang.String) throws java.io.IOException;
+}

@@ -1,0 +1,83 @@
+Compiled from "SlimeFogEnvironment.java"
+public class me.blue.client.water.SlimeFogEnvironment extends net.minecraft.client.renderer.fog.environment.FogEnvironment {
+  private static final org.joml.Vector3fc COLOR;
+
+  public me.blue.client.water.SlimeFogEnvironment();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method net/minecraft/client/renderer/fog/environment/FogEnvironment."<init>":()V
+         4: return
+
+  public org.joml.Vector3fc getBaseColor(net.minecraft.client.multiplayer.ClientLevel, net.minecraft.client.Camera, int, float);
+    Code:
+         0: getstatic     #7                  // Field COLOR:Lorg/joml/Vector3fc;
+         3: areturn
+
+  public void setupFog(net.minecraft.client.renderer.fog.FogData, net.minecraft.client.Camera, net.minecraft.client.multiplayer.ClientLevel, float, net.minecraft.client.DeltaTracker);
+    Code:
+         0: aload_2
+         1: invokevirtual #13                 // Method net/minecraft/client/Camera.entity:()Lnet/minecraft/world/entity/Entity;
+         4: invokevirtual #19                 // Method net/minecraft/world/entity/Entity.isSpectator:()Z
+         7: ifeq          28
+        10: aload_1
+        11: ldc           #25                 // float -8.0f
+        13: putfield      #26                 // Field net/minecraft/client/renderer/fog/FogData.environmentalStart:F
+        16: aload_1
+        17: fload         4
+        19: ldc           #32                 // float 0.5f
+        21: fmul
+        22: putfield      #33                 // Field net/minecraft/client/renderer/fog/FogData.environmentalEnd:F
+        25: goto          45
+        28: aload_1
+        29: fconst_0
+        30: putfield      #26                 // Field net/minecraft/client/renderer/fog/FogData.environmentalStart:F
+        33: aload_1
+        34: getstatic     #36                 // Field me/blue/client/water/WaterSettings.slimeFogDistance:F
+        37: ldc           #41                 // float 0.01f
+        39: invokestatic  #42                 // Method java/lang/Math.max:(FF)F
+        42: putfield      #33                 // Field net/minecraft/client/renderer/fog/FogData.environmentalEnd:F
+        45: aload_1
+        46: aload_1
+        47: getfield      #33                 // Field net/minecraft/client/renderer/fog/FogData.environmentalEnd:F
+        50: putfield      #48                 // Field net/minecraft/client/renderer/fog/FogData.skyEnd:F
+        53: aload_1
+        54: aload_1
+        55: getfield      #33                 // Field net/minecraft/client/renderer/fog/FogData.environmentalEnd:F
+        58: putfield      #51                 // Field net/minecraft/client/renderer/fog/FogData.cloudEnd:F
+        61: return
+
+  public boolean isApplicable(net.minecraft.world.level.material.FogType, net.minecraft.world.entity.Entity);
+    Code:
+         0: invokestatic  #54                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+         3: astore_3
+         4: aload_3
+         5: getfield      #60                 // Field net/minecraft/client/Minecraft.level:Lnet/minecraft/client/multiplayer/ClientLevel;
+         8: ifnonnull     13
+        11: iconst_0
+        12: ireturn
+        13: aload_3
+        14: getfield      #64                 // Field net/minecraft/client/Minecraft.gameRenderer:Lnet/minecraft/client/renderer/GameRenderer;
+        17: invokevirtual #68                 // Method net/minecraft/client/renderer/GameRenderer.mainCamera:()Lnet/minecraft/client/Camera;
+        20: astore        4
+        22: aload         4
+        24: invokevirtual #74                 // Method net/minecraft/client/Camera.isInitialized:()Z
+        27: ifeq          52
+        30: aload_3
+        31: getfield      #60                 // Field net/minecraft/client/Minecraft.level:Lnet/minecraft/client/multiplayer/ClientLevel;
+        34: aload         4
+        36: invokevirtual #77                 // Method net/minecraft/client/Camera.blockPosition:()Lnet/minecraft/core/BlockPos;
+        39: invokevirtual #81                 // Method net/minecraft/client/multiplayer/ClientLevel.getFluidState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;
+        42: invokestatic  #87                 // Method me/blue/fluid/RealisticSlimeFluid.isRealistic:(Lnet/minecraft/world/level/material/FluidState;)Z
+        45: ifeq          52
+        48: iconst_1
+        49: goto          53
+        52: iconst_0
+        53: ireturn
+
+  static {};
+    Code:
+         0: ldc           #93                 // int 5148478
+         2: invokestatic  #94                 // Method net/minecraft/util/ARGB.vector3fFromRGB24:(I)Lorg/joml/Vector3f;
+         5: putstatic     #7                  // Field COLOR:Lorg/joml/Vector3fc;
+         8: return
+}

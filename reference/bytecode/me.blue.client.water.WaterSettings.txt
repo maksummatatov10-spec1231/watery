@@ -1,0 +1,1050 @@
+Compiled from "WaterSettings.java"
+public final class me.blue.client.water.WaterSettings {
+  public static int resolution;
+
+  public static int boxMargin;
+
+  public static float cfl;
+
+  public static float maxDt;
+
+  public static int maxStepsPerFrame;
+
+  public static int renderMaxStepsPerFrame;
+
+  public static int cgIterations;
+
+  public static int mgCoarseSweeps;
+
+  public static int solverBottomCells;
+
+  public static int solverSmallCells;
+
+  public static int extrapolationLayers;
+
+  public static float flipRatio;
+
+  public static float volumeCorrection;
+
+  public static float maxSpeed;
+
+  public static float gravity;
+
+  public static boolean whitewater;
+
+  public static float wwTrappedAirRate;
+
+  public static float wwWaveCrestRate;
+
+  public static float wwEnergyMin;
+
+  public static float wwEnergyMax;
+
+  public static float wwTrappedAirMin;
+
+  public static float wwTrappedAirMax;
+
+  public static float wwWaveCrestMin;
+
+  public static float wwWaveCrestMax;
+
+  public static float wwFoamLifeMin;
+
+  public static float wwFoamLifeMax;
+
+  public static float wwBubbleBuoyancy;
+
+  public static float wwBubbleDrag;
+
+  public static float wwSprayDrag;
+
+  public static float wwSprayThreshold;
+
+  public static float wwBubbleThreshold;
+
+  public static int wwMaxPerParticle;
+
+  public static int wwCellLimit;
+
+  public static float filmFriction;
+
+  public static float filmDepth;
+
+  public static boolean sheetFill;
+
+  public static boolean wallFill;
+
+  public static float wallFillReach;
+
+  public static float sheetSmoothing;
+
+  public static float strandedTime;
+
+  public static int strandedNeighbors;
+
+  public static int surfaceSubdivision;
+
+  public static float surfaceKernel;
+
+  public static float surfaceRadius;
+
+  public static float surfaceIso;
+
+  public static float dropletThreshold;
+
+  public static float nearCull;
+
+  public static boolean surfaceGather;
+
+  public static boolean sortParticles;
+
+  public static boolean surfaceInteriorSkip;
+
+  public static int surfaceInteriorCount;
+
+  public static float fluidRestSpeed;
+
+  public static float fluidRestTime;
+
+  public static int fluidRestWhitewater;
+
+  public static float particleRadius;
+
+  public static float thicknessScale;
+
+  public static float refraction;
+
+  public static float absorbR;
+
+  public static float absorbG;
+
+  public static float absorbB;
+
+  public static float scatterR;
+
+  public static float scatterG;
+
+  public static float scatterB;
+
+  public static float scatterDensity;
+
+  public static float underwaterFog;
+
+  public static float surfaceSmoothing;
+
+  public static float detailStrength;
+
+  public static float detailScale;
+
+  public static float detailSpeed;
+
+  public static float roughness;
+
+  public static float specular;
+
+  public static float wetDarkening;
+
+  public static float filmShading;
+
+  public static float wwRadius;
+
+  public static float wwMaxPixels;
+
+  public static float foamCoverage;
+
+  public static float foamSize;
+
+  public static float foamBubbleSize;
+
+  public static float bubbleAlpha;
+
+  public static float sprayAlpha;
+
+  public static float sourceFill;
+
+  public static boolean bucketMakesSource;
+
+  public static boolean flowSounds;
+
+  public static float flowSoundVolume;
+
+  public static int sandResolution;
+
+  public static float sandFrictionAngle;
+
+  public static float sandCohesion;
+
+  public static float sandStiffness;
+
+  public static float sandWallFriction;
+
+  public static float sandCfl;
+
+  public static int sandMaxStepsPerFrame;
+
+  public static float sandImpactDamping;
+
+  public static float sandImpactRate;
+
+  public static float sandImpactCompression;
+
+  public static float sandRestSpeed;
+
+  public static float sandRestTime;
+
+  public static float sandWakeAccel;
+
+  public static float sandSurfaceIso;
+
+  public static float sandSurfaceSmoothing;
+
+  public static float sandGrainSize;
+
+  public static int sandGrainsPerParticle;
+
+  public static float sandGrainSpread;
+
+  public static float sandGrainMinPixels;
+
+  public static float sandBrightness;
+
+  public static boolean sandSounds;
+
+  public static int lavaResolution;
+
+  public static float lavaFlipRatio;
+
+  public static float lavaMaxSpeed;
+
+  public static float lavaFilmFriction;
+
+  public static float lavaStrandedTime;
+
+  public static int lavaStrandedNeighbors;
+
+  public static float lavaFilmDepth;
+
+  public static float lavaRefraction;
+
+  public static float lavaAbsorbR;
+
+  public static float lavaAbsorbG;
+
+  public static float lavaAbsorbB;
+
+  public static float lavaScatterR;
+
+  public static float lavaScatterG;
+
+  public static float lavaScatterB;
+
+  public static float lavaScatterDensity;
+
+  public static float lavaUnderwaterFog;
+
+  public static float lavaSurfaceSmoothing;
+
+  public static float lavaDetailStrength;
+
+  public static float lavaRoughness;
+
+  public static float lavaSpecular;
+
+  public static boolean lavaFlowSounds;
+
+  public static boolean lavaIgniteFlammables;
+
+  public static int slimeResolution;
+
+  public static float slimeFlipRatio;
+
+  public static float slimeMaxSpeed;
+
+  public static float slimeVolumeCorrection;
+
+  public static float slimeViscosity;
+
+  public static int slimeViscosityIterations;
+
+  public static float slimeAdhesion;
+
+  public static float slimeEntityStick;
+
+  public static float slimeRestSpeed;
+
+  public static float slimeRestTime;
+
+  public static float slimeWakeSpeed;
+
+  public static float slimeFilmFriction;
+
+  public static float slimeFilmDepth;
+
+  public static float slimeStrandedTime;
+
+  public static int slimeStrandedNeighbors;
+
+  public static float slimeOpacity;
+
+  public static float slimeBrightness;
+
+  public static float slimeSurfaceSmoothing;
+
+  public static float slimeInsideOpacity;
+
+  public static float slimeFogDistance;
+
+  public static boolean slimeSounds;
+
+  public static boolean tntReactions;
+
+  public static float tntBlastSpeed;
+
+  public static float tntBlastReach;
+
+  public static float tntUpwardBias;
+
+  public static float tntScatter;
+
+  public static float shaderLightScale;
+
+  public static float shaderSpecularCap;
+
+  public static float shaderShadowBias;
+
+  public static boolean shaderSkyFromScreen;
+
+  public static boolean shadowStagger;
+
+  public static float sandShaderSun;
+
+  public static float sandShaderSky;
+
+  public static java.lang.String ffmpeg;
+
+  public static boolean renderFreezeWorld;
+
+  public static boolean renderSteadyPreview;
+
+  public static float renderCameraSmoothing;
+
+  private static final java.util.Map<java.lang.String, java.lang.String> DEFAULTS;
+
+  private me.blue.client.water.WaterSettings();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private static java.util.Map<java.lang.String, java.lang.String> snapshot();
+    Code:
+         0: new           #7                  // class java/util/TreeMap
+         3: dup
+         4: invokespecial #9                  // Method java/util/TreeMap."<init>":()V
+         7: astore_0
+         8: invokestatic  #10                 // Method fields:()Ljava/util/Map;
+        11: invokeinterface #16,  1           // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+        16: invokeinterface #22,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        21: astore_1
+        22: aload_1
+        23: invokeinterface #28,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        28: ifeq          80
+        31: aload_1
+        32: invokeinterface #34,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        37: checkcast     #38                 // class java/util/Map$Entry
+        40: astore_2
+        41: aload_0
+        42: aload_2
+        43: invokeinterface #40,  1           // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+        48: checkcast     #43                 // class java/lang/String
+        51: aload_2
+        52: invokeinterface #45,  1           // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+        57: checkcast     #48                 // class java/lang/reflect/Field
+        60: aconst_null
+        61: invokevirtual #50                 // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        64: invokestatic  #54                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+        67: invokeinterface #58,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        72: pop
+        73: goto          77
+        76: astore_3
+        77: goto          22
+        80: aload_0
+        81: areturn
+      Exception table:
+         from    to  target type
+            41    73    76   Class java/lang/IllegalAccessException
+
+  public static java.lang.String defaultValue(java.lang.String);
+    Code:
+         0: getstatic     #64                 // Field DEFAULTS:Ljava/util/Map;
+         3: aload_0
+         4: ldc           #68                 // String
+         6: invokeinterface #70,  3           // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        11: checkcast     #43                 // class java/lang/String
+        14: areturn
+
+  public static java.lang.String get(java.lang.String) throws java.lang.ReflectiveOperationException;
+    Code:
+         0: invokestatic  #10                 // Method fields:()Ljava/util/Map;
+         3: aload_0
+         4: invokeinterface #73,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+         9: checkcast     #48                 // class java/lang/reflect/Field
+        12: astore_1
+        13: aload_1
+        14: ifnonnull     26
+        17: new           #74                 // class java/lang/NoSuchFieldException
+        20: dup
+        21: aload_0
+        22: invokespecial #76                 // Method java/lang/NoSuchFieldException."<init>":(Ljava/lang/String;)V
+        25: athrow
+        26: aload_1
+        27: aconst_null
+        28: invokevirtual #50                 // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        31: invokestatic  #54                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+        34: areturn
+
+  private static java.nio.file.Path file();
+    Code:
+         0: invokestatic  #79                 // InterfaceMethod net/fabricmc/loader/api/FabricLoader.getInstance:()Lnet/fabricmc/loader/api/FabricLoader;
+         3: invokeinterface #85,  1           // InterfaceMethod net/fabricmc/loader/api/FabricLoader.getConfigDir:()Ljava/nio/file/Path;
+         8: ldc           #89                 // String watery.properties
+        10: invokeinterface #91,  2           // InterfaceMethod java/nio/file/Path.resolve:(Ljava/lang/String;)Ljava/nio/file/Path;
+        15: areturn
+
+  public static void load();
+    Code:
+         0: invokestatic  #97                 // Method file:()Ljava/nio/file/Path;
+         3: astore_0
+         4: aload_0
+         5: iconst_0
+         6: anewarray     #100                // class java/nio/file/LinkOption
+         9: invokestatic  #102                // Method java/nio/file/Files.exists:(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+        12: ifne          16
+        15: return
+        16: new           #108                // class java/util/Properties
+        19: dup
+        20: invokespecial #110                // Method java/util/Properties."<init>":()V
+        23: astore_1
+        24: aload_0
+        25: invokestatic  #111                // Method java/nio/file/Files.newBufferedReader:(Ljava/nio/file/Path;)Ljava/io/BufferedReader;
+        28: astore_2
+        29: aload_1
+        30: aload_2
+        31: invokevirtual #115                // Method java/util/Properties.load:(Ljava/io/Reader;)V
+        34: aload_2
+        35: ifnull        67
+        38: aload_2
+        39: invokevirtual #119                // Method java/io/Reader.close:()V
+        42: goto          67
+        45: astore_3
+        46: aload_2
+        47: ifnull        65
+        50: aload_2
+        51: invokevirtual #119                // Method java/io/Reader.close:()V
+        54: goto          65
+        57: astore        4
+        59: aload_3
+        60: aload         4
+        62: invokevirtual #126                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+        65: aload_3
+        66: athrow
+        67: goto          84
+        70: astore_2
+        71: getstatic     #132                // Field me/blue/RealisticWater.LOGGER:Lorg/slf4j/Logger;
+        74: ldc           #138                // String Couldn\'t read {}
+        76: aload_0
+        77: aload_2
+        78: invokeinterface #140,  4          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+        83: return
+        84: aload_1
+        85: invokevirtual #146                // Method java/util/Properties.stringPropertyNames:()Ljava/util/Set;
+        88: invokeinterface #22,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        93: astore_2
+        94: aload_2
+        95: invokeinterface #28,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+       100: ifeq          160
+       103: aload_2
+       104: invokeinterface #34,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       109: checkcast     #43                 // class java/lang/String
+       112: astore_3
+       113: aload_1
+       114: aload_3
+       115: invokevirtual #149                // Method java/util/Properties.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+       118: astore        4
+       120: aload_3
+       121: aload         4
+       123: invokevirtual #153                // Method java/lang/String.isEmpty:()Z
+       126: ifeq          134
+       129: ldc           #156                // String -
+       131: goto          136
+       134: aload         4
+       136: invokestatic  #158                // Method set:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+       139: pop
+       140: goto          157
+       143: astore        4
+       145: getstatic     #132                // Field me/blue/RealisticWater.LOGGER:Lorg/slf4j/Logger;
+       148: ldc           #166                // String Skipping setting {} from {}
+       150: aload_3
+       151: aload_0
+       152: invokeinterface #140,  4          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+       157: goto          94
+       160: return
+      Exception table:
+         from    to  target type
+            29    34    45   Class java/lang/Throwable
+            50    54    57   Class java/lang/Throwable
+            24    67    70   Class java/io/IOException
+           113   140   143   Class java/lang/ReflectiveOperationException
+           113   140   143   Class java/lang/NumberFormatException
+
+  public static void save();
+    Code:
+         0: new           #108                // class java/util/Properties
+         3: dup
+         4: invokespecial #110                // Method java/util/Properties."<init>":()V
+         7: astore_0
+         8: invokestatic  #10                 // Method fields:()Ljava/util/Map;
+        11: invokeinterface #168,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+        16: invokeinterface #22,  1           // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        21: astore_1
+        22: aload_1
+        23: invokeinterface #28,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        28: ifeq          71
+        31: aload_1
+        32: invokeinterface #34,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        37: checkcast     #43                 // class java/lang/String
+        40: astore_2
+        41: aload_2
+        42: invokestatic  #171                // Method get:(Ljava/lang/String;)Ljava/lang/String;
+        45: astore_3
+        46: aload_3
+        47: aload_2
+        48: invokestatic  #173                // Method defaultValue:(Ljava/lang/String;)Ljava/lang/String;
+        51: invokevirtual #176                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        54: ifne          64
+        57: aload_0
+        58: aload_2
+        59: aload_3
+        60: invokevirtual #180                // Method java/util/Properties.setProperty:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;
+        63: pop
+        64: goto          68
+        67: astore_3
+        68: goto          22
+        71: invokestatic  #97                 // Method file:()Ljava/nio/file/Path;
+        74: astore_1
+        75: aload_1
+        76: invokeinterface #184,  1          // InterfaceMethod java/nio/file/Path.getParent:()Ljava/nio/file/Path;
+        81: iconst_0
+        82: anewarray     #187                // class java/nio/file/attribute/FileAttribute
+        85: invokestatic  #189                // Method java/nio/file/Files.createDirectories:(Ljava/nio/file/Path;[Ljava/nio/file/attribute/FileAttribute;)Ljava/nio/file/Path;
+        88: pop
+        89: aload_1
+        90: iconst_0
+        91: anewarray     #193                // class java/nio/file/OpenOption
+        94: invokestatic  #195                // Method java/nio/file/Files.newBufferedWriter:(Ljava/nio/file/Path;[Ljava/nio/file/OpenOption;)Ljava/io/BufferedWriter;
+        97: astore_2
+        98: aload_0
+        99: aload_2
+       100: ldc           #199                // String Realistic Water settings that differ from the defaults (edit in game with /water)
+       102: invokevirtual #201                // Method java/util/Properties.store:(Ljava/io/Writer;Ljava/lang/String;)V
+       105: aload_2
+       106: ifnull        138
+       109: aload_2
+       110: invokevirtual #205                // Method java/io/Writer.close:()V
+       113: goto          138
+       116: astore_3
+       117: aload_2
+       118: ifnull        136
+       121: aload_2
+       122: invokevirtual #205                // Method java/io/Writer.close:()V
+       125: goto          136
+       128: astore        4
+       130: aload_3
+       131: aload         4
+       133: invokevirtual #126                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       136: aload_3
+       137: athrow
+       138: goto          154
+       141: astore_2
+       142: getstatic     #132                // Field me/blue/RealisticWater.LOGGER:Lorg/slf4j/Logger;
+       145: ldc           #208                // String Couldn\'t save {}
+       147: aload_1
+       148: aload_2
+       149: invokeinterface #140,  4          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+       154: return
+      Exception table:
+         from    to  target type
+            41    64    67   Class java/lang/ReflectiveOperationException
+            98   105   116   Class java/lang/Throwable
+           121   125   128   Class java/lang/Throwable
+            75   138   141   Class java/io/IOException
+
+  public static void reset(java.lang.String) throws java.lang.ReflectiveOperationException;
+    Code:
+         0: getstatic     #64                 // Field DEFAULTS:Ljava/util/Map;
+         3: aload_0
+         4: invokeinterface #210,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+         9: ifeq          52
+        12: aload_0
+        13: getstatic     #64                 // Field DEFAULTS:Ljava/util/Map;
+        16: aload_0
+        17: invokeinterface #73,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        22: checkcast     #43                 // class java/lang/String
+        25: invokevirtual #153                // Method java/lang/String.isEmpty:()Z
+        28: ifeq          36
+        31: ldc           #156                // String -
+        33: goto          48
+        36: getstatic     #64                 // Field DEFAULTS:Ljava/util/Map;
+        39: aload_0
+        40: invokeinterface #73,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        45: checkcast     #43                 // class java/lang/String
+        48: invokestatic  #158                // Method set:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        51: pop
+        52: return
+
+  public static java.util.Map<java.lang.String, java.lang.reflect.Field> fields();
+    Code:
+         0: new           #7                  // class java/util/TreeMap
+         3: dup
+         4: invokespecial #9                  // Method java/util/TreeMap."<init>":()V
+         7: astore_0
+         8: ldc           #11                 // class me/blue/client/water/WaterSettings
+        10: invokevirtual #213                // Method java/lang/Class.getFields:()[Ljava/lang/reflect/Field;
+        13: astore_1
+        14: aload_1
+        15: arraylength
+        16: istore_2
+        17: iconst_0
+        18: istore_3
+        19: iload_3
+        20: iload_2
+        21: if_icmpge     60
+        24: aload_1
+        25: iload_3
+        26: aaload
+        27: astore        4
+        29: aload         4
+        31: invokevirtual #219                // Method java/lang/reflect/Field.getModifiers:()I
+        34: invokestatic  #223                // Method java/lang/reflect/Modifier.isStatic:(I)Z
+        37: ifeq          54
+        40: aload_0
+        41: aload         4
+        43: invokevirtual #229                // Method java/lang/reflect/Field.getName:()Ljava/lang/String;
+        46: aload         4
+        48: invokeinterface #58,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        53: pop
+        54: iinc          3, 1
+        57: goto          19
+        60: aload_0
+        61: areturn
+
+  public static java.lang.String set(java.lang.String, java.lang.String) throws java.lang.ReflectiveOperationException;
+    Code:
+         0: invokestatic  #10                 // Method fields:()Ljava/util/Map;
+         3: aload_0
+         4: invokeinterface #73,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+         9: checkcast     #48                 // class java/lang/reflect/Field
+        12: astore_2
+        13: aload_2
+        14: ifnonnull     26
+        17: new           #74                 // class java/lang/NoSuchFieldException
+        20: dup
+        21: aload_0
+        22: invokespecial #76                 // Method java/lang/NoSuchFieldException."<init>":(Ljava/lang/String;)V
+        25: athrow
+        26: aload_2
+        27: invokevirtual #233                // Method java/lang/reflect/Field.getType:()Ljava/lang/Class;
+        30: astore_3
+        31: aload_3
+        32: getstatic     #237                // Field java/lang/Integer.TYPE:Ljava/lang/Class;
+        35: if_acmpne     50
+        38: aload_2
+        39: aconst_null
+        40: aload_1
+        41: invokestatic  #243                // Method java/lang/Integer.parseInt:(Ljava/lang/String;)I
+        44: invokevirtual #247                // Method java/lang/reflect/Field.setInt:(Ljava/lang/Object;I)V
+        47: goto          114
+        50: aload_3
+        51: getstatic     #251                // Field java/lang/Float.TYPE:Ljava/lang/Class;
+        54: if_acmpne     69
+        57: aload_2
+        58: aconst_null
+        59: aload_1
+        60: invokestatic  #254                // Method java/lang/Float.parseFloat:(Ljava/lang/String;)F
+        63: invokevirtual #258                // Method java/lang/reflect/Field.setFloat:(Ljava/lang/Object;F)V
+        66: goto          114
+        69: aload_3
+        70: getstatic     #262                // Field java/lang/Boolean.TYPE:Ljava/lang/Class;
+        73: if_acmpne     88
+        76: aload_2
+        77: aconst_null
+        78: aload_1
+        79: invokestatic  #265                // Method java/lang/Boolean.parseBoolean:(Ljava/lang/String;)Z
+        82: invokevirtual #269                // Method java/lang/reflect/Field.setBoolean:(Ljava/lang/Object;Z)V
+        85: goto          114
+        88: aload_3
+        89: ldc           #43                 // class java/lang/String
+        91: if_acmpne     114
+        94: aload_2
+        95: aconst_null
+        96: aload_1
+        97: ldc           #156                // String -
+        99: invokevirtual #176                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       102: ifeq          110
+       105: ldc           #68                 // String
+       107: goto          111
+       110: aload_1
+       111: invokevirtual #273                // Method java/lang/reflect/Field.set:(Ljava/lang/Object;Ljava/lang/Object;)V
+       114: ldc_w         #276                // String lavaIgniteFlammables
+       117: aload_0
+       118: invokevirtual #176                // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+       121: ifeq          145
+       124: aload_3
+       125: getstatic     #262                // Field java/lang/Boolean.TYPE:Ljava/lang/Class;
+       128: if_acmpne     145
+       131: aload_2
+       132: aconst_null
+       133: invokevirtual #50                 // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       136: checkcast     #263                // class java/lang/Boolean
+       139: invokevirtual #278                // Method java/lang/Boolean.booleanValue:()Z
+       142: putstatic     #281                // Field me/blue/ModSettings.lavaIgniteFlammables:Z
+       145: aload_2
+       146: aconst_null
+       147: invokevirtual #50                 // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       150: invokestatic  #54                 // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+       153: areturn
+
+  static {};
+    Code:
+         0: bipush        6
+         2: putstatic     #286                // Field resolution:I
+         5: bipush        6
+         7: putstatic     #290                // Field boxMargin:I
+        10: fconst_2
+        11: putstatic     #293                // Field cfl:F
+        14: ldc_w         #297                // float 0.025f
+        17: putstatic     #298                // Field maxDt:F
+        20: iconst_4
+        21: putstatic     #301                // Field maxStepsPerFrame:I
+        24: bipush        64
+        26: putstatic     #304                // Field renderMaxStepsPerFrame:I
+        29: iconst_5
+        30: putstatic     #307                // Field cgIterations:I
+        33: bipush        12
+        35: putstatic     #310                // Field mgCoarseSweeps:I
+        38: sipush        8192
+        41: putstatic     #313                // Field solverBottomCells:I
+        44: sipush        24000
+        47: putstatic     #316                // Field solverSmallCells:I
+        50: iconst_4
+        51: putstatic     #319                // Field extrapolationLayers:I
+        54: ldc_w         #322                // float 0.99f
+        57: putstatic     #323                // Field flipRatio:F
+        60: fconst_2
+        61: putstatic     #326                // Field volumeCorrection:F
+        64: ldc_w         #329                // float 40.0f
+        67: putstatic     #330                // Field maxSpeed:F
+        70: ldc_w         #333                // float 9.81f
+        73: putstatic     #334                // Field gravity:F
+        76: iconst_1
+        77: putstatic     #337                // Field whitewater:Z
+        80: ldc_w         #340                // float 30.0f
+        83: putstatic     #341                // Field wwTrappedAirRate:F
+        86: ldc_w         #344                // float 45.0f
+        89: putstatic     #345                // Field wwWaveCrestRate:F
+        92: fconst_1
+        93: putstatic     #348                // Field wwEnergyMin:F
+        96: ldc_w         #351                // float 6.0f
+        99: putstatic     #352                // Field wwEnergyMax:F
+       102: fconst_2
+       103: putstatic     #355                // Field wwTrappedAirMin:F
+       106: ldc_w         #358                // float 14.0f
+       109: putstatic     #359                // Field wwTrappedAirMax:F
+       112: ldc_w         #362                // float 0.4f
+       115: putstatic     #363                // Field wwWaveCrestMin:F
+       118: ldc_w         #366                // float 2.5f
+       121: putstatic     #367                // Field wwWaveCrestMax:F
+       124: ldc_w         #370                // float 1.5f
+       127: putstatic     #371                // Field wwFoamLifeMin:F
+       130: ldc_w         #374                // float 4.0f
+       133: putstatic     #375                // Field wwFoamLifeMax:F
+       136: ldc_w         #366                // float 2.5f
+       139: putstatic     #378                // Field wwBubbleBuoyancy:F
+       142: ldc_w         #381                // float 0.6f
+       145: putstatic     #382                // Field wwBubbleDrag:F
+       148: ldc_w         #362                // float 0.4f
+       151: putstatic     #385                // Field wwSprayDrag:F
+       154: ldc_w         #388                // float 3.0f
+       157: putstatic     #389                // Field wwSprayThreshold:F
+       160: ldc_w         #351                // float 6.0f
+       163: putstatic     #392                // Field wwBubbleThreshold:F
+       166: iconst_4
+       167: putstatic     #395                // Field wwMaxPerParticle:I
+       170: bipush        12
+       172: putstatic     #398                // Field wwCellLimit:I
+       175: ldc_w         #329                // float 40.0f
+       178: putstatic     #401                // Field filmFriction:F
+       181: ldc_w         #404                // float 0.08f
+       184: putstatic     #405                // Field filmDepth:F
+       187: iconst_0
+       188: putstatic     #408                // Field sheetFill:Z
+       191: iconst_1
+       192: putstatic     #411                // Field wallFill:Z
+       195: fconst_1
+       196: putstatic     #414                // Field wallFillReach:F
+       199: fconst_2
+       200: putstatic     #417                // Field sheetSmoothing:F
+       203: ldc_w         #370                // float 1.5f
+       206: putstatic     #420                // Field strandedTime:F
+       209: bipush        12
+       211: putstatic     #423                // Field strandedNeighbors:I
+       214: iconst_2
+       215: putstatic     #426                // Field surfaceSubdivision:I
+       218: ldc_w         #388                // float 3.0f
+       221: putstatic     #429                // Field surfaceKernel:F
+       224: ldc_w         #432                // float 0.9f
+       227: putstatic     #433                // Field surfaceRadius:F
+       230: ldc_w         #436                // float 0.5f
+       233: putstatic     #437                // Field surfaceIso:F
+       236: ldc_w         #440                // float 0.35f
+       239: putstatic     #441                // Field dropletThreshold:F
+       242: ldc_w         #444                // float 0.05f
+       245: putstatic     #445                // Field nearCull:F
+       248: iconst_1
+       249: putstatic     #448                // Field surfaceGather:Z
+       252: iconst_1
+       253: putstatic     #451                // Field sortParticles:Z
+       256: iconst_1
+       257: putstatic     #454                // Field surfaceInteriorSkip:Z
+       260: iconst_4
+       261: putstatic     #457                // Field surfaceInteriorCount:I
+       264: ldc_w         #460                // float 0.15f
+       267: putstatic     #461                // Field fluidRestSpeed:F
+       270: ldc_w         #370                // float 1.5f
+       273: putstatic     #464                // Field fluidRestTime:F
+       276: bipush        32
+       278: putstatic     #467                // Field fluidRestWhitewater:I
+       281: ldc_w         #362                // float 0.4f
+       284: putstatic     #470                // Field particleRadius:F
+       287: fconst_1
+       288: putstatic     #473                // Field thicknessScale:F
+       291: ldc_w         #460                // float 0.15f
+       294: putstatic     #476                // Field refraction:F
+       297: ldc_w         #479                // float 0.45f
+       300: putstatic     #480                // Field absorbR:F
+       303: ldc_w         #483                // float 0.12f
+       306: putstatic     #484                // Field absorbG:F
+       309: ldc_w         #487                // float 0.07f
+       312: putstatic     #488                // Field absorbB:F
+       315: ldc_w         #491                // float 0.03f
+       318: putstatic     #492                // Field scatterR:F
+       321: ldc_w         #404                // float 0.08f
+       324: putstatic     #495                // Field scatterG:F
+       327: ldc_w         #498                // float 0.11f
+       330: putstatic     #499                // Field scatterB:F
+       333: ldc_w         #436                // float 0.5f
+       336: putstatic     #502                // Field scatterDensity:F
+       339: ldc_w         #505                // float 0.1f
+       342: putstatic     #506                // Field underwaterFog:F
+       345: ldc_w         #381                // float 0.6f
+       348: putstatic     #509                // Field surfaceSmoothing:F
+       351: ldc_w         #362                // float 0.4f
+       354: putstatic     #512                // Field detailStrength:F
+       357: ldc_w         #351                // float 6.0f
+       360: putstatic     #515                // Field detailScale:F
+       363: ldc_w         #518                // float 1.4f
+       366: putstatic     #519                // Field detailSpeed:F
+       369: ldc_w         #522                // float 0.06f
+       372: putstatic     #523                // Field roughness:F
+       375: ldc_w         #351                // float 6.0f
+       378: putstatic     #526                // Field specular:F
+       381: ldc_w         #529                // float 0.3f
+       384: putstatic     #530                // Field wetDarkening:F
+       387: ldc_w         #533                // float 0.25f
+       390: putstatic     #534                // Field filmShading:F
+       393: ldc_w         #537                // float 0.012f
+       396: putstatic     #538                // Field wwRadius:F
+       399: ldc_w         #366                // float 2.5f
+       402: putstatic     #541                // Field wwMaxPixels:F
+       405: ldc_w         #544                // float 1.2f
+       408: putstatic     #545                // Field foamCoverage:F
+       411: ldc_w         #388                // float 3.0f
+       414: putstatic     #548                // Field foamSize:F
+       417: ldc_w         #444                // float 0.05f
+       420: putstatic     #551                // Field foamBubbleSize:F
+       423: ldc_w         #533                // float 0.25f
+       426: putstatic     #554                // Field bubbleAlpha:F
+       429: ldc_w         #440                // float 0.35f
+       432: putstatic     #557                // Field sprayAlpha:F
+       435: ldc_w         #432                // float 0.9f
+       438: putstatic     #560                // Field sourceFill:F
+       441: iconst_0
+       442: putstatic     #563                // Field bucketMakesSource:Z
+       445: iconst_1
+       446: putstatic     #566                // Field flowSounds:Z
+       449: fconst_1
+       450: putstatic     #569                // Field flowSoundVolume:F
+       453: bipush        12
+       455: putstatic     #572                // Field sandResolution:I
+       458: ldc_w         #575                // float 15.0f
+       461: putstatic     #576                // Field sandFrictionAngle:F
+       464: ldc_w         #579                // float 0.015f
+       467: putstatic     #580                // Field sandCohesion:F
+       470: ldc_w         #583                // float 62.5f
+       473: putstatic     #584                // Field sandStiffness:F
+       476: ldc_w         #436                // float 0.5f
+       479: putstatic     #587                // Field sandWallFriction:F
+       482: ldc_w         #440                // float 0.35f
+       485: putstatic     #590                // Field sandCfl:F
+       488: bipush        16
+       490: putstatic     #593                // Field sandMaxStepsPerFrame:I
+       493: ldc_w         #436                // float 0.5f
+       496: putstatic     #596                // Field sandImpactDamping:F
+       499: fconst_2
+       500: putstatic     #599                // Field sandImpactRate:F
+       503: ldc_w         #460                // float 0.15f
+       506: putstatic     #602                // Field sandImpactCompression:F
+       509: ldc_w         #444                // float 0.05f
+       512: putstatic     #605                // Field sandRestSpeed:F
+       515: ldc_w         #460                // float 0.15f
+       518: putstatic     #608                // Field sandRestTime:F
+       521: ldc_w         #436                // float 0.5f
+       524: putstatic     #611                // Field sandWakeAccel:F
+       527: ldc_w         #436                // float 0.5f
+       530: putstatic     #614                // Field sandSurfaceIso:F
+       533: ldc_w         #381                // float 0.6f
+       536: putstatic     #617                // Field sandSurfaceSmoothing:F
+       539: ldc_w         #620                // float 0.01f
+       542: putstatic     #621                // Field sandGrainSize:F
+       545: bipush        32
+       547: putstatic     #624                // Field sandGrainsPerParticle:I
+       550: ldc_w         #436                // float 0.5f
+       553: putstatic     #627                // Field sandGrainSpread:F
+       556: ldc_w         #630                // float 0.7f
+       559: putstatic     #631                // Field sandGrainMinPixels:F
+       562: ldc_w         #634                // float 1.1f
+       565: putstatic     #635                // Field sandBrightness:F
+       568: iconst_1
+       569: putstatic     #638                // Field sandSounds:Z
+       572: bipush        6
+       574: putstatic     #641                // Field lavaResolution:I
+       577: ldc_w         #644                // float 0.9993f
+       580: putstatic     #645                // Field lavaFlipRatio:F
+       583: ldc_w         #648                // float 5.0f
+       586: putstatic     #649                // Field lavaMaxSpeed:F
+       589: ldc_w         #652                // float 140.0f
+       592: putstatic     #653                // Field lavaFilmFriction:F
+       595: ldc_w         #648                // float 5.0f
+       598: putstatic     #656                // Field lavaStrandedTime:F
+       601: bipush        16
+       603: putstatic     #659                // Field lavaStrandedNeighbors:I
+       606: ldc_w         #444                // float 0.05f
+       609: putstatic     #662                // Field lavaFilmDepth:F
+       612: ldc_w         #665                // float 0.04f
+       615: putstatic     #666                // Field lavaRefraction:F
+       618: ldc_w         #669                // float 2.8f
+       621: putstatic     #670                // Field lavaAbsorbR:F
+       624: ldc_w         #673                // float 5.5f
+       627: putstatic     #674                // Field lavaAbsorbG:F
+       630: ldc_w         #677                // float 8.0f
+       633: putstatic     #678                // Field lavaAbsorbB:F
+       636: ldc_w         #544                // float 1.2f
+       639: putstatic     #681                // Field lavaScatterR:F
+       642: ldc_w         #440                // float 0.35f
+       645: putstatic     #684                // Field lavaScatterG:F
+       648: ldc_w         #444                // float 0.05f
+       651: putstatic     #687                // Field lavaScatterB:F
+       654: ldc_w         #366                // float 2.5f
+       657: putstatic     #690                // Field lavaScatterDensity:F
+       660: ldc_w         #440                // float 0.35f
+       663: putstatic     #693                // Field lavaUnderwaterFog:F
+       666: ldc_w         #696                // float 0.75f
+       669: putstatic     #697                // Field lavaSurfaceSmoothing:F
+       672: ldc_w         #533                // float 0.25f
+       675: putstatic     #700                // Field lavaDetailStrength:F
+       678: ldc_w         #440                // float 0.35f
+       681: putstatic     #703                // Field lavaRoughness:F
+       684: ldc_w         #366                // float 2.5f
+       687: putstatic     #706                // Field lavaSpecular:F
+       690: iconst_1
+       691: putstatic     #709                // Field lavaFlowSounds:Z
+       694: iconst_1
+       695: putstatic     #712                // Field lavaIgniteFlammables:Z
+       698: iconst_4
+       699: putstatic     #713                // Field slimeResolution:I
+       702: ldc_w         #432                // float 0.9f
+       705: putstatic     #716                // Field slimeFlipRatio:F
+       708: ldc_w         #388                // float 3.0f
+       711: putstatic     #719                // Field slimeMaxSpeed:F
+       714: ldc_w         #351                // float 6.0f
+       717: putstatic     #722                // Field slimeVolumeCorrection:F
+       720: ldc_w         #370                // float 1.5f
+       723: putstatic     #725                // Field slimeViscosity:F
+       726: iconst_4
+       727: putstatic     #728                // Field slimeViscosityIterations:I
+       730: ldc_w         #731                // float 18.0f
+       733: putstatic     #732                // Field slimeAdhesion:F
+       736: ldc_w         #735                // float 0.85f
+       739: putstatic     #736                // Field slimeEntityStick:F
+       742: ldc_w         #381                // float 0.6f
+       745: putstatic     #739                // Field slimeRestSpeed:F
+       748: ldc_w         #505                // float 0.1f
+       751: putstatic     #742                // Field slimeRestTime:F
+       754: ldc_w         #370                // float 1.5f
+       757: putstatic     #745                // Field slimeWakeSpeed:F
+       760: ldc_w         #748                // float 220.0f
+       763: putstatic     #749                // Field slimeFilmFriction:F
+       766: ldc_w         #460                // float 0.15f
+       769: putstatic     #752                // Field slimeFilmDepth:F
+       772: ldc_w         #677                // float 8.0f
+       775: putstatic     #755                // Field slimeStrandedTime:F
+       778: iconst_4
+       779: putstatic     #758                // Field slimeStrandedNeighbors:I
+       782: ldc_w         #735                // float 0.85f
+       785: putstatic     #761                // Field slimeOpacity:F
+       788: fconst_1
+       789: putstatic     #764                // Field slimeBrightness:F
+       792: ldc_w         #735                // float 0.85f
+       795: putstatic     #767                // Field slimeSurfaceSmoothing:F
+       798: ldc_w         #770                // float 0.92f
+       801: putstatic     #771                // Field slimeInsideOpacity:F
+       804: ldc_w         #436                // float 0.5f
+       807: putstatic     #774                // Field slimeFogDistance:F
+       810: iconst_1
+       811: putstatic     #777                // Field slimeSounds:Z
+       814: iconst_1
+       815: putstatic     #780                // Field tntReactions:Z
+       818: ldc_w         #358                // float 14.0f
+       821: putstatic     #783                // Field tntBlastSpeed:F
+       824: fconst_2
+       825: putstatic     #786                // Field tntBlastReach:F
+       828: ldc_w         #440                // float 0.35f
+       831: putstatic     #789                // Field tntUpwardBias:F
+       834: ldc_w         #533                // float 0.25f
+       837: putstatic     #792                // Field tntScatter:F
+       840: ldc_w         #366                // float 2.5f
+       843: putstatic     #795                // Field shaderLightScale:F
+       846: ldc_w         #798                // float 16.0f
+       849: putstatic     #799                // Field shaderSpecularCap:F
+       852: ldc_w         #802                // float 4.0E-4f
+       855: putstatic     #803                // Field shaderShadowBias:F
+       858: iconst_1
+       859: putstatic     #806                // Field shaderSkyFromScreen:Z
+       862: iconst_1
+       863: putstatic     #809                // Field shadowStagger:Z
+       866: ldc_w         #812                // float 3.4f
+       869: putstatic     #813                // Field sandShaderSun:F
+       872: ldc_w         #432                // float 0.9f
+       875: putstatic     #816                // Field sandShaderSky:F
+       878: ldc           #68                 // String
+       880: putstatic     #819                // Field ffmpeg:Ljava/lang/String;
+       883: iconst_1
+       884: putstatic     #823                // Field renderFreezeWorld:Z
+       887: iconst_1
+       888: putstatic     #826                // Field renderSteadyPreview:Z
+       891: ldc_w         #483                // float 0.12f
+       894: putstatic     #829                // Field renderCameraSmoothing:F
+       897: invokestatic  #832                // Method snapshot:()Ljava/util/Map;
+       900: putstatic     #64                 // Field DEFAULTS:Ljava/util/Map;
+       903: return
+}

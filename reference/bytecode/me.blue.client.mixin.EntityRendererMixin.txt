@@ -1,0 +1,17 @@
+Compiled from "EntityRendererMixin.java"
+public abstract class me.blue.client.mixin.EntityRendererMixin {
+  public me.blue.client.mixin.EntityRendererMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void blue$noBlobShadow(net.minecraft.client.renderer.entity.state.EntityRenderState, net.minecraft.client.Minecraft, net.minecraft.world.level.Level, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #7                  // Method me/blue/client/shader/ShaderRenderer.hidesBlobShadows:()Z
+         3: ifeq          15
+         6: aload_1
+         7: getfield      #13                 // Field net/minecraft/client/renderer/entity/state/EntityRenderState.shadowPieces:Ljava/util/List;
+        10: invokeinterface #19,  1           // InterfaceMethod java/util/List.clear:()V
+        15: return
+}

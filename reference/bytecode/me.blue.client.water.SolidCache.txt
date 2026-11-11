@@ -1,0 +1,626 @@
+Compiled from "SolidCache.java"
+final class me.blue.client.water.SolidCache {
+  static final byte EMPTY = 0;
+
+  static final byte FULL = 1;
+
+  static final byte PARTIAL = 2;
+
+  final int res;
+
+  final boolean ignoreSand;
+
+  private final int bitsPerBlock;
+
+  private final it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap<me.blue.client.water.SolidCache$Section> sections;
+
+  me.blue.client.water.SolidCache(int, boolean);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #7                  // class it/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap
+         8: dup
+         9: invokespecial #9                  // Method it/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap."<init>":()V
+        12: putfield      #10                 // Field sections:Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;
+        15: aload_0
+        16: iload_1
+        17: putfield      #16                 // Field res:I
+        20: aload_0
+        21: iload_2
+        22: putfield      #20                 // Field ignoreSand:Z
+        25: aload_0
+        26: iload_1
+        27: iload_1
+        28: imul
+        29: iload_1
+        30: imul
+        31: putfield      #24                 // Field bitsPerBlock:I
+        34: return
+
+  private static int local(int, int, int);
+    Code:
+         0: iload_0
+         1: bipush        15
+         3: iand
+         4: iload_1
+         5: bipush        15
+         7: iand
+         8: iconst_4
+         9: ishl
+        10: ior
+        11: iload_2
+        12: bipush        15
+        14: iand
+        15: bipush        8
+        17: ishl
+        18: ior
+        19: ireturn
+
+  void clear();
+    Code:
+         0: aload_0
+         1: getfield      #10                 // Field sections:Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;
+         4: invokevirtual #27                 // Method it/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap.clear:()V
+         7: return
+
+  void invalidateChunk(int, int);
+    Code:
+         0: aload_0
+         1: getfield      #10                 // Field sections:Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;
+         4: invokevirtual #30                 // Method it/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap.keySet:()Lit/unimi/dsi/fastutil/longs/LongSet;
+         7: iload_1
+         8: iload_2
+         9: invokedynamic #34,  0             // InvokeDynamic #0:test:(II)Lit/unimi/dsi/fastutil/longs/LongPredicate;
+        14: invokeinterface #38,  2           // InterfaceMethod it/unimi/dsi/fastutil/longs/LongSet.removeIf:(Lit/unimi/dsi/fastutil/longs/LongPredicate;)Z
+        19: pop
+        20: return
+
+  boolean update(net.minecraft.client.multiplayer.ClientLevel, net.minecraft.core.BlockPos);
+    Code:
+         0: aload_0
+         1: getfield      #10                 // Field sections:Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;
+         4: aload_2
+         5: invokevirtual #44                 // Method net/minecraft/core/BlockPos.getX:()I
+         8: iconst_4
+         9: ishr
+        10: aload_2
+        11: invokevirtual #50                 // Method net/minecraft/core/BlockPos.getY:()I
+        14: iconst_4
+        15: ishr
+        16: aload_2
+        17: invokevirtual #53                 // Method net/minecraft/core/BlockPos.getZ:()I
+        20: iconst_4
+        21: ishr
+        22: invokestatic  #56                 // Method net/minecraft/core/SectionPos.asLong:(III)J
+        25: invokevirtual #62                 // Method it/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap.get:(J)Ljava/lang/Object;
+        28: checkcast     #66                 // class me/blue/client/water/SolidCache$Section
+        31: astore_3
+        32: aload_3
+        33: ifnonnull     38
+        36: iconst_1
+        37: ireturn
+        38: aload_2
+        39: invokevirtual #44                 // Method net/minecraft/core/BlockPos.getX:()I
+        42: aload_2
+        43: invokevirtual #50                 // Method net/minecraft/core/BlockPos.getY:()I
+        46: aload_2
+        47: invokevirtual #53                 // Method net/minecraft/core/BlockPos.getZ:()I
+        50: invokestatic  #68                 // Method local:(III)I
+        53: istore        4
+        55: aload_3
+        56: getfield      #72                 // Field me/blue/client/water/SolidCache$Section.kind:[B
+        59: iload         4
+        61: baload
+        62: istore        5
+        64: aload_3
+        65: getfield      #76                 // Field me/blue/client/water/SolidCache$Section.partial:[[J
+        68: iload         4
+        70: aaload
+        71: astore        6
+        73: aload_0
+        74: aload_1
+        75: aload_2
+        76: aload_1
+        77: aload_2
+        78: invokevirtual #80                 // Method net/minecraft/client/multiplayer/ClientLevel.getBlockState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+        81: aload_3
+        82: iload         4
+        84: invokevirtual #86                 // Method voxelizeBlock:(Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lme/blue/client/water/SolidCache$Section;I)V
+        87: iload         5
+        89: aload_3
+        90: getfield      #72                 // Field me/blue/client/water/SolidCache$Section.kind:[B
+        93: iload         4
+        95: baload
+        96: if_icmpne     125
+        99: aload_3
+       100: getfield      #72                 // Field me/blue/client/water/SolidCache$Section.kind:[B
+       103: iload         4
+       105: baload
+       106: iconst_2
+       107: if_icmpne     129
+       110: aload         6
+       112: aload_3
+       113: getfield      #76                 // Field me/blue/client/water/SolidCache$Section.partial:[[J
+       116: iload         4
+       118: aaload
+       119: invokestatic  #90                 // Method java/util/Arrays.equals:([J[J)Z
+       122: ifne          129
+       125: iconst_1
+       126: goto          130
+       129: iconst_0
+       130: ireturn
+
+  private me.blue.client.water.SolidCache$Section section(net.minecraft.client.multiplayer.ClientLevel, int, int, int);
+    Code:
+         0: iload_2
+         1: iload_3
+         2: iload         4
+         4: invokestatic  #56                 // Method net/minecraft/core/SectionPos.asLong:(III)J
+         7: lstore        5
+         9: aload_0
+        10: getfield      #10                 // Field sections:Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;
+        13: lload         5
+        15: invokevirtual #62                 // Method it/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap.get:(J)Ljava/lang/Object;
+        18: checkcast     #66                 // class me/blue/client/water/SolidCache$Section
+        21: astore        7
+        23: aload         7
+        25: ifnull        31
+        28: aload         7
+        30: areturn
+        31: aload_1
+        32: iload_3
+        33: invokevirtual #96                 // Method net/minecraft/client/multiplayer/ClientLevel.getSectionIndexFromSectionY:(I)I
+        36: istore        8
+        38: iload         8
+        40: aload_1
+        41: invokevirtual #100                // Method net/minecraft/client/multiplayer/ClientLevel.getSectionsCount:()I
+        44: if_icmplt     71
+        47: new           #66                 // class me/blue/client/water/SolidCache$Section
+        50: dup
+        51: invokespecial #103                // Method me/blue/client/water/SolidCache$Section."<init>":()V
+        54: astore        7
+        56: aload_0
+        57: getfield      #10                 // Field sections:Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;
+        60: lload         5
+        62: aload         7
+        64: invokevirtual #104                // Method it/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap.put:(JLjava/lang/Object;)Ljava/lang/Object;
+        67: pop
+        68: aload         7
+        70: areturn
+        71: iload         8
+        73: iflt          86
+        76: aload_1
+        77: iload_2
+        78: iload         4
+        80: invokevirtual #108                // Method net/minecraft/client/multiplayer/ClientLevel.hasChunk:(II)Z
+        83: ifne          88
+        86: aconst_null
+        87: areturn
+        88: aload_1
+        89: iload_2
+        90: iload         4
+        92: invokevirtual #112                // Method net/minecraft/client/multiplayer/ClientLevel.getChunk:(II)Lnet/minecraft/world/level/chunk/LevelChunk;
+        95: astore        9
+        97: aload         9
+        99: iload         8
+       101: invokevirtual #116                // Method net/minecraft/world/level/chunk/LevelChunk.getSection:(I)Lnet/minecraft/world/level/chunk/LevelChunkSection;
+       104: astore        10
+       106: new           #66                 // class me/blue/client/water/SolidCache$Section
+       109: dup
+       110: invokespecial #103                // Method me/blue/client/water/SolidCache$Section."<init>":()V
+       113: astore        7
+       115: aload         10
+       117: invokevirtual #122                // Method net/minecraft/world/level/chunk/LevelChunkSection.hasOnlyAir:()Z
+       120: ifne          234
+       123: new           #128                // class net/minecraft/core/BlockPos$MutableBlockPos
+       126: dup
+       127: invokespecial #130                // Method net/minecraft/core/BlockPos$MutableBlockPos."<init>":()V
+       130: astore        11
+       132: iconst_0
+       133: istore        12
+       135: iload         12
+       137: sipush        4096
+       140: if_icmpge     234
+       143: iload         12
+       145: bipush        15
+       147: iand
+       148: istore        13
+       150: iload         12
+       152: iconst_4
+       153: ishr
+       154: bipush        15
+       156: iand
+       157: istore        14
+       159: iload         12
+       161: bipush        8
+       163: ishr
+       164: istore        15
+       166: aload         10
+       168: iload         13
+       170: iload         14
+       172: iload         15
+       174: invokevirtual #131                // Method net/minecraft/world/level/chunk/LevelChunkSection.getBlockState:(III)Lnet/minecraft/world/level/block/state/BlockState;
+       177: astore        16
+       179: aload         16
+       181: invokevirtual #134                // Method net/minecraft/world/level/block/state/BlockState.isAir:()Z
+       184: ifeq          190
+       187: goto          228
+       190: aload         11
+       192: iload_2
+       193: iconst_4
+       194: ishl
+       195: iload         13
+       197: iadd
+       198: iload_3
+       199: iconst_4
+       200: ishl
+       201: iload         14
+       203: iadd
+       204: iload         4
+       206: iconst_4
+       207: ishl
+       208: iload         15
+       210: iadd
+       211: invokevirtual #139                // Method net/minecraft/core/BlockPos$MutableBlockPos.set:(III)Lnet/minecraft/core/BlockPos$MutableBlockPos;
+       214: pop
+       215: aload_0
+       216: aload_1
+       217: aload         11
+       219: aload         16
+       221: aload         7
+       223: iload         12
+       225: invokevirtual #86                 // Method voxelizeBlock:(Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lme/blue/client/water/SolidCache$Section;I)V
+       228: iinc          12, 1
+       231: goto          135
+       234: aload_0
+       235: getfield      #10                 // Field sections:Lit/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap;
+       238: lload         5
+       240: aload         7
+       242: invokevirtual #104                // Method it/unimi/dsi/fastutil/longs/Long2ObjectOpenHashMap.put:(JLjava/lang/Object;)Ljava/lang/Object;
+       245: pop
+       246: aload         7
+       248: areturn
+
+  private void voxelizeBlock(net.minecraft.client.multiplayer.ClientLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, me.blue.client.water.SolidCache$Section, int);
+    Code:
+         0: aload         4
+         2: getfield      #76                 // Field me/blue/client/water/SolidCache$Section.partial:[[J
+         5: iload         5
+         7: aconst_null
+         8: aastore
+         9: aload_3
+        10: invokevirtual #134                // Method net/minecraft/world/level/block/state/BlockState.isAir:()Z
+        13: ifne          33
+        16: aload_0
+        17: getfield      #20                 // Field ignoreSand:Z
+        20: ifeq          37
+        23: aload_3
+        24: invokevirtual #143                // Method net/minecraft/world/level/block/state/BlockState.getBlock:()Lnet/minecraft/world/level/block/Block;
+        27: instanceof    #147                // class me/blue/block/RealisticSandBlock
+        30: ifeq          37
+        33: iconst_1
+        34: goto          38
+        37: iconst_0
+        38: istore        6
+        40: iload         6
+        42: ifeq          49
+        45: aconst_null
+        46: goto          55
+        49: aload_3
+        50: aload_1
+        51: aload_2
+        52: invokevirtual #149                // Method net/minecraft/world/level/block/state/BlockState.getCollisionShape:(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;
+        55: astore        7
+        57: aload         7
+        59: ifnull        70
+        62: aload         7
+        64: invokevirtual #153                // Method net/minecraft/world/phys/shapes/VoxelShape.isEmpty:()Z
+        67: ifeq          80
+        70: aload         4
+        72: getfield      #72                 // Field me/blue/client/water/SolidCache$Section.kind:[B
+        75: iload         5
+        77: iconst_0
+        78: bastore
+        79: return
+        80: aload         7
+        82: invokestatic  #158                // Method net/minecraft/world/level/block/Block.isShapeFullBlock:(Lnet/minecraft/world/phys/shapes/VoxelShape;)Z
+        85: ifeq          98
+        88: aload         4
+        90: getfield      #72                 // Field me/blue/client/water/SolidCache$Section.kind:[B
+        93: iload         5
+        95: iconst_1
+        96: bastore
+        97: return
+        98: aload         7
+       100: invokevirtual #164                // Method net/minecraft/world/phys/shapes/VoxelShape.toAabbs:()Ljava/util/List;
+       103: astore        8
+       105: aload_0
+       106: getfield      #24                 // Field bitsPerBlock:I
+       109: bipush        63
+       111: iadd
+       112: bipush        64
+       114: idiv
+       115: newarray       long
+       117: astore        9
+       119: iconst_0
+       120: istore        10
+       122: aload_0
+       123: getfield      #16                 // Field res:I
+       126: istore        11
+       128: iconst_0
+       129: istore        12
+       131: iload         12
+       133: iload         11
+       135: if_icmpge     379
+       138: iconst_0
+       139: istore        13
+       141: iload         13
+       143: iload         11
+       145: if_icmpge     373
+       148: iconst_0
+       149: istore        14
+       151: iload         14
+       153: iload         11
+       155: if_icmpge     367
+       158: iload         14
+       160: i2d
+       161: ldc2_w        #168                // double 0.5d
+       164: dadd
+       165: iload         11
+       167: i2d
+       168: ddiv
+       169: dstore        15
+       171: iload         13
+       173: i2d
+       174: ldc2_w        #168                // double 0.5d
+       177: dadd
+       178: iload         11
+       180: i2d
+       181: ddiv
+       182: dstore        17
+       184: iload         12
+       186: i2d
+       187: ldc2_w        #168                // double 0.5d
+       190: dadd
+       191: iload         11
+       193: i2d
+       194: ddiv
+       195: dstore        19
+       197: aload         8
+       199: invokeinterface #170,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       204: astore        21
+       206: aload         21
+       208: invokeinterface #176,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       213: ifeq          361
+       216: aload         21
+       218: invokeinterface #181,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       223: checkcast     #185                // class net/minecraft/world/phys/AABB
+       226: astore        22
+       228: dload         15
+       230: aload         22
+       232: getfield      #187                // Field net/minecraft/world/phys/AABB.minX:D
+       235: ldc2_w        #191                // double 1.0E-4d
+       238: dsub
+       239: dcmpl
+       240: iflt          358
+       243: dload         15
+       245: aload         22
+       247: getfield      #193                // Field net/minecraft/world/phys/AABB.maxX:D
+       250: ldc2_w        #191                // double 1.0E-4d
+       253: dadd
+       254: dcmpg
+       255: ifgt          358
+       258: dload         17
+       260: aload         22
+       262: getfield      #196                // Field net/minecraft/world/phys/AABB.minY:D
+       265: ldc2_w        #191                // double 1.0E-4d
+       268: dsub
+       269: dcmpl
+       270: iflt          358
+       273: dload         17
+       275: aload         22
+       277: getfield      #199                // Field net/minecraft/world/phys/AABB.maxY:D
+       280: ldc2_w        #191                // double 1.0E-4d
+       283: dadd
+       284: dcmpg
+       285: ifgt          358
+       288: dload         19
+       290: aload         22
+       292: getfield      #202                // Field net/minecraft/world/phys/AABB.minZ:D
+       295: ldc2_w        #191                // double 1.0E-4d
+       298: dsub
+       299: dcmpl
+       300: iflt          358
+       303: dload         19
+       305: aload         22
+       307: getfield      #205                // Field net/minecraft/world/phys/AABB.maxZ:D
+       310: ldc2_w        #191                // double 1.0E-4d
+       313: dadd
+       314: dcmpg
+       315: ifgt          358
+       318: iload         14
+       320: iload         11
+       322: iload         13
+       324: iload         11
+       326: iload         12
+       328: imul
+       329: iadd
+       330: imul
+       331: iadd
+       332: istore        23
+       334: aload         9
+       336: iload         23
+       338: bipush        6
+       340: ishr
+       341: dup2
+       342: laload
+       343: lconst_1
+       344: iload         23
+       346: bipush        63
+       348: iand
+       349: lshl
+       350: lor
+       351: lastore
+       352: iconst_1
+       353: istore        10
+       355: goto          361
+       358: goto          206
+       361: iinc          14, 1
+       364: goto          151
+       367: iinc          13, 1
+       370: goto          141
+       373: iinc          12, 1
+       376: goto          131
+       379: aload         4
+       381: getfield      #72                 // Field me/blue/client/water/SolidCache$Section.kind:[B
+       384: iload         5
+       386: iload         10
+       388: ifeq          395
+       391: iconst_2
+       392: goto          396
+       395: iconst_0
+       396: bastore
+       397: aload         4
+       399: getfield      #76                 // Field me/blue/client/water/SolidCache$Section.partial:[[J
+       402: iload         5
+       404: iload         10
+       406: ifeq          414
+       409: aload         9
+       411: goto          415
+       414: aconst_null
+       415: aastore
+       416: return
+
+  void writeBlock(net.minecraft.client.multiplayer.ClientLevel, int, int, int, int[], int, int, int, int, int);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: iconst_4
+         4: ishr
+         5: iload_3
+         6: iconst_4
+         7: ishr
+         8: iload         4
+        10: iconst_4
+        11: ishr
+        12: invokevirtual #208                // Method section:(Lnet/minecraft/client/multiplayer/ClientLevel;III)Lme/blue/client/water/SolidCache$Section;
+        15: astore        11
+        17: aconst_null
+        18: astore        13
+        20: aload         11
+        22: ifnonnull     31
+        25: iconst_1
+        26: istore        12
+        28: goto          60
+        31: iload_2
+        32: iload_3
+        33: iload         4
+        35: invokestatic  #68                 // Method local:(III)I
+        38: istore        14
+        40: aload         11
+        42: getfield      #72                 // Field me/blue/client/water/SolidCache$Section.kind:[B
+        45: iload         14
+        47: baload
+        48: istore        12
+        50: aload         11
+        52: getfield      #76                 // Field me/blue/client/water/SolidCache$Section.partial:[[J
+        55: iload         14
+        57: aaload
+        58: astore        13
+        60: aload_0
+        61: getfield      #16                 // Field res:I
+        64: istore        14
+        66: iconst_0
+        67: istore        15
+        69: iload         15
+        71: iload         14
+        73: if_icmpge     204
+        76: iconst_0
+        77: istore        16
+        79: iload         16
+        81: iload         14
+        83: if_icmpge     198
+        86: iload         6
+        88: iload         9
+        90: iload         7
+        92: iload         16
+        94: iadd
+        95: iload         10
+        97: iload         8
+        99: iload         15
+       101: iadd
+       102: imul
+       103: iadd
+       104: imul
+       105: iadd
+       106: istore        17
+       108: iconst_0
+       109: istore        18
+       111: iload         18
+       113: iload         14
+       115: if_icmpge     192
+       118: iload         12
+       120: ifne          129
+       123: iconst_0
+       124: istore        19
+       126: goto          176
+       129: iload         12
+       131: iconst_1
+       132: if_icmpne     141
+       135: iconst_1
+       136: istore        19
+       138: goto          176
+       141: iload         18
+       143: iload         14
+       145: iload         16
+       147: iload         14
+       149: iload         15
+       151: imul
+       152: iadd
+       153: imul
+       154: iadd
+       155: istore        20
+       157: aload         13
+       159: iload         20
+       161: bipush        6
+       163: ishr
+       164: laload
+       165: iload         20
+       167: bipush        63
+       169: iand
+       170: lushr
+       171: lconst_1
+       172: land
+       173: l2i
+       174: istore        19
+       176: aload         5
+       178: iload         17
+       180: iload         18
+       182: iadd
+       183: iload         19
+       185: iastore
+       186: iinc          18, 1
+       189: goto          111
+       192: iinc          16, 1
+       195: goto          79
+       198: iinc          15, 1
+       201: goto          69
+       204: return
+
+  private static boolean lambda$invalidateChunk$0(int, int, long);
+    Code:
+         0: lload_2
+         1: invokestatic  #212                // Method net/minecraft/core/SectionPos.x:(J)I
+         4: iload_0
+         5: if_icmpne     20
+         8: lload_2
+         9: invokestatic  #216                // Method net/minecraft/core/SectionPos.z:(J)I
+        12: iload_1
+        13: if_icmpne     20
+        16: iconst_1
+        17: goto          21
+        20: iconst_0
+        21: ireturn
+}

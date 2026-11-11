@@ -1,0 +1,4 @@
+Compiled from "GuiGraphicsExtractorAccessor.java"
+public interface me.blue.client.mixin.GuiGraphicsExtractorAccessor {
+  public abstract net.minecraft.client.gui.GuiGraphicsExtractor$ScissorStack blue$scissorStack();
+}

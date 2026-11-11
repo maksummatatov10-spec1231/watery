@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "watery",
+	"version": "1.2.2",
+	"name": "Watery",
+	"description": "Ultra realistic stuff from Blender Minecraft renders!",
+	"authors": [
+		"ItsBlueDD"
+	],
+	"contact": {
+	},
+	"license": "GPL-3.0-only",
+	"icon": "assets/watery/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"me.blue.RealisticWater"
+		],
+		"client": [
+			"me.blue.client.RealisticWaterClient"
+		]
+	},
+	"mixins": [
+		"watery.mixins.json",
+		{
+			"config": "watery.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

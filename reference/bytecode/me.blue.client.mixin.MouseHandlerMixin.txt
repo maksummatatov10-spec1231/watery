@@ -1,0 +1,25 @@
+Compiled from "MouseHandlerMixin.java"
+public class me.blue.client.mixin.MouseHandlerMixin {
+  public me.blue.client.mixin.MouseHandlerMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void realisticWater$clipCamera(net.minecraft.client.player.LocalPlayer, double, double);
+    Code:
+         0: invokestatic  #7                  // Method me/blue/client/water/ClipRecorder.get:()Lme/blue/client/water/ClipRecorder;
+         3: dload_2
+         4: dload         4
+         6: invokevirtual #13                 // Method me/blue/client/water/ClipRecorder.filterTurn:(DD)[D
+         9: astore        6
+        11: aload_1
+        12: aload         6
+        14: iconst_0
+        15: daload
+        16: aload         6
+        18: iconst_1
+        19: daload
+        20: invokevirtual #17                 // Method net/minecraft/client/player/LocalPlayer.turn:(DD)V
+        23: return
+}

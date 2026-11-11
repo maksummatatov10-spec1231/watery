@@ -1,0 +1,103 @@
+Compiled from "ShaderLevelRendererMixin.java"
+public abstract class me.blue.client.mixin.ShaderLevelRendererMixin {
+  private com.mojang.renderpearl.api.commands.RenderPass blue$translucentPass;
+
+  public me.blue.client.mixin.ShaderLevelRendererMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void blue$shadowMap(net.minecraft.client.renderer.LevelRenderer, com.mojang.blaze3d.framegraph.FrameGraphBuilder, net.minecraft.client.renderer.feature.FeatureRenderDispatcher$PreparedFrame, com.mojang.renderpearl.api.buffers.GpuBufferSlice, net.minecraft.client.renderer.chunk.ChunkSectionsToRender, boolean, com.llamalad7.mixinextras.injector.wrapoperation.Operation<java.lang.Void>);
+    Code:
+         0: aload_3
+         1: invokestatic  #7                  // Method me/blue/client/shader/ShaderRenderer.renderShadows:(Lnet/minecraft/client/renderer/feature/FeatureRenderDispatcher$PreparedFrame;)V
+         4: aload         7
+         6: bipush        6
+         8: anewarray     #2                  // class java/lang/Object
+        11: dup
+        12: iconst_0
+        13: aload_1
+        14: aastore
+        15: dup
+        16: iconst_1
+        17: aload_2
+        18: aastore
+        19: dup
+        20: iconst_2
+        21: aload_3
+        22: aastore
+        23: dup
+        24: iconst_3
+        25: aload         4
+        27: aastore
+        28: dup
+        29: iconst_4
+        30: aload         5
+        32: aastore
+        33: dup
+        34: iconst_5
+        35: iload         6
+        37: invokestatic  #13                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        40: aastore
+        41: invokeinterface #19,  2           // InterfaceMethod com/llamalad7/mixinextras/injector/wrapoperation/Operation.call:([Ljava/lang/Object;)Ljava/lang/Object;
+        46: pop
+        47: return
+
+  private com.mojang.renderpearl.api.commands.RenderPass blue$splitSolid(com.mojang.renderpearl.api.commands.RenderPass);
+    Code:
+         0: invokestatic  #25                 // Method me/blue/client/shader/ShaderRenderer.splitsSolid:()Z
+         3: ifne          8
+         6: aload_1
+         7: areturn
+         8: aload_1
+         9: invokeinterface #29,  1           // InterfaceMethod com/mojang/renderpearl/api/commands/RenderPass.close:()V
+        14: invokestatic  #34                 // Method me/blue/client/shader/ShaderRenderer.afterSolid:()V
+        17: invokestatic  #37                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+        20: getfield      #43                 // Field net/minecraft/client/Minecraft.gameRenderer:Lnet/minecraft/client/renderer/GameRenderer;
+        23: invokevirtual #47                 // Method net/minecraft/client/renderer/GameRenderer.mainRenderTarget:()Lcom/mojang/blaze3d/pipeline/RenderTarget;
+        26: astore_2
+        27: invokestatic  #53                 // Method com/mojang/blaze3d/systems/RenderSystem.getDevice:()Lcom/mojang/renderpearl/api/device/GpuDevice;
+        30: invokeinterface #59,  1           // InterfaceMethod com/mojang/renderpearl/api/device/GpuDevice.createCommandEncoder:()Lcom/mojang/renderpearl/api/commands/CommandEncoder;
+        35: invokedynamic #65,  0             // InvokeDynamic #0:get:()Ljava/util/function/Supplier;
+        40: aload_2
+        41: invokevirtual #69                 // Method com/mojang/blaze3d/pipeline/RenderTarget.getColorTextureView:()Lcom/mojang/renderpearl/api/textures/GpuTextureView;
+        44: invokestatic  #75                 // Method java/util/Optional.empty:()Ljava/util/Optional;
+        47: aload_2
+        48: invokevirtual #81                 // Method com/mojang/blaze3d/pipeline/RenderTarget.getDepthTextureView:()Lcom/mojang/renderpearl/api/textures/GpuTextureView;
+        51: invokestatic  #84                 // Method java/util/OptionalDouble.empty:()Ljava/util/OptionalDouble;
+        54: invokeinterface #89,  6           // InterfaceMethod com/mojang/renderpearl/api/commands/CommandEncoder.createRenderPass:(Ljava/util/function/Supplier;Lcom/mojang/renderpearl/api/textures/GpuTextureView;Ljava/util/Optional;Lcom/mojang/renderpearl/api/textures/GpuTextureView;Ljava/util/OptionalDouble;)Lcom/mojang/renderpearl/api/commands/RenderPass;
+        59: astore_3
+        60: aload_3
+        61: invokestatic  #95                 // Method com/mojang/blaze3d/systems/RenderSystem.bindDefaultUniforms:(Lcom/mojang/renderpearl/api/commands/RenderPass;)V
+        64: aload_0
+        65: aload_3
+        66: putfield      #99                 // Field blue$translucentPass:Lcom/mojang/renderpearl/api/commands/RenderPass;
+        69: aload_3
+        70: areturn
+
+  private void blue$afterTranslucent(net.minecraft.client.renderer.chunk.ChunkSectionsToRender, net.minecraft.client.renderer.feature.FeatureRenderDispatcher$PreparedFrame, com.mojang.renderpearl.api.commands.RenderPass, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: aload_0
+         1: getfield      #99                 // Field blue$translucentPass:Lcom/mojang/renderpearl/api/commands/RenderPass;
+         4: ifnull        21
+         7: aload_0
+         8: getfield      #99                 // Field blue$translucentPass:Lcom/mojang/renderpearl/api/commands/RenderPass;
+        11: invokeinterface #29,  1           // InterfaceMethod com/mojang/renderpearl/api/commands/RenderPass.close:()V
+        16: aload_0
+        17: aconst_null
+        18: putfield      #99                 // Field blue$translucentPass:Lcom/mojang/renderpearl/api/commands/RenderPass;
+        21: return
+
+  private void blue$deferredBeforeOit(net.minecraft.client.renderer.chunk.ChunkSectionsToRender, net.minecraft.client.renderer.feature.FeatureRenderDispatcher$PreparedFrame, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #25                 // Method me/blue/client/shader/ShaderRenderer.splitsSolid:()Z
+         3: ifeq          9
+         6: invokestatic  #34                 // Method me/blue/client/shader/ShaderRenderer.afterSolid:()V
+         9: return
+
+  private static java.lang.String lambda$blue$splitSolid$0();
+    Code:
+         0: ldc           #105                // String Translucent
+         2: areturn
+}

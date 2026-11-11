@@ -1,0 +1,175 @@
+Compiled from "AssetHash.java"
+public final class me.blue.protocol.asset.AssetHash {
+  public static final int LENGTH = 32;
+
+  private final byte[] bytes;
+
+  private me.blue.protocol.asset.AssetHash(byte[]);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #7                  // Field bytes:[B
+         9: return
+
+  public static me.blue.protocol.asset.AssetHash of(byte[]);
+    Code:
+         0: aload_0
+         1: iconst_0
+         2: aload_0
+         3: arraylength
+         4: invokestatic  #13                 // Method of:([BII)Lme/blue/protocol/asset/AssetHash;
+         7: areturn
+
+  public static me.blue.protocol.asset.AssetHash of(byte[], int, int);
+    Code:
+         0: invokestatic  #17                 // Method sha256:()Ljava/security/MessageDigest;
+         3: astore_3
+         4: aload_3
+         5: aload_0
+         6: iload_1
+         7: iload_2
+         8: invokevirtual #21                 // Method java/security/MessageDigest.update:([BII)V
+        11: new           #8                  // class me/blue/protocol/asset/AssetHash
+        14: dup
+        15: aload_3
+        16: invokevirtual #27                 // Method java/security/MessageDigest.digest:()[B
+        19: invokespecial #31                 // Method "<init>":([B)V
+        22: areturn
+
+  public static me.blue.protocol.asset.AssetHash fromBytes(byte[]);
+    Code:
+         0: aload_0
+         1: arraylength
+         2: bipush        32
+         4: if_icmpeq     22
+         7: new           #34                 // class java/lang/IllegalArgumentException
+        10: dup
+        11: aload_0
+        12: arraylength
+        13: invokedynamic #36,  0             // InvokeDynamic #0:makeConcatWithConstants:(I)Ljava/lang/String;
+        18: invokespecial #40                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        21: athrow
+        22: new           #8                  // class me/blue/protocol/asset/AssetHash
+        25: dup
+        26: aload_0
+        27: invokevirtual #43                 // Method "[B".clone:()Ljava/lang/Object;
+        30: checkcast     #44                 // class "[B"
+        33: invokespecial #31                 // Method "<init>":([B)V
+        36: areturn
+
+  public static me.blue.protocol.asset.AssetHash fromHex(java.lang.String);
+    Code:
+         0: invokestatic  #48                 // Method java/util/HexFormat.of:()Ljava/util/HexFormat;
+         3: aload_0
+         4: invokevirtual #53                 // Method java/util/HexFormat.parseHex:(Ljava/lang/CharSequence;)[B
+         7: invokestatic  #57                 // Method fromBytes:([B)Lme/blue/protocol/asset/AssetHash;
+        10: areturn
+        11: astore_1
+        12: new           #34                 // class java/lang/IllegalArgumentException
+        15: dup
+        16: aload_0
+        17: invokedynamic #61,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+        22: aload_1
+        23: invokespecial #64                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+        26: athrow
+      Exception table:
+         from    to  target type
+             0    10    11   Class java/lang/IllegalArgumentException
+
+  public static me.blue.protocol.asset.AssetHash read(me.blue.protocol.io.PacketReader);
+    Code:
+         0: new           #8                  // class me/blue/protocol/asset/AssetHash
+         3: dup
+         4: aload_0
+         5: bipush        32
+         7: invokevirtual #67                 // Method me/blue/protocol/io/PacketReader.readRawBytes:(I)[B
+        10: invokespecial #31                 // Method "<init>":([B)V
+        13: areturn
+
+  public void write(me.blue.protocol.io.PacketWriter);
+    Code:
+         0: aload_1
+         1: aload_0
+         2: getfield      #7                  // Field bytes:[B
+         5: iconst_0
+         6: bipush        32
+         8: invokevirtual #73                 // Method me/blue/protocol/io/PacketWriter.writeRawBytes:([BII)Lme/blue/protocol/io/PacketWriter;
+        11: pop
+        12: return
+
+  public byte[] toBytes();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field bytes:[B
+         4: invokevirtual #43                 // Method "[B".clone:()Ljava/lang/Object;
+         7: checkcast     #44                 // class "[B"
+        10: areturn
+
+  public java.lang.String toHex();
+    Code:
+         0: invokestatic  #48                 // Method java/util/HexFormat.of:()Ljava/util/HexFormat;
+         3: aload_0
+         4: getfield      #7                  // Field bytes:[B
+         7: invokevirtual #79                 // Method java/util/HexFormat.formatHex:([B)Ljava/lang/String;
+        10: areturn
+
+  public static java.security.MessageDigest sha256();
+    Code:
+         0: ldc           #83                 // String SHA-256
+         2: invokestatic  #85                 // Method java/security/MessageDigest.getInstance:(Ljava/lang/String;)Ljava/security/MessageDigest;
+         5: areturn
+         6: astore_0
+         7: new           #91                 // class java/lang/IllegalStateException
+        10: dup
+        11: ldc           #93                 // String SHA-256 is not available
+        13: aload_0
+        14: invokespecial #95                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+        17: athrow
+      Exception table:
+         from    to  target type
+             0     5     6   Class java/security/NoSuchAlgorithmException
+
+  public boolean matches(byte[]);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field bytes:[B
+         4: invokestatic  #17                 // Method sha256:()Ljava/security/MessageDigest;
+         7: aload_1
+         8: invokevirtual #96                 // Method java/security/MessageDigest.digest:([B)[B
+        11: invokestatic  #99                 // Method java/security/MessageDigest.isEqual:([B[B)Z
+        14: ireturn
+
+  public boolean equals(java.lang.Object);
+    Code:
+         0: aload_1
+         1: instanceof    #8                  // class me/blue/protocol/asset/AssetHash
+         4: ifeq          30
+         7: aload_1
+         8: checkcast     #8                  // class me/blue/protocol/asset/AssetHash
+        11: astore_2
+        12: aload_0
+        13: getfield      #7                  // Field bytes:[B
+        16: aload_2
+        17: getfield      #7                  // Field bytes:[B
+        20: invokestatic  #103                // Method java/util/Arrays.equals:([B[B)Z
+        23: ifeq          30
+        26: iconst_1
+        27: goto          31
+        30: iconst_0
+        31: ireturn
+
+  public int hashCode();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field bytes:[B
+         4: invokestatic  #108                // Method java/util/Arrays.hashCode:([B)I
+         7: ireturn
+
+  public java.lang.String toString();
+    Code:
+         0: aload_0
+         1: invokevirtual #112                // Method toHex:()Ljava/lang/String;
+         4: areturn
+}

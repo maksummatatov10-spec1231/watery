@@ -1,0 +1,166 @@
+Compiled from "RealisticSandBlock.java"
+public class me.blue.block.RealisticSandBlock extends net.minecraft.world.level.block.Block {
+  public static final int MAX_LAYERS = 8;
+
+  public static final net.minecraft.world.level.block.state.properties.IntegerProperty LAYERS;
+
+  private static final net.minecraft.world.phys.shapes.VoxelShape[] SHAPES;
+
+  public me.blue.block.RealisticSandBlock(net.minecraft.world.level.block.state.BlockBehaviour$Properties);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokespecial #1                  // Method net/minecraft/world/level/block/Block."<init>":(Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+         5: aload_0
+         6: aload_0
+         7: getfield      #7                  // Field stateDefinition:Lnet/minecraft/world/level/block/state/StateDefinition;
+        10: invokevirtual #13                 // Method net/minecraft/world/level/block/state/StateDefinition.any:()Lnet/minecraft/world/level/block/state/StateHolder;
+        13: checkcast     #19                 // class net/minecraft/world/level/block/state/BlockState
+        16: getstatic     #21                 // Field LAYERS:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+        19: bipush        8
+        21: invokestatic  #25                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        24: invokevirtual #31                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        27: checkcast     #19                 // class net/minecraft/world/level/block/state/BlockState
+        30: invokevirtual #35                 // Method registerDefaultState:(Lnet/minecraft/world/level/block/state/BlockState;)V
+        33: return
+
+  public static int layers(net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: aload_0
+         1: invokevirtual #39                 // Method net/minecraft/world/level/block/state/BlockState.getBlock:()Lnet/minecraft/world/level/block/Block;
+         4: instanceof    #8                  // class me/blue/block/RealisticSandBlock
+         7: ifeq          26
+        10: aload_0
+        11: getstatic     #21                 // Field LAYERS:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+        14: invokevirtual #43                 // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        17: checkcast     #26                 // class java/lang/Integer
+        20: invokevirtual #47                 // Method java/lang/Integer.intValue:()I
+        23: goto          27
+        26: iconst_0
+        27: ireturn
+
+  protected net.minecraft.world.level.block.RenderShape getRenderShape(net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: getstatic     #51                 // Field net/minecraft/world/level/block/RenderShape.INVISIBLE:Lnet/minecraft/world/level/block/RenderShape;
+         3: areturn
+
+  protected net.minecraft.world.phys.shapes.VoxelShape getShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+    Code:
+         0: aload         4
+         2: instanceof    #57                 // class net/minecraft/world/phys/shapes/EntityCollisionContext
+         5: ifeq          69
+         8: aload         4
+        10: checkcast     #57                 // class net/minecraft/world/phys/shapes/EntityCollisionContext
+        13: astore        5
+        15: aload         5
+        17: invokevirtual #59                 // Method net/minecraft/world/phys/shapes/EntityCollisionContext.getEntity:()Lnet/minecraft/world/entity/Entity;
+        20: astore        7
+        22: aload         7
+        24: instanceof    #63                 // class net/minecraft/world/entity/player/Player
+        27: ifeq          69
+        30: aload         7
+        32: checkcast     #63                 // class net/minecraft/world/entity/player/Player
+        35: astore        6
+        37: aload         6
+        39: invokevirtual #65                 // Method net/minecraft/world/entity/player/Player.getMainHandItem:()Lnet/minecraft/world/item/ItemStack;
+        42: getstatic     #69                 // Field net/minecraft/tags/ItemTags.SHOVELS:Lnet/minecraft/tags/TagKey;
+        45: invokevirtual #75                 // Method net/minecraft/world/item/ItemStack.is:(Lnet/minecraft/tags/TagKey;)Z
+        48: ifeq          69
+        51: getstatic     #81                 // Field SHAPES:[Lnet/minecraft/world/phys/shapes/VoxelShape;
+        54: aload_1
+        55: getstatic     #21                 // Field LAYERS:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+        58: invokevirtual #43                 // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        61: checkcast     #26                 // class java/lang/Integer
+        64: invokevirtual #47                 // Method java/lang/Integer.intValue:()I
+        67: aaload
+        68: areturn
+        69: invokestatic  #85                 // Method net/minecraft/world/phys/shapes/Shapes.empty:()Lnet/minecraft/world/phys/shapes/VoxelShape;
+        72: areturn
+
+  protected net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+    Code:
+         0: invokestatic  #85                 // Method net/minecraft/world/phys/shapes/Shapes.empty:()Lnet/minecraft/world/phys/shapes/VoxelShape;
+         3: areturn
+
+  protected net.minecraft.world.phys.shapes.VoxelShape getBlockSupportShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+    Code:
+         0: getstatic     #81                 // Field SHAPES:[Lnet/minecraft/world/phys/shapes/VoxelShape;
+         3: aload_1
+         4: getstatic     #21                 // Field LAYERS:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+         7: invokevirtual #43                 // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        10: checkcast     #26                 // class java/lang/Integer
+        13: invokevirtual #47                 // Method java/lang/Integer.intValue:()I
+        16: aaload
+        17: areturn
+
+  protected net.minecraft.world.phys.shapes.VoxelShape getVisualShape(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.shapes.CollisionContext);
+    Code:
+         0: invokestatic  #85                 // Method net/minecraft/world/phys/shapes/Shapes.empty:()Lnet/minecraft/world/phys/shapes/VoxelShape;
+         3: areturn
+
+  protected boolean propagatesSkylightDown(net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: iconst_1
+         1: ireturn
+
+  protected boolean isPathfindable(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.pathfinder.PathComputationType);
+    Code:
+         0: iconst_1
+         1: ireturn
+
+  protected boolean canBeReplaced(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.item.context.BlockPlaceContext);
+    Code:
+         0: aload_2
+         1: invokevirtual #91                 // Method net/minecraft/world/item/context/BlockPlaceContext.getItemInHand:()Lnet/minecraft/world/item/ItemStack;
+         4: aload_0
+         5: invokevirtual #96                 // Method asItem:()Lnet/minecraft/world/item/Item;
+         8: invokevirtual #100                // Method net/minecraft/world/item/ItemStack.is:(Ljava/lang/Object;)Z
+        11: ifeq          38
+        14: aload_1
+        15: getstatic     #21                 // Field LAYERS:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+        18: invokevirtual #43                 // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        21: checkcast     #26                 // class java/lang/Integer
+        24: invokevirtual #47                 // Method java/lang/Integer.intValue:()I
+        27: bipush        8
+        29: if_icmpge     36
+        32: iconst_1
+        33: goto          37
+        36: iconst_0
+        37: ireturn
+        38: iconst_1
+        39: ireturn
+
+  protected void createBlockStateDefinition(net.minecraft.world.level.block.state.StateDefinition$Builder<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState>);
+    Code:
+         0: aload_1
+         1: iconst_1
+         2: anewarray     #103                // class net/minecraft/world/level/block/state/properties/Property
+         5: dup
+         6: iconst_0
+         7: getstatic     #21                 // Field LAYERS:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+        10: aastore
+        11: invokevirtual #105                // Method net/minecraft/world/level/block/state/StateDefinition$Builder.add:([Lnet/minecraft/world/level/block/state/properties/Property;)Lnet/minecraft/world/level/block/state/StateDefinition$Builder;
+        14: pop
+        15: return
+
+  private static net.minecraft.world.phys.shapes.VoxelShape lambda$static$0(int);
+    Code:
+         0: ldc2_w        #111                // double 16.0d
+         3: dconst_0
+         4: iload_0
+         5: iconst_2
+         6: imul
+         7: i2d
+         8: invokestatic  #113                // Method net/minecraft/world/level/block/Block.column:(DDD)Lnet/minecraft/world/phys/shapes/VoxelShape;
+        11: areturn
+
+  static {};
+    Code:
+         0: getstatic     #117                // Field net/minecraft/world/level/block/state/properties/BlockStateProperties.LAYERS:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+         3: putstatic     #21                 // Field LAYERS:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+         6: bipush        8
+         8: invokedynamic #120,  0            // InvokeDynamic #0:apply:()Ljava/util/function/IntFunction;
+        13: invokestatic  #124                // Method net/minecraft/world/level/block/Block.boxes:(ILjava/util/function/IntFunction;)[Lnet/minecraft/world/phys/shapes/VoxelShape;
+        16: putstatic     #81                 // Field SHAPES:[Lnet/minecraft/world/phys/shapes/VoxelShape;
+        19: return
+}

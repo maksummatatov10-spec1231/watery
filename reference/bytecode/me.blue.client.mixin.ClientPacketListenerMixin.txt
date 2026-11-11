@@ -1,0 +1,18 @@
+Compiled from "ClientPacketListenerMixin.java"
+public class me.blue.client.mixin.ClientPacketListenerMixin {
+  public me.blue.client.mixin.ClientPacketListenerMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void realisticWater$onExplosion(net.minecraft.network.protocol.game.ClientboundExplodePacket, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #7                  // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+         3: aload_1
+         4: invokevirtual #13                 // Method net/minecraft/network/protocol/game/ClientboundExplodePacket.center:()Lnet/minecraft/world/phys/Vec3;
+         7: aload_1
+         8: invokevirtual #19                 // Method net/minecraft/network/protocol/game/ClientboundExplodePacket.radius:()F
+        11: invokevirtual #23                 // Method me/blue/client/water/WaterWorld.onExplosion:(Lnet/minecraft/world/phys/Vec3;F)V
+        14: return
+}

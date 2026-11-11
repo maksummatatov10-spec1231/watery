@@ -1,0 +1,66 @@
+Compiled from "RealisticWaterBlock.java"
+public class me.blue.block.RealisticWaterBlock extends net.minecraft.world.level.block.LiquidBlock {
+  public static final net.minecraft.world.level.block.state.properties.BooleanProperty INFINITE;
+
+  public me.blue.block.RealisticWaterBlock(net.minecraft.world.level.material.FlowingFluid, net.minecraft.world.level.block.state.BlockBehaviour$Properties);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokespecial #1                  // Method net/minecraft/world/level/block/LiquidBlock."<init>":(Lnet/minecraft/world/level/material/FlowingFluid;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+         6: aload_0
+         7: aload_0
+         8: invokevirtual #7                  // Method defaultBlockState:()Lnet/minecraft/world/level/block/state/BlockState;
+        11: getstatic     #13                 // Field INFINITE:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        14: iconst_0
+        15: invokestatic  #17                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        18: invokevirtual #23                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        21: checkcast     #24                 // class net/minecraft/world/level/block/state/BlockState
+        24: invokevirtual #29                 // Method registerDefaultState:(Lnet/minecraft/world/level/block/state/BlockState;)V
+        27: return
+
+  public static boolean isInfinite(net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: aload_0
+         1: invokevirtual #33                 // Method net/minecraft/world/level/block/state/BlockState.getBlock:()Lnet/minecraft/world/level/block/Block;
+         4: instanceof    #8                  // class me/blue/block/RealisticWaterBlock
+         7: ifeq          30
+        10: aload_0
+        11: getstatic     #13                 // Field INFINITE:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        14: invokevirtual #37                 // Method net/minecraft/world/level/block/state/BlockState.getValue:(Lnet/minecraft/world/level/block/state/properties/Property;)Ljava/lang/Comparable;
+        17: checkcast     #18                 // class java/lang/Boolean
+        20: invokevirtual #41                 // Method java/lang/Boolean.booleanValue:()Z
+        23: ifeq          30
+        26: iconst_1
+        27: goto          31
+        30: iconst_0
+        31: ireturn
+
+  protected void createBlockStateDefinition(net.minecraft.world.level.block.state.StateDefinition$Builder<net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState>);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokespecial #45                 // Method net/minecraft/world/level/block/LiquidBlock.createBlockStateDefinition:(Lnet/minecraft/world/level/block/state/StateDefinition$Builder;)V
+         5: aload_1
+         6: iconst_1
+         7: anewarray     #49                 // class net/minecraft/world/level/block/state/properties/Property
+        10: dup
+        11: iconst_0
+        12: getstatic     #13                 // Field INFINITE:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        15: aastore
+        16: invokevirtual #51                 // Method net/minecraft/world/level/block/state/StateDefinition$Builder.add:([Lnet/minecraft/world/level/block/state/properties/Property;)Lnet/minecraft/world/level/block/state/StateDefinition$Builder;
+        19: pop
+        20: return
+
+  protected boolean propagatesSkylightDown(net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: iconst_1
+         1: ireturn
+
+  static {};
+    Code:
+         0: ldc           #57                 // String infinite
+         2: invokestatic  #59                 // Method net/minecraft/world/level/block/state/properties/BooleanProperty.create:(Ljava/lang/String;)Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+         5: putstatic     #13                 // Field INFINITE:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+         8: return
+}

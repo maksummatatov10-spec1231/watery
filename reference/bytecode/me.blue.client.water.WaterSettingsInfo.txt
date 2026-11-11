@@ -1,0 +1,1679 @@
+Compiled from "WaterSettingsInfo.java"
+public final class me.blue.client.water.WaterSettingsInfo {
+  private static final java.util.Map<java.lang.String, me.blue.client.water.WaterSettingsInfo$Info> BY_NAME;
+
+  private static final java.util.Map<java.lang.String, java.util.List<java.lang.String>> BY_CATEGORY;
+
+  private static java.lang.String category;
+
+  private static final java.lang.String LOOK = "Only changes a number in the shader.";
+
+  private static final java.lang.String ONE_PASS = "Changes how much one compute pass does, not how many there are.";
+
+  private me.blue.client.water.WaterSettingsInfo();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  public static java.util.List<java.lang.String> categories();
+    Code:
+         0: getstatic     #7                  // Field BY_CATEGORY:Ljava/util/Map;
+         3: invokeinterface #13,  1           // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+         8: invokestatic  #19                 // InterfaceMethod java/util/List.copyOf:(Ljava/util/Collection;)Ljava/util/List;
+        11: areturn
+
+  public static java.util.List<java.lang.String> names(java.lang.String);
+    Code:
+         0: getstatic     #7                  // Field BY_CATEGORY:Ljava/util/Map;
+         3: aload_0
+         4: invokestatic  #25                 // InterfaceMethod java/util/List.of:()Ljava/util/List;
+         7: invokeinterface #29,  3           // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        12: checkcast     #20                 // class java/util/List
+        15: areturn
+
+  public static me.blue.client.water.WaterSettingsInfo$Info get(java.lang.String);
+    Code:
+         0: getstatic     #33                 // Field BY_NAME:Ljava/util/Map;
+         3: aload_0
+         4: invokeinterface #36,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+         9: checkcast     #40                 // class me/blue/client/water/WaterSettingsInfo$Info
+        12: areturn
+
+  public static java.util.List<java.lang.String> search(java.lang.String);
+    Code:
+         0: aload_0
+         1: invokevirtual #42                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+         4: invokevirtual #48                 // Method java/lang/String.trim:()Ljava/lang/String;
+         7: astore_1
+         8: new           #51                 // class java/util/ArrayList
+        11: dup
+        12: invokespecial #53                 // Method java/util/ArrayList."<init>":()V
+        15: astore_2
+        16: getstatic     #33                 // Field BY_NAME:Ljava/util/Map;
+        19: invokeinterface #54,  1           // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+        24: invokeinterface #58,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+        29: astore_3
+        30: aload_3
+        31: invokeinterface #64,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        36: ifeq          110
+        39: aload_3
+        40: invokeinterface #70,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        45: checkcast     #40                 // class me/blue/client/water/WaterSettingsInfo$Info
+        48: astore        4
+        50: aload         4
+        52: getfield      #74                 // Field me/blue/client/water/WaterSettingsInfo$Info.name:Ljava/lang/String;
+        55: invokevirtual #42                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+        58: aload_1
+        59: invokevirtual #78                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+        62: ifne          95
+        65: aload         4
+        67: getfield      #82                 // Field me/blue/client/water/WaterSettingsInfo$Info.label:Ljava/lang/String;
+        70: invokevirtual #42                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+        73: aload_1
+        74: invokevirtual #78                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+        77: ifne          95
+        80: aload         4
+        82: getfield      #85                 // Field me/blue/client/water/WaterSettingsInfo$Info.description:Ljava/lang/String;
+        85: invokevirtual #42                 // Method java/lang/String.toLowerCase:()Ljava/lang/String;
+        88: aload_1
+        89: invokevirtual #78                 // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+        92: ifeq          107
+        95: aload_2
+        96: aload         4
+        98: getfield      #74                 // Field me/blue/client/water/WaterSettingsInfo$Info.name:Ljava/lang/String;
+       101: invokeinterface #88,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       106: pop
+       107: goto          30
+       110: aload_2
+       111: areturn
+
+  private static void category(java.lang.String);
+    Code:
+         0: aload_0
+         1: putstatic     #92                 // Field category:Ljava/lang/String;
+         4: getstatic     #7                  // Field BY_CATEGORY:Ljava/util/Map;
+         7: aload_0
+         8: new           #51                 // class java/util/ArrayList
+        11: dup
+        12: invokespecial #53                 // Method java/util/ArrayList."<init>":()V
+        15: invokeinterface #95,  3           // InterfaceMethod java/util/Map.putIfAbsent:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        20: pop
+        21: return
+
+  private static void add(me.blue.client.water.WaterSettingsInfo$Info);
+    Code:
+         0: getstatic     #33                 // Field BY_NAME:Ljava/util/Map;
+         3: aload_0
+         4: getfield      #74                 // Field me/blue/client/water/WaterSettingsInfo$Info.name:Ljava/lang/String;
+         7: aload_0
+         8: invokeinterface #98,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        13: pop
+        14: getstatic     #7                  // Field BY_CATEGORY:Ljava/util/Map;
+        17: aload_0
+        18: getfield      #101                // Field me/blue/client/water/WaterSettingsInfo$Info.category:Ljava/lang/String;
+        21: invokeinterface #36,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        26: checkcast     #20                 // class java/util/List
+        29: aload_0
+        30: getfield      #74                 // Field me/blue/client/water/WaterSettingsInfo$Info.name:Ljava/lang/String;
+        33: invokeinterface #88,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+        38: pop
+        39: return
+
+  private static void num(java.lang.String, java.lang.String, me.blue.client.water.WaterSettingsInfo$Cost, java.lang.String, double, double, double, java.lang.String);
+    Code:
+         0: new           #40                 // class me/blue/client/water/WaterSettingsInfo$Info
+         3: dup
+         4: aload_0
+         5: getstatic     #92                 // Field category:Ljava/lang/String;
+         8: aload_1
+         9: getstatic     #102                // Field me/blue/client/water/WaterSettingsInfo$Kind.NUMBER:Lme/blue/client/water/WaterSettingsInfo$Kind;
+        12: aload_2
+        13: aload_3
+        14: aload         10
+        16: dload         4
+        18: dload         6
+        20: dload         8
+        22: invokespecial #108                // Method me/blue/client/water/WaterSettingsInfo$Info."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Kind;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;DDD)V
+        25: invokestatic  #111                // Method add:(Lme/blue/client/water/WaterSettingsInfo$Info;)V
+        28: return
+
+  private static void integer(java.lang.String, java.lang.String, me.blue.client.water.WaterSettingsInfo$Cost, java.lang.String, int, int, java.lang.String);
+    Code:
+         0: new           #40                 // class me/blue/client/water/WaterSettingsInfo$Info
+         3: dup
+         4: aload_0
+         5: getstatic     #92                 // Field category:Ljava/lang/String;
+         8: aload_1
+         9: getstatic     #114                // Field me/blue/client/water/WaterSettingsInfo$Kind.INTEGER:Lme/blue/client/water/WaterSettingsInfo$Kind;
+        12: aload_2
+        13: aload_3
+        14: aload         6
+        16: iload         4
+        18: i2d
+        19: iload         5
+        21: i2d
+        22: dconst_1
+        23: invokespecial #108                // Method me/blue/client/water/WaterSettingsInfo$Info."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Kind;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;DDD)V
+        26: invokestatic  #111                // Method add:(Lme/blue/client/water/WaterSettingsInfo$Info;)V
+        29: return
+
+  private static void toggle(java.lang.String, java.lang.String, me.blue.client.water.WaterSettingsInfo$Cost, java.lang.String, java.lang.String);
+    Code:
+         0: new           #40                 // class me/blue/client/water/WaterSettingsInfo$Info
+         3: dup
+         4: aload_0
+         5: getstatic     #92                 // Field category:Ljava/lang/String;
+         8: aload_1
+         9: getstatic     #117                // Field me/blue/client/water/WaterSettingsInfo$Kind.SWITCH:Lme/blue/client/water/WaterSettingsInfo$Kind;
+        12: aload_2
+        13: aload_3
+        14: aload         4
+        16: dconst_0
+        17: dconst_1
+        18: dconst_1
+        19: invokespecial #108                // Method me/blue/client/water/WaterSettingsInfo$Info."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Kind;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;DDD)V
+        22: invokestatic  #111                // Method add:(Lme/blue/client/water/WaterSettingsInfo$Info;)V
+        25: return
+
+  private static void text(java.lang.String, java.lang.String, me.blue.client.water.WaterSettingsInfo$Cost, java.lang.String, java.lang.String);
+    Code:
+         0: new           #40                 // class me/blue/client/water/WaterSettingsInfo$Info
+         3: dup
+         4: aload_0
+         5: getstatic     #92                 // Field category:Ljava/lang/String;
+         8: aload_1
+         9: getstatic     #120                // Field me/blue/client/water/WaterSettingsInfo$Kind.TEXT:Lme/blue/client/water/WaterSettingsInfo$Kind;
+        12: aload_2
+        13: aload_3
+        14: aload         4
+        16: dconst_0
+        17: dconst_0
+        18: dconst_0
+        19: invokespecial #108                // Method me/blue/client/water/WaterSettingsInfo$Info."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Kind;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;DDD)V
+        22: invokestatic  #111                // Method add:(Lme/blue/client/water/WaterSettingsInfo$Info;)V
+        25: return
+
+  static {};
+    Code:
+         0: new           #123                // class java/util/LinkedHashMap
+         3: dup
+         4: invokespecial #125                // Method java/util/LinkedHashMap."<init>":()V
+         7: putstatic     #33                 // Field BY_NAME:Ljava/util/Map;
+        10: new           #123                // class java/util/LinkedHashMap
+        13: dup
+        14: invokespecial #125                // Method java/util/LinkedHashMap."<init>":()V
+        17: putstatic     #7                  // Field BY_CATEGORY:Ljava/util/Map;
+        20: ldc           #126                // String
+        22: putstatic     #92                 // Field category:Ljava/lang/String;
+        25: ldc           #128                // String Water simulation
+        27: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+        30: ldc           #133                // String resolution
+        32: ldc           #135                // String Resolution
+        34: getstatic     #137                // Field me/blue/client/water/WaterSettingsInfo$Cost.EXTREME:Lme/blue/client/water/WaterSettingsInfo$Cost;
+        37: ldc           #143                // String Cells per block in each direction: 6 to 12 is 8x the cells and particles, so roughly 8x the GPU time and memory.
+        39: iconst_1
+        40: bipush        16
+        42: ldc           #145                // String How many simulation cells fit along one block for water. Higher gives finer splashes, thinner sheets and smaller drops. Changing it rebuilds every water body.
+        44: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+        47: ldc           #151                // String boxMargin
+        49: ldc           #153                // String Box margin
+        51: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+        54: ldc           #158                // String Every extra cell of margin adds a shell of cells that are solved each step.
+        56: iconst_0
+        57: bipush        24
+        59: ldc           #160                // String Empty cells kept around the water so it has room to move into before the simulated area grows.
+        61: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+        64: ldc           #162                // String cfl
+        66: ldc           #164                // String CFL number
+        68: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+        71: ldc           #169                // String Lower means more substeps per frame for fast water.
+        73: ldc2_w        #171                // double 0.25d
+        76: ldc2_w        #173                // double 6.0d
+        79: ldc2_w        #175                // double 0.05d
+        82: ldc           #177                // String How many cells water may travel in one substep. Lower is more stable and accurate for fast flows but runs more substeps.
+        84: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+        87: ldc           #183                // String maxDt
+        89: ldc           #185                // String Max substep time
+        91: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+        94: ldc           #187                // String Lower forces more substeps every frame, even for calm water.
+        96: ldc2_w        #189                // double 0.002d
+        99: ldc2_w        #191                // double 0.1d
+       102: ldc2_w        #193                // double 0.001d
+       105: ldc           #195                // String The longest one simulation substep may be, in seconds. Smaller is smoother and more stable.
+       107: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       110: ldc           #197                // String maxStepsPerFrame
+       112: ldc           #199                // String Max substeps per frame
+       114: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       117: ldc           #201                // String Each substep is a full simulation step, about 15-40 GPU dispatches.
+       119: iconst_1
+       120: bipush        32
+       122: ldc           #203                // String Upper limit on substeps per frame while playing. When the limit is hit the water runs in slow motion instead of going unstable.
+       124: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+       127: ldc           #205                // String flipRatio
+       129: ldc           #207                // String FLIP ratio
+       131: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       134: ldc           #212                // String Only changes a number in the shader.
+       136: ldc2_w        #214                // double 0.8d
+       139: dconst_1
+       140: ldc2_w        #193                // double 0.001d
+       143: ldc           #216                // String How much particles keep their own motion (FLIP) versus taking the smoothed grid velocity (PIC). Higher is splashier and livelier, lower is calmer and thicker.
+       145: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       148: ldc           #218                // String volumeCorrection
+       150: ldc           #220                // String Volume correction
+       152: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       155: ldc           #222                // String Changes how much one compute pass does, not how many there are.
+       157: dconst_0
+       158: ldc2_w        #173                // double 6.0d
+       161: ldc2_w        #191                // double 0.1d
+       164: ldc           #224                // String How hard the solver pushes apart particles that have bunched up, so water keeps its volume instead of slowly shrinking.
+       166: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       169: ldc           #226                // String maxSpeed
+       171: ldc           #228                // String Max speed
+       173: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       176: ldc           #233                // String Faster water needs more substeps to stay stable.
+       178: dconst_1
+       179: ldc2_w        #235                // double 100.0d
+       182: dconst_1
+       183: ldc           #237                // String Speed limit for water in blocks per second.
+       185: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       188: ldc           #239                // String gravity
+       190: ldc           #241                // String Gravity
+       192: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       195: ldc           #243                // String Stronger gravity means faster water and more substeps.
+       197: dconst_0
+       198: ldc2_w        #245                // double 30.0d
+       201: ldc2_w        #191                // double 0.1d
+       204: ldc           #247                // String Downward acceleration for water, lava and slime, in blocks per second squared. 9.81 is real-world gravity.
+       206: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       209: ldc           #249                // String filmFriction
+       211: ldc           #251                // String Film friction
+       213: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       216: ldc           #212                // String Only changes a number in the shader.
+       218: dconst_0
+       219: ldc2_w        #253                // double 300.0d
+       222: dconst_1
+       223: ldc           #255                // String How quickly a thin film of water on the ground stops sliding. Higher makes puddles settle faster, lower lets them spread thin.
+       225: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       228: ldc_w         #257                // String filmDepth
+       231: ldc_w         #259                // String Film depth
+       234: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       237: ldc           #212                // String Only changes a number in the shader.
+       239: dconst_0
+       240: dconst_1
+       241: ldc2_w        #261                // double 0.01d
+       244: ldc_w         #263                // String How shallow (in blocks) water has to be before film friction kicks in.
+       247: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       250: ldc_w         #265                // String strandedTime
+       253: ldc_w         #267                // String Stranded drop lifetime
+       256: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       259: ldc_w         #269                // String Longer means more stray droplets stay alive and simulated.
+       262: dconst_0
+       263: ldc2_w        #271                // double 20.0d
+       266: ldc2_w        #191                // double 0.1d
+       269: ldc_w         #273                // String Seconds a lone drop with few neighbours survives before it dries up.
+       272: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       275: ldc_w         #275                // String strandedNeighbors
+       278: ldc_w         #277                // String Stranded neighbour count
+       281: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       284: ldc_w         #279                // String Fewer means more lone drops are kept alive.
+       287: iconst_0
+       288: bipush        64
+       290: ldc_w         #281                // String A drop with fewer particles than this around it counts as stranded and starts drying up.
+       293: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+       296: ldc_w         #283                // String fluidRestSpeed
+       299: ldc_w         #285                // String Rest speed
+       302: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       305: ldc_w         #287                // String Higher lets still water go to sleep sooner, which saves its whole simulation cost.
+       308: dconst_0
+       309: ldc2_w        #289                // double 2.0d
+       312: ldc2_w        #261                // double 0.01d
+       315: ldc_w         #291                // String Below this speed (blocks per second) a body of water, lava or slime counts as calm.
+       318: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       321: ldc_w         #293                // String fluidRestTime
+       324: ldc_w         #295                // String Rest time
+       327: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       330: ldc_w         #297                // String Shorter puts calm bodies to sleep sooner. 0 never sleeps, so everything is simulated every frame.
+       333: dconst_0
+       334: ldc2_w        #299                // double 10.0d
+       337: ldc2_w        #191                // double 0.1d
+       340: ldc_w         #301                // String Seconds a body must stay calm before it stops simulating until something disturbs it.
+       343: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       346: ldc_w         #303                // String fluidRestWhitewater
+       349: ldc_w         #305                // String Rest foam limit
+       352: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       355: ldc_w         #307                // String Lets bodies with leftover foam sleep sooner.
+       358: iconst_0
+       359: sipush        2000
+       362: ldc_w         #309                // String A body only goes to sleep when it has at most this many foam and spray particles left.
+       365: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+       368: ldc_w         #311                // String sourceFill
+       371: ldc_w         #313                // String Spring fill
+       374: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       377: ldc_w         #315                // String Fuller springs add particles faster.
+       380: dconst_0
+       381: dconst_1
+       382: ldc2_w        #261                // double 0.01d
+       385: ldc_w         #317                // String How full a spring block (infinite water or lava) keeps itself, from empty to a full block.
+       388: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       391: ldc_w         #319                // String bucketMakesSource
+       394: ldc_w         #321                // String Bucket makes spring
+       397: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       400: ldc_w         #323                // String Currently unused.
+       403: ldc_w         #325                // String Left over from an older version and currently has no effect.
+       406: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+       409: ldc_w         #331                // String Pressure solver
+       412: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+       415: ldc_w         #333                // String cgIterations
+       418: ldc_w         #335                // String Solver iterations
+       421: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       424: ldc_w         #337                // String Each iteration is a few more GPU dispatches every substep.
+       427: iconst_1
+       428: bipush        30
+       430: ldc_w         #339                // String Rounds of the pressure solver per substep. More keeps water incompressible (no squishing or sinking) at a higher cost.
+       433: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+       436: ldc_w         #341                // String mgCoarseSweeps
+       439: ldc_w         #343                // String Coarse sweeps
+       442: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       445: ldc           #222                // String Changes how much one compute pass does, not how many there are.
+       447: iconst_1
+       448: bipush        64
+       450: ldc_w         #345                // String Smoothing sweeps on the coarsest multigrid level. More helps big, deep pools settle without bouncing.
+       453: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+       456: ldc_w         #347                // String solverBottomCells
+       459: ldc_w         #349                // String Bottom level size
+       462: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       465: ldc_w         #351                // String Picks where the solver switches to one big single-group pass; the best value depends on the GPU.
+       468: iconst_0
+       469: ldc_w         #353                // int 65536
+       472: ldc_w         #354                // String Multigrid levels at or below this many cells are solved in one workgroup. 0 turns this off.
+       475: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+       478: ldc_w         #356                // String solverSmallCells
+       481: ldc_w         #358                // String Small body size
+       484: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       487: ldc_w         #360                // String Small bodies solved in one dispatch avoid dozens of tiny dispatches.
+       490: iconst_0
+       491: ldc_w         #362                // int 200000
+       494: ldc_w         #363                // String Bodies with at most this many active cells use the single-dispatch solver.
+       497: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+       500: ldc_w         #365                // String extrapolationLayers
+       503: ldc_w         #367                // String Velocity extrapolation
+       506: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       509: ldc_w         #369                // String One extra pass per layer per substep.
+       512: iconst_0
+       513: bipush        12
+       515: ldc_w         #371                // String How many cells the water\'s velocity is carried out into the air, so flying drops keep moving correctly.
+       518: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+       521: ldc_w         #373                // String Whitewater and foam
+       524: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+       527: ldc_w         #375                // String whitewater
+       530: ldc_w         #377                // String Whitewater
+       533: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       536: ldc_w         #379                // String Spawns and simulates up to millions of extra foam, spray and bubble particles.
+       539: ldc_w         #381                // String Foam on the surface, spray in the air and bubbles under water, spawned where water is fast, turbulent or breaking.
+       542: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+       545: ldc_w         #383                // String wwTrappedAirRate
+       548: ldc_w         #385                // String Trapped air rate
+       551: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       554: ldc_w         #387                // String More rate means more whitewater particles.
+       557: dconst_0
+       558: ldc2_w        #389                // double 200.0d
+       561: dconst_1
+       562: ldc_w         #391                // String How much whitewater spawns where water churns and traps air (waterfalls, impacts).
+       565: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       568: ldc_w         #393                // String wwWaveCrestRate
+       571: ldc_w         #395                // String Wave crest rate
+       574: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       577: ldc_w         #387                // String More rate means more whitewater particles.
+       580: dconst_0
+       581: ldc2_w        #389                // double 200.0d
+       584: dconst_1
+       585: ldc_w         #397                // String How much whitewater spawns on sharp wave crests.
+       588: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       591: ldc_w         #399                // String wwEnergyMin
+       594: ldc_w         #401                // String Energy minimum
+       597: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       600: ldc_w         #403                // String Lower means calmer water spawns whitewater too.
+       603: dconst_0
+       604: ldc2_w        #271                // double 20.0d
+       607: ldc2_w        #191                // double 0.1d
+       610: ldc_w         #405                // String Water slower than this spawns no whitewater at all.
+       613: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       616: ldc_w         #407                // String wwEnergyMax
+       619: ldc_w         #409                // String Energy maximum
+       622: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       625: ldc_w         #411                // String Lower reaches full spawning sooner.
+       628: dconst_0
+       629: ldc2_w        #413                // double 40.0d
+       632: ldc2_w        #191                // double 0.1d
+       635: ldc_w         #415                // String Water this energetic spawns whitewater at the full rate.
+       638: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       641: ldc_w         #417                // String wwTrappedAirMin
+       644: ldc_w         #419                // String Trapped air minimum
+       647: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       650: ldc_w         #421                // String Lower spawns more.
+       653: dconst_0
+       654: ldc2_w        #413                // double 40.0d
+       657: ldc2_w        #191                // double 0.1d
+       660: ldc_w         #423                // String How churned-up water has to be before it traps air.
+       663: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       666: ldc_w         #425                // String wwTrappedAirMax
+       669: ldc_w         #427                // String Trapped air maximum
+       672: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       675: ldc_w         #421                // String Lower spawns more.
+       678: dconst_0
+       679: ldc2_w        #429                // double 60.0d
+       682: ldc2_w        #191                // double 0.1d
+       685: ldc_w         #431                // String Churn at which trapped-air spawning is at full strength.
+       688: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       691: ldc_w         #433                // String wwWaveCrestMin
+       694: ldc_w         #435                // String Wave crest minimum
+       697: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       700: ldc_w         #421                // String Lower spawns more.
+       703: dconst_0
+       704: ldc2_w        #299                // double 10.0d
+       707: ldc2_w        #175                // double 0.05d
+       710: ldc_w         #437                // String How sharp a crest has to be before it makes foam.
+       713: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       716: ldc_w         #439                // String wwWaveCrestMax
+       719: ldc_w         #441                // String Wave crest maximum
+       722: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       725: ldc_w         #421                // String Lower spawns more.
+       728: dconst_0
+       729: ldc2_w        #271                // double 20.0d
+       732: ldc2_w        #175                // double 0.05d
+       735: ldc_w         #443                // String Crest sharpness at which foam spawning is at full strength.
+       738: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       741: ldc_w         #445                // String wwFoamLifeMin
+       744: ldc_w         #447                // String Foam life minimum
+       747: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       750: ldc_w         #449                // String Longer-lived foam means more particles alive at once.
+       753: dconst_0
+       754: ldc2_w        #271                // double 20.0d
+       757: ldc2_w        #191                // double 0.1d
+       760: ldc_w         #451                // String Shortest time a foam particle lasts, in seconds.
+       763: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       766: ldc_w         #453                // String wwFoamLifeMax
+       769: ldc_w         #455                // String Foam life maximum
+       772: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       775: ldc_w         #449                // String Longer-lived foam means more particles alive at once.
+       778: dconst_0
+       779: ldc2_w        #245                // double 30.0d
+       782: ldc2_w        #191                // double 0.1d
+       785: ldc_w         #457                // String Longest time a foam particle lasts, in seconds.
+       788: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       791: ldc_w         #459                // String wwBubbleBuoyancy
+       794: ldc_w         #461                // String Bubble buoyancy
+       797: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       800: ldc           #212                // String Only changes a number in the shader.
+       802: dconst_0
+       803: ldc2_w        #299                // double 10.0d
+       806: ldc2_w        #191                // double 0.1d
+       809: ldc_w         #463                // String How fast bubbles rise back up through the water.
+       812: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       815: ldc_w         #465                // String wwBubbleDrag
+       818: ldc_w         #467                // String Bubble drag
+       821: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       824: ldc           #212                // String Only changes a number in the shader.
+       826: dconst_0
+       827: ldc2_w        #469                // double 5.0d
+       830: ldc2_w        #175                // double 0.05d
+       833: ldc_w         #471                // String How strongly bubbles are carried along by the water around them.
+       836: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       839: ldc_w         #473                // String wwSprayDrag
+       842: ldc_w         #475                // String Spray drag
+       845: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       848: ldc           #212                // String Only changes a number in the shader.
+       850: dconst_0
+       851: ldc2_w        #469                // double 5.0d
+       854: ldc2_w        #175                // double 0.05d
+       857: ldc_w         #477                // String Air resistance on spray droplets.
+       860: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       863: ldc_w         #479                // String wwSprayThreshold
+       866: ldc_w         #481                // String Spray threshold
+       869: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       872: ldc           #212                // String Only changes a number in the shader.
+       874: dconst_0
+       875: ldc2_w        #271                // double 20.0d
+       878: ldc2_w        #483                // double 0.5d
+       881: ldc_w         #485                // String Whitewater with fewer water neighbours than this counts as spray (flying droplets).
+       884: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       887: ldc_w         #487                // String wwBubbleThreshold
+       890: ldc_w         #489                // String Bubble threshold
+       893: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       896: ldc           #212                // String Only changes a number in the shader.
+       898: dconst_0
+       899: ldc2_w        #245                // double 30.0d
+       902: ldc2_w        #483                // double 0.5d
+       905: ldc_w         #491                // String Whitewater with more water neighbours than this counts as an underwater bubble; in between is surface foam.
+       908: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       911: ldc_w         #493                // String wwMaxPerParticle
+       914: ldc_w         #495                // String Max spawn per particle
+       917: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       920: ldc_w         #497                // String Caps how many whitewater particles one water particle can create per substep.
+       923: iconst_0
+       924: bipush        16
+       926: ldc_w         #499                // String Upper limit on whitewater spawned by a single water particle in one substep.
+       929: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+       932: ldc_w         #501                // String wwCellLimit
+       935: ldc_w         #503                // String Max per cell
+       938: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       941: ldc_w         #505                // String Raising it lets dense foam pile up to many more particles.
+       944: iconst_0
+       945: bipush        100
+       947: ldc_w         #507                // String No more whitewater spawns in a cell that already holds this many.
+       950: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+       953: ldc_w         #509                // String wwRadius
+       956: ldc_w         #511                // String Whitewater size
+       959: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       962: ldc_w         #513                // String Bigger sprites cover more pixels.
+       965: ldc2_w        #193                // double 0.001d
+       968: ldc2_w        #191                // double 0.1d
+       971: ldc2_w        #193                // double 0.001d
+       974: ldc_w         #515                // String Size of one spray or bubble particle, in blocks.
+       977: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+       980: ldc_w         #517                // String wwMaxPixels
+       983: ldc_w         #519                // String Whitewater max pixels
+       986: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+       989: ldc_w         #521                // String Bigger sprites up close cost more fill rate.
+       992: ldc2_w        #483                // double 0.5d
+       995: ldc2_w        #271                // double 20.0d
+       998: ldc2_w        #191                // double 0.1d
+      1001: ldc_w         #523                // String Largest a whitewater particle can appear on screen, in pixels, so close-up spray stays fine.
+      1004: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1007: ldc_w         #525                // String foamCoverage
+      1010: ldc_w         #527                // String Foam coverage
+      1013: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1016: ldc           #212                // String Only changes a number in the shader.
+      1018: dconst_0
+      1019: ldc2_w        #469                // double 5.0d
+      1022: ldc2_w        #175                // double 0.05d
+      1025: ldc_w         #529                // String How opaque and white foam looks where it gathers.
+      1028: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1031: ldc_w         #531                // String foamSize
+      1034: ldc_w         #533                // String Foam size
+      1037: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1040: ldc_w         #535                // String Bigger foam splats cover more pixels.
+      1043: ldc2_w        #483                // double 0.5d
+      1046: ldc2_w        #299                // double 10.0d
+      1049: ldc2_w        #191                // double 0.1d
+      1052: ldc_w         #537                // String Size multiplier for surface foam splats.
+      1055: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1058: ldc_w         #539                // String foamBubbleSize
+      1061: ldc_w         #541                // String Foam bubble size
+      1064: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1067: ldc           #212                // String Only changes a number in the shader.
+      1069: ldc2_w        #543                // double 0.005d
+      1072: ldc2_w        #483                // double 0.5d
+      1075: ldc2_w        #543                // double 0.005d
+      1078: ldc_w         #545                // String Size of the bubble lace pattern drawn into foam, in blocks.
+      1081: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1084: ldc_w         #547                // String bubbleAlpha
+      1087: ldc_w         #549                // String Bubble opacity
+      1090: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1093: ldc           #212                // String Only changes a number in the shader.
+      1095: dconst_0
+      1096: dconst_1
+      1097: ldc2_w        #261                // double 0.01d
+      1100: ldc_w         #551                // String How visible underwater bubbles are.
+      1103: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1106: ldc_w         #553                // String sprayAlpha
+      1109: ldc_w         #555                // String Spray opacity
+      1112: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1115: ldc           #212                // String Only changes a number in the shader.
+      1117: dconst_0
+      1118: dconst_1
+      1119: ldc2_w        #261                // double 0.01d
+      1122: ldc_w         #557                // String How visible spray droplets are.
+      1125: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1128: ldc_w         #559                // String Surface mesh
+      1131: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+      1134: ldc_w         #561                // String surfaceSubdivision
+      1137: ldc_w         #563                // String Surface subdivision
+      1140: getstatic     #137                // Field me/blue/client/water/WaterSettingsInfo$Cost.EXTREME:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1143: ldc_w         #565                // String Mesh voxels grow with the cube of this: 2 to 3 is about 3.4x the surface work.
+      1146: iconst_1
+      1147: iconst_4
+      1148: ldc_w         #567                // String How many times finer than the simulation the water surface is meshed. Higher is smoother and more detailed. Takes effect when a body\'s area is rebuilt (/water reload).
+      1151: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+      1154: ldc_w         #569                // String surfaceKernel
+      1157: ldc_w         #571                // String Surface kernel
+      1160: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1163: ldc_w         #573                // String Each particle touches kernel^3 voxels when the surface is built.
+      1166: dconst_1
+      1167: ldc2_w        #173                // double 6.0d
+      1170: ldc2_w        #191                // double 0.1d
+      1173: ldc_w         #575                // String How far (in fine voxels) each particle reaches when building the surface. Bigger is smoother and blobbier.
+      1176: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1179: ldc_w         #577                // String surfaceRadius
+      1182: ldc_w         #579                // String Surface radius
+      1185: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1188: ldc           #222                // String Changes how much one compute pass does, not how many there are.
+      1190: ldc2_w        #581                // double 0.2d
+      1193: ldc2_w        #583                // double 3.0d
+      1196: ldc2_w        #175                // double 0.05d
+      1199: ldc_w         #585                // String Radius of the sphere around each particle that makes up the surface.
+      1202: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1205: ldc_w         #587                // String surfaceIso
+      1208: ldc_w         #589                // String Surface threshold
+      1211: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1214: ldc           #222                // String Changes how much one compute pass does, not how many there are.
+      1216: ldc2_w        #175                // double 0.05d
+      1219: ldc2_w        #591                // double 1.5d
+      1222: ldc2_w        #261                // double 0.01d
+      1225: ldc_w         #593                // String Where the surface is drawn: lower makes water look fuller and thin sheets hold together, higher shrinks it.
+      1228: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1231: ldc_w         #595                // String dropletThreshold
+      1234: ldc_w         #597                // String Droplet threshold
+      1237: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1240: ldc_w         #599                // String More particles drawn as separate droplets.
+      1243: dconst_0
+      1244: ldc2_w        #289                // double 2.0d
+      1247: ldc2_w        #261                // double 0.01d
+      1250: ldc_w         #601                // String Particles in places thinner than this are drawn as separate round droplets instead of being part of the mesh.
+      1253: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1256: ldc_w         #603                // String nearCull
+      1259: ldc_w         #605                // String Near cull
+      1262: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1265: ldc           #212                // String Only changes a number in the shader.
+      1267: dconst_0
+      1268: dconst_1
+      1269: ldc2_w        #261                // double 0.01d
+      1272: ldc_w         #607                // String Surface closer to the camera than this (in blocks) is skipped, so it doesn\'t cut through the view.
+      1275: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1278: ldc_w         #609                // String surfaceGather
+      1281: ldc_w         #611                // String Gather surface
+      1284: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1287: ldc_w         #613                // String On is much faster on most GPUs (fewer atomics); off uses the older splat path.
+      1290: ldc_w         #615                // String Builds the surface field by having each voxel gather nearby particles instead of particles scattering into voxels.
+      1293: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      1296: ldc_w         #617                // String sortParticles
+      1299: ldc_w         #619                // String Sort particles
+      1302: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1305: ldc_w         #621                // String Costs a sort per frame but makes the gather and particle passes several times faster.
+      1308: ldc_w         #623                // String Keeps particles in memory order by cell. Only used with Gather surface.
+      1311: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      1314: ldc_w         #625                // String surfaceInteriorSkip
+      1317: ldc_w         #627                // String Skip interior
+      1320: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1323: ldc_w         #629                // String Skips surface work deep inside water, which saves a lot on big pools.
+      1326: ldc_w         #631                // String Doesn\'t build surface detail for the inside of deep water, where it can never be seen.
+      1329: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      1332: ldc_w         #633                // String surfaceInteriorCount
+      1335: ldc_w         #635                // String Interior depth
+      1338: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1341: ldc_w         #637                // String Higher skips less.
+      1344: iconst_1
+      1345: bipush        16
+      1347: ldc_w         #639                // String How deep inside the water (in cells) the surface work starts being skipped.
+      1350: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+      1353: ldc_w         #641                // String wallFill
+      1356: ldc_w         #643                // String Fill to walls
+      1359: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1362: ldc_w         #645                // String One extra pass over the surface field each time it is rebuilt.
+      1365: ldc_w         #647                // String Makes the surface reach all the way to blocks it touches, like vanilla water, instead of stopping a little short of walls.
+      1368: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      1371: ldc_w         #649                // String wallFillReach
+      1374: ldc_w         #651                // String Wall fill reach
+      1377: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1380: ldc_w         #653                // String A wider reach reads more voxels per pass.
+      1383: dconst_0
+      1384: ldc2_w        #583                // double 3.0d
+      1387: ldc2_w        #175                // double 0.05d
+      1390: ldc_w         #655                // String How far from a wall (in cells) the surface is straightened out to meet it.
+      1393: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1396: ldc_w         #657                // String sheetFill
+      1399: ldc_w         #659                // String Sheet fill
+      1402: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1405: ldc_w         #661                // String Adds a blur pass over the surface field.
+      1408: ldc_w         #663                // String Smooths very thin sheets of water so they don\'t break into holes and noodles.
+      1411: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      1414: ldc_w         #665                // String sheetSmoothing
+      1417: ldc_w         #667                // String Sheet smoothing
+      1420: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1423: ldc           #222                // String Changes how much one compute pass does, not how many there are.
+      1425: dconst_0
+      1426: ldc2_w        #173                // double 6.0d
+      1429: ldc2_w        #191                // double 0.1d
+      1432: ldc_w         #669                // String How strongly Sheet fill smooths thin sheets.
+      1435: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1438: ldc_w         #671                // String particleRadius
+      1441: ldc_w         #673                // String Particle radius
+      1444: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1447: ldc_w         #675                // String Bigger droplets cover more pixels.
+      1450: ldc2_w        #175                // double 0.05d
+      1453: ldc2_w        #591                // double 1.5d
+      1456: ldc2_w        #261                // double 0.01d
+      1459: ldc_w         #677                // String Size of one particle drawn as a droplet, in cells.
+      1462: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1465: ldc_w         #679                // String Water look
+      1468: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+      1471: ldc_w         #681                // String thicknessScale
+      1474: ldc_w         #683                // String Thickness scale
+      1477: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1480: ldc           #212                // String Only changes a number in the shader.
+      1482: dconst_0
+      1483: ldc2_w        #685                // double 4.0d
+      1486: ldc2_w        #175                // double 0.05d
+      1489: ldc_w         #687                // String Multiplies how deep the water looks for colour and light absorption.
+      1492: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1495: ldc_w         #689                // String refraction
+      1498: ldc_w         #691                // String Refraction
+      1501: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1504: ldc           #212                // String Only changes a number in the shader.
+      1506: dconst_0
+      1507: dconst_1
+      1508: ldc2_w        #261                // double 0.01d
+      1511: ldc_w         #693                // String How much the world behind water is bent.
+      1514: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1517: ldc_w         #695                // String absorbR
+      1520: ldc_w         #697                // String Absorption red
+      1523: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1526: ldc           #212                // String Only changes a number in the shader.
+      1528: dconst_0
+      1529: ldc2_w        #469                // double 5.0d
+      1532: ldc2_w        #261                // double 0.01d
+      1535: ldc_w         #699                // String How quickly red light fades through water. Higher red absorption makes deep water bluer.
+      1538: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1541: ldc_w         #701                // String absorbG
+      1544: ldc_w         #703                // String Absorption green
+      1547: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1550: ldc           #212                // String Only changes a number in the shader.
+      1552: dconst_0
+      1553: ldc2_w        #469                // double 5.0d
+      1556: ldc2_w        #261                // double 0.01d
+      1559: ldc_w         #705                // String How quickly green light fades through water.
+      1562: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1565: ldc_w         #707                // String absorbB
+      1568: ldc_w         #709                // String Absorption blue
+      1571: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1574: ldc           #212                // String Only changes a number in the shader.
+      1576: dconst_0
+      1577: ldc2_w        #469                // double 5.0d
+      1580: ldc2_w        #261                // double 0.01d
+      1583: ldc_w         #711                // String How quickly blue light fades through water.
+      1586: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1589: ldc_w         #713                // String scatterR
+      1592: ldc_w         #715                // String Scatter red
+      1595: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1598: ldc           #212                // String Only changes a number in the shader.
+      1600: dconst_0
+      1601: dconst_1
+      1602: ldc2_w        #261                // double 0.01d
+      1605: ldc_w         #717                // String Red part of the colour light picks up inside water.
+      1608: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1611: ldc_w         #719                // String scatterG
+      1614: ldc_w         #721                // String Scatter green
+      1617: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1620: ldc           #212                // String Only changes a number in the shader.
+      1622: dconst_0
+      1623: dconst_1
+      1624: ldc2_w        #261                // double 0.01d
+      1627: ldc_w         #723                // String Green part of the colour light picks up inside water.
+      1630: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1633: ldc_w         #725                // String scatterB
+      1636: ldc_w         #727                // String Scatter blue
+      1639: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1642: ldc           #212                // String Only changes a number in the shader.
+      1644: dconst_0
+      1645: dconst_1
+      1646: ldc2_w        #261                // double 0.01d
+      1649: ldc_w         #729                // String Blue part of the colour light picks up inside water.
+      1652: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1655: ldc_w         #731                // String scatterDensity
+      1658: ldc_w         #733                // String Scatter density
+      1661: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1664: ldc           #212                // String Only changes a number in the shader.
+      1666: dconst_0
+      1667: ldc2_w        #469                // double 5.0d
+      1670: ldc2_w        #261                // double 0.01d
+      1673: ldc_w         #735                // String How murky water is: higher shows more of the scatter colour and less of what\'s behind it.
+      1676: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1679: ldc_w         #737                // String underwaterFog
+      1682: ldc_w         #739                // String Underwater fog
+      1685: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1688: ldc           #212                // String Only changes a number in the shader.
+      1690: dconst_0
+      1691: ldc2_w        #289                // double 2.0d
+      1694: ldc2_w        #261                // double 0.01d
+      1697: ldc_w         #741                // String How thick the fog is when your head is under water.
+      1700: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1703: ldc_w         #743                // String surfaceSmoothing
+      1706: ldc_w         #745                // String Surface smoothing
+      1709: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1712: ldc_w         #747                // String Wider smoothing reads more neighbours per pixel.
+      1715: dconst_0
+      1716: dconst_1
+      1717: ldc2_w        #261                // double 0.01d
+      1720: ldc_w         #749                // String How much the surface normals are smoothed. Higher is glassier, lower shows more of the particle shapes.
+      1723: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1726: ldc_w         #751                // String detailStrength
+      1729: ldc_w         #753                // String Ripple strength
+      1732: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1735: ldc           #212                // String Only changes a number in the shader.
+      1737: dconst_0
+      1738: ldc2_w        #289                // double 2.0d
+      1741: ldc2_w        #261                // double 0.01d
+      1744: ldc_w         #755                // String Strength of the small procedural ripples on the surface.
+      1747: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1750: ldc_w         #757                // String detailScale
+      1753: ldc_w         #759                // String Ripple scale
+      1756: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1759: ldc           #212                // String Only changes a number in the shader.
+      1761: ldc2_w        #483                // double 0.5d
+      1764: ldc2_w        #271                // double 20.0d
+      1767: ldc2_w        #191                // double 0.1d
+      1770: ldc_w         #761                // String How tightly packed the small ripples are.
+      1773: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1776: ldc_w         #763                // String detailSpeed
+      1779: ldc_w         #765                // String Ripple speed
+      1782: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1785: ldc           #212                // String Only changes a number in the shader.
+      1787: dconst_0
+      1788: ldc2_w        #469                // double 5.0d
+      1791: ldc2_w        #175                // double 0.05d
+      1794: ldc_w         #767                // String How fast the small ripples move.
+      1797: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1800: ldc_w         #769                // String roughness
+      1803: ldc_w         #771                // String Roughness
+      1806: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1809: ldc           #212                // String Only changes a number in the shader.
+      1811: ldc2_w        #261                // double 0.01d
+      1814: ldc2_w        #773                // double 0.7d
+      1817: ldc2_w        #261                // double 0.01d
+      1820: ldc_w         #775                // String Lower gives sharp sun glints, higher spreads them into a soft sheen.
+      1823: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1826: ldc_w         #777                // String specular
+      1829: ldc_w         #779                // String Sun glint
+      1832: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1835: ldc           #212                // String Only changes a number in the shader.
+      1837: dconst_0
+      1838: ldc2_w        #271                // double 20.0d
+      1841: ldc2_w        #191                // double 0.1d
+      1844: ldc_w         #781                // String Brightness of sun reflections.
+      1847: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1850: ldc_w         #783                // String wetDarkening
+      1853: ldc_w         #785                // String Wet darkening
+      1856: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1859: ldc           #212                // String Only changes a number in the shader.
+      1861: dconst_0
+      1862: dconst_1
+      1863: ldc2_w        #261                // double 0.01d
+      1866: ldc_w         #787                // String How much the ground under thin water looks darker, like wet stone or grass.
+      1869: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1872: ldc_w         #789                // String filmShading
+      1875: ldc_w         #791                // String Film shading
+      1878: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1881: ldc           #212                // String Only changes a number in the shader.
+      1883: dconst_0
+      1884: dconst_1
+      1885: ldc2_w        #261                // double 0.01d
+      1888: ldc_w         #793                // String Flattens the lighting of very thin water so puddles don\'t get a glassy rim.
+      1891: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1894: ldc_w         #795                // String Lava
+      1897: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+      1900: ldc_w         #797                // String lavaResolution
+      1903: ldc           #135                // String Resolution
+      1905: getstatic     #137                // Field me/blue/client/water/WaterSettingsInfo$Cost.EXTREME:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1908: ldc_w         #799                // String Same as water: doubling it is roughly 8x the cost.
+      1911: iconst_1
+      1912: bipush        16
+      1914: ldc_w         #801                // String Simulation cells per block for lava. Changing it rebuilds every lava body.
+      1917: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+      1920: ldc_w         #803                // String lavaFlipRatio
+      1923: ldc           #207                // String FLIP ratio
+      1925: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1928: ldc           #212                // String Only changes a number in the shader.
+      1930: ldc2_w        #214                // double 0.8d
+      1933: dconst_1
+      1934: ldc2_w        #805                // double 1.0E-4d
+      1937: ldc_w         #807                // String How much lava keeps its own motion versus the smoothed grid velocity.
+      1940: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1943: ldc_w         #809                // String lavaMaxSpeed
+      1946: ldc           #228                // String Max speed
+      1948: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1951: ldc_w         #811                // String Faster lava needs more substeps.
+      1954: ldc2_w        #483                // double 0.5d
+      1957: ldc2_w        #413                // double 40.0d
+      1960: ldc2_w        #191                // double 0.1d
+      1963: ldc_w         #813                // String Speed limit for lava in blocks per second. Low keeps it slow and heavy.
+      1966: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1969: ldc_w         #815                // String lavaFilmFriction
+      1972: ldc           #251                // String Film friction
+      1974: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1977: ldc           #212                // String Only changes a number in the shader.
+      1979: dconst_0
+      1980: ldc2_w        #817                // double 500.0d
+      1983: dconst_1
+      1984: ldc_w         #819                // String How quickly thin lava stops spreading.
+      1987: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      1990: ldc_w         #821                // String lavaFilmDepth
+      1993: ldc_w         #259                // String Film depth
+      1996: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      1999: ldc           #212                // String Only changes a number in the shader.
+      2001: dconst_0
+      2002: dconst_1
+      2003: ldc2_w        #261                // double 0.01d
+      2006: ldc_w         #823                // String How shallow lava has to be before film friction kicks in.
+      2009: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2012: ldc_w         #825                // String lavaStrandedTime
+      2015: ldc_w         #267                // String Stranded drop lifetime
+      2018: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2021: ldc_w         #827                // String Longer keeps more stray blobs alive.
+      2024: dconst_0
+      2025: ldc2_w        #245                // double 30.0d
+      2028: ldc2_w        #191                // double 0.1d
+      2031: ldc_w         #829                // String Seconds a lone blob of lava survives.
+      2034: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2037: ldc_w         #831                // String lavaStrandedNeighbors
+      2040: ldc_w         #277                // String Stranded neighbour count
+      2043: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2046: ldc_w         #833                // String Fewer keeps more blobs alive.
+      2049: iconst_0
+      2050: bipush        64
+      2052: ldc_w         #835                // String Lava with fewer particles than this around it counts as stranded.
+      2055: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+      2058: ldc_w         #837                // String lavaRefraction
+      2061: ldc_w         #691                // String Refraction
+      2064: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2067: ldc           #212                // String Only changes a number in the shader.
+      2069: dconst_0
+      2070: dconst_1
+      2071: ldc2_w        #261                // double 0.01d
+      2074: ldc_w         #839                // String How much lava bends what\'s behind it.
+      2077: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2080: ldc_w         #841                // String lavaAbsorbR
+      2083: ldc_w         #697                // String Absorption red
+      2086: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2089: ldc           #212                // String Only changes a number in the shader.
+      2091: dconst_0
+      2092: ldc2_w        #271                // double 20.0d
+      2095: ldc2_w        #175                // double 0.05d
+      2098: ldc_w         #843                // String How quickly red light fades through lava.
+      2101: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2104: ldc_w         #845                // String lavaAbsorbG
+      2107: ldc_w         #703                // String Absorption green
+      2110: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2113: ldc           #212                // String Only changes a number in the shader.
+      2115: dconst_0
+      2116: ldc2_w        #271                // double 20.0d
+      2119: ldc2_w        #175                // double 0.05d
+      2122: ldc_w         #847                // String How quickly green light fades through lava.
+      2125: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2128: ldc_w         #849                // String lavaAbsorbB
+      2131: ldc_w         #709                // String Absorption blue
+      2134: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2137: ldc           #212                // String Only changes a number in the shader.
+      2139: dconst_0
+      2140: ldc2_w        #271                // double 20.0d
+      2143: ldc2_w        #175                // double 0.05d
+      2146: ldc_w         #851                // String How quickly blue light fades through lava.
+      2149: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2152: ldc_w         #853                // String lavaScatterR
+      2155: ldc_w         #855                // String Glow red
+      2158: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2161: ldc           #212                // String Only changes a number in the shader.
+      2163: dconst_0
+      2164: ldc2_w        #583                // double 3.0d
+      2167: ldc2_w        #261                // double 0.01d
+      2170: ldc_w         #857                // String Red part of lava\'s glow.
+      2173: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2176: ldc_w         #859                // String lavaScatterG
+      2179: ldc_w         #861                // String Glow green
+      2182: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2185: ldc           #212                // String Only changes a number in the shader.
+      2187: dconst_0
+      2188: ldc2_w        #583                // double 3.0d
+      2191: ldc2_w        #261                // double 0.01d
+      2194: ldc_w         #863                // String Green part of lava\'s glow.
+      2197: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2200: ldc_w         #865                // String lavaScatterB
+      2203: ldc_w         #867                // String Glow blue
+      2206: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2209: ldc           #212                // String Only changes a number in the shader.
+      2211: dconst_0
+      2212: ldc2_w        #583                // double 3.0d
+      2215: ldc2_w        #261                // double 0.01d
+      2218: ldc_w         #869                // String Blue part of lava\'s glow.
+      2221: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2224: ldc_w         #871                // String lavaScatterDensity
+      2227: ldc_w         #873                // String Glow density
+      2230: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2233: ldc           #212                // String Only changes a number in the shader.
+      2235: dconst_0
+      2236: ldc2_w        #299                // double 10.0d
+      2239: ldc2_w        #175                // double 0.05d
+      2242: ldc_w         #875                // String How quickly lava reaches full glow as it gets deeper.
+      2245: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2248: ldc_w         #877                // String lavaUnderwaterFog
+      2251: ldc_w         #879                // String Inside fog
+      2254: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2257: ldc           #212                // String Only changes a number in the shader.
+      2259: dconst_0
+      2260: ldc2_w        #289                // double 2.0d
+      2263: ldc2_w        #261                // double 0.01d
+      2266: ldc_w         #881                // String Fog when your head is inside lava.
+      2269: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2272: ldc_w         #883                // String lavaSurfaceSmoothing
+      2275: ldc_w         #745                // String Surface smoothing
+      2278: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2281: ldc_w         #747                // String Wider smoothing reads more neighbours per pixel.
+      2284: dconst_0
+      2285: dconst_1
+      2286: ldc2_w        #261                // double 0.01d
+      2289: ldc_w         #885                // String How smooth the lava surface looks.
+      2292: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2295: ldc_w         #887                // String lavaDetailStrength
+      2298: ldc_w         #753                // String Ripple strength
+      2301: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2304: ldc           #212                // String Only changes a number in the shader.
+      2306: dconst_0
+      2307: ldc2_w        #289                // double 2.0d
+      2310: ldc2_w        #261                // double 0.01d
+      2313: ldc_w         #889                // String Strength of small surface ripples on lava.
+      2316: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2319: ldc_w         #891                // String lavaRoughness
+      2322: ldc_w         #771                // String Roughness
+      2325: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2328: ldc           #212                // String Only changes a number in the shader.
+      2330: ldc2_w        #261                // double 0.01d
+      2333: ldc2_w        #773                // double 0.7d
+      2336: ldc2_w        #261                // double 0.01d
+      2339: ldc_w         #893                // String How spread out sun reflections on lava are.
+      2342: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2345: ldc_w         #895                // String lavaSpecular
+      2348: ldc_w         #779                // String Sun glint
+      2351: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2354: ldc           #212                // String Only changes a number in the shader.
+      2356: dconst_0
+      2357: ldc2_w        #271                // double 20.0d
+      2360: ldc2_w        #191                // double 0.1d
+      2363: ldc_w         #897                // String Brightness of sun reflections on lava.
+      2366: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2369: ldc_w         #899                // String lavaFlowSounds
+      2372: ldc_w         #901                // String Lava sounds
+      2375: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2378: ldc_w         #903                // String Plays a few sounds per second near moving lava.
+      2381: ldc_w         #905                // String Bubbling and popping sounds from moving lava.
+      2384: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      2387: ldc_w         #907                // String lavaIgniteFlammables
+      2390: ldc_w         #909                // String Lava sets fires
+      2393: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2396: ldc_w         #911                // String A random tick check on each lava block, like vanilla lava.
+      2399: ldc_w         #913                // String Lets realistic lava set nearby flammable blocks on fire, like vanilla lava.
+      2402: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      2405: ldc_w         #915                // String Slime
+      2408: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+      2411: ldc_w         #917                // String slimeResolution
+      2414: ldc           #135                // String Resolution
+      2416: getstatic     #137                // Field me/blue/client/water/WaterSettingsInfo$Cost.EXTREME:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2419: ldc_w         #799                // String Same as water: doubling it is roughly 8x the cost.
+      2422: iconst_1
+      2423: bipush        16
+      2425: ldc_w         #919                // String Simulation cells per block for slime. Changing it rebuilds every slime body.
+      2428: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+      2431: ldc_w         #921                // String slimeViscosity
+      2434: ldc_w         #923                // String Thickness
+      2437: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2440: ldc_w         #925                // String Doesn\'t change the cost; Thickness passes does.
+      2443: dconst_0
+      2444: ldc2_w        #299                // double 10.0d
+      2447: ldc2_w        #175                // double 0.05d
+      2450: ldc_w         #927                // String How thick and gooey slime is (its viscosity). Higher flows slower and holds together; 0 makes it flow like water.
+      2453: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2456: ldc_w         #929                // String slimeViscosityIterations
+      2459: ldc_w         #931                // String Thickness passes
+      2462: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2465: ldc_w         #933                // String Each pass is one more GPU dispatch over every face, every substep.
+      2468: iconst_0
+      2469: bipush        32
+      2471: ldc_w         #935                // String How many solver passes the thickness gets per substep. More makes high Thickness values actually feel that thick.
+      2474: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+      2477: ldc_w         #937                // String slimeAdhesion
+      2480: ldc_w         #939                // String Stickiness
+      2483: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2486: ldc           #212                // String Only changes a number in the shader.
+      2488: dconst_0
+      2489: ldc2_w        #235                // double 100.0d
+      2492: ldc2_w        #483                // double 0.5d
+      2495: ldc_w         #941                // String How strongly slime sticks to blocks it touches. High values let it cling to walls and ceilings and only slowly drip off.
+      2498: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2501: ldc_w         #943                // String slimeEntityStick
+      2504: ldc_w         #945                // String Sticks to mobs
+      2507: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2510: ldc           #212                // String Only changes a number in the shader.
+      2512: dconst_0
+      2513: dconst_1
+      2514: ldc2_w        #261                // double 0.01d
+      2517: ldc_w         #947                // String How much slime touching a player or mob gets dragged along with it. 1 sticks completely.
+      2520: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2523: ldc_w         #949                // String slimeRestSpeed
+      2526: ldc_w         #951                // String Hold speed
+      2529: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2532: ldc           #212                // String Only changes a number in the shader.
+      2534: dconst_0
+      2535: ldc2_w        #583                // double 3.0d
+      2538: ldc2_w        #175                // double 0.05d
+      2541: ldc_w         #953                // String Slime slower than this (blocks per second) starts holding its shape. This is what keeps a placed block of slime standing.
+      2544: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2547: ldc_w         #955                // String slimeRestTime
+      2550: ldc_w         #957                // String Hold delay
+      2553: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2556: ldc           #212                // String Only changes a number in the shader.
+      2558: dconst_0
+      2559: ldc2_w        #289                // double 2.0d
+      2562: ldc2_w        #261                // double 0.01d
+      2565: ldc_w         #959                // String Seconds slime has to be slow before it holds its shape.
+      2568: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2571: ldc_w         #961                // String slimeWakeSpeed
+      2574: ldc_w         #963                // String Wobble limit
+      2577: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2580: ldc           #212                // String Only changes a number in the shader.
+      2582: dconst_0
+      2583: ldc2_w        #299                // double 10.0d
+      2586: ldc2_w        #175                // double 0.05d
+      2589: ldc_w         #965                // String How hard slime has to be pushed (blocks per second) before it lets go and flows again.
+      2592: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2595: ldc_w         #967                // String slimeFlipRatio
+      2598: ldc           #207                // String FLIP ratio
+      2600: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2603: ldc           #212                // String Only changes a number in the shader.
+      2605: ldc2_w        #483                // double 0.5d
+      2608: dconst_1
+      2609: ldc2_w        #193                // double 0.001d
+      2612: ldc_w         #969                // String How much slime keeps its own motion. Lower is more damped and sluggish.
+      2615: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2618: ldc_w         #971                // String slimeVolumeCorrection
+      2621: ldc           #220                // String Volume correction
+      2623: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2626: ldc           #222                // String Changes how much one compute pass does, not how many there are.
+      2628: dconst_0
+      2629: ldc2_w        #413                // double 40.0d
+      2632: ldc2_w        #483                // double 0.5d
+      2635: ldc_w         #973                // String How hard squashed slime pushes back out to its normal size, so it can\'t be squeezed into a small ball.
+      2638: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2641: ldc_w         #975                // String slimeMaxSpeed
+      2644: ldc           #228                // String Max speed
+      2646: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2649: ldc_w         #977                // String Faster slime needs more substeps.
+      2652: ldc2_w        #483                // double 0.5d
+      2655: ldc2_w        #413                // double 40.0d
+      2658: ldc2_w        #191                // double 0.1d
+      2661: ldc_w         #979                // String Speed limit for slime in blocks per second. This is a big part of why it moves so slowly.
+      2664: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2667: ldc_w         #981                // String slimeFilmFriction
+      2670: ldc           #251                // String Film friction
+      2672: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2675: ldc           #212                // String Only changes a number in the shader.
+      2677: dconst_0
+      2678: ldc2_w        #817                // double 500.0d
+      2681: dconst_1
+      2682: ldc_w         #983                // String How quickly thin slime stops spreading on the ground.
+      2685: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2688: ldc_w         #985                // String slimeFilmDepth
+      2691: ldc_w         #259                // String Film depth
+      2694: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2697: ldc           #212                // String Only changes a number in the shader.
+      2699: dconst_0
+      2700: dconst_1
+      2701: ldc2_w        #261                // double 0.01d
+      2704: ldc_w         #987                // String How shallow slime has to be before film friction kicks in.
+      2707: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2710: ldc_w         #989                // String slimeStrandedTime
+      2713: ldc_w         #991                // String Stranded blob lifetime
+      2716: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2719: ldc_w         #827                // String Longer keeps more stray blobs alive.
+      2722: dconst_0
+      2723: ldc2_w        #429                // double 60.0d
+      2726: ldc2_w        #483                // double 0.5d
+      2729: ldc_w         #993                // String Seconds a lone blob of slime survives.
+      2732: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2735: ldc_w         #995                // String slimeStrandedNeighbors
+      2738: ldc_w         #277                // String Stranded neighbour count
+      2741: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2744: ldc_w         #833                // String Fewer keeps more blobs alive.
+      2747: iconst_0
+      2748: bipush        64
+      2750: ldc_w         #997                // String Slime with fewer particles than this around it counts as stranded. Low so small blobs and strings survive.
+      2753: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+      2756: ldc_w         #999                // String slimeOpacity
+      2759: ldc_w         #1001               // String Opacity
+      2762: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2765: ldc           #212                // String Only changes a number in the shader.
+      2767: dconst_0
+      2768: dconst_1
+      2769: ldc2_w        #261                // double 0.01d
+      2772: ldc_w         #1003               // String How solid slime looks where it is thin. 1 hides everything behind it; thick slime is always fully opaque.
+      2775: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2778: ldc_w         #1005               // String slimeBrightness
+      2781: ldc_w         #1007               // String Brightness
+      2784: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2787: ldc           #212                // String Only changes a number in the shader.
+      2789: dconst_0
+      2790: ldc2_w        #583                // double 3.0d
+      2793: ldc2_w        #261                // double 0.01d
+      2796: ldc_w         #1009               // String Overall brightness of the slime texture.
+      2799: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2802: ldc_w         #1011               // String slimeInsideOpacity
+      2805: ldc_w         #1013               // String Inside view
+      2808: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2811: ldc           #212                // String Only changes a number in the shader.
+      2813: dconst_0
+      2814: dconst_1
+      2815: ldc2_w        #261                // double 0.01d
+      2818: ldc_w         #1015               // String How much green covers the screen while your head is inside slime. 1 is completely blind.
+      2821: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2824: ldc_w         #1017               // String slimeFogDistance
+      2827: ldc_w         #1019               // String Inside fog distance
+      2830: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2833: ldc           #212                // String Only changes a number in the shader.
+      2835: ldc2_w        #175                // double 0.05d
+      2838: ldc2_w        #1021               // double 8.0d
+      2841: ldc2_w        #175                // double 0.05d
+      2844: ldc_w         #1023               // String How far you can see (in blocks) while your head is inside slime.
+      2847: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2850: ldc_w         #1025               // String slimeSurfaceSmoothing
+      2853: ldc_w         #745                // String Surface smoothing
+      2856: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2859: ldc_w         #747                // String Wider smoothing reads more neighbours per pixel.
+      2862: dconst_0
+      2863: dconst_1
+      2864: ldc2_w        #261                // double 0.01d
+      2867: ldc_w         #1027               // String How smooth and glossy the slime surface looks.
+      2870: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2873: ldc_w         #1029               // String slimeSounds
+      2876: ldc_w         #1031               // String Slime sounds
+      2879: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2882: ldc_w         #1033               // String Plays a few sounds per second near moving slime.
+      2885: ldc_w         #1035               // String Squishing sounds from moving slime.
+      2888: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      2891: ldc_w         #1037               // String Sand
+      2894: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+      2897: ldc_w         #1039               // String sandResolution
+      2900: ldc           #135                // String Resolution
+      2902: getstatic     #137                // Field me/blue/client/water/WaterSettingsInfo$Cost.EXTREME:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2905: ldc_w         #1041               // String Doubling it is roughly 8x the particles and grid; sand also runs many substeps.
+      2908: iconst_1
+      2909: bipush        24
+      2911: ldc_w         #1043               // String Simulation cells per block for sand. Higher gives finer grains and more detailed piles. Changing it rebuilds every sand body.
+      2914: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+      2917: ldc_w         #1045               // String sandFrictionAngle
+      2920: ldc_w         #1047               // String Friction angle
+      2923: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2926: ldc           #212                // String Only changes a number in the shader.
+      2928: dconst_0
+      2929: ldc2_w        #429                // double 60.0d
+      2932: ldc2_w        #483                // double 0.5d
+      2935: ldc_w         #1049               // String How steep sand can pile before it slides, in degrees.
+      2938: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2941: ldc_w         #1051               // String sandCohesion
+      2944: ldc_w         #1053               // String Cohesion
+      2947: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2950: ldc           #212                // String Only changes a number in the shader.
+      2952: dconst_0
+      2953: ldc2_w        #483                // double 0.5d
+      2956: ldc2_w        #193                // double 0.001d
+      2959: ldc_w         #1055               // String How much sand sticks to itself, like damp sand. 0 is perfectly dry.
+      2962: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2965: ldc_w         #1057               // String sandStiffness
+      2968: ldc_w         #1059               // String Stiffness
+      2971: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2974: ldc_w         #1061               // String Stiffer sand needs more, shorter substeps to stay stable.
+      2977: dconst_1
+      2978: ldc2_w        #817                // double 500.0d
+      2981: ldc2_w        #483                // double 0.5d
+      2984: ldc_w         #1063               // String How stiff a grain packing is. Higher feels more solid but costs more substeps.
+      2987: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      2990: ldc_w         #1065               // String sandWallFriction
+      2993: ldc_w         #1067               // String Wall friction
+      2996: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      2999: ldc           #212                // String Only changes a number in the shader.
+      3001: dconst_0
+      3002: ldc2_w        #289                // double 2.0d
+      3005: ldc2_w        #261                // double 0.01d
+      3008: ldc_w         #1069               // String How much sand grips the blocks it slides along.
+      3011: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3014: ldc_w         #1071               // String sandCfl
+      3017: ldc           #164                // String CFL number
+      3019: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3022: ldc_w         #1073               // String Lower means more substeps.
+      3025: ldc2_w        #175                // double 0.05d
+      3028: dconst_1
+      3029: ldc2_w        #261                // double 0.01d
+      3032: ldc_w         #1075               // String Stability margin for sand substeps. Lower is safer and slower.
+      3035: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3038: ldc_w         #1077               // String sandMaxStepsPerFrame
+      3041: ldc           #199                // String Max substeps per frame
+      3043: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3046: ldc_w         #1079               // String Each substep is a full sand step.
+      3049: iconst_1
+      3050: bipush        64
+      3052: ldc_w         #1081               // String Upper limit on sand substeps per frame. When hit, sand runs in slow motion.
+      3055: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+      3058: ldc_w         #1083               // String sandImpactDamping
+      3061: ldc_w         #1085               // String Impact damping
+      3064: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3067: ldc           #212                // String Only changes a number in the shader.
+      3069: dconst_0
+      3070: ldc2_w        #289                // double 2.0d
+      3073: ldc2_w        #261                // double 0.01d
+      3076: ldc_w         #1087               // String Soaks up energy when sand hits the ground hard, so it splats instead of bouncing.
+      3079: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3082: ldc_w         #1089               // String sandImpactRate
+      3085: ldc_w         #1091               // String Impact rate
+      3088: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3091: ldc           #212                // String Only changes a number in the shader.
+      3093: dconst_0
+      3094: ldc2_w        #271                // double 20.0d
+      3097: ldc2_w        #191                // double 0.1d
+      3100: ldc_w         #1093               // String How fast sand has to be squashed before it counts as an impact.
+      3103: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3106: ldc_w         #1095               // String sandImpactCompression
+      3109: ldc_w         #1097               // String Impact compression
+      3112: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3115: ldc           #212                // String Only changes a number in the shader.
+      3117: dconst_0
+      3118: ldc2_w        #1099               // double 0.9d
+      3121: ldc2_w        #261                // double 0.01d
+      3124: ldc_w         #1101               // String How much an impact can pack sand down without springing back.
+      3127: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3130: ldc_w         #1103               // String sandRestSpeed
+      3133: ldc_w         #285                // String Rest speed
+      3136: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3139: ldc_w         #1105               // String Higher lets sand freeze sooner, which skips its work.
+      3142: dconst_0
+      3143: dconst_1
+      3144: ldc2_w        #543                // double 0.005d
+      3147: ldc_w         #1107               // String Sand slower than this (blocks per second) starts to settle.
+      3150: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3153: ldc_w         #1109               // String sandRestTime
+      3156: ldc_w         #295                // String Rest time
+      3159: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3162: ldc_w         #1111               // String Shorter freezes settled sand sooner.
+      3165: dconst_0
+      3166: ldc2_w        #289                // double 2.0d
+      3169: ldc2_w        #261                // double 0.01d
+      3172: ldc_w         #1113               // String Seconds sand has to be slow before it freezes in place.
+      3175: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3178: ldc_w         #1115               // String sandWakeAccel
+      3181: ldc_w         #1117               // String Wake acceleration
+      3184: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3187: ldc_w         #1119               // String Lower wakes frozen sand more easily.
+      3190: dconst_0
+      3191: ldc2_w        #469                // double 5.0d
+      3194: ldc2_w        #175                // double 0.05d
+      3197: ldc_w         #1121               // String How hard frozen sand has to be pushed, as a fraction of gravity, before it moves again.
+      3200: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3203: ldc_w         #1123               // String sandSurfaceIso
+      3206: ldc_w         #589                // String Surface threshold
+      3209: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3212: ldc           #212                // String Only changes a number in the shader.
+      3214: ldc2_w        #175                // double 0.05d
+      3217: ldc2_w        #591                // double 1.5d
+      3220: ldc2_w        #261                // double 0.01d
+      3223: ldc_w         #1125               // String Where the sand surface sits, used to decide which grains are on the outside.
+      3226: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3229: ldc_w         #1127               // String sandSurfaceSmoothing
+      3232: ldc_w         #745                // String Surface smoothing
+      3235: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3238: ldc           #212                // String Only changes a number in the shader.
+      3240: dconst_0
+      3241: dconst_1
+      3242: ldc2_w        #261                // double 0.01d
+      3245: ldc_w         #1129               // String How smooth the sand\'s surface normals are, which shades the grains.
+      3248: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3251: ldc_w         #1131               // String sandGrainSize
+      3254: ldc_w         #1133               // String Grain size
+      3257: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3260: ldc_w         #1135               // String Bigger grains cover more pixels.
+      3263: ldc2_w        #189                // double 0.002d
+      3266: ldc2_w        #175                // double 0.05d
+      3269: ldc2_w        #193                // double 0.001d
+      3272: ldc_w         #1137               // String Radius of one drawn sand grain, in blocks.
+      3275: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3278: ldc_w         #1139               // String sandGrainsPerParticle
+      3281: ldc_w         #1141               // String Grains per particle
+      3284: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3287: ldc_w         #1143               // String Every surface particle draws this many grains: the main sand drawing cost.
+      3290: iconst_1
+      3291: sipush        128
+      3294: ldc_w         #1145               // String How many grains are drawn for each sand particle near the surface. More looks denser.
+      3297: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+      3300: ldc_w         #1147               // String sandGrainSpread
+      3303: ldc_w         #1149               // String Grain spread
+      3306: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3309: ldc           #212                // String Only changes a number in the shader.
+      3311: dconst_0
+      3312: ldc2_w        #289                // double 2.0d
+      3315: ldc2_w        #261                // double 0.01d
+      3318: ldc_w         #1151               // String How far grains scatter around their particle.
+      3321: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3324: ldc_w         #1153               // String sandGrainMinPixels
+      3327: ldc_w         #1155               // String Grain minimum pixels
+      3330: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3333: ldc_w         #1157               // String Bigger far grains cover more pixels.
+      3336: dconst_0
+      3337: ldc2_w        #685                // double 4.0d
+      3340: ldc2_w        #175                // double 0.05d
+      3343: ldc_w         #1159               // String Smallest a grain can appear on screen, so far-away sand doesn\'t flicker.
+      3346: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3349: ldc_w         #1161               // String sandBrightness
+      3352: ldc_w         #1007               // String Brightness
+      3355: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3358: ldc           #212                // String Only changes a number in the shader.
+      3360: dconst_0
+      3361: ldc2_w        #583                // double 3.0d
+      3364: ldc2_w        #261                // double 0.01d
+      3367: ldc_w         #1163               // String Overall brightness of the sand.
+      3370: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3373: ldc_w         #1165               // String sandSounds
+      3376: ldc_w         #1167               // String Sand sounds
+      3379: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3382: ldc_w         #1169               // String Plays a few sounds per second near moving sand.
+      3385: ldc_w         #1171               // String Sliding and impact sounds from moving sand.
+      3388: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      3391: ldc_w         #1173               // String TNT and explosions
+      3394: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+      3397: ldc_w         #1175               // String tntReactions
+      3400: ldc_w         #1177               // String Explosions push fluids
+      3403: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3406: ldc_w         #1179               // String One small pass per explosion per body it reaches.
+      3409: ldc_w         #1181               // String Makes realistic water, lava, slime and sand get blasted away by TNT and other explosions.
+      3412: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      3415: ldc_w         #1183               // String tntBlastSpeed
+      3418: ldc_w         #1185               // String Blast strength
+      3421: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3424: ldc_w         #1187               // String Stronger blasts throw particles faster, which needs more substeps for a moment.
+      3427: dconst_0
+      3428: ldc2_w        #429                // double 60.0d
+      3431: ldc2_w        #483                // double 0.5d
+      3434: ldc_w         #1189               // String How fast fluid right next to a TNT-sized explosion is thrown, in blocks per second. Bigger explosions scale it up.
+      3437: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3440: ldc_w         #1191               // String tntBlastReach
+      3443: ldc_w         #1193               // String Blast reach
+      3446: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3449: ldc           #212                // String Only changes a number in the shader.
+      3451: dconst_0
+      3452: ldc2_w        #173                // double 6.0d
+      3455: ldc2_w        #175                // double 0.05d
+      3458: ldc_w         #1195               // String How far the push reaches, as a multiple of the explosion\'s radius. The push fades to nothing at this distance.
+      3461: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3464: ldc_w         #1197               // String tntUpwardBias
+      3467: ldc_w         #1199               // String Upward bias
+      3470: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3473: ldc           #212                // String Only changes a number in the shader.
+      3475: dconst_0
+      3476: ldc2_w        #289                // double 2.0d
+      3479: ldc2_w        #175                // double 0.05d
+      3482: ldc_w         #1201               // String Tilts the push upward so fluid sprays up into the air instead of only sideways.
+      3485: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3488: ldc_w         #1203               // String tntScatter
+      3491: ldc_w         #1205               // String Scatter
+      3494: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3497: ldc           #212                // String Only changes a number in the shader.
+      3499: dconst_0
+      3500: dconst_1
+      3501: ldc2_w        #261                // double 0.01d
+      3504: ldc_w         #1207               // String Randomness in the push direction, so the splash breaks up instead of moving as one shell.
+      3507: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3510: ldc_w         #1209               // String Sounds
+      3513: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+      3516: ldc_w         #1211               // String flowSounds
+      3519: ldc_w         #1213               // String Water sounds
+      3522: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3525: ldc_w         #1215               // String Plays a few sounds per second near moving water.
+      3528: ldc_w         #1217               // String Flowing and splashing sounds from moving water.
+      3531: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      3534: ldc_w         #1219               // String flowSoundVolume
+      3537: ldc_w         #1221               // String Fluid sound volume
+      3540: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3543: ldc_w         #1223               // String Only changes volume.
+      3546: dconst_0
+      3547: ldc2_w        #583                // double 3.0d
+      3550: ldc2_w        #175                // double 0.05d
+      3553: ldc_w         #1225               // String Volume of all realistic water, lava, slime and sand sounds.
+      3556: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3559: ldc_w         #1227               // String Shader packs
+      3562: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+      3565: ldc_w         #1229               // String shaderLightScale
+      3568: ldc_w         #1231               // String HDR light scale
+      3571: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3574: ldc           #212                // String Only changes a number in the shader.
+      3576: dconst_0
+      3577: ldc2_w        #299                // double 10.0d
+      3580: ldc2_w        #175                // double 0.05d
+      3583: ldc_w         #1233               // String How bright water\'s colour, reflections and slime are while a shader pack renders in HDR.
+      3586: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3589: ldc_w         #1235               // String shaderSpecularCap
+      3592: ldc_w         #1237               // String HDR glint cap
+      3595: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3598: ldc           #212                // String Only changes a number in the shader.
+      3600: dconst_1
+      3601: ldc2_w        #235                // double 100.0d
+      3604: ldc2_w        #483                // double 0.5d
+      3607: ldc_w         #1239               // String Brightest a sun glint can get with a shader pack, so bloom doesn\'t blow up.
+      3610: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3613: ldc_w         #1241               // String shaderShadowBias
+      3616: ldc_w         #1243               // String Shadow bias
+      3619: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3622: ldc           #212                // String Only changes a number in the shader.
+      3624: dconst_0
+      3625: ldc2_w        #261                // double 0.01d
+      3628: ldc2_w        #805                // double 1.0E-4d
+      3631: ldc_w         #1245               // String Offset used when reading the shader pack\'s shadows on fluids. Raise it if fluids show striped shadow acne.
+      3634: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3637: ldc_w         #1247               // String shaderSkyFromScreen
+      3640: ldc_w         #1249               // String Sky from screen
+      3643: getstatic     #230                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3646: ldc_w         #1251               // String Reads the rendered sky instead of a simple sky colour.
+      3649: ldc_w         #1253               // String Fluid reflections use the shader pack\'s actual sky on screen.
+      3652: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      3655: ldc_w         #1255               // String shadowStagger
+      3658: ldc_w         #1257               // String Stagger shadows
+      3661: getstatic     #155                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3664: ldc_w         #1259               // String Updates far shadow cascades less often, saving shadow rendering time.
+      3667: ldc_w         #1261               // String Renders the near shadow cascade every frame, the middle one every 2nd and the far one every 4th.
+      3670: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      3673: ldc_w         #1263               // String sandShaderSun
+      3676: ldc_w         #1265               // String Sun light
+      3679: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3682: ldc           #212                // String Only changes a number in the shader.
+      3684: dconst_0
+      3685: ldc2_w        #299                // double 10.0d
+      3688: ldc2_w        #175                // double 0.05d
+      3691: ldc_w         #1267               // String Sunlight strength on sand and slime with a shader pack. 3.4 matches Vista\'s own sun.
+      3694: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3697: ldc_w         #1269               // String sandShaderSky
+      3700: ldc_w         #1271               // String Sky light
+      3703: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3706: ldc           #212                // String Only changes a number in the shader.
+      3708: dconst_0
+      3709: ldc2_w        #469                // double 5.0d
+      3712: ldc2_w        #175                // double 0.05d
+      3715: ldc_w         #1273               // String Sky light strength on sand and slime with a shader pack.
+      3718: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3721: ldc_w         #1275               // String Clip recording
+      3724: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+      3727: ldc_w         #1277               // String renderMaxStepsPerFrame
+      3730: ldc_w         #1279               // String Max substeps per clip frame
+      3733: getstatic     #166                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3736: ldc_w         #1281               // String Only while /water render records; higher makes recording slower but more accurate.
+      3739: iconst_1
+      3740: sipush        256
+      3743: ldc_w         #1283               // String Upper limit on substeps per frame while recording a clip with /water render.
+      3746: invokestatic  #147                // Method integer:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;IILjava/lang/String;)V
+      3749: ldc_w         #1285               // String ffmpeg
+      3752: ldc_w         #1287               // String ffmpeg path
+      3755: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3758: ldc_w         #1289               // String Only used when a clip finishes.
+      3761: ldc_w         #1291               // String Full path to ffmpeg for /water render. Leave empty to look in the usual places.
+      3764: invokestatic  #1293               // Method text:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      3767: ldc_w         #1296               // String renderFreezeWorld
+      3770: ldc_w         #1298               // String Freeze world while recording
+      3773: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3776: ldc_w         #1300               // String Only while recording.
+      3779: ldc_w         #1302               // String Stops the world ticking while a clip records, so mobs and time don\'t run ahead of the slowed-down simulation.
+      3782: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      3785: ldc_w         #1304               // String renderSteadyPreview
+      3788: ldc_w         #1306               // String Steady preview
+      3791: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3794: ldc_w         #1300               // String Only while recording.
+      3797: ldc_w         #1308               // String Paces the on-screen preview while recording so it plays as smooth slow motion instead of stuttering.
+      3800: invokestatic  #327                // Method toggle:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;)V
+      3803: ldc_w         #1310               // String renderCameraSmoothing
+      3806: ldc_w         #1312               // String Camera smoothing
+      3809: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3812: ldc_w         #1300               // String Only while recording.
+      3815: dconst_0
+      3816: dconst_1
+      3817: ldc2_w        #261                // double 0.01d
+      3820: ldc_w         #1314               // String Seconds of smoothing on mouse look while recording, so pans in the clip come out even.
+      3823: invokestatic  #179                // Method num:(Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;DDDLjava/lang/String;)V
+      3826: ldc_w         #1316               // String Other
+      3829: invokestatic  #130                // Method category:(Ljava/lang/String;)V
+      3832: invokestatic  #1318               // Method me/blue/client/water/WaterSettings.fields:()Ljava/util/Map;
+      3835: invokeinterface #13,  1           // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+      3840: invokeinterface #1324,  1         // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+      3845: astore_0
+      3846: aload_0
+      3847: invokeinterface #64,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+      3852: ifeq          3921
+      3855: aload_0
+      3856: invokeinterface #70,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      3861: checkcast     #43                 // class java/lang/String
+      3864: astore_1
+      3865: getstatic     #33                 // Field BY_NAME:Ljava/util/Map;
+      3868: aload_1
+      3869: invokeinterface #1327,  2         // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+      3874: ifne          3918
+      3877: getstatic     #1330               // Field me/blue/RealisticWater.LOGGER:Lorg/slf4j/Logger;
+      3880: ldc_w         #1336               // String Setting {} has no description in the settings menu
+      3883: aload_1
+      3884: invokeinterface #1338,  3         // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;)V
+      3889: new           #40                 // class me/blue/client/water/WaterSettingsInfo$Info
+      3892: dup
+      3893: aload_1
+      3894: getstatic     #92                 // Field category:Ljava/lang/String;
+      3897: aload_1
+      3898: getstatic     #120                // Field me/blue/client/water/WaterSettingsInfo$Kind.TEXT:Lme/blue/client/water/WaterSettingsInfo$Kind;
+      3901: getstatic     #209                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+      3904: ldc           #126                // String
+      3906: ldc_w         #1344               // String No description yet.
+      3909: dconst_0
+      3910: dconst_0
+      3911: dconst_0
+      3912: invokespecial #108                // Method me/blue/client/water/WaterSettingsInfo$Info."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lme/blue/client/water/WaterSettingsInfo$Kind;Lme/blue/client/water/WaterSettingsInfo$Cost;Ljava/lang/String;Ljava/lang/String;DDD)V
+      3915: invokestatic  #111                // Method add:(Lme/blue/client/water/WaterSettingsInfo$Info;)V
+      3918: goto          3846
+      3921: getstatic     #7                  // Field BY_CATEGORY:Ljava/util/Map;
+      3924: ldc_w         #1316               // String Other
+      3927: invokeinterface #36,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+      3932: checkcast     #20                 // class java/util/List
+      3935: invokeinterface #1346,  1         // InterfaceMethod java/util/List.isEmpty:()Z
+      3940: ifeq          3955
+      3943: getstatic     #7                  // Field BY_CATEGORY:Ljava/util/Map;
+      3946: ldc_w         #1316               // String Other
+      3949: invokeinterface #1349,  2         // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+      3954: pop
+      3955: return
+}

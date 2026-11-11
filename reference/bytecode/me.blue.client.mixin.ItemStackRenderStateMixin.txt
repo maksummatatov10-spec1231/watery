@@ -1,0 +1,31 @@
+Compiled from "ItemStackRenderStateMixin.java"
+public abstract class me.blue.client.mixin.ItemStackRenderStateMixin implements me.blue.client.shader.EntityMaterials$ItemHolder {
+  private net.minecraft.world.item.Item blue$item;
+
+  public me.blue.client.mixin.ItemStackRenderStateMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  public net.minecraft.world.item.Item blue$item();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field blue$item:Lnet/minecraft/world/item/Item;
+         4: areturn
+
+  public void blue$setItem(net.minecraft.world.item.Item);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: putfield      #7                  // Field blue$item:Lnet/minecraft/world/item/Item;
+         5: return
+
+  private int blue$tagItem(int);
+    Code:
+         0: iload_1
+         1: aload_0
+         2: getfield      #7                  // Field blue$item:Lnet/minecraft/world/item/Item;
+         5: invokestatic  #13                 // Method me/blue/client/shader/EntityMaterials.tagItem:(ILnet/minecraft/world/item/Item;)I
+         8: ireturn
+}

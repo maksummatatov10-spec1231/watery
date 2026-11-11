@@ -1,0 +1,50 @@
+Compiled from "VideoSettingsScreenMixin.java"
+public abstract class me.blue.client.mixin.VideoSettingsScreenMixin extends net.minecraft.client.gui.screens.options.OptionsSubScreen {
+  private me.blue.client.mixin.VideoSettingsScreenMixin(net.minecraft.client.gui.screens.Screen, net.minecraft.client.Options, net.minecraft.network.chat.Component);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_3
+         4: invokespecial #1                  // Method net/minecraft/client/gui/screens/options/OptionsSubScreen."<init>":(Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/Options;Lnet/minecraft/network/chat/Component;)V
+         7: return
+
+  private static net.minecraft.client.OptionInstance<?>[] blue$shaderRow(net.minecraft.client.OptionInstance<?>[]);
+    Code:
+         0: new           #7                  // class java/util/ArrayList
+         3: dup
+         4: aload_0
+         5: invokestatic  #9                  // InterfaceMethod java/util/List.of:([Ljava/lang/Object;)Ljava/util/List;
+         8: invokespecial #15                 // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+        11: astore_1
+        12: aload_1
+        13: invokestatic  #18                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+        16: getfield      #24                 // Field net/minecraft/client/Minecraft.options:Lnet/minecraft/client/Options;
+        19: invokevirtual #28                 // Method net/minecraft/client/Options.preferredGraphicsBackend:()Lnet/minecraft/client/OptionInstance;
+        22: invokeinterface #34,  2           // InterfaceMethod java/util/List.indexOf:(Ljava/lang/Object;)I
+        27: istore_2
+        28: aload_1
+        29: iload_2
+        30: iflt          39
+        33: iload_2
+        34: iconst_1
+        35: iadd
+        36: goto          45
+        39: aload_1
+        40: invokeinterface #38,  1           // InterfaceMethod java/util/List.size:()I
+        45: getstatic     #42                 // Field me/blue/client/shader/ShaderOptions.SHADERS:Lnet/minecraft/client/OptionInstance;
+        48: invokestatic  #48                 // InterfaceMethod java/util/List.of:(Ljava/lang/Object;)Ljava/util/List;
+        51: invokeinterface #51,  3           // InterfaceMethod java/util/List.addAll:(ILjava/util/Collection;)Z
+        56: pop
+        57: aload_1
+        58: invokedynamic #55,  0             // InvokeDynamic #0:apply:()Ljava/util/function/IntFunction;
+        63: invokeinterface #59,  2           // InterfaceMethod java/util/List.toArray:(Ljava/util/function/IntFunction;)[Ljava/lang/Object;
+        68: checkcast     #63                 // class "[Lnet/minecraft/client/OptionInstance;"
+        71: areturn
+
+  private static net.minecraft.client.OptionInstance[] lambda$blue$shaderRow$0(int);
+    Code:
+         0: iload_0
+         1: anewarray     #65                 // class net/minecraft/client/OptionInstance
+         4: areturn
+}

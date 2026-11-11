@@ -1,0 +1,74 @@
+Compiled from "ClientLevelMixin.java"
+public class me.blue.client.mixin.ClientLevelMixin {
+  public me.blue.client.mixin.ClientLevelMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private static boolean realisticWater$invisible(net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: aload_0
+         1: invokevirtual #7                  // Method net/minecraft/world/level/block/state/BlockState.getFluidState:()Lnet/minecraft/world/level/material/FluidState;
+         4: astore_1
+         5: aload_0
+         6: invokevirtual #13                 // Method net/minecraft/world/level/block/state/BlockState.isAir:()Z
+         9: ifne          43
+        12: aload_1
+        13: invokestatic  #17                 // Method me/blue/fluid/RealisticWaterFluid.isRealistic:(Lnet/minecraft/world/level/material/FluidState;)Z
+        16: ifne          43
+        19: aload_1
+        20: invokestatic  #23                 // Method me/blue/fluid/RealisticLavaFluid.isRealistic:(Lnet/minecraft/world/level/material/FluidState;)Z
+        23: ifne          43
+        26: aload_1
+        27: invokestatic  #26                 // Method me/blue/fluid/RealisticSlimeFluid.isRealistic:(Lnet/minecraft/world/level/material/FluidState;)Z
+        30: ifne          43
+        33: aload_0
+        34: invokevirtual #29                 // Method net/minecraft/world/level/block/state/BlockState.getBlock:()Lnet/minecraft/world/level/block/Block;
+        37: instanceof    #33                 // class me/blue/block/RealisticSandBlock
+        40: ifeq          47
+        43: iconst_1
+        44: goto          48
+        47: iconst_0
+        48: ireturn
+
+  private static boolean realisticWater$invisibleSwap(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: aload_0
+         1: invokestatic  #35                 // Method realisticWater$invisible:(Lnet/minecraft/world/level/block/state/BlockState;)Z
+         4: ifeq          18
+         7: aload_1
+         8: invokestatic  #35                 // Method realisticWater$invisible:(Lnet/minecraft/world/level/block/state/BlockState;)Z
+        11: ifeq          18
+        14: iconst_1
+        15: goto          19
+        18: iconst_0
+        19: ireturn
+
+  private void realisticWater$onBlockUpdated(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #41                 // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+         3: aload_0
+         4: checkcast     #47                 // class net/minecraft/client/multiplayer/ClientLevel
+         7: aload_1
+         8: aload_2
+         9: aload_3
+        10: invokevirtual #49                 // Method me/blue/client/water/WaterWorld.onBlockChanged:(Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)V
+        13: aload_2
+        14: aload_3
+        15: invokestatic  #53                 // Method realisticWater$invisibleSwap:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)Z
+        18: ifeq          26
+        21: aload         5
+        23: invokevirtual #57                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+        26: return
+
+  private void realisticWater$skipInvisibleRebuild(net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.block.state.BlockState, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: aload_2
+         1: aload_3
+         2: invokestatic  #53                 // Method realisticWater$invisibleSwap:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockState;)Z
+         5: ifeq          13
+         8: aload         4
+        10: invokevirtual #57                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+        13: return
+}

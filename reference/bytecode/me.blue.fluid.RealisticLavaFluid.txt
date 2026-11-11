@@ -1,0 +1,325 @@
+Compiled from "RealisticLavaFluid.java"
+public abstract class me.blue.fluid.RealisticLavaFluid extends net.minecraft.world.level.material.FlowingFluid {
+  public me.blue.fluid.RealisticLavaFluid();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method net/minecraft/world/level/material/FlowingFluid."<init>":()V
+         4: return
+
+  public net.minecraft.world.level.material.Fluid getFlowing();
+    Code:
+         0: getstatic     #7                  // Field me/blue/ModContent.FLOWING_REALISTIC_LAVA:Lnet/minecraft/world/level/material/FlowingFluid;
+         3: areturn
+
+  public net.minecraft.world.level.material.Fluid getSource();
+    Code:
+         0: getstatic     #13                 // Field me/blue/ModContent.REALISTIC_LAVA:Lnet/minecraft/world/level/material/FlowingFluid;
+         3: areturn
+
+  public net.minecraft.world.item.Item getBucket();
+    Code:
+         0: getstatic     #16                 // Field me/blue/ModContent.REALISTIC_LAVA_BUCKET:Lnet/minecraft/world/item/Item;
+         3: areturn
+
+  public static boolean isRealistic(net.minecraft.world.level.material.FluidState);
+    Code:
+         0: aload_0
+         1: invokevirtual #20                 // Method net/minecraft/world/level/material/FluidState.isEmpty:()Z
+         4: ifne          21
+         7: aload_0
+         8: invokevirtual #26                 // Method net/minecraft/world/level/material/FluidState.getType:()Lnet/minecraft/world/level/material/Fluid;
+        11: instanceof    #30                 // class me/blue/fluid/RealisticLavaFluid
+        14: ifeq          21
+        17: iconst_1
+        18: goto          22
+        21: iconst_0
+        22: ireturn
+
+  public void tick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FluidState);
+    Code:
+         0: return
+
+  public void randomTick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.material.FluidState, net.minecraft.util.RandomSource);
+    Code:
+         0: getstatic     #32                 // Field me/blue/ModSettings.lavaIgniteFlammables:Z
+         3: ifeq          14
+         6: aload_1
+         7: aload_2
+         8: invokevirtual #38                 // Method net/minecraft/server/level/ServerLevel.canSpreadFireAround:(Lnet/minecraft/core/BlockPos;)Z
+        11: ifne          15
+        14: return
+        15: aload         4
+        17: iconst_3
+        18: invokeinterface #44,  2           // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+        23: istore        5
+        25: iload         5
+        27: ifle          142
+        30: aload_2
+        31: astore        6
+        33: iconst_0
+        34: istore        7
+        36: iload         7
+        38: iload         5
+        40: if_icmpge     139
+        43: aload         6
+        45: aload         4
+        47: iconst_3
+        48: invokeinterface #44,  2           // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+        53: iconst_1
+        54: isub
+        55: iconst_1
+        56: aload         4
+        58: iconst_3
+        59: invokeinterface #44,  2           // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+        64: iconst_1
+        65: isub
+        66: invokevirtual #50                 // Method net/minecraft/core/BlockPos.offset:(III)Lnet/minecraft/core/BlockPos;
+        69: astore        6
+        71: aload_1
+        72: aload         6
+        74: invokevirtual #56                 // Method net/minecraft/server/level/ServerLevel.isLoaded:(Lnet/minecraft/core/BlockPos;)Z
+        77: ifne          81
+        80: return
+        81: aload_1
+        82: aload         6
+        84: invokevirtual #59                 // Method net/minecraft/server/level/ServerLevel.getBlockState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+        87: astore        8
+        89: aload         8
+        91: invokevirtual #63                 // Method net/minecraft/world/level/block/state/BlockState.isAir:()Z
+        94: ifeq          121
+        97: aload_0
+        98: aload_1
+        99: aload         6
+       101: invokevirtual #68                 // Method hasFlammableNeighbours:(Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+       104: ifeq          133
+       107: aload_1
+       108: aload         6
+       110: aload_1
+       111: aload         6
+       113: invokestatic  #72                 // Method net/minecraft/world/level/block/BaseFireBlock.getState:(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+       116: invokevirtual #78                 // Method net/minecraft/server/level/ServerLevel.setBlockAndUpdate:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+       119: pop
+       120: return
+       121: aload         8
+       123: getstatic     #82                 // Field net/minecraft/tags/BlockTags.BLOCKS_LAVA_FIRE_SPREAD:Lnet/minecraft/tags/TagKey;
+       126: invokevirtual #88                 // Method net/minecraft/world/level/block/state/BlockState.is:(Lnet/minecraft/tags/TagKey;)Z
+       129: ifeq          133
+       132: return
+       133: iinc          7, 1
+       136: goto          36
+       139: goto          232
+       142: iconst_0
+       143: istore        6
+       145: iload         6
+       147: iconst_3
+       148: if_icmpge     232
+       151: aload_2
+       152: aload         4
+       154: iconst_3
+       155: invokeinterface #44,  2           // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+       160: iconst_1
+       161: isub
+       162: iconst_0
+       163: aload         4
+       165: iconst_3
+       166: invokeinterface #44,  2           // InterfaceMethod net/minecraft/util/RandomSource.nextInt:(I)I
+       171: iconst_1
+       172: isub
+       173: invokevirtual #50                 // Method net/minecraft/core/BlockPos.offset:(III)Lnet/minecraft/core/BlockPos;
+       176: astore        7
+       178: aload_1
+       179: aload         7
+       181: invokevirtual #56                 // Method net/minecraft/server/level/ServerLevel.isLoaded:(Lnet/minecraft/core/BlockPos;)Z
+       184: ifne          188
+       187: return
+       188: aload_1
+       189: aload         7
+       191: invokevirtual #92                 // Method net/minecraft/core/BlockPos.above:()Lnet/minecraft/core/BlockPos;
+       194: invokevirtual #96                 // Method net/minecraft/server/level/ServerLevel.isEmptyBlock:(Lnet/minecraft/core/BlockPos;)Z
+       197: ifeq          226
+       200: aload_0
+       201: aload_1
+       202: aload         7
+       204: invokevirtual #99                 // Method isFlammable:(Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+       207: ifeq          226
+       210: aload_1
+       211: aload         7
+       213: invokevirtual #92                 // Method net/minecraft/core/BlockPos.above:()Lnet/minecraft/core/BlockPos;
+       216: aload_1
+       217: aload         7
+       219: invokestatic  #72                 // Method net/minecraft/world/level/block/BaseFireBlock.getState:(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+       222: invokevirtual #78                 // Method net/minecraft/server/level/ServerLevel.setBlockAndUpdate:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z
+       225: pop
+       226: iinc          6, 1
+       229: goto          145
+       232: return
+
+  protected boolean isRandomlyTicking();
+    Code:
+         0: iconst_1
+         1: ireturn
+
+  private boolean hasFlammableNeighbours(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+    Code:
+         0: invokestatic  #102                // Method net/minecraft/core/Direction.values:()[Lnet/minecraft/core/Direction;
+         3: astore_3
+         4: aload_3
+         5: arraylength
+         6: istore        4
+         8: iconst_0
+         9: istore        5
+        11: iload         5
+        13: iload         4
+        15: if_icmpge     46
+        18: aload_3
+        19: iload         5
+        21: aaload
+        22: astore        6
+        24: aload_0
+        25: aload_1
+        26: aload_2
+        27: aload         6
+        29: invokevirtual #108                // Method net/minecraft/core/BlockPos.relative:(Lnet/minecraft/core/Direction;)Lnet/minecraft/core/BlockPos;
+        32: invokevirtual #99                 // Method isFlammable:(Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+        35: ifeq          40
+        38: iconst_1
+        39: ireturn
+        40: iinc          5, 1
+        43: goto          11
+        46: iconst_0
+        47: ireturn
+
+  private boolean isFlammable(net.minecraft.world.level.LevelReader, net.minecraft.core.BlockPos);
+    Code:
+         0: aload_1
+         1: aload_2
+         2: invokevirtual #112                // Method net/minecraft/core/BlockPos.getY:()I
+         5: invokeinterface #116,  2          // InterfaceMethod net/minecraft/world/level/LevelReader.isInsideBuildHeight:(I)Z
+        10: ifeq          40
+        13: aload_1
+        14: aload_2
+        15: invokeinterface #122,  2          // InterfaceMethod net/minecraft/world/level/LevelReader.hasChunkAt:(Lnet/minecraft/core/BlockPos;)Z
+        20: ifeq          40
+        23: aload_1
+        24: aload_2
+        25: invokeinterface #125,  2          // InterfaceMethod net/minecraft/world/level/LevelReader.getBlockState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+        30: invokevirtual #126                // Method net/minecraft/world/level/block/state/BlockState.ignitedByLava:()Z
+        33: ifeq          40
+        36: iconst_1
+        37: goto          41
+        40: iconst_0
+        41: ireturn
+
+  public net.minecraft.core.particles.ParticleOptions getDripParticle();
+    Code:
+         0: getstatic     #129                // Field net/minecraft/core/particles/ParticleTypes.DRIPPING_LAVA:Lnet/minecraft/core/particles/SimpleParticleType;
+         3: areturn
+
+  protected boolean canConvertToSource(net.minecraft.server.level.ServerLevel);
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  protected void beforeDestroyingBlock(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: aload_3
+         1: invokevirtual #135                // Method net/minecraft/world/level/block/state/BlockState.hasBlockEntity:()Z
+         4: ifeq          17
+         7: aload_1
+         8: aload_2
+         9: invokeinterface #138,  2          // InterfaceMethod net/minecraft/world/level/LevelAccessor.getBlockEntity:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+        14: goto          18
+        17: aconst_null
+        18: astore        4
+        20: aload_3
+        21: aload_1
+        22: aload_2
+        23: aload         4
+        25: invokestatic  #144                // Method net/minecraft/world/level/block/Block.dropResources:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+        28: return
+
+  protected void entityInside(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.world.entity.InsideBlockEffectApplier);
+    Code:
+         0: aload         4
+         2: getstatic     #150                // Field net/minecraft/world/entity/InsideBlockEffectType.CLEAR_FREEZE:Lnet/minecraft/world/entity/InsideBlockEffectType;
+         5: invokeinterface #156,  2          // InterfaceMethod net/minecraft/world/entity/InsideBlockEffectApplier.apply:(Lnet/minecraft/world/entity/InsideBlockEffectType;)V
+        10: aload         4
+        12: getstatic     #162                // Field net/minecraft/world/entity/InsideBlockEffectType.LAVA_IGNITE:Lnet/minecraft/world/entity/InsideBlockEffectType;
+        15: invokeinterface #156,  2          // InterfaceMethod net/minecraft/world/entity/InsideBlockEffectApplier.apply:(Lnet/minecraft/world/entity/InsideBlockEffectType;)V
+        20: aload         4
+        22: getstatic     #162                // Field net/minecraft/world/entity/InsideBlockEffectType.LAVA_IGNITE:Lnet/minecraft/world/entity/InsideBlockEffectType;
+        25: invokedynamic #165,  0            // InvokeDynamic #0:accept:()Ljava/util/function/Consumer;
+        30: invokeinterface #169,  3          // InterfaceMethod net/minecraft/world/entity/InsideBlockEffectApplier.runAfter:(Lnet/minecraft/world/entity/InsideBlockEffectType;Ljava/util/function/Consumer;)V
+        35: return
+
+  public int getSlopeFindDistance(net.minecraft.world.level.LevelReader);
+    Code:
+         0: iconst_4
+         1: ireturn
+
+  public net.minecraft.world.level.block.state.BlockState createLegacyBlock(net.minecraft.world.level.material.FluidState);
+    Code:
+         0: getstatic     #173                // Field me/blue/ModContent.REALISTIC_LAVA_BLOCK:Lnet/minecraft/world/level/block/Block;
+         3: invokevirtual #177                // Method net/minecraft/world/level/block/Block.defaultBlockState:()Lnet/minecraft/world/level/block/state/BlockState;
+         6: getstatic     #181                // Field net/minecraft/world/level/block/LiquidBlock.LEVEL:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+         9: aload_1
+        10: invokestatic  #187                // Method getLegacyLevel:(Lnet/minecraft/world/level/material/FluidState;)I
+        13: invokestatic  #191                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        16: invokevirtual #197                // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        19: checkcast     #64                 // class net/minecraft/world/level/block/state/BlockState
+        22: getstatic     #201                // Field me/blue/block/RealisticWaterBlock.INFINITE:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        25: aload_1
+        26: invokevirtual #207                // Method net/minecraft/world/level/material/FluidState.isSource:()Z
+        29: invokestatic  #210                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        32: invokevirtual #197                // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        35: checkcast     #64                 // class net/minecraft/world/level/block/state/BlockState
+        38: areturn
+
+  public boolean isSame(net.minecraft.world.level.material.Fluid);
+    Code:
+         0: aload_1
+         1: getstatic     #13                 // Field me/blue/ModContent.REALISTIC_LAVA:Lnet/minecraft/world/level/material/FlowingFluid;
+         4: if_acmpeq     14
+         7: aload_1
+         8: getstatic     #7                  // Field me/blue/ModContent.FLOWING_REALISTIC_LAVA:Lnet/minecraft/world/level/material/FlowingFluid;
+        11: if_acmpne     18
+        14: iconst_1
+        15: goto          19
+        18: iconst_0
+        19: ireturn
+
+  public int getDropOff(net.minecraft.world.level.LevelReader);
+    Code:
+         0: iconst_2
+         1: ireturn
+
+  public int getTickDelay(net.minecraft.world.level.LevelReader);
+    Code:
+         0: bipush        30
+         2: ireturn
+
+  public boolean canBeReplacedWith(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.material.Fluid, net.minecraft.core.Direction);
+    Code:
+         0: aload         5
+         2: getstatic     #215                // Field net/minecraft/core/Direction.DOWN:Lnet/minecraft/core/Direction;
+         5: if_acmpne     23
+         8: aload         4
+        10: getstatic     #219                // Field net/minecraft/tags/FluidTags.LAVA:Lnet/minecraft/tags/TagKey;
+        13: invokevirtual #224                // Method net/minecraft/world/level/material/Fluid.is:(Lnet/minecraft/tags/TagKey;)Z
+        16: ifne          23
+        19: iconst_1
+        20: goto          24
+        23: iconst_0
+        24: ireturn
+
+  protected float getExplosionResistance();
+    Code:
+         0: ldc           #227                // float 100.0f
+         2: freturn
+
+  public java.util.Optional<net.minecraft.sounds.SoundEvent> getPickupSound();
+    Code:
+         0: getstatic     #228                // Field net/minecraft/sounds/SoundEvents.BUCKET_FILL_LAVA:Lnet/minecraft/sounds/SoundEvent;
+         3: invokestatic  #234                // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+         6: areturn
+}

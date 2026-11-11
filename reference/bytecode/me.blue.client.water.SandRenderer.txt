@@ -1,0 +1,680 @@
+Compiled from "SandRenderer.java"
+final class me.blue.client.water.SandRenderer implements java.lang.AutoCloseable {
+  private static final net.minecraft.resources.Identifier SAND_TEXTURE;
+
+  private final java.util.Map<java.lang.Integer, me.blue.client.vk.GraphicsProgram> grains;
+
+  private final me.blue.client.vk.ComputeProgram cull;
+
+  private final me.blue.client.vk.VkBuf texture;
+
+  private final me.blue.client.vk.VkTex noShadow;
+
+  private final me.blue.client.vk.Sampler nearest;
+
+  private final me.blue.client.vk.Sampler linear;
+
+  me.blue.client.water.SandRenderer();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #7                  // class java/util/HashMap
+         8: dup
+         9: invokespecial #9                  // Method java/util/HashMap."<init>":()V
+        12: putfield      #10                 // Field grains:Ljava/util/Map;
+        15: aload_0
+        16: new           #16                 // class me/blue/client/vk/VkTex
+        19: dup
+        20: bipush        100
+        22: iconst_1
+        23: iconst_1
+        24: bipush        20
+        26: invokespecial #18                 // Method me/blue/client/vk/VkTex."<init>":(IIII)V
+        29: putfield      #21                 // Field noShadow:Lme/blue/client/vk/VkTex;
+        32: aload_0
+        33: new           #25                 // class me/blue/client/vk/Sampler
+        36: dup
+        37: iconst_0
+        38: invokespecial #27                 // Method me/blue/client/vk/Sampler."<init>":(Z)V
+        41: putfield      #30                 // Field nearest:Lme/blue/client/vk/Sampler;
+        44: aload_0
+        45: new           #25                 // class me/blue/client/vk/Sampler
+        48: dup
+        49: iconst_1
+        50: invokespecial #27                 // Method me/blue/client/vk/Sampler."<init>":(Z)V
+        53: putfield      #34                 // Field linear:Lme/blue/client/vk/Sampler;
+        56: bipush        6
+        58: istore_1
+        59: bipush        7
+        61: istore_2
+        62: aload_0
+        63: new           #39                 // class me/blue/client/vk/ComputeProgram
+        66: dup
+        67: ldc           #41                 // String grain_cull.comp
+        69: bipush        6
+        71: newarray       int
+        73: dup
+        74: iconst_0
+        75: iload_1
+        76: iastore
+        77: dup
+        78: iconst_1
+        79: iload_2
+        80: iastore
+        81: dup
+        82: iconst_2
+        83: iload_2
+        84: iastore
+        85: dup
+        86: iconst_3
+        87: iload_2
+        88: iastore
+        89: dup
+        90: iconst_4
+        91: iload_2
+        92: iastore
+        93: dup
+        94: iconst_5
+        95: iload_2
+        96: iastore
+        97: invokespecial #43                 // Method me/blue/client/vk/ComputeProgram."<init>":(Ljava/lang/String;[I)V
+       100: putfield      #46                 // Field cull:Lme/blue/client/vk/ComputeProgram;
+       103: aload_0
+       104: invokestatic  #50                 // Method loadTexture:()Lme/blue/client/vk/VkBuf;
+       107: putfield      #54                 // Field texture:Lme/blue/client/vk/VkBuf;
+       110: return
+
+  private static me.blue.client.vk.VkBuf loadTexture();
+    Code:
+         0: getstatic     #58                 // Field SAND_TEXTURE:Lnet/minecraft/resources/Identifier;
+         3: ldc           #62                 // int -2371677
+         5: invokestatic  #63                 // Method loadTexture:(Lnet/minecraft/resources/Identifier;I)Lme/blue/client/vk/VkBuf;
+         8: areturn
+
+  static me.blue.client.vk.VkBuf loadTexture(net.minecraft.resources.Identifier, int);
+    Code:
+         0: invokestatic  #66                 // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+         3: invokevirtual #72                 // Method net/minecraft/client/Minecraft.getResourceManager:()Lnet/minecraft/server/packs/resources/ResourceManager;
+         6: aload_0
+         7: invokeinterface #76,  2           // InterfaceMethod net/minecraft/server/packs/resources/ResourceManager.open:(Lnet/minecraft/resources/Identifier;)Ljava/io/InputStream;
+        12: astore        5
+        14: aload         5
+        16: invokestatic  #82                 // Method com/mojang/blaze3d/platform/NativeImage.read:(Ljava/io/InputStream;)Lcom/mojang/blaze3d/platform/NativeImage;
+        19: astore        6
+        21: aload         6
+        23: invokevirtual #88                 // Method com/mojang/blaze3d/platform/NativeImage.getWidth:()I
+        26: istore_3
+        27: aload         6
+        29: invokevirtual #92                 // Method com/mojang/blaze3d/platform/NativeImage.getHeight:()I
+        32: iload_3
+        33: invokestatic  #95                 // Method java/lang/Math.min:(II)I
+        36: istore        4
+        38: iload_3
+        39: iload         4
+        41: imul
+        42: newarray       int
+        44: astore_2
+        45: iconst_0
+        46: istore        7
+        48: iload         7
+        50: iload         4
+        52: if_icmpge     94
+        55: iconst_0
+        56: istore        8
+        58: iload         8
+        60: iload_3
+        61: if_icmpge     88
+        64: aload_2
+        65: iload         8
+        67: iload         7
+        69: iload_3
+        70: imul
+        71: iadd
+        72: aload         6
+        74: iload         8
+        76: iload         7
+        78: invokevirtual #101                // Method com/mojang/blaze3d/platform/NativeImage.getPixel:(II)I
+        81: iastore
+        82: iinc          8, 1
+        85: goto          58
+        88: iinc          7, 1
+        91: goto          48
+        94: aload         6
+        96: ifnull        134
+        99: aload         6
+       101: invokevirtual #104                // Method com/mojang/blaze3d/platform/NativeImage.close:()V
+       104: goto          134
+       107: astore        7
+       109: aload         6
+       111: ifnull        131
+       114: aload         6
+       116: invokevirtual #104                // Method com/mojang/blaze3d/platform/NativeImage.close:()V
+       119: goto          131
+       122: astore        8
+       124: aload         7
+       126: aload         8
+       128: invokevirtual #109                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       131: aload         7
+       133: athrow
+       134: aload         5
+       136: ifnull        174
+       139: aload         5
+       141: invokevirtual #113                // Method java/io/InputStream.close:()V
+       144: goto          174
+       147: astore        6
+       149: aload         5
+       151: ifnull        171
+       154: aload         5
+       156: invokevirtual #113                // Method java/io/InputStream.close:()V
+       159: goto          171
+       162: astore        7
+       164: aload         6
+       166: aload         7
+       168: invokevirtual #109                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       171: aload         6
+       173: athrow
+       174: goto          205
+       177: astore        5
+       179: getstatic     #118                // Field me/blue/RealisticWater.LOGGER:Lorg/slf4j/Logger;
+       182: ldc           #124                // String Couldn\'t read {}, using a flat colour
+       184: aload_0
+       185: aload         5
+       187: invokeinterface #126,  4          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+       192: iconst_1
+       193: istore_3
+       194: iconst_1
+       195: istore        4
+       197: iconst_1
+       198: newarray       int
+       200: dup
+       201: iconst_0
+       202: iload_1
+       203: iastore
+       204: astore_2
+       205: lconst_0
+       206: lstore        5
+       208: lconst_0
+       209: lstore        7
+       211: lconst_0
+       212: lstore        9
+       214: aload_2
+       215: astore        11
+       217: aload         11
+       219: arraylength
+       220: istore        12
+       222: iconst_0
+       223: istore        13
+       225: iload         13
+       227: iload         12
+       229: if_icmpge     287
+       232: aload         11
+       234: iload         13
+       236: iaload
+       237: istore        14
+       239: lload         5
+       241: iload         14
+       243: bipush        16
+       245: ishr
+       246: sipush        255
+       249: iand
+       250: i2l
+       251: ladd
+       252: lstore        5
+       254: lload         7
+       256: iload         14
+       258: bipush        8
+       260: ishr
+       261: sipush        255
+       264: iand
+       265: i2l
+       266: ladd
+       267: lstore        7
+       269: lload         9
+       271: iload         14
+       273: sipush        255
+       276: iand
+       277: i2l
+       278: ladd
+       279: lstore        9
+       281: iinc          13, 1
+       284: goto          225
+       287: aload_2
+       288: arraylength
+       289: istore        11
+       291: ldc           #132                // int -16777216
+       293: lload         5
+       295: iload         11
+       297: i2l
+       298: ldiv
+       299: l2i
+       300: bipush        16
+       302: ishl
+       303: ior
+       304: lload         7
+       306: iload         11
+       308: i2l
+       309: ldiv
+       310: l2i
+       311: bipush        8
+       313: ishl
+       314: ior
+       315: lload         9
+       317: iload         11
+       319: i2l
+       320: ldiv
+       321: l2i
+       322: ior
+       323: istore        12
+       325: ldc2_w        #133                // long 4l
+       328: iload         11
+       330: i2l
+       331: ladd
+       332: ldc2_w        #133                // long 4l
+       335: lmul
+       336: lstore        13
+       338: lload         13
+       340: bipush        32
+       342: invokestatic  #137                // Method me/blue/client/vk/VkBuf.upload:(JI)Lme/blue/client/vk/VkBuf;
+       345: astore        15
+       347: aload         15
+       349: invokevirtual #141                // Method me/blue/client/vk/VkBuf.mapped:()Ljava/nio/ByteBuffer;
+       352: astore        16
+       354: aload         16
+       356: iconst_0
+       357: iload_3
+       358: invokevirtual #145                // Method java/nio/ByteBuffer.putInt:(II)Ljava/nio/ByteBuffer;
+       361: iconst_4
+       362: iload         4
+       364: invokevirtual #145                // Method java/nio/ByteBuffer.putInt:(II)Ljava/nio/ByteBuffer;
+       367: bipush        8
+       369: iload         12
+       371: invokevirtual #145                // Method java/nio/ByteBuffer.putInt:(II)Ljava/nio/ByteBuffer;
+       374: bipush        12
+       376: iconst_0
+       377: invokevirtual #145                // Method java/nio/ByteBuffer.putInt:(II)Ljava/nio/ByteBuffer;
+       380: pop
+       381: iconst_0
+       382: istore        17
+       384: iload         17
+       386: iload         11
+       388: if_icmpge     414
+       391: aload         16
+       393: bipush        16
+       395: iload         17
+       397: iconst_4
+       398: imul
+       399: iadd
+       400: aload_2
+       401: iload         17
+       403: iaload
+       404: invokevirtual #145                // Method java/nio/ByteBuffer.putInt:(II)Ljava/nio/ByteBuffer;
+       407: pop
+       408: iinc          17, 1
+       411: goto          384
+       414: aload         15
+       416: lconst_0
+       417: lload         13
+       419: invokevirtual #151                // Method me/blue/client/vk/VkBuf.flush:(JJ)V
+       422: aload         15
+       424: areturn
+      Exception table:
+         from    to  target type
+            21    94   107   Class java/lang/Throwable
+           114   119   122   Class java/lang/Throwable
+            14   134   147   Class java/lang/Throwable
+           154   159   162   Class java/lang/Throwable
+             0   174   177   Class java/lang/Exception
+
+  private me.blue.client.vk.GraphicsProgram grains(int);
+    Code:
+         0: aload_0
+         1: getfield      #10                 // Field grains:Ljava/util/Map;
+         4: iload_1
+         5: invokestatic  #155                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+         8: invokedynamic #161,  0            // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+        13: invokeinterface #165,  3          // InterfaceMethod java/util/Map.computeIfAbsent:(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;
+        18: checkcast     #171                // class me/blue/client/vk/GraphicsProgram
+        21: areturn
+
+  void record(org.lwjgl.vulkan.VkCommandBuffer, java.util.List<me.blue.client.water.WaterRenderer$Body>, int, int, int, long, long, me.blue.client.water.WaterRenderer$LightViews);
+    Code:
+         0: aload_0
+         1: iload         5
+         3: invokevirtual #173                // Method grains:(I)Lme/blue/client/vk/GraphicsProgram;
+         6: astore        11
+         8: invokestatic  #176                // Method me/blue/client/shader/ShaderRenderer.shadowDepth:()Lcom/mojang/renderpearl/api/textures/GpuTextureView;
+        11: astore        12
+        13: aload         12
+        15: instanceof    #182                // class com/mojang/renderpearl/backend/vulkan/VulkanGpuTextureView
+        18: ifeq          36
+        21: aload         12
+        23: checkcast     #182                // class com/mojang/renderpearl/backend/vulkan/VulkanGpuTextureView
+        26: astore        14
+        28: aload         14
+        30: invokevirtual #184                // Method com/mojang/renderpearl/backend/vulkan/VulkanGpuTextureView.vkImageView:()J
+        33: goto          43
+        36: aload_0
+        37: getfield      #21                 // Field noShadow:Lme/blue/client/vk/VkTex;
+        40: getfield      #188                // Field me/blue/client/vk/VkTex.view:J
+        43: aload_0
+        44: getfield      #30                 // Field nearest:Lme/blue/client/vk/Sampler;
+        47: getfield      #192                // Field me/blue/client/vk/Sampler.handle:J
+        50: invokestatic  #195                // Method me/blue/client/vk/Desc.tex:(JJ)Lme/blue/client/vk/Desc;
+        53: astore        13
+        55: aload_2
+        56: invokeinterface #199,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        61: astore        14
+        63: aload         14
+        65: invokeinterface #205,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        70: ifeq          171
+        73: aload         14
+        75: invokeinterface #211,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        80: checkcast     #215                // class me/blue/client/water/WaterRenderer$Body
+        83: astore        15
+        85: aload         15
+        87: invokevirtual #217                // Method me/blue/client/water/WaterRenderer$Body.region:()Lme/blue/client/water/WaterRegion;
+        90: astore        16
+        92: aload         16
+        94: invokevirtual #221                // Method me/blue/client/water/WaterRegion.takeFieldStale:()Z
+        97: ifeq          152
+       100: aload         16
+       102: getfield      #226                // Field me/blue/client/water/WaterRegion.mesher:Lme/blue/client/water/SurfaceMesher;
+       105: aload_1
+       106: aload         15
+       108: invokevirtual #230                // Method me/blue/client/water/WaterRenderer$Body.ubo:()Lme/blue/client/vk/Desc;
+       111: aload         16
+       113: invokevirtual #234                // Method me/blue/client/water/WaterRegion.currentParticles:()Lme/blue/client/vk/VkBuf;
+       116: aload         16
+       118: getfield      #237                // Field me/blue/client/water/WaterRegion.counters:Lme/blue/client/vk/VkBuf;
+       121: iconst_0
+       122: aload         16
+       124: getfield      #240                // Field me/blue/client/water/WaterRegion.cur:I
+       127: iadd
+       128: aload         16
+       130: getfield      #244                // Field me/blue/client/water/WaterRegion.args:Lme/blue/client/vk/VkBuf;
+       133: aload         16
+       135: getfield      #226                // Field me/blue/client/water/WaterRegion.mesher:Lme/blue/client/water/SurfaceMesher;
+       138: aload         16
+       140: getfield      #247                // Field me/blue/client/water/WaterRegion.box:[I
+       143: invokevirtual #251                // Method me/blue/client/water/SurfaceMesher.fineBox:([I)[I
+       146: iconst_0
+       147: aconst_null
+       148: iconst_0
+       149: invokevirtual #257                // Method me/blue/client/water/SurfaceMesher.buildField:(Lorg/lwjgl/vulkan/VkCommandBuffer;Lme/blue/client/vk/Desc;Lme/blue/client/vk/VkBuf;Lme/blue/client/vk/VkBuf;ILme/blue/client/vk/VkBuf;[IZLme/blue/client/vk/VkBuf;I)V
+       152: aload         16
+       154: getfield      #244                // Field me/blue/client/water/WaterRegion.args:Lme/blue/client/vk/VkBuf;
+       157: aload_1
+       158: ldc2_w        #261                // long 84l
+       161: ldc2_w        #133                // long 4l
+       164: iconst_0
+       165: invokevirtual #263                // Method me/blue/client/vk/VkBuf.fill:(Lorg/lwjgl/vulkan/VkCommandBuffer;JJI)V
+       168: goto          63
+       171: aload_1
+       172: invokestatic  #267                // Method me/blue/client/vk/Vk.barrier:(Lorg/lwjgl/vulkan/VkCommandBuffer;)V
+       175: aload_2
+       176: invokeinterface #199,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       181: astore        14
+       183: aload         14
+       185: invokeinterface #205,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       190: ifeq          329
+       193: aload         14
+       195: invokeinterface #211,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       200: checkcast     #215                // class me/blue/client/water/WaterRenderer$Body
+       203: astore        15
+       205: aload         15
+       207: invokevirtual #217                // Method me/blue/client/water/WaterRenderer$Body.region:()Lme/blue/client/water/WaterRegion;
+       210: astore        16
+       212: aload_0
+       213: getfield      #46                 // Field cull:Lme/blue/client/vk/ComputeProgram;
+       216: aload_1
+       217: bipush        6
+       219: anewarray     #37                 // class me/blue/client/vk/Desc
+       222: dup
+       223: iconst_0
+       224: aload         15
+       226: invokevirtual #230                // Method me/blue/client/water/WaterRenderer$Body.ubo:()Lme/blue/client/vk/Desc;
+       229: aastore
+       230: dup
+       231: iconst_1
+       232: aload         16
+       234: invokevirtual #234                // Method me/blue/client/water/WaterRegion.currentParticles:()Lme/blue/client/vk/VkBuf;
+       237: invokestatic  #273                // Method me/blue/client/vk/Desc.ssbo:(Lme/blue/client/vk/VkBuf;)Lme/blue/client/vk/Desc;
+       240: aastore
+       241: dup
+       242: iconst_2
+       243: aload         16
+       245: getfield      #226                // Field me/blue/client/water/WaterRegion.mesher:Lme/blue/client/water/SurfaceMesher;
+       248: getfield      #277                // Field me/blue/client/water/SurfaceMesher.densA:Lme/blue/client/vk/VkBuf;
+       251: invokestatic  #273                // Method me/blue/client/vk/Desc.ssbo:(Lme/blue/client/vk/VkBuf;)Lme/blue/client/vk/Desc;
+       254: aastore
+       255: dup
+       256: iconst_3
+       257: aload         16
+       259: getfield      #280                // Field me/blue/client/water/WaterRegion.surfaceParticles:Lme/blue/client/vk/VkBuf;
+       262: invokestatic  #273                // Method me/blue/client/vk/Desc.ssbo:(Lme/blue/client/vk/VkBuf;)Lme/blue/client/vk/Desc;
+       265: aastore
+       266: dup
+       267: iconst_4
+       268: aload         16
+       270: getfield      #244                // Field me/blue/client/water/WaterRegion.args:Lme/blue/client/vk/VkBuf;
+       273: invokestatic  #273                // Method me/blue/client/vk/Desc.ssbo:(Lme/blue/client/vk/VkBuf;)Lme/blue/client/vk/Desc;
+       276: aastore
+       277: dup
+       278: iconst_5
+       279: aload         16
+       281: getfield      #237                // Field me/blue/client/water/WaterRegion.counters:Lme/blue/client/vk/VkBuf;
+       284: invokestatic  #273                // Method me/blue/client/vk/Desc.ssbo:(Lme/blue/client/vk/VkBuf;)Lme/blue/client/vk/Desc;
+       287: aastore
+       288: invokevirtual #283                // Method me/blue/client/vk/ComputeProgram.bind:(Lorg/lwjgl/vulkan/VkCommandBuffer;[Lme/blue/client/vk/Desc;)V
+       291: aload_0
+       292: getfield      #46                 // Field cull:Lme/blue/client/vk/ComputeProgram;
+       295: aload_1
+       296: iconst_1
+       297: newarray       int
+       299: dup
+       300: iconst_0
+       301: iconst_0
+       302: aload         16
+       304: getfield      #240                // Field me/blue/client/water/WaterRegion.cur:I
+       307: iadd
+       308: iastore
+       309: invokevirtual #287                // Method me/blue/client/vk/ComputeProgram.push:(Lorg/lwjgl/vulkan/VkCommandBuffer;[I)V
+       312: aload_0
+       313: getfield      #46                 // Field cull:Lme/blue/client/vk/ComputeProgram;
+       316: aload_1
+       317: aload         16
+       319: getfield      #244                // Field me/blue/client/water/WaterRegion.args:Lme/blue/client/vk/VkBuf;
+       322: lconst_0
+       323: invokevirtual #291                // Method me/blue/client/vk/ComputeProgram.dispatchIndirect:(Lorg/lwjgl/vulkan/VkCommandBuffer;Lme/blue/client/vk/VkBuf;J)V
+       326: goto          183
+       329: aload_1
+       330: invokestatic  #267                // Method me/blue/client/vk/Vk.barrier:(Lorg/lwjgl/vulkan/VkCommandBuffer;)V
+       333: aload_1
+       334: iload_3
+       335: iload         4
+       337: lload         6
+       339: aconst_null
+       340: lload         8
+       342: invokestatic  #295                // Method me/blue/client/vk/GraphicsProgram.begin:(Lorg/lwjgl/vulkan/VkCommandBuffer;IIJ[FJ)V
+       345: aload_2
+       346: invokeinterface #199,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+       351: astore        14
+       353: aload         14
+       355: invokeinterface #205,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+       360: ifeq          530
+       363: aload         14
+       365: invokeinterface #211,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       370: checkcast     #215                // class me/blue/client/water/WaterRenderer$Body
+       373: astore        15
+       375: aload         15
+       377: invokevirtual #217                // Method me/blue/client/water/WaterRenderer$Body.region:()Lme/blue/client/water/WaterRegion;
+       380: astore        16
+       382: aload         11
+       384: aload_1
+       385: bipush        9
+       387: anewarray     #37                 // class me/blue/client/vk/Desc
+       390: dup
+       391: iconst_0
+       392: aload         15
+       394: invokevirtual #230                // Method me/blue/client/water/WaterRenderer$Body.ubo:()Lme/blue/client/vk/Desc;
+       397: aastore
+       398: dup
+       399: iconst_1
+       400: aload         16
+       402: getfield      #280                // Field me/blue/client/water/WaterRegion.surfaceParticles:Lme/blue/client/vk/VkBuf;
+       405: invokestatic  #273                // Method me/blue/client/vk/Desc.ssbo:(Lme/blue/client/vk/VkBuf;)Lme/blue/client/vk/Desc;
+       408: aastore
+       409: dup
+       410: iconst_2
+       411: aload_0
+       412: getfield      #54                 // Field texture:Lme/blue/client/vk/VkBuf;
+       415: invokestatic  #273                // Method me/blue/client/vk/Desc.ssbo:(Lme/blue/client/vk/VkBuf;)Lme/blue/client/vk/Desc;
+       418: aastore
+       419: dup
+       420: iconst_3
+       421: aload         13
+       423: aastore
+       424: dup
+       425: iconst_4
+       426: aload         16
+       428: invokevirtual #299                // Method me/blue/client/water/WaterRegion.light:()Lme/blue/client/vk/VkBuf;
+       431: invokestatic  #273                // Method me/blue/client/vk/Desc.ssbo:(Lme/blue/client/vk/VkBuf;)Lme/blue/client/vk/Desc;
+       434: aastore
+       435: dup
+       436: iconst_5
+       437: aload         10
+       439: invokevirtual #302                // Method me/blue/client/water/WaterRenderer$LightViews.lightmap:()J
+       442: aload_0
+       443: getfield      #34                 // Field linear:Lme/blue/client/vk/Sampler;
+       446: getfield      #192                // Field me/blue/client/vk/Sampler.handle:J
+       449: invokestatic  #195                // Method me/blue/client/vk/Desc.tex:(JJ)Lme/blue/client/vk/Desc;
+       452: aastore
+       453: dup
+       454: bipush        6
+       456: aload         10
+       458: invokevirtual #307                // Method me/blue/client/water/WaterRenderer$LightViews.colorA:()J
+       461: aload_0
+       462: getfield      #34                 // Field linear:Lme/blue/client/vk/Sampler;
+       465: getfield      #192                // Field me/blue/client/vk/Sampler.handle:J
+       468: invokestatic  #195                // Method me/blue/client/vk/Desc.tex:(JJ)Lme/blue/client/vk/Desc;
+       471: aastore
+       472: dup
+       473: bipush        7
+       475: aload         10
+       477: invokevirtual #310                // Method me/blue/client/water/WaterRenderer$LightViews.colorB:()J
+       480: aload_0
+       481: getfield      #34                 // Field linear:Lme/blue/client/vk/Sampler;
+       484: getfield      #192                // Field me/blue/client/vk/Sampler.handle:J
+       487: invokestatic  #195                // Method me/blue/client/vk/Desc.tex:(JJ)Lme/blue/client/vk/Desc;
+       490: aastore
+       491: dup
+       492: bipush        8
+       494: aload         10
+       496: invokevirtual #313                // Method me/blue/client/water/WaterRenderer$LightViews.colorTint:()J
+       499: aload_0
+       500: getfield      #34                 // Field linear:Lme/blue/client/vk/Sampler;
+       503: getfield      #192                // Field me/blue/client/vk/Sampler.handle:J
+       506: invokestatic  #195                // Method me/blue/client/vk/Desc.tex:(JJ)Lme/blue/client/vk/Desc;
+       509: aastore
+       510: invokevirtual #316                // Method me/blue/client/vk/GraphicsProgram.bind:(Lorg/lwjgl/vulkan/VkCommandBuffer;[Lme/blue/client/vk/Desc;)V
+       513: aload         11
+       515: aload_1
+       516: aload         16
+       518: getfield      #244                // Field me/blue/client/water/WaterRegion.args:Lme/blue/client/vk/VkBuf;
+       521: ldc2_w        #317                // long 80l
+       524: invokevirtual #319                // Method me/blue/client/vk/GraphicsProgram.drawIndirect:(Lorg/lwjgl/vulkan/VkCommandBuffer;Lme/blue/client/vk/VkBuf;J)V
+       527: goto          353
+       530: aload_1
+       531: invokestatic  #322                // Method me/blue/client/vk/GraphicsProgram.end:(Lorg/lwjgl/vulkan/VkCommandBuffer;)V
+       534: return
+
+  public void close();
+    Code:
+         0: aload_0
+         1: getfield      #10                 // Field grains:Ljava/util/Map;
+         4: invokeinterface #325,  1          // InterfaceMethod java/util/Map.values:()Ljava/util/Collection;
+         9: invokedynamic #329,  0            // InvokeDynamic #1:accept:()Ljava/util/function/Consumer;
+        14: invokeinterface #333,  2          // InterfaceMethod java/util/Collection.forEach:(Ljava/util/function/Consumer;)V
+        19: aload_0
+        20: getfield      #46                 // Field cull:Lme/blue/client/vk/ComputeProgram;
+        23: invokevirtual #339                // Method me/blue/client/vk/ComputeProgram.close:()V
+        26: aload_0
+        27: getfield      #54                 // Field texture:Lme/blue/client/vk/VkBuf;
+        30: invokevirtual #340                // Method me/blue/client/vk/VkBuf.close:()V
+        33: aload_0
+        34: getfield      #21                 // Field noShadow:Lme/blue/client/vk/VkTex;
+        37: invokevirtual #341                // Method me/blue/client/vk/VkTex.close:()V
+        40: aload_0
+        41: getfield      #30                 // Field nearest:Lme/blue/client/vk/Sampler;
+        44: invokevirtual #342                // Method me/blue/client/vk/Sampler.close:()V
+        47: aload_0
+        48: getfield      #34                 // Field linear:Lme/blue/client/vk/Sampler;
+        51: invokevirtual #342                // Method me/blue/client/vk/Sampler.close:()V
+        54: return
+
+  private static me.blue.client.vk.GraphicsProgram lambda$grains$0(java.lang.Integer);
+    Code:
+         0: new           #171                // class me/blue/client/vk/GraphicsProgram
+         3: dup
+         4: ldc_w         #343                // String grain.vert
+         7: ldc_w         #345                // String grain.frag
+        10: invokestatic  #347                // InterfaceMethod java/util/Map.of:()Ljava/util/Map;
+        13: new           #351                // class me/blue/client/vk/GraphicsProgram$State
+        16: dup
+        17: aload_0
+        18: invokevirtual #353                // Method java/lang/Integer.intValue:()I
+        21: bipush        126
+        23: iconst_1
+        24: iconst_1
+        25: iconst_4
+        26: getstatic     #358                // Field me/blue/client/vk/GraphicsProgram$Blend.NONE:Lme/blue/client/vk/GraphicsProgram$Blend;
+        29: invokespecial #364                // Method me/blue/client/vk/GraphicsProgram$State."<init>":(IIZZILme/blue/client/vk/GraphicsProgram$Blend;)V
+        32: bipush        9
+        34: newarray       int
+        36: dup
+        37: iconst_0
+        38: bipush        6
+        40: iastore
+        41: dup
+        42: iconst_1
+        43: bipush        7
+        45: iastore
+        46: dup
+        47: iconst_2
+        48: bipush        7
+        50: iastore
+        51: dup
+        52: iconst_3
+        53: iconst_1
+        54: iastore
+        55: dup
+        56: iconst_4
+        57: bipush        7
+        59: iastore
+        60: dup
+        61: iconst_5
+        62: iconst_1
+        63: iastore
+        64: dup
+        65: bipush        6
+        67: iconst_1
+        68: iastore
+        69: dup
+        70: bipush        7
+        72: iconst_1
+        73: iastore
+        74: dup
+        75: bipush        8
+        77: iconst_1
+        78: iastore
+        79: invokespecial #367                // Method me/blue/client/vk/GraphicsProgram."<init>":(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Lme/blue/client/vk/GraphicsProgram$State;[I)V
+        82: areturn
+
+  static {};
+    Code:
+         0: ldc_w         #370                // String textures/block/sand.png
+         3: invokestatic  #372                // Method net/minecraft/resources/Identifier.withDefaultNamespace:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+         6: putstatic     #58                 // Field SAND_TEXTURE:Lnet/minecraft/resources/Identifier;
+         9: return
+}

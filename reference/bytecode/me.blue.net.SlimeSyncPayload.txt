@@ -1,0 +1,261 @@
+Compiled from "SlimeSyncPayload.java"
+public final class me.blue.net.SlimeSyncPayload extends java.lang.Record implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  private final long[] positions;
+
+  private final byte[] amounts;
+
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<me.blue.net.SlimeSyncPayload> TYPE;
+
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, me.blue.net.SlimeSyncPayload> CODEC;
+
+  public static final int MAX_ENTRIES = 32768;
+
+  private static final int SYNC_FLAGS = 530;
+
+  public me.blue.net.SlimeSyncPayload(long[], byte[]);
+    Code:
+         0: aload_0
+         1: invokespecial #3                  // Method java/lang/Record."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #9                  // Field positions:[J
+         9: aload_0
+        10: aload_2
+        11: putfield      #15                 // Field amounts:[B
+        14: return
+
+  private static void write(net.minecraft.network.RegistryFriendlyByteBuf, me.blue.net.SlimeSyncPayload);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: getfield      #9                  // Field positions:[J
+         5: arraylength
+         6: invokevirtual #19                 // Method net/minecraft/network/RegistryFriendlyByteBuf.writeVarInt:(I)Lnet/minecraft/network/FriendlyByteBuf;
+         9: pop
+        10: iconst_0
+        11: istore_2
+        12: iload_2
+        13: aload_1
+        14: getfield      #9                  // Field positions:[J
+        17: arraylength
+        18: if_icmpge     49
+        21: aload_0
+        22: aload_1
+        23: getfield      #9                  // Field positions:[J
+        26: iload_2
+        27: laload
+        28: invokevirtual #25                 // Method net/minecraft/network/RegistryFriendlyByteBuf.writeLong:(J)Lnet/minecraft/network/FriendlyByteBuf;
+        31: pop
+        32: aload_0
+        33: aload_1
+        34: getfield      #15                 // Field amounts:[B
+        37: iload_2
+        38: baload
+        39: invokevirtual #29                 // Method net/minecraft/network/RegistryFriendlyByteBuf.writeByte:(I)Lnet/minecraft/network/FriendlyByteBuf;
+        42: pop
+        43: iinc          2, 1
+        46: goto          12
+        49: return
+
+  private static me.blue.net.SlimeSyncPayload read(net.minecraft.network.RegistryFriendlyByteBuf);
+    Code:
+         0: aload_0
+         1: invokevirtual #32                 // Method net/minecraft/network/RegistryFriendlyByteBuf.readVarInt:()I
+         4: ldc           #36                 // int 32768
+         6: invokestatic  #37                 // Method java/lang/Math.min:(II)I
+         9: istore_1
+        10: iload_1
+        11: newarray       long
+        13: astore_2
+        14: iload_1
+        15: newarray       byte
+        17: astore_3
+        18: iconst_0
+        19: istore        4
+        21: iload         4
+        23: iload_1
+        24: if_icmpge     49
+        27: aload_2
+        28: iload         4
+        30: aload_0
+        31: invokevirtual #43                 // Method net/minecraft/network/RegistryFriendlyByteBuf.readLong:()J
+        34: lastore
+        35: aload_3
+        36: iload         4
+        38: aload_0
+        39: invokevirtual #47                 // Method net/minecraft/network/RegistryFriendlyByteBuf.readByte:()B
+        42: bastore
+        43: iinc          4, 1
+        46: goto          21
+        49: new           #10                 // class me/blue/net/SlimeSyncPayload
+        52: dup
+        53: aload_2
+        54: aload_3
+        55: invokespecial #51                 // Method "<init>":([J[B)V
+        58: areturn
+
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<me.blue.net.SlimeSyncPayload> type();
+    Code:
+         0: getstatic     #54                 // Field TYPE:Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;
+         3: areturn
+
+  public static net.minecraft.world.level.block.state.BlockState stateFor(int);
+    Code:
+         0: getstatic     #58                 // Field me/blue/ModContent.REALISTIC_SLIME_BLOCK:Lnet/minecraft/world/level/block/Block;
+         3: invokevirtual #64                 // Method net/minecraft/world/level/block/Block.defaultBlockState:()Lnet/minecraft/world/level/block/state/BlockState;
+         6: getstatic     #68                 // Field me/blue/block/RealisticWaterBlock.INFINITE:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+         9: iconst_0
+        10: invokestatic  #74                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        13: invokevirtual #80                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        16: checkcast     #81                 // class net/minecraft/world/level/block/state/BlockState
+        19: astore_1
+        20: iload_0
+        21: bipush        8
+        23: if_icmplt     30
+        26: aload_1
+        27: goto          51
+        30: aload_1
+        31: getstatic     #86                 // Field net/minecraft/world/level/block/LiquidBlock.LEVEL:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+        34: bipush        8
+        36: iconst_1
+        37: iload_0
+        38: invokestatic  #92                 // Method java/lang/Math.max:(II)I
+        41: isub
+        42: invokestatic  #95                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        45: invokevirtual #80                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        48: checkcast     #81                 // class net/minecraft/world/level/block/state/BlockState
+        51: areturn
+
+  public void apply(net.minecraft.server.level.ServerPlayer);
+    Code:
+         0: aload_1
+         1: invokevirtual #100                // Method net/minecraft/server/level/ServerPlayer.level:()Lnet/minecraft/server/level/ServerLevel;
+         4: astore_2
+         5: iconst_0
+         6: istore_3
+         7: iload_3
+         8: aload_0
+         9: getfield      #9                  // Field positions:[J
+        12: arraylength
+        13: if_icmpge     185
+        16: aload_0
+        17: getfield      #9                  // Field positions:[J
+        20: iload_3
+        21: laload
+        22: invokestatic  #106                // Method net/minecraft/core/BlockPos.of:(J)Lnet/minecraft/core/BlockPos;
+        25: astore        4
+        27: aload_2
+        28: aload         4
+        30: invokevirtual #112                // Method net/minecraft/server/level/ServerLevel.isLoaded:(Lnet/minecraft/core/BlockPos;)Z
+        33: ifeq          179
+        36: aload         4
+        38: aload_1
+        39: invokevirtual #118                // Method net/minecraft/server/level/ServerPlayer.blockPosition:()Lnet/minecraft/core/BlockPos;
+        42: invokevirtual #122                // Method net/minecraft/core/BlockPos.distSqr:(Lnet/minecraft/core/Vec3i;)D
+        45: ldc2_w        #126                // double 262144.0d
+        48: dcmpl
+        49: ifle          55
+        52: goto          179
+        55: aload_2
+        56: aload         4
+        58: invokevirtual #128                // Method net/minecraft/server/level/ServerLevel.getBlockState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+        61: astore        5
+        63: aload         5
+        65: invokestatic  #132                // Method me/blue/block/RealisticWaterBlock.isInfinite:(Lnet/minecraft/world/level/block/state/BlockState;)Z
+        68: ifeq          74
+        71: goto          179
+        74: aload         5
+        76: invokevirtual #136                // Method net/minecraft/world/level/block/state/BlockState.getFluidState:()Lnet/minecraft/world/level/material/FluidState;
+        79: invokestatic  #140                // Method me/blue/fluid/RealisticSlimeFluid.isRealistic:(Lnet/minecraft/world/level/material/FluidState;)Z
+        82: ifeq          100
+        85: aload         5
+        87: invokevirtual #146                // Method net/minecraft/world/level/block/state/BlockState.getBlock:()Lnet/minecraft/world/level/block/Block;
+        90: getstatic     #58                 // Field me/blue/ModContent.REALISTIC_SLIME_BLOCK:Lnet/minecraft/world/level/block/Block;
+        93: if_acmpne     100
+        96: iconst_1
+        97: goto          101
+       100: iconst_0
+       101: istore        6
+       103: aload_0
+       104: getfield      #15                 // Field amounts:[B
+       107: iload_3
+       108: baload
+       109: istore        7
+       111: iload         7
+       113: ifgt          140
+       116: iload         6
+       118: ifeq          179
+       121: aload_2
+       122: aload         4
+       124: getstatic     #150                // Field net/minecraft/world/level/block/Blocks.AIR:Lnet/minecraft/world/level/block/Block;
+       127: invokevirtual #64                 // Method net/minecraft/world/level/block/Block.defaultBlockState:()Lnet/minecraft/world/level/block/state/BlockState;
+       130: sipush        530
+       133: invokevirtual #155                // Method net/minecraft/server/level/ServerLevel.setBlock:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z
+       136: pop
+       137: goto          179
+       140: iload         6
+       142: ifne          153
+       145: aload         5
+       147: invokevirtual #159                // Method net/minecraft/world/level/block/state/BlockState.isAir:()Z
+       150: ifeq          179
+       153: iload         7
+       155: invokestatic  #163                // Method stateFor:(I)Lnet/minecraft/world/level/block/state/BlockState;
+       158: astore        8
+       160: aload         5
+       162: aload         8
+       164: if_acmpeq     179
+       167: aload_2
+       168: aload         4
+       170: aload         8
+       172: sipush        530
+       175: invokevirtual #155                // Method net/minecraft/server/level/ServerLevel.setBlock:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z
+       178: pop
+       179: iinc          3, 1
+       182: goto          7
+       185: return
+
+  public final java.lang.String toString();
+    Code:
+         0: aload_0
+         1: invokedynamic #167,  0            // InvokeDynamic #0:toString:(Lme/blue/net/SlimeSyncPayload;)Ljava/lang/String;
+         6: areturn
+
+  public final int hashCode();
+    Code:
+         0: aload_0
+         1: invokedynamic #171,  0            // InvokeDynamic #0:hashCode:(Lme/blue/net/SlimeSyncPayload;)I
+         6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokedynamic #175,  0            // InvokeDynamic #0:equals:(Lme/blue/net/SlimeSyncPayload;Ljava/lang/Object;)Z
+         7: ireturn
+
+  public long[] positions();
+    Code:
+         0: aload_0
+         1: getfield      #9                  // Field positions:[J
+         4: areturn
+
+  public byte[] amounts();
+    Code:
+         0: aload_0
+         1: getfield      #15                 // Field amounts:[B
+         4: areturn
+
+  static {};
+    Code:
+         0: new           #179                // class net/minecraft/network/protocol/common/custom/CustomPacketPayload$Type
+         3: dup
+         4: ldc           #181                // String slime_sync
+         6: invokestatic  #183                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+         9: invokespecial #189                // Method net/minecraft/network/protocol/common/custom/CustomPacketPayload$Type."<init>":(Lnet/minecraft/resources/Identifier;)V
+        12: putstatic     #54                 // Field TYPE:Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;
+        15: invokedynamic #192,  0            // InvokeDynamic #1:encode:()Lnet/minecraft/network/codec/StreamEncoder;
+        20: invokedynamic #196,  0            // InvokeDynamic #2:decode:()Lnet/minecraft/network/codec/StreamDecoder;
+        25: invokestatic  #200                // InterfaceMethod net/minecraft/network/codec/StreamCodec.of:(Lnet/minecraft/network/codec/StreamEncoder;Lnet/minecraft/network/codec/StreamDecoder;)Lnet/minecraft/network/codec/StreamCodec;
+        28: putstatic     #205                // Field CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        31: return
+}

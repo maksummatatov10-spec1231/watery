@@ -1,0 +1,613 @@
+Compiled from "WaterCommands.java"
+public final class me.blue.client.water.WaterCommands {
+  private me.blue.client.water.WaterCommands();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  public static void register(com.mojang.brigadier.CommandDispatcher<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource>, net.minecraft.commands.CommandBuildContext);
+    Code:
+         0: aload_0
+         1: ldc           #7                  // String water
+         3: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+         6: invokedynamic #15,  0             // InvokeDynamic #0:run:()Lcom/mojang/brigadier/Command;
+        11: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+        14: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+        17: ldc           #25                 // String gui
+        19: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+        22: invokedynamic #15,  0             // InvokeDynamic #0:run:()Lcom/mojang/brigadier/Command;
+        27: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+        30: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+        33: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+        36: ldc           #31                 // String stats
+        38: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+        41: invokedynamic #33,  0             // InvokeDynamic #1:run:()Lcom/mojang/brigadier/Command;
+        46: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+        49: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+        52: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+        55: ldc           #34                 // String pause
+        57: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+        60: invokedynamic #36,  0             // InvokeDynamic #2:run:()Lcom/mojang/brigadier/Command;
+        65: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+        68: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+        71: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+        74: ldc           #37                 // String reload
+        76: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+        79: invokedynamic #39,  0             // InvokeDynamic #3:run:()Lcom/mojang/brigadier/Command;
+        84: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+        87: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+        90: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+        93: ldc           #40                 // String ball
+        95: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+        98: invokedynamic #42,  0             // InvokeDynamic #4:run:()Lcom/mojang/brigadier/Command;
+       103: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       106: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       109: ldc           #43                 // String size
+       111: iconst_1
+       112: bipush        64
+       114: invokestatic  #45                 // Method com/mojang/brigadier/arguments/IntegerArgumentType.integer:(II)Lcom/mojang/brigadier/arguments/IntegerArgumentType;
+       117: invokestatic  #51                 // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.argument:(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+       120: invokedynamic #55,  0             // InvokeDynamic #5:run:()Lcom/mojang/brigadier/Command;
+       125: invokevirtual #56                 // Method com/mojang/brigadier/builder/RequiredArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       128: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       131: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       134: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       137: ldc           #59                 // String sand
+       139: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+       142: invokedynamic #61,  0             // InvokeDynamic #6:run:()Lcom/mojang/brigadier/Command;
+       147: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       150: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       153: ldc           #43                 // String size
+       155: iconst_1
+       156: bipush        64
+       158: invokestatic  #45                 // Method com/mojang/brigadier/arguments/IntegerArgumentType.integer:(II)Lcom/mojang/brigadier/arguments/IntegerArgumentType;
+       161: invokestatic  #51                 // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.argument:(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+       164: invokedynamic #62,  0             // InvokeDynamic #7:run:()Lcom/mojang/brigadier/Command;
+       169: invokevirtual #56                 // Method com/mojang/brigadier/builder/RequiredArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       172: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       175: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       178: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       181: ldc           #63                 // String lava
+       183: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+       186: invokedynamic #65,  0             // InvokeDynamic #8:run:()Lcom/mojang/brigadier/Command;
+       191: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       194: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       197: ldc           #43                 // String size
+       199: iconst_1
+       200: bipush        64
+       202: invokestatic  #45                 // Method com/mojang/brigadier/arguments/IntegerArgumentType.integer:(II)Lcom/mojang/brigadier/arguments/IntegerArgumentType;
+       205: invokestatic  #51                 // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.argument:(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+       208: invokedynamic #66,  0             // InvokeDynamic #9:run:()Lcom/mojang/brigadier/Command;
+       213: invokevirtual #56                 // Method com/mojang/brigadier/builder/RequiredArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       216: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       219: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       222: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       225: ldc           #67                 // String slime
+       227: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+       230: invokedynamic #69,  0             // InvokeDynamic #10:run:()Lcom/mojang/brigadier/Command;
+       235: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       238: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       241: ldc           #43                 // String size
+       243: iconst_1
+       244: bipush        64
+       246: invokestatic  #45                 // Method com/mojang/brigadier/arguments/IntegerArgumentType.integer:(II)Lcom/mojang/brigadier/arguments/IntegerArgumentType;
+       249: invokestatic  #51                 // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.argument:(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+       252: invokedynamic #70,  0             // InvokeDynamic #11:run:()Lcom/mojang/brigadier/Command;
+       257: invokevirtual #56                 // Method com/mojang/brigadier/builder/RequiredArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       260: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       263: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       266: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       269: ldc           #71                 // String remove
+       271: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+       274: invokedynamic #73,  0             // InvokeDynamic #12:run:()Lcom/mojang/brigadier/Command;
+       279: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       282: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       285: ldc           #59                 // String sand
+       287: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+       290: invokedynamic #74,  0             // InvokeDynamic #13:run:()Lcom/mojang/brigadier/Command;
+       295: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       298: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       301: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       304: ldc           #63                 // String lava
+       306: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+       309: invokedynamic #75,  0             // InvokeDynamic #14:run:()Lcom/mojang/brigadier/Command;
+       314: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       317: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       320: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       323: ldc           #67                 // String slime
+       325: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+       328: invokedynamic #76,  0             // InvokeDynamic #15:run:()Lcom/mojang/brigadier/Command;
+       333: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       336: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       339: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       342: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       345: ldc           #77                 // String set
+       347: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+       350: ldc           #79                 // String name
+       352: invokestatic  #81                 // Method com/mojang/brigadier/arguments/StringArgumentType.word:()Lcom/mojang/brigadier/arguments/StringArgumentType;
+       355: invokestatic  #51                 // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.argument:(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+       358: invokedynamic #87,  0             // InvokeDynamic #16:getSuggestions:()Lcom/mojang/brigadier/suggestion/SuggestionProvider;
+       363: invokevirtual #91                 // Method com/mojang/brigadier/builder/RequiredArgumentBuilder.suggests:(Lcom/mojang/brigadier/suggestion/SuggestionProvider;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+       366: ldc           #95                 // String value
+       368: invokestatic  #97                 // Method com/mojang/brigadier/arguments/StringArgumentType.greedyString:()Lcom/mojang/brigadier/arguments/StringArgumentType;
+       371: invokestatic  #51                 // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.argument:(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+       374: invokedynamic #100,  0            // InvokeDynamic #17:run:()Lcom/mojang/brigadier/Command;
+       379: invokevirtual #56                 // Method com/mojang/brigadier/builder/RequiredArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       382: invokevirtual #101                // Method com/mojang/brigadier/builder/RequiredArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       385: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       388: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       391: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       394: ldc           #102                // String settings
+       396: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+       399: invokedynamic #104,  0            // InvokeDynamic #18:run:()Lcom/mojang/brigadier/Command;
+       404: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       407: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       410: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       413: ldc           #105                // String render
+       415: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+       418: invokedynamic #107,  0            // InvokeDynamic #19:run:()Lcom/mojang/brigadier/Command;
+       423: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       426: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       429: ldc           #108                // String stop
+       431: invokestatic  #9                  // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.literal:(Ljava/lang/String;)Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;
+       434: invokedynamic #110,  0            // InvokeDynamic #20:run:()Lcom/mojang/brigadier/Command;
+       439: invokevirtual #19                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       442: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       445: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       448: ldc           #111                // String seconds
+       450: ldc2_w        #113                // double 0.05d
+       453: invokestatic  #115                // Method com/mojang/brigadier/arguments/DoubleArgumentType.doubleArg:(D)Lcom/mojang/brigadier/arguments/DoubleArgumentType;
+       456: invokestatic  #51                 // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.argument:(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+       459: invokedynamic #121,  0            // InvokeDynamic #21:run:()Lcom/mojang/brigadier/Command;
+       464: invokevirtual #56                 // Method com/mojang/brigadier/builder/RequiredArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       467: checkcast     #57                 // class com/mojang/brigadier/builder/RequiredArgumentBuilder
+       470: ldc           #122                // String fps
+       472: iconst_1
+       473: sipush        240
+       476: invokestatic  #45                 // Method com/mojang/brigadier/arguments/IntegerArgumentType.integer:(II)Lcom/mojang/brigadier/arguments/IntegerArgumentType;
+       479: invokestatic  #51                 // Method net/fabricmc/fabric/api/client/command/v2/ClientCommands.argument:(Ljava/lang/String;Lcom/mojang/brigadier/arguments/ArgumentType;)Lcom/mojang/brigadier/builder/RequiredArgumentBuilder;
+       482: invokedynamic #124,  0            // InvokeDynamic #22:run:()Lcom/mojang/brigadier/Command;
+       487: invokevirtual #56                 // Method com/mojang/brigadier/builder/RequiredArgumentBuilder.executes:(Lcom/mojang/brigadier/Command;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       490: invokevirtual #101                // Method com/mojang/brigadier/builder/RequiredArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       493: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       496: invokevirtual #27                 // Method com/mojang/brigadier/builder/LiteralArgumentBuilder.then:(Lcom/mojang/brigadier/builder/ArgumentBuilder;)Lcom/mojang/brigadier/builder/ArgumentBuilder;
+       499: checkcast     #20                 // class com/mojang/brigadier/builder/LiteralArgumentBuilder
+       502: invokevirtual #125                // Method com/mojang/brigadier/CommandDispatcher.register:(Lcom/mojang/brigadier/builder/LiteralArgumentBuilder;)Lcom/mojang/brigadier/tree/LiteralCommandNode;
+       505: pop
+       506: return
+
+  private static int ball(com.mojang.brigadier.context.CommandContext<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource>, int, me.blue.client.water.Material);
+    Code:
+         0: aload_0
+         1: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+         4: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+         7: invokeinterface #139,  1          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.getPlayer:()Lnet/minecraft/client/player/LocalPlayer;
+        12: astore_3
+        13: aload_3
+        14: invokevirtual #143                // Method net/minecraft/client/player/LocalPlayer.getEyePosition:()Lnet/minecraft/world/phys/Vec3;
+        17: aload_3
+        18: invokevirtual #149                // Method net/minecraft/client/player/LocalPlayer.getLookAngle:()Lnet/minecraft/world/phys/Vec3;
+        21: iload_1
+        22: i2d
+        23: ldc2_w        #152                // double 3.0d
+        26: dadd
+        27: invokevirtual #154                // Method net/minecraft/world/phys/Vec3.scale:(D)Lnet/minecraft/world/phys/Vec3;
+        30: invokevirtual #160                // Method net/minecraft/world/phys/Vec3.add:(Lnet/minecraft/world/phys/Vec3;)Lnet/minecraft/world/phys/Vec3;
+        33: astore        4
+        35: iload_1
+        36: i2d
+        37: ldc2_w        #164                // double 0.5d
+        40: dmul
+        41: dstore        5
+        43: invokestatic  #166                // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+        46: new           #172                // class me/blue/client/water/WaterRegion$Emitter
+        49: dup
+        50: aload         4
+        52: getfield      #174                // Field net/minecraft/world/phys/Vec3.x:D
+        55: dload         5
+        57: dsub
+        58: aload         4
+        60: getfield      #178                // Field net/minecraft/world/phys/Vec3.y:D
+        63: dload         5
+        65: dsub
+        66: aload         4
+        68: getfield      #181                // Field net/minecraft/world/phys/Vec3.z:D
+        71: dload         5
+        73: dsub
+        74: aload         4
+        76: getfield      #174                // Field net/minecraft/world/phys/Vec3.x:D
+        79: dload         5
+        81: dadd
+        82: aload         4
+        84: getfield      #178                // Field net/minecraft/world/phys/Vec3.y:D
+        87: dload         5
+        89: dadd
+        90: aload         4
+        92: getfield      #181                // Field net/minecraft/world/phys/Vec3.z:D
+        95: dload         5
+        97: dadd
+        98: fconst_0
+        99: fconst_0
+       100: fconst_0
+       101: invokespecial #184                // Method me/blue/client/water/WaterRegion$Emitter."<init>":(DDDDDDFFF)V
+       104: aload_2
+       105: invokevirtual #187                // Method me/blue/client/water/WaterWorld.addEmitter:(Lme/blue/client/water/WaterRegion$Emitter;Lme/blue/client/water/Material;)V
+       108: aload_0
+       109: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+       112: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+       115: iload_1
+       116: aload_2
+       117: invokevirtual #191                // Method me/blue/client/water/Material.label:()Ljava/lang/String;
+       120: invokedynamic #197,  0            // InvokeDynamic #23:makeConcatWithConstants:(ILjava/lang/String;)Ljava/lang/String;
+       125: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       128: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+       133: iconst_1
+       134: ireturn
+
+  private static int openMenu(com.mojang.brigadier.context.CommandContext<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource>);
+    Code:
+         0: invokestatic  #210                // Method me/blue/client/water/WaterSettingsScreen.openNextTick:()V
+         3: iconst_1
+         4: ireturn
+
+  private static int render(com.mojang.brigadier.context.CommandContext<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource>, int);
+    Code:
+         0: aload_0
+         1: ldc           #111                // String seconds
+         3: invokestatic  #215                // Method com/mojang/brigadier/arguments/DoubleArgumentType.getDouble:(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)D
+         6: dstore_2
+         7: aload_0
+         8: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+        11: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+        14: invokestatic  #219                // Method me/blue/client/water/ClipRecorder.get:()Lme/blue/client/water/ClipRecorder;
+        17: dload_2
+        18: iload_1
+        19: invokevirtual #224                // Method me/blue/client/water/ClipRecorder.start:(DI)Ljava/lang/String;
+        22: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        25: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+        30: iconst_1
+        31: ireturn
+
+  private static int set(com.mojang.brigadier.context.CommandContext<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource>);
+    Code:
+         0: aload_0
+         1: ldc           #79                 // String name
+         3: invokestatic  #228                // Method com/mojang/brigadier/arguments/StringArgumentType.getString:(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/lang/String;
+         6: astore_1
+         7: aload_0
+         8: ldc           #95                 // String value
+        10: invokestatic  #228                // Method com/mojang/brigadier/arguments/StringArgumentType.getString:(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)Ljava/lang/String;
+        13: astore_2
+        14: aload_0
+        15: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+        18: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+        21: aload_1
+        22: aload_1
+        23: aload_2
+        24: invokestatic  #232                // Method me/blue/client/water/WaterSettings.set:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        27: invokedynamic #237,  0            // InvokeDynamic #24:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        32: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        35: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+        40: invokestatic  #239                // Method me/blue/client/water/WaterSettings.save:()V
+        43: goto          68
+        46: astore_3
+        47: aload_0
+        48: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+        51: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+        54: aload_1
+        55: invokedynamic #246,  0            // InvokeDynamic #25:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+        60: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        63: invokeinterface #249,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendError:(Lnet/minecraft/network/chat/Component;)V
+        68: iconst_1
+        69: ireturn
+      Exception table:
+         from    to  target type
+            14    43    46   Class java/lang/ReflectiveOperationException
+            14    43    46   Class java/lang/NumberFormatException
+
+  private static int listSettings(com.mojang.brigadier.context.CommandContext<net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource>);
+    Code:
+         0: new           #252                // class java/lang/StringBuilder
+         3: dup
+         4: invokespecial #254                // Method java/lang/StringBuilder."<init>":()V
+         7: astore_1
+         8: invokestatic  #255                // Method me/blue/client/water/WaterSettings.fields:()Ljava/util/Map;
+        11: invokeinterface #259,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+        16: invokeinterface #265,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        21: astore_2
+        22: aload_2
+        23: invokeinterface #271,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        28: ifeq          90
+        31: aload_2
+        32: invokeinterface #277,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        37: checkcast     #280                // class java/util/Map$Entry
+        40: astore_3
+        41: aload_1
+        42: aload_3
+        43: invokeinterface #282,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+        48: checkcast     #285                // class java/lang/String
+        51: invokevirtual #287                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        54: bipush        61
+        56: invokevirtual #291                // Method java/lang/StringBuilder.append:(C)Ljava/lang/StringBuilder;
+        59: aload_3
+        60: invokeinterface #294,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+        65: checkcast     #297                // class java/lang/reflect/Field
+        68: aconst_null
+        69: invokevirtual #299                // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        72: invokevirtual #302                // Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+        75: ldc_w         #305                // String
+        78: invokevirtual #287                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        81: pop
+        82: goto          87
+        85: astore        4
+        87: goto          22
+        90: aload_0
+        91: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+        94: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+        97: aload_1
+        98: invokevirtual #309                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       101: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       104: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+       109: iconst_1
+       110: ireturn
+      Exception table:
+         from    to  target type
+            41    82    85   Class java/lang/IllegalAccessException
+
+  private static int lambda$register$19(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: aload_0
+         2: ldc           #122                // String fps
+         4: invokestatic  #312                // Method com/mojang/brigadier/arguments/IntegerArgumentType.getInteger:(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)I
+         7: invokestatic  #316                // Method render:(Lcom/mojang/brigadier/context/CommandContext;I)I
+        10: ireturn
+
+  private static int lambda$register$18(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: bipush        60
+         3: invokestatic  #316                // Method render:(Lcom/mojang/brigadier/context/CommandContext;I)I
+         6: ireturn
+
+  private static int lambda$register$17(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+         4: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+         7: invokestatic  #219                // Method me/blue/client/water/ClipRecorder.get:()Lme/blue/client/water/ClipRecorder;
+        10: ldc_w         #321                // String stopped
+        13: invokevirtual #323                // Method me/blue/client/water/ClipRecorder.stop:(Ljava/lang/String;)Ljava/lang/String;
+        16: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        19: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+        24: iconst_1
+        25: ireturn
+
+  private static int lambda$register$16(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+         4: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+         7: invokestatic  #219                // Method me/blue/client/water/ClipRecorder.get:()Lme/blue/client/water/ClipRecorder;
+        10: invokevirtual #325                // Method me/blue/client/water/ClipRecorder.statusLine:()Ljava/lang/String;
+        13: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        16: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+        21: iconst_1
+        22: ireturn
+
+  private static java.util.concurrent.CompletableFuture lambda$register$15(com.mojang.brigadier.context.CommandContext, com.mojang.brigadier.suggestion.SuggestionsBuilder) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: invokestatic  #255                // Method me/blue/client/water/WaterSettings.fields:()Ljava/util/Map;
+         3: invokeinterface #328,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+         8: aload_1
+         9: invokestatic  #331                // InterfaceMethod net/minecraft/commands/SharedSuggestionProvider.suggest:(Ljava/lang/Iterable;Lcom/mojang/brigadier/suggestion/SuggestionsBuilder;)Ljava/util/concurrent/CompletableFuture;
+        12: areturn
+
+  private static int lambda$register$14(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: invokestatic  #166                // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+         3: invokestatic  #337                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+         6: getfield      #343                // Field net/minecraft/client/Minecraft.options:Lnet/minecraft/client/Options;
+         9: invokevirtual #347                // Method net/minecraft/client/Options.renderDistance:()Lnet/minecraft/client/OptionInstance;
+        12: invokevirtual #353                // Method net/minecraft/client/OptionInstance.get:()Ljava/lang/Object;
+        15: checkcast     #357                // class java/lang/Integer
+        18: invokevirtual #359                // Method java/lang/Integer.intValue:()I
+        21: iconst_2
+        22: iadd
+        23: getstatic     #363                // Field me/blue/client/water/Material.SLIME:Lme/blue/client/water/Material;
+        26: invokevirtual #367                // Method me/blue/client/water/WaterWorld.removeAll:(ILme/blue/client/water/Material;)V
+        29: aload_0
+        30: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+        33: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+        36: ldc_w         #371                // String Removing all realistic slime around you
+        39: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        42: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+        47: iconst_1
+        48: ireturn
+
+  private static int lambda$register$13(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: invokestatic  #166                // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+         3: invokestatic  #337                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+         6: getfield      #343                // Field net/minecraft/client/Minecraft.options:Lnet/minecraft/client/Options;
+         9: invokevirtual #347                // Method net/minecraft/client/Options.renderDistance:()Lnet/minecraft/client/OptionInstance;
+        12: invokevirtual #353                // Method net/minecraft/client/OptionInstance.get:()Ljava/lang/Object;
+        15: checkcast     #357                // class java/lang/Integer
+        18: invokevirtual #359                // Method java/lang/Integer.intValue:()I
+        21: iconst_2
+        22: iadd
+        23: getstatic     #373                // Field me/blue/client/water/Material.LAVA:Lme/blue/client/water/Material;
+        26: invokevirtual #367                // Method me/blue/client/water/WaterWorld.removeAll:(ILme/blue/client/water/Material;)V
+        29: aload_0
+        30: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+        33: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+        36: ldc_w         #376                // String Removing all realistic lava around you (springs included)
+        39: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        42: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+        47: iconst_1
+        48: ireturn
+
+  private static int lambda$register$12(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: invokestatic  #166                // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+         3: invokestatic  #337                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+         6: getfield      #343                // Field net/minecraft/client/Minecraft.options:Lnet/minecraft/client/Options;
+         9: invokevirtual #347                // Method net/minecraft/client/Options.renderDistance:()Lnet/minecraft/client/OptionInstance;
+        12: invokevirtual #353                // Method net/minecraft/client/OptionInstance.get:()Ljava/lang/Object;
+        15: checkcast     #357                // class java/lang/Integer
+        18: invokevirtual #359                // Method java/lang/Integer.intValue:()I
+        21: iconst_2
+        22: iadd
+        23: getstatic     #378                // Field me/blue/client/water/Material.SAND:Lme/blue/client/water/Material;
+        26: invokevirtual #367                // Method me/blue/client/water/WaterWorld.removeAll:(ILme/blue/client/water/Material;)V
+        29: aload_0
+        30: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+        33: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+        36: ldc_w         #381                // String Removing all realistic sand around you
+        39: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        42: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+        47: iconst_1
+        48: ireturn
+
+  private static int lambda$register$11(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: invokestatic  #166                // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+         3: invokestatic  #337                // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+         6: getfield      #343                // Field net/minecraft/client/Minecraft.options:Lnet/minecraft/client/Options;
+         9: invokevirtual #347                // Method net/minecraft/client/Options.renderDistance:()Lnet/minecraft/client/OptionInstance;
+        12: invokevirtual #353                // Method net/minecraft/client/OptionInstance.get:()Ljava/lang/Object;
+        15: checkcast     #357                // class java/lang/Integer
+        18: invokevirtual #359                // Method java/lang/Integer.intValue:()I
+        21: iconst_2
+        22: iadd
+        23: getstatic     #383                // Field me/blue/client/water/Material.WATER:Lme/blue/client/water/Material;
+        26: invokevirtual #367                // Method me/blue/client/water/WaterWorld.removeAll:(ILme/blue/client/water/Material;)V
+        29: aload_0
+        30: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+        33: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+        36: ldc_w         #386                // String Removing all realistic water around you (springs included)
+        39: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        42: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+        47: iconst_1
+        48: ireturn
+
+  private static int lambda$register$10(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: aload_0
+         2: ldc           #43                 // String size
+         4: invokestatic  #312                // Method com/mojang/brigadier/arguments/IntegerArgumentType.getInteger:(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)I
+         7: getstatic     #363                // Field me/blue/client/water/Material.SLIME:Lme/blue/client/water/Material;
+        10: invokestatic  #388                // Method ball:(Lcom/mojang/brigadier/context/CommandContext;ILme/blue/client/water/Material;)I
+        13: ireturn
+
+  private static int lambda$register$9(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: iconst_2
+         2: getstatic     #363                // Field me/blue/client/water/Material.SLIME:Lme/blue/client/water/Material;
+         5: invokestatic  #388                // Method ball:(Lcom/mojang/brigadier/context/CommandContext;ILme/blue/client/water/Material;)I
+         8: ireturn
+
+  private static int lambda$register$8(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: aload_0
+         2: ldc           #43                 // String size
+         4: invokestatic  #312                // Method com/mojang/brigadier/arguments/IntegerArgumentType.getInteger:(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)I
+         7: getstatic     #373                // Field me/blue/client/water/Material.LAVA:Lme/blue/client/water/Material;
+        10: invokestatic  #388                // Method ball:(Lcom/mojang/brigadier/context/CommandContext;ILme/blue/client/water/Material;)I
+        13: ireturn
+
+  private static int lambda$register$7(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: iconst_3
+         2: getstatic     #373                // Field me/blue/client/water/Material.LAVA:Lme/blue/client/water/Material;
+         5: invokestatic  #388                // Method ball:(Lcom/mojang/brigadier/context/CommandContext;ILme/blue/client/water/Material;)I
+         8: ireturn
+
+  private static int lambda$register$6(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: aload_0
+         2: ldc           #43                 // String size
+         4: invokestatic  #312                // Method com/mojang/brigadier/arguments/IntegerArgumentType.getInteger:(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)I
+         7: getstatic     #378                // Field me/blue/client/water/Material.SAND:Lme/blue/client/water/Material;
+        10: invokestatic  #388                // Method ball:(Lcom/mojang/brigadier/context/CommandContext;ILme/blue/client/water/Material;)I
+        13: ireturn
+
+  private static int lambda$register$5(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: iconst_2
+         2: getstatic     #378                // Field me/blue/client/water/Material.SAND:Lme/blue/client/water/Material;
+         5: invokestatic  #388                // Method ball:(Lcom/mojang/brigadier/context/CommandContext;ILme/blue/client/water/Material;)I
+         8: ireturn
+
+  private static int lambda$register$4(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: aload_0
+         2: ldc           #43                 // String size
+         4: invokestatic  #312                // Method com/mojang/brigadier/arguments/IntegerArgumentType.getInteger:(Lcom/mojang/brigadier/context/CommandContext;Ljava/lang/String;)I
+         7: getstatic     #383                // Field me/blue/client/water/Material.WATER:Lme/blue/client/water/Material;
+        10: invokestatic  #388                // Method ball:(Lcom/mojang/brigadier/context/CommandContext;ILme/blue/client/water/Material;)I
+        13: ireturn
+
+  private static int lambda$register$3(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: iconst_3
+         2: getstatic     #383                // Field me/blue/client/water/Material.WATER:Lme/blue/client/water/Material;
+         5: invokestatic  #388                // Method ball:(Lcom/mojang/brigadier/context/CommandContext;ILme/blue/client/water/Material;)I
+         8: ireturn
+
+  private static int lambda$register$2(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: invokestatic  #166                // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+         3: aload_0
+         4: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+         7: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+        10: invokeinterface #391,  1          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.getLevel:()Lnet/minecraft/client/multiplayer/ClientLevel;
+        15: invokevirtual #395                // Method me/blue/client/water/WaterWorld.reload:(Lnet/minecraft/client/multiplayer/ClientLevel;)V
+        18: aload_0
+        19: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+        22: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+        25: ldc_w         #398                // String Re-reading realistic water blocks around you into fresh simulations
+        28: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        31: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+        36: iconst_1
+        37: ireturn
+
+  private static int lambda$register$1(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: invokestatic  #166                // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+         3: invokevirtual #400                // Method me/blue/client/water/WaterWorld.togglePause:()Z
+         6: istore_1
+         7: aload_0
+         8: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+        11: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+        14: iload_1
+        15: ifeq          24
+        18: ldc_w         #403                // String Simulation paused
+        21: goto          27
+        24: ldc_w         #405                // String Simulation running
+        27: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        30: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+        35: iconst_1
+        36: ireturn
+
+  private static int lambda$register$0(com.mojang.brigadier.context.CommandContext) throws com.mojang.brigadier.exceptions.CommandSyntaxException;
+    Code:
+         0: aload_0
+         1: invokevirtual #131                // Method com/mojang/brigadier/context/CommandContext.getSource:()Ljava/lang/Object;
+         4: checkcast     #137                // class net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource
+         7: invokestatic  #166                // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+        10: invokevirtual #407                // Method me/blue/client/water/WaterWorld.statsLine:()Ljava/lang/String;
+        13: invokestatic  #201                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        16: invokeinterface #206,  2          // InterfaceMethod net/fabricmc/fabric/api/client/command/v2/FabricClientCommandSource.sendFeedback:(Lnet/minecraft/network/chat/Component;)V
+        21: iconst_1
+        22: ireturn
+}

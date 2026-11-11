@@ -1,0 +1,264 @@
+Compiled from "RemoveAllWaterPayload.java"
+public final class me.blue.net.RemoveAllWaterPayload extends java.lang.Record implements net.minecraft.network.protocol.common.custom.CustomPacketPayload {
+  private final int radiusChunks;
+
+  private final byte material;
+
+  public static final net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<me.blue.net.RemoveAllWaterPayload> TYPE;
+
+  public static final net.minecraft.network.codec.StreamCodec<net.minecraft.network.RegistryFriendlyByteBuf, me.blue.net.RemoveAllWaterPayload> CODEC;
+
+  public me.blue.net.RemoveAllWaterPayload(int, byte);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Record."<init>":()V
+         4: aload_0
+         5: iload_1
+         6: putfield      #7                  // Field radiusChunks:I
+         9: aload_0
+        10: iload_2
+        11: putfield      #13                 // Field material:B
+        14: return
+
+  public net.minecraft.network.protocol.common.custom.CustomPacketPayload$Type<me.blue.net.RemoveAllWaterPayload> type();
+    Code:
+         0: getstatic     #17                 // Field TYPE:Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;
+         3: areturn
+
+  public int apply(net.minecraft.server.level.ServerPlayer);
+    Code:
+         0: aload_1
+         1: invokevirtual #21                 // Method net/minecraft/server/level/ServerPlayer.level:()Lnet/minecraft/server/level/ServerLevel;
+         4: astore_2
+         5: aload_0
+         6: getfield      #13                 // Field material:B
+         9: invokestatic  #27                 // Method me/blue/net/SyncMaterial.block:(B)Lnet/minecraft/world/level/block/Block;
+        12: astore_3
+        13: aload_0
+        14: getfield      #7                  // Field radiusChunks:I
+        17: i2l
+        18: iconst_1
+        19: bipush        64
+        21: invokestatic  #33                 // Method java/lang/Math.clamp:(JII)I
+        24: istore        4
+        26: aload_1
+        27: invokevirtual #39                 // Method net/minecraft/server/level/ServerPlayer.blockPosition:()Lnet/minecraft/core/BlockPos;
+        30: invokevirtual #43                 // Method net/minecraft/core/BlockPos.getX:()I
+        33: iconst_4
+        34: ishr
+        35: istore        5
+        37: aload_1
+        38: invokevirtual #39                 // Method net/minecraft/server/level/ServerPlayer.blockPosition:()Lnet/minecraft/core/BlockPos;
+        41: invokevirtual #49                 // Method net/minecraft/core/BlockPos.getZ:()I
+        44: iconst_4
+        45: ishr
+        46: istore        6
+        48: iconst_0
+        49: istore        7
+        51: new           #52                 // class net/minecraft/core/BlockPos$MutableBlockPos
+        54: dup
+        55: invokespecial #54                 // Method net/minecraft/core/BlockPos$MutableBlockPos."<init>":()V
+        58: astore        8
+        60: iload         4
+        62: ineg
+        63: istore        9
+        65: iload         9
+        67: iload         4
+        69: if_icmpgt     297
+        72: iload         4
+        74: ineg
+        75: istore        10
+        77: iload         10
+        79: iload         4
+        81: if_icmpgt     291
+        84: aload_2
+        85: invokevirtual #55                 // Method net/minecraft/server/level/ServerLevel.getChunkSource:()Lnet/minecraft/server/level/ServerChunkCache;
+        88: iload         5
+        90: iload         10
+        92: iadd
+        93: iload         6
+        95: iload         9
+        97: iadd
+        98: invokevirtual #61                 // Method net/minecraft/server/level/ServerChunkCache.getChunkNow:(II)Lnet/minecraft/world/level/chunk/LevelChunk;
+       101: astore        11
+       103: aload         11
+       105: ifnonnull     111
+       108: goto          285
+       111: aload         11
+       113: invokevirtual #67                 // Method net/minecraft/world/level/chunk/LevelChunk.getSections:()[Lnet/minecraft/world/level/chunk/LevelChunkSection;
+       116: astore        12
+       118: iconst_0
+       119: istore        13
+       121: iload         13
+       123: aload         12
+       125: arraylength
+       126: if_icmpge     285
+       129: aload         12
+       131: iload         13
+       133: aaload
+       134: astore        14
+       136: aload         14
+       138: invokevirtual #73                 // Method net/minecraft/world/level/chunk/LevelChunkSection.hasOnlyAir:()Z
+       141: ifne          279
+       144: aload         14
+       146: aload_3
+       147: invokedynamic #79,  0             // InvokeDynamic #0:test:(Lnet/minecraft/world/level/block/Block;)Ljava/util/function/Predicate;
+       152: invokevirtual #83                 // Method net/minecraft/world/level/chunk/LevelChunkSection.maybeHas:(Ljava/util/function/Predicate;)Z
+       155: ifne          161
+       158: goto          279
+       161: aload_2
+       162: invokevirtual #87                 // Method net/minecraft/server/level/ServerLevel.getMinSectionY:()I
+       165: iload         13
+       167: iadd
+       168: iconst_4
+       169: ishl
+       170: istore        15
+       172: iconst_0
+       173: istore        16
+       175: iload         16
+       177: sipush        4096
+       180: if_icmpge     279
+       183: aload         14
+       185: iload         16
+       187: bipush        15
+       189: iand
+       190: iload         16
+       192: iconst_4
+       193: ishr
+       194: bipush        15
+       196: iand
+       197: iload         16
+       199: bipush        8
+       201: ishr
+       202: invokevirtual #90                 // Method net/minecraft/world/level/chunk/LevelChunkSection.getBlockState:(III)Lnet/minecraft/world/level/block/state/BlockState;
+       205: invokevirtual #94                 // Method net/minecraft/world/level/block/state/BlockState.getBlock:()Lnet/minecraft/world/level/block/Block;
+       208: aload_3
+       209: if_acmpne     273
+       212: aload         8
+       214: iload         5
+       216: iload         10
+       218: iadd
+       219: iconst_4
+       220: ishl
+       221: iload         16
+       223: bipush        15
+       225: iand
+       226: iadd
+       227: iload         15
+       229: iload         16
+       231: iconst_4
+       232: ishr
+       233: bipush        15
+       235: iand
+       236: iadd
+       237: iload         6
+       239: iload         9
+       241: iadd
+       242: iconst_4
+       243: ishl
+       244: iload         16
+       246: bipush        8
+       248: ishr
+       249: iadd
+       250: invokevirtual #100                // Method net/minecraft/core/BlockPos$MutableBlockPos.set:(III)Lnet/minecraft/core/BlockPos$MutableBlockPos;
+       253: pop
+       254: aload_2
+       255: aload         8
+       257: getstatic     #104                // Field net/minecraft/world/level/block/Blocks.AIR:Lnet/minecraft/world/level/block/Block;
+       260: invokevirtual #110                // Method net/minecraft/world/level/block/Block.defaultBlockState:()Lnet/minecraft/world/level/block/state/BlockState;
+       263: sipush        530
+       266: invokevirtual #116                // Method net/minecraft/server/level/ServerLevel.setBlock:(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z
+       269: pop
+       270: iinc          7, 1
+       273: iinc          16, 1
+       276: goto          175
+       279: iinc          13, 1
+       282: goto          121
+       285: iinc          10, 1
+       288: goto          77
+       291: iinc          9, 1
+       294: goto          65
+       297: iload         7
+       299: ireturn
+
+  public final java.lang.String toString();
+    Code:
+         0: aload_0
+         1: invokedynamic #120,  0            // InvokeDynamic #1:toString:(Lme/blue/net/RemoveAllWaterPayload;)Ljava/lang/String;
+         6: areturn
+
+  public final int hashCode();
+    Code:
+         0: aload_0
+         1: invokedynamic #124,  0            // InvokeDynamic #1:hashCode:(Lme/blue/net/RemoveAllWaterPayload;)I
+         6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokedynamic #128,  0            // InvokeDynamic #1:equals:(Lme/blue/net/RemoveAllWaterPayload;Ljava/lang/Object;)Z
+         7: ireturn
+
+  public int radiusChunks();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field radiusChunks:I
+         4: ireturn
+
+  public byte material();
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field material:B
+         4: ireturn
+
+  private static boolean lambda$apply$0(net.minecraft.world.level.block.Block, net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: aload_1
+         1: invokevirtual #94                 // Method net/minecraft/world/level/block/state/BlockState.getBlock:()Lnet/minecraft/world/level/block/Block;
+         4: aload_0
+         5: if_acmpne     12
+         8: iconst_1
+         9: goto          13
+        12: iconst_0
+        13: ireturn
+
+  private static me.blue.net.RemoveAllWaterPayload lambda$static$1(net.minecraft.network.RegistryFriendlyByteBuf);
+    Code:
+         0: new           #8                  // class me/blue/net/RemoveAllWaterPayload
+         3: dup
+         4: aload_0
+         5: invokevirtual #132                // Method net/minecraft/network/RegistryFriendlyByteBuf.readVarInt:()I
+         8: aload_0
+         9: invokevirtual #137                // Method net/minecraft/network/RegistryFriendlyByteBuf.readByte:()B
+        12: invokespecial #141                // Method "<init>":(IB)V
+        15: areturn
+
+  private static void lambda$static$0(net.minecraft.network.RegistryFriendlyByteBuf, me.blue.net.RemoveAllWaterPayload);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: getfield      #7                  // Field radiusChunks:I
+         5: invokevirtual #144                // Method net/minecraft/network/RegistryFriendlyByteBuf.writeVarInt:(I)Lnet/minecraft/network/FriendlyByteBuf;
+         8: pop
+         9: aload_0
+        10: aload_1
+        11: getfield      #13                 // Field material:B
+        14: invokevirtual #148                // Method net/minecraft/network/RegistryFriendlyByteBuf.writeByte:(I)Lnet/minecraft/network/FriendlyByteBuf;
+        17: pop
+        18: return
+
+  static {};
+    Code:
+         0: new           #151                // class net/minecraft/network/protocol/common/custom/CustomPacketPayload$Type
+         3: dup
+         4: ldc           #153                // String remove_all_water
+         6: invokestatic  #155                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+         9: invokespecial #161                // Method net/minecraft/network/protocol/common/custom/CustomPacketPayload$Type."<init>":(Lnet/minecraft/resources/Identifier;)V
+        12: putstatic     #17                 // Field TYPE:Lnet/minecraft/network/protocol/common/custom/CustomPacketPayload$Type;
+        15: invokedynamic #164,  0            // InvokeDynamic #2:encode:()Lnet/minecraft/network/codec/StreamEncoder;
+        20: invokedynamic #168,  0            // InvokeDynamic #3:decode:()Lnet/minecraft/network/codec/StreamDecoder;
+        25: invokestatic  #172                // InterfaceMethod net/minecraft/network/codec/StreamCodec.of:(Lnet/minecraft/network/codec/StreamEncoder;Lnet/minecraft/network/codec/StreamDecoder;)Lnet/minecraft/network/codec/StreamCodec;
+        28: putstatic     #178                // Field CODEC:Lnet/minecraft/network/codec/StreamCodec;
+        31: return
+}

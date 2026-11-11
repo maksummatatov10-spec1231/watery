@@ -1,0 +1,18 @@
+Compiled from "RealisticLavaFluid.java"
+public class me.blue.fluid.RealisticLavaFluid$Source extends me.blue.fluid.RealisticLavaFluid {
+  public me.blue.fluid.RealisticLavaFluid$Source();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method me/blue/fluid/RealisticLavaFluid."<init>":()V
+         4: return
+
+  public int getAmount(net.minecraft.world.level.material.FluidState);
+    Code:
+         0: bipush        8
+         2: ireturn
+
+  public boolean isSource(net.minecraft.world.level.material.FluidState);
+    Code:
+         0: iconst_1
+         1: ireturn
+}

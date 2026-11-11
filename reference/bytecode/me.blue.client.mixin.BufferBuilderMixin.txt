@@ -1,0 +1,40 @@
+Compiled from "BufferBuilderMixin.java"
+public abstract class me.blue.client.mixin.BufferBuilderMixin {
+  private boolean blockFormat;
+
+  public me.blue.client.mixin.BufferBuilderMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private int blue$fluidColor(int);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field blockFormat:Z
+         4: ifeq          20
+         7: invokestatic  #13                 // Method me/blue/client/shader/MaterialEncoding.active:()Z
+        10: ifeq          20
+        13: iload_1
+        14: invokestatic  #19                 // Method me/blue/client/shader/MaterialEncoding.encodeColor:(I)I
+        17: goto          21
+        20: iload_1
+        21: ireturn
+
+  private int blue$materialLight(int, float, float, float, float);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field blockFormat:Z
+         4: ifeq          26
+         7: invokestatic  #13                 // Method me/blue/client/shader/MaterialEncoding.active:()Z
+        10: ifeq          26
+        13: iload_1
+        14: fload_2
+        15: fload_3
+        16: fload         4
+        18: fload         5
+        20: invokestatic  #23                 // Method me/blue/client/shader/MaterialEncoding.encode:(IFFFF)I
+        23: goto          27
+        26: iload_1
+        27: ireturn
+}

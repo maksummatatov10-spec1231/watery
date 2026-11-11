@@ -1,0 +1,421 @@
+Compiled from "FovEasing.java"
+public final class me.blue.protocol.fov.FovEasing extends java.lang.Enum<me.blue.protocol.fov.FovEasing> {
+  public static final me.blue.protocol.fov.FovEasing LINEAR;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_SINE;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_OUT_SINE;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_OUT_SINE;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_QUAD;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_OUT_QUAD;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_OUT_QUAD;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_CUBIC;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_OUT_CUBIC;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_OUT_CUBIC;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_QUART;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_OUT_QUART;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_OUT_QUART;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_QUINT;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_OUT_QUINT;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_OUT_QUINT;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_EXPO;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_OUT_EXPO;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_OUT_EXPO;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_CIRC;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_OUT_CIRC;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_OUT_CIRC;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_BACK;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_OUT_BACK;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_OUT_BACK;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_ELASTIC;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_OUT_ELASTIC;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_OUT_ELASTIC;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_BOUNCE;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_OUT_BOUNCE;
+
+  public static final me.blue.protocol.fov.FovEasing EASE_IN_OUT_BOUNCE;
+
+  private static final me.blue.protocol.fov.FovEasing[] $VALUES;
+
+  public static me.blue.protocol.fov.FovEasing[] values();
+    Code:
+         0: getstatic     #97                 // Field $VALUES:[Lme/blue/protocol/fov/FovEasing;
+         3: invokevirtual #101                // Method "[Lme/blue/protocol/fov/FovEasing;".clone:()Ljava/lang/Object;
+         6: checkcast     #102                // class "[Lme/blue/protocol/fov/FovEasing;"
+         9: areturn
+
+  public static me.blue.protocol.fov.FovEasing valueOf(java.lang.String);
+    Code:
+         0: ldc           #1                  // class me/blue/protocol/fov/FovEasing
+         2: aload_0
+         3: invokestatic  #106                // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+         6: checkcast     #1                  // class me/blue/protocol/fov/FovEasing
+         9: areturn
+
+  private me.blue.protocol.fov.FovEasing();
+    Code:
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: invokespecial #112                // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+         6: return
+
+  public double apply(double);
+    Code:
+         0: invokestatic  #116                // Method me/blue/protocol/Easing.values:()[Lme/blue/protocol/Easing;
+         3: aload_0
+         4: invokevirtual #122                // Method ordinal:()I
+         7: aaload
+         8: dload_1
+         9: invokevirtual #126                // Method me/blue/protocol/Easing.apply:(D)D
+        12: dreturn
+
+  private static me.blue.protocol.fov.FovEasing[] $values();
+    Code:
+         0: bipush        31
+         2: anewarray     #1                  // class me/blue/protocol/fov/FovEasing
+         5: dup
+         6: iconst_0
+         7: getstatic     #3                  // Field LINEAR:Lme/blue/protocol/fov/FovEasing;
+        10: aastore
+        11: dup
+        12: iconst_1
+        13: getstatic     #7                  // Field EASE_IN_SINE:Lme/blue/protocol/fov/FovEasing;
+        16: aastore
+        17: dup
+        18: iconst_2
+        19: getstatic     #10                 // Field EASE_OUT_SINE:Lme/blue/protocol/fov/FovEasing;
+        22: aastore
+        23: dup
+        24: iconst_3
+        25: getstatic     #13                 // Field EASE_IN_OUT_SINE:Lme/blue/protocol/fov/FovEasing;
+        28: aastore
+        29: dup
+        30: iconst_4
+        31: getstatic     #16                 // Field EASE_IN_QUAD:Lme/blue/protocol/fov/FovEasing;
+        34: aastore
+        35: dup
+        36: iconst_5
+        37: getstatic     #19                 // Field EASE_OUT_QUAD:Lme/blue/protocol/fov/FovEasing;
+        40: aastore
+        41: dup
+        42: bipush        6
+        44: getstatic     #22                 // Field EASE_IN_OUT_QUAD:Lme/blue/protocol/fov/FovEasing;
+        47: aastore
+        48: dup
+        49: bipush        7
+        51: getstatic     #25                 // Field EASE_IN_CUBIC:Lme/blue/protocol/fov/FovEasing;
+        54: aastore
+        55: dup
+        56: bipush        8
+        58: getstatic     #28                 // Field EASE_OUT_CUBIC:Lme/blue/protocol/fov/FovEasing;
+        61: aastore
+        62: dup
+        63: bipush        9
+        65: getstatic     #31                 // Field EASE_IN_OUT_CUBIC:Lme/blue/protocol/fov/FovEasing;
+        68: aastore
+        69: dup
+        70: bipush        10
+        72: getstatic     #34                 // Field EASE_IN_QUART:Lme/blue/protocol/fov/FovEasing;
+        75: aastore
+        76: dup
+        77: bipush        11
+        79: getstatic     #37                 // Field EASE_OUT_QUART:Lme/blue/protocol/fov/FovEasing;
+        82: aastore
+        83: dup
+        84: bipush        12
+        86: getstatic     #40                 // Field EASE_IN_OUT_QUART:Lme/blue/protocol/fov/FovEasing;
+        89: aastore
+        90: dup
+        91: bipush        13
+        93: getstatic     #43                 // Field EASE_IN_QUINT:Lme/blue/protocol/fov/FovEasing;
+        96: aastore
+        97: dup
+        98: bipush        14
+       100: getstatic     #46                 // Field EASE_OUT_QUINT:Lme/blue/protocol/fov/FovEasing;
+       103: aastore
+       104: dup
+       105: bipush        15
+       107: getstatic     #49                 // Field EASE_IN_OUT_QUINT:Lme/blue/protocol/fov/FovEasing;
+       110: aastore
+       111: dup
+       112: bipush        16
+       114: getstatic     #52                 // Field EASE_IN_EXPO:Lme/blue/protocol/fov/FovEasing;
+       117: aastore
+       118: dup
+       119: bipush        17
+       121: getstatic     #55                 // Field EASE_OUT_EXPO:Lme/blue/protocol/fov/FovEasing;
+       124: aastore
+       125: dup
+       126: bipush        18
+       128: getstatic     #58                 // Field EASE_IN_OUT_EXPO:Lme/blue/protocol/fov/FovEasing;
+       131: aastore
+       132: dup
+       133: bipush        19
+       135: getstatic     #61                 // Field EASE_IN_CIRC:Lme/blue/protocol/fov/FovEasing;
+       138: aastore
+       139: dup
+       140: bipush        20
+       142: getstatic     #64                 // Field EASE_OUT_CIRC:Lme/blue/protocol/fov/FovEasing;
+       145: aastore
+       146: dup
+       147: bipush        21
+       149: getstatic     #67                 // Field EASE_IN_OUT_CIRC:Lme/blue/protocol/fov/FovEasing;
+       152: aastore
+       153: dup
+       154: bipush        22
+       156: getstatic     #70                 // Field EASE_IN_BACK:Lme/blue/protocol/fov/FovEasing;
+       159: aastore
+       160: dup
+       161: bipush        23
+       163: getstatic     #73                 // Field EASE_OUT_BACK:Lme/blue/protocol/fov/FovEasing;
+       166: aastore
+       167: dup
+       168: bipush        24
+       170: getstatic     #76                 // Field EASE_IN_OUT_BACK:Lme/blue/protocol/fov/FovEasing;
+       173: aastore
+       174: dup
+       175: bipush        25
+       177: getstatic     #79                 // Field EASE_IN_ELASTIC:Lme/blue/protocol/fov/FovEasing;
+       180: aastore
+       181: dup
+       182: bipush        26
+       184: getstatic     #82                 // Field EASE_OUT_ELASTIC:Lme/blue/protocol/fov/FovEasing;
+       187: aastore
+       188: dup
+       189: bipush        27
+       191: getstatic     #85                 // Field EASE_IN_OUT_ELASTIC:Lme/blue/protocol/fov/FovEasing;
+       194: aastore
+       195: dup
+       196: bipush        28
+       198: getstatic     #88                 // Field EASE_IN_BOUNCE:Lme/blue/protocol/fov/FovEasing;
+       201: aastore
+       202: dup
+       203: bipush        29
+       205: getstatic     #91                 // Field EASE_OUT_BOUNCE:Lme/blue/protocol/fov/FovEasing;
+       208: aastore
+       209: dup
+       210: bipush        30
+       212: getstatic     #94                 // Field EASE_IN_OUT_BOUNCE:Lme/blue/protocol/fov/FovEasing;
+       215: aastore
+       216: areturn
+
+  static {};
+    Code:
+         0: new           #1                  // class me/blue/protocol/fov/FovEasing
+         3: dup
+         4: ldc           #130                // String LINEAR
+         6: iconst_0
+         7: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+        10: putstatic     #3                  // Field LINEAR:Lme/blue/protocol/fov/FovEasing;
+        13: new           #1                  // class me/blue/protocol/fov/FovEasing
+        16: dup
+        17: ldc           #132                // String EASE_IN_SINE
+        19: iconst_1
+        20: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+        23: putstatic     #7                  // Field EASE_IN_SINE:Lme/blue/protocol/fov/FovEasing;
+        26: new           #1                  // class me/blue/protocol/fov/FovEasing
+        29: dup
+        30: ldc           #133                // String EASE_OUT_SINE
+        32: iconst_2
+        33: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+        36: putstatic     #10                 // Field EASE_OUT_SINE:Lme/blue/protocol/fov/FovEasing;
+        39: new           #1                  // class me/blue/protocol/fov/FovEasing
+        42: dup
+        43: ldc           #134                // String EASE_IN_OUT_SINE
+        45: iconst_3
+        46: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+        49: putstatic     #13                 // Field EASE_IN_OUT_SINE:Lme/blue/protocol/fov/FovEasing;
+        52: new           #1                  // class me/blue/protocol/fov/FovEasing
+        55: dup
+        56: ldc           #135                // String EASE_IN_QUAD
+        58: iconst_4
+        59: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+        62: putstatic     #16                 // Field EASE_IN_QUAD:Lme/blue/protocol/fov/FovEasing;
+        65: new           #1                  // class me/blue/protocol/fov/FovEasing
+        68: dup
+        69: ldc           #136                // String EASE_OUT_QUAD
+        71: iconst_5
+        72: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+        75: putstatic     #19                 // Field EASE_OUT_QUAD:Lme/blue/protocol/fov/FovEasing;
+        78: new           #1                  // class me/blue/protocol/fov/FovEasing
+        81: dup
+        82: ldc           #137                // String EASE_IN_OUT_QUAD
+        84: bipush        6
+        86: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+        89: putstatic     #22                 // Field EASE_IN_OUT_QUAD:Lme/blue/protocol/fov/FovEasing;
+        92: new           #1                  // class me/blue/protocol/fov/FovEasing
+        95: dup
+        96: ldc           #138                // String EASE_IN_CUBIC
+        98: bipush        7
+       100: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       103: putstatic     #25                 // Field EASE_IN_CUBIC:Lme/blue/protocol/fov/FovEasing;
+       106: new           #1                  // class me/blue/protocol/fov/FovEasing
+       109: dup
+       110: ldc           #139                // String EASE_OUT_CUBIC
+       112: bipush        8
+       114: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       117: putstatic     #28                 // Field EASE_OUT_CUBIC:Lme/blue/protocol/fov/FovEasing;
+       120: new           #1                  // class me/blue/protocol/fov/FovEasing
+       123: dup
+       124: ldc           #140                // String EASE_IN_OUT_CUBIC
+       126: bipush        9
+       128: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       131: putstatic     #31                 // Field EASE_IN_OUT_CUBIC:Lme/blue/protocol/fov/FovEasing;
+       134: new           #1                  // class me/blue/protocol/fov/FovEasing
+       137: dup
+       138: ldc           #141                // String EASE_IN_QUART
+       140: bipush        10
+       142: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       145: putstatic     #34                 // Field EASE_IN_QUART:Lme/blue/protocol/fov/FovEasing;
+       148: new           #1                  // class me/blue/protocol/fov/FovEasing
+       151: dup
+       152: ldc           #142                // String EASE_OUT_QUART
+       154: bipush        11
+       156: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       159: putstatic     #37                 // Field EASE_OUT_QUART:Lme/blue/protocol/fov/FovEasing;
+       162: new           #1                  // class me/blue/protocol/fov/FovEasing
+       165: dup
+       166: ldc           #143                // String EASE_IN_OUT_QUART
+       168: bipush        12
+       170: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       173: putstatic     #40                 // Field EASE_IN_OUT_QUART:Lme/blue/protocol/fov/FovEasing;
+       176: new           #1                  // class me/blue/protocol/fov/FovEasing
+       179: dup
+       180: ldc           #144                // String EASE_IN_QUINT
+       182: bipush        13
+       184: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       187: putstatic     #43                 // Field EASE_IN_QUINT:Lme/blue/protocol/fov/FovEasing;
+       190: new           #1                  // class me/blue/protocol/fov/FovEasing
+       193: dup
+       194: ldc           #145                // String EASE_OUT_QUINT
+       196: bipush        14
+       198: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       201: putstatic     #46                 // Field EASE_OUT_QUINT:Lme/blue/protocol/fov/FovEasing;
+       204: new           #1                  // class me/blue/protocol/fov/FovEasing
+       207: dup
+       208: ldc           #146                // String EASE_IN_OUT_QUINT
+       210: bipush        15
+       212: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       215: putstatic     #49                 // Field EASE_IN_OUT_QUINT:Lme/blue/protocol/fov/FovEasing;
+       218: new           #1                  // class me/blue/protocol/fov/FovEasing
+       221: dup
+       222: ldc           #147                // String EASE_IN_EXPO
+       224: bipush        16
+       226: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       229: putstatic     #52                 // Field EASE_IN_EXPO:Lme/blue/protocol/fov/FovEasing;
+       232: new           #1                  // class me/blue/protocol/fov/FovEasing
+       235: dup
+       236: ldc           #148                // String EASE_OUT_EXPO
+       238: bipush        17
+       240: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       243: putstatic     #55                 // Field EASE_OUT_EXPO:Lme/blue/protocol/fov/FovEasing;
+       246: new           #1                  // class me/blue/protocol/fov/FovEasing
+       249: dup
+       250: ldc           #149                // String EASE_IN_OUT_EXPO
+       252: bipush        18
+       254: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       257: putstatic     #58                 // Field EASE_IN_OUT_EXPO:Lme/blue/protocol/fov/FovEasing;
+       260: new           #1                  // class me/blue/protocol/fov/FovEasing
+       263: dup
+       264: ldc           #150                // String EASE_IN_CIRC
+       266: bipush        19
+       268: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       271: putstatic     #61                 // Field EASE_IN_CIRC:Lme/blue/protocol/fov/FovEasing;
+       274: new           #1                  // class me/blue/protocol/fov/FovEasing
+       277: dup
+       278: ldc           #151                // String EASE_OUT_CIRC
+       280: bipush        20
+       282: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       285: putstatic     #64                 // Field EASE_OUT_CIRC:Lme/blue/protocol/fov/FovEasing;
+       288: new           #1                  // class me/blue/protocol/fov/FovEasing
+       291: dup
+       292: ldc           #152                // String EASE_IN_OUT_CIRC
+       294: bipush        21
+       296: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       299: putstatic     #67                 // Field EASE_IN_OUT_CIRC:Lme/blue/protocol/fov/FovEasing;
+       302: new           #1                  // class me/blue/protocol/fov/FovEasing
+       305: dup
+       306: ldc           #153                // String EASE_IN_BACK
+       308: bipush        22
+       310: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       313: putstatic     #70                 // Field EASE_IN_BACK:Lme/blue/protocol/fov/FovEasing;
+       316: new           #1                  // class me/blue/protocol/fov/FovEasing
+       319: dup
+       320: ldc           #154                // String EASE_OUT_BACK
+       322: bipush        23
+       324: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       327: putstatic     #73                 // Field EASE_OUT_BACK:Lme/blue/protocol/fov/FovEasing;
+       330: new           #1                  // class me/blue/protocol/fov/FovEasing
+       333: dup
+       334: ldc           #155                // String EASE_IN_OUT_BACK
+       336: bipush        24
+       338: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       341: putstatic     #76                 // Field EASE_IN_OUT_BACK:Lme/blue/protocol/fov/FovEasing;
+       344: new           #1                  // class me/blue/protocol/fov/FovEasing
+       347: dup
+       348: ldc           #156                // String EASE_IN_ELASTIC
+       350: bipush        25
+       352: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       355: putstatic     #79                 // Field EASE_IN_ELASTIC:Lme/blue/protocol/fov/FovEasing;
+       358: new           #1                  // class me/blue/protocol/fov/FovEasing
+       361: dup
+       362: ldc           #157                // String EASE_OUT_ELASTIC
+       364: bipush        26
+       366: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       369: putstatic     #82                 // Field EASE_OUT_ELASTIC:Lme/blue/protocol/fov/FovEasing;
+       372: new           #1                  // class me/blue/protocol/fov/FovEasing
+       375: dup
+       376: ldc           #158                // String EASE_IN_OUT_ELASTIC
+       378: bipush        27
+       380: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       383: putstatic     #85                 // Field EASE_IN_OUT_ELASTIC:Lme/blue/protocol/fov/FovEasing;
+       386: new           #1                  // class me/blue/protocol/fov/FovEasing
+       389: dup
+       390: ldc           #159                // String EASE_IN_BOUNCE
+       392: bipush        28
+       394: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       397: putstatic     #88                 // Field EASE_IN_BOUNCE:Lme/blue/protocol/fov/FovEasing;
+       400: new           #1                  // class me/blue/protocol/fov/FovEasing
+       403: dup
+       404: ldc           #160                // String EASE_OUT_BOUNCE
+       406: bipush        29
+       408: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       411: putstatic     #91                 // Field EASE_OUT_BOUNCE:Lme/blue/protocol/fov/FovEasing;
+       414: new           #1                  // class me/blue/protocol/fov/FovEasing
+       417: dup
+       418: ldc           #161                // String EASE_IN_OUT_BOUNCE
+       420: bipush        30
+       422: invokespecial #131                // Method "<init>":(Ljava/lang/String;I)V
+       425: putstatic     #94                 // Field EASE_IN_OUT_BOUNCE:Lme/blue/protocol/fov/FovEasing;
+       428: invokestatic  #162                // Method $values:()[Lme/blue/protocol/fov/FovEasing;
+       431: putstatic     #97                 // Field $VALUES:[Lme/blue/protocol/fov/FovEasing;
+       434: return
+}

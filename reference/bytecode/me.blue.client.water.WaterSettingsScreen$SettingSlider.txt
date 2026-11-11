@@ -1,0 +1,137 @@
+Compiled from "WaterSettingsScreen.java"
+final class me.blue.client.water.WaterSettingsScreen$SettingSlider extends net.minecraft.client.gui.components.AbstractSliderButton {
+  private final me.blue.client.water.WaterSettingsInfo$Info info;
+
+  me.blue.client.water.WaterSettingsScreen$SettingSlider(me.blue.client.water.WaterSettingsInfo$Info);
+    Code:
+         0: aload_0
+         1: iconst_0
+         2: iconst_0
+         3: sipush        150
+         6: bipush        20
+         8: invokestatic  #1                  // InterfaceMethod net/minecraft/network/chat/Component.empty:()Lnet/minecraft/network/chat/MutableComponent;
+        11: aload_1
+        12: invokestatic  #7                  // Method position:(Lme/blue/client/water/WaterSettingsInfo$Info;)D
+        15: invokespecial #13                 // Method net/minecraft/client/gui/components/AbstractSliderButton."<init>":(IIIILnet/minecraft/network/chat/Component;D)V
+        18: aload_0
+        19: aload_1
+        20: putfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        23: aload_0
+        24: invokevirtual #23                 // Method updateMessage:()V
+        27: return
+
+  private static double position(me.blue.client.water.WaterSettingsInfo$Info);
+    Code:
+         0: aload_0
+         1: invokevirtual #27                 // Method me/blue/client/water/WaterSettingsInfo$Info.max:()D
+         4: aload_0
+         5: invokevirtual #33                 // Method me/blue/client/water/WaterSettingsInfo$Info.min:()D
+         8: dsub
+         9: dstore_1
+        10: dload_1
+        11: dconst_0
+        12: dcmpg
+        13: ifgt          18
+        16: dconst_0
+        17: dreturn
+        18: aload_0
+        19: invokevirtual #36                 // Method me/blue/client/water/WaterSettingsInfo$Info.name:()Ljava/lang/String;
+        22: invokestatic  #40                 // Method me/blue/client/water/WaterSettingsScreen.value:(Ljava/lang/String;)Ljava/lang/String;
+        25: invokestatic  #46                 // Method java/lang/Double.parseDouble:(Ljava/lang/String;)D
+        28: aload_0
+        29: invokevirtual #33                 // Method me/blue/client/water/WaterSettingsInfo$Info.min:()D
+        32: dsub
+        33: dload_1
+        34: ddiv
+        35: dconst_0
+        36: dconst_1
+        37: invokestatic  #52                 // Method java/lang/Math.clamp:(DDD)D
+        40: dreturn
+        41: astore_3
+        42: dconst_0
+        43: dreturn
+      Exception table:
+         from    to  target type
+            18    40    41   Class java/lang/NumberFormatException
+
+  private double picked();
+    Code:
+         0: aload_0
+         1: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+         4: invokevirtual #33                 // Method me/blue/client/water/WaterSettingsInfo$Info.min:()D
+         7: aload_0
+         8: getfield      #60                 // Field value:D
+        11: aload_0
+        12: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        15: invokevirtual #27                 // Method me/blue/client/water/WaterSettingsInfo$Info.max:()D
+        18: aload_0
+        19: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        22: invokevirtual #33                 // Method me/blue/client/water/WaterSettingsInfo$Info.min:()D
+        25: dsub
+        26: dmul
+        27: dadd
+        28: dstore_1
+        29: aload_0
+        30: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        33: invokevirtual #63                 // Method me/blue/client/water/WaterSettingsInfo$Info.step:()D
+        36: dconst_0
+        37: dcmpl
+        38: ifle          79
+        41: aload_0
+        42: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        45: invokevirtual #33                 // Method me/blue/client/water/WaterSettingsInfo$Info.min:()D
+        48: dload_1
+        49: aload_0
+        50: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        53: invokevirtual #33                 // Method me/blue/client/water/WaterSettingsInfo$Info.min:()D
+        56: dsub
+        57: aload_0
+        58: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        61: invokevirtual #63                 // Method me/blue/client/water/WaterSettingsInfo$Info.step:()D
+        64: ddiv
+        65: invokestatic  #66                 // Method java/lang/Math.round:(D)J
+        68: l2d
+        69: aload_0
+        70: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        73: invokevirtual #63                 // Method me/blue/client/water/WaterSettingsInfo$Info.step:()D
+        76: dmul
+        77: dadd
+        78: dstore_1
+        79: dload_1
+        80: aload_0
+        81: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        84: invokevirtual #33                 // Method me/blue/client/water/WaterSettingsInfo$Info.min:()D
+        87: aload_0
+        88: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        91: invokevirtual #27                 // Method me/blue/client/water/WaterSettingsInfo$Info.max:()D
+        94: invokestatic  #52                 // Method java/lang/Math.clamp:(DDD)D
+        97: dreturn
+
+  protected void updateMessage();
+    Code:
+         0: aload_0
+         1: aload_0
+         2: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+         5: invokevirtual #70                 // Method me/blue/client/water/WaterSettingsInfo$Info.label:()Ljava/lang/String;
+         8: aload_0
+         9: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        12: invokevirtual #36                 // Method me/blue/client/water/WaterSettingsInfo$Info.name:()Ljava/lang/String;
+        15: invokestatic  #40                 // Method me/blue/client/water/WaterSettingsScreen.value:(Ljava/lang/String;)Ljava/lang/String;
+        18: invokedynamic #73,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        23: invokestatic  #77                 // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        26: invokevirtual #81                 // Method setMessage:(Lnet/minecraft/network/chat/Component;)V
+        29: return
+
+  protected void applyValue();
+    Code:
+         0: aload_0
+         1: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+         4: invokevirtual #36                 // Method me/blue/client/water/WaterSettingsInfo$Info.name:()Ljava/lang/String;
+         7: aload_0
+         8: getfield      #19                 // Field info:Lme/blue/client/water/WaterSettingsInfo$Info;
+        11: aload_0
+        12: invokevirtual #85                 // Method picked:()D
+        15: invokestatic  #88                 // Method me/blue/client/water/WaterSettingsScreen.format:(Lme/blue/client/water/WaterSettingsInfo$Info;D)Ljava/lang/String;
+        18: invokestatic  #92                 // Method me/blue/client/water/WaterSettingsScreen.set:(Ljava/lang/String;Ljava/lang/String;)V
+        21: return
+}

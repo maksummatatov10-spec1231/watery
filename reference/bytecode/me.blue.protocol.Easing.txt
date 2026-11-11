@@ -1,0 +1,1030 @@
+Compiled from "Easing.java"
+public final class me.blue.protocol.Easing extends java.lang.Enum<me.blue.protocol.Easing> {
+  public static final me.blue.protocol.Easing LINEAR;
+
+  public static final me.blue.protocol.Easing EASE_IN_SINE;
+
+  public static final me.blue.protocol.Easing EASE_OUT_SINE;
+
+  public static final me.blue.protocol.Easing EASE_IN_OUT_SINE;
+
+  public static final me.blue.protocol.Easing EASE_IN_QUAD;
+
+  public static final me.blue.protocol.Easing EASE_OUT_QUAD;
+
+  public static final me.blue.protocol.Easing EASE_IN_OUT_QUAD;
+
+  public static final me.blue.protocol.Easing EASE_IN_CUBIC;
+
+  public static final me.blue.protocol.Easing EASE_OUT_CUBIC;
+
+  public static final me.blue.protocol.Easing EASE_IN_OUT_CUBIC;
+
+  public static final me.blue.protocol.Easing EASE_IN_QUART;
+
+  public static final me.blue.protocol.Easing EASE_OUT_QUART;
+
+  public static final me.blue.protocol.Easing EASE_IN_OUT_QUART;
+
+  public static final me.blue.protocol.Easing EASE_IN_QUINT;
+
+  public static final me.blue.protocol.Easing EASE_OUT_QUINT;
+
+  public static final me.blue.protocol.Easing EASE_IN_OUT_QUINT;
+
+  public static final me.blue.protocol.Easing EASE_IN_EXPO;
+
+  public static final me.blue.protocol.Easing EASE_OUT_EXPO;
+
+  public static final me.blue.protocol.Easing EASE_IN_OUT_EXPO;
+
+  public static final me.blue.protocol.Easing EASE_IN_CIRC;
+
+  public static final me.blue.protocol.Easing EASE_OUT_CIRC;
+
+  public static final me.blue.protocol.Easing EASE_IN_OUT_CIRC;
+
+  public static final me.blue.protocol.Easing EASE_IN_BACK;
+
+  public static final me.blue.protocol.Easing EASE_OUT_BACK;
+
+  public static final me.blue.protocol.Easing EASE_IN_OUT_BACK;
+
+  public static final me.blue.protocol.Easing EASE_IN_ELASTIC;
+
+  public static final me.blue.protocol.Easing EASE_OUT_ELASTIC;
+
+  public static final me.blue.protocol.Easing EASE_IN_OUT_ELASTIC;
+
+  public static final me.blue.protocol.Easing EASE_IN_BOUNCE;
+
+  public static final me.blue.protocol.Easing EASE_OUT_BOUNCE;
+
+  public static final me.blue.protocol.Easing EASE_IN_OUT_BOUNCE;
+
+  private static final double BACK = 1.70158d;
+
+  private static final double BACK_IN_OUT = 2.5949095d;
+
+  private static final double ELASTIC = 2.0943951023931953d;
+
+  private static final double ELASTIC_IN_OUT = 1.3962634015954636d;
+
+  private static final me.blue.protocol.Easing[] $VALUES;
+
+  public static me.blue.protocol.Easing[] values();
+    Code:
+         0: getstatic     #99                 // Field $VALUES:[Lme/blue/protocol/Easing;
+         3: invokevirtual #103                // Method "[Lme/blue/protocol/Easing;".clone:()Ljava/lang/Object;
+         6: checkcast     #104                // class "[Lme/blue/protocol/Easing;"
+         9: areturn
+
+  public static me.blue.protocol.Easing valueOf(java.lang.String);
+    Code:
+         0: ldc           #1                  // class me/blue/protocol/Easing
+         2: aload_0
+         3: invokestatic  #108                // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+         6: checkcast     #1                  // class me/blue/protocol/Easing
+         9: areturn
+
+  private me.blue.protocol.Easing();
+    Code:
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: invokespecial #114                // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+         6: return
+
+  public double apply(double);
+    Code:
+         0: dload_1
+         1: dconst_0
+         2: dcmpg
+         3: ifgt          8
+         6: dconst_0
+         7: dreturn
+         8: dload_1
+         9: dconst_1
+        10: dcmpl
+        11: iflt          16
+        14: dconst_1
+        15: dreturn
+        16: aload_0
+        17: invokevirtual #118                // Method ordinal:()I
+        20: tableswitch   { // 0 to 30
+
+                       0: 170
+
+                       1: 174
+
+                       2: 191
+
+                       3: 206
+
+                       4: 224
+
+                       5: 230
+
+                       6: 242
+
+                       7: 284
+
+                       8: 292
+
+                       9: 306
+
+                      10: 350
+
+                      11: 360
+
+                      12: 374
+
+                      13: 420
+
+                      14: 430
+
+                      15: 444
+
+                      16: 490
+
+                      17: 508
+
+                      18: 524
+
+                      19: 580
+
+                      20: 593
+
+                      21: 610
+
+                      22: 672
+
+                      23: 692
+
+                      24: 724
+
+                      25: 804
+
+                      26: 840
+
+                      27: 873
+
+                      28: 962
+
+                      29: 973
+
+                      30: 980
+                 default: 160
+            }
+       160: new           #122                // class java/lang/MatchException
+       163: dup
+       164: aconst_null
+       165: aconst_null
+       166: invokespecial #124                // Method java/lang/MatchException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+       169: athrow
+       170: dload_1
+       171: goto          1023
+       174: dconst_1
+       175: dload_1
+       176: ldc2_w        #127                // double 3.141592653589793d
+       179: dmul
+       180: ldc2_w        #129                // double 2.0d
+       183: ddiv
+       184: invokestatic  #131                // Method java/lang/Math.cos:(D)D
+       187: dsub
+       188: goto          1023
+       191: dload_1
+       192: ldc2_w        #127                // double 3.141592653589793d
+       195: dmul
+       196: ldc2_w        #129                // double 2.0d
+       199: ddiv
+       200: invokestatic  #135                // Method java/lang/Math.sin:(D)D
+       203: goto          1023
+       206: ldc2_w        #127                // double 3.141592653589793d
+       209: dload_1
+       210: dmul
+       211: invokestatic  #131                // Method java/lang/Math.cos:(D)D
+       214: dconst_1
+       215: dsub
+       216: dneg
+       217: ldc2_w        #129                // double 2.0d
+       220: ddiv
+       221: goto          1023
+       224: dload_1
+       225: dload_1
+       226: dmul
+       227: goto          1023
+       230: dconst_1
+       231: dconst_1
+       232: dload_1
+       233: dsub
+       234: dconst_1
+       235: dload_1
+       236: dsub
+       237: dmul
+       238: dsub
+       239: goto          1023
+       242: dload_1
+       243: ldc2_w        #138                // double 0.5d
+       246: dcmpg
+       247: ifge          260
+       250: ldc2_w        #129                // double 2.0d
+       253: dload_1
+       254: dmul
+       255: dload_1
+       256: dmul
+       257: goto          1023
+       260: dconst_1
+       261: ldc2_w        #140                // double -2.0d
+       264: dload_1
+       265: dmul
+       266: ldc2_w        #129                // double 2.0d
+       269: dadd
+       270: ldc2_w        #129                // double 2.0d
+       273: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       276: ldc2_w        #129                // double 2.0d
+       279: ddiv
+       280: dsub
+       281: goto          1023
+       284: dload_1
+       285: dload_1
+       286: dmul
+       287: dload_1
+       288: dmul
+       289: goto          1023
+       292: dconst_1
+       293: dconst_1
+       294: dload_1
+       295: dsub
+       296: ldc2_w        #146                // double 3.0d
+       299: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       302: dsub
+       303: goto          1023
+       306: dload_1
+       307: ldc2_w        #138                // double 0.5d
+       310: dcmpg
+       311: ifge          326
+       314: ldc2_w        #148                // double 4.0d
+       317: dload_1
+       318: dmul
+       319: dload_1
+       320: dmul
+       321: dload_1
+       322: dmul
+       323: goto          1023
+       326: dconst_1
+       327: ldc2_w        #140                // double -2.0d
+       330: dload_1
+       331: dmul
+       332: ldc2_w        #129                // double 2.0d
+       335: dadd
+       336: ldc2_w        #146                // double 3.0d
+       339: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       342: ldc2_w        #129                // double 2.0d
+       345: ddiv
+       346: dsub
+       347: goto          1023
+       350: dload_1
+       351: ldc2_w        #148                // double 4.0d
+       354: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       357: goto          1023
+       360: dconst_1
+       361: dconst_1
+       362: dload_1
+       363: dsub
+       364: ldc2_w        #148                // double 4.0d
+       367: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       370: dsub
+       371: goto          1023
+       374: dload_1
+       375: ldc2_w        #138                // double 0.5d
+       378: dcmpg
+       379: ifge          396
+       382: ldc2_w        #150                // double 8.0d
+       385: dload_1
+       386: ldc2_w        #148                // double 4.0d
+       389: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       392: dmul
+       393: goto          1023
+       396: dconst_1
+       397: ldc2_w        #140                // double -2.0d
+       400: dload_1
+       401: dmul
+       402: ldc2_w        #129                // double 2.0d
+       405: dadd
+       406: ldc2_w        #148                // double 4.0d
+       409: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       412: ldc2_w        #129                // double 2.0d
+       415: ddiv
+       416: dsub
+       417: goto          1023
+       420: dload_1
+       421: ldc2_w        #152                // double 5.0d
+       424: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       427: goto          1023
+       430: dconst_1
+       431: dconst_1
+       432: dload_1
+       433: dsub
+       434: ldc2_w        #152                // double 5.0d
+       437: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       440: dsub
+       441: goto          1023
+       444: dload_1
+       445: ldc2_w        #138                // double 0.5d
+       448: dcmpg
+       449: ifge          466
+       452: ldc2_w        #154                // double 16.0d
+       455: dload_1
+       456: ldc2_w        #152                // double 5.0d
+       459: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       462: dmul
+       463: goto          1023
+       466: dconst_1
+       467: ldc2_w        #140                // double -2.0d
+       470: dload_1
+       471: dmul
+       472: ldc2_w        #129                // double 2.0d
+       475: dadd
+       476: ldc2_w        #152                // double 5.0d
+       479: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       482: ldc2_w        #129                // double 2.0d
+       485: ddiv
+       486: dsub
+       487: goto          1023
+       490: ldc2_w        #129                // double 2.0d
+       493: ldc2_w        #156                // double 10.0d
+       496: dload_1
+       497: dmul
+       498: ldc2_w        #156                // double 10.0d
+       501: dsub
+       502: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       505: goto          1023
+       508: dconst_1
+       509: ldc2_w        #129                // double 2.0d
+       512: ldc2_w        #158                // double -10.0d
+       515: dload_1
+       516: dmul
+       517: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       520: dsub
+       521: goto          1023
+       524: dload_1
+       525: ldc2_w        #138                // double 0.5d
+       528: dcmpg
+       529: ifge          554
+       532: ldc2_w        #129                // double 2.0d
+       535: ldc2_w        #160                // double 20.0d
+       538: dload_1
+       539: dmul
+       540: ldc2_w        #156                // double 10.0d
+       543: dsub
+       544: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       547: ldc2_w        #129                // double 2.0d
+       550: ddiv
+       551: goto          1023
+       554: ldc2_w        #129                // double 2.0d
+       557: ldc2_w        #129                // double 2.0d
+       560: ldc2_w        #162                // double -20.0d
+       563: dload_1
+       564: dmul
+       565: ldc2_w        #156                // double 10.0d
+       568: dadd
+       569: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       572: dsub
+       573: ldc2_w        #129                // double 2.0d
+       576: ddiv
+       577: goto          1023
+       580: dconst_1
+       581: dconst_1
+       582: dload_1
+       583: dload_1
+       584: dmul
+       585: dsub
+       586: invokestatic  #164                // Method java/lang/Math.sqrt:(D)D
+       589: dsub
+       590: goto          1023
+       593: dconst_1
+       594: dload_1
+       595: dconst_1
+       596: dsub
+       597: ldc2_w        #129                // double 2.0d
+       600: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       603: dsub
+       604: invokestatic  #164                // Method java/lang/Math.sqrt:(D)D
+       607: goto          1023
+       610: dload_1
+       611: ldc2_w        #138                // double 0.5d
+       614: dcmpg
+       615: ifge          643
+       618: dconst_1
+       619: dconst_1
+       620: ldc2_w        #129                // double 2.0d
+       623: dload_1
+       624: dmul
+       625: ldc2_w        #129                // double 2.0d
+       628: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       631: dsub
+       632: invokestatic  #164                // Method java/lang/Math.sqrt:(D)D
+       635: dsub
+       636: ldc2_w        #129                // double 2.0d
+       639: ddiv
+       640: goto          1023
+       643: dconst_1
+       644: ldc2_w        #140                // double -2.0d
+       647: dload_1
+       648: dmul
+       649: ldc2_w        #129                // double 2.0d
+       652: dadd
+       653: ldc2_w        #129                // double 2.0d
+       656: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       659: dsub
+       660: invokestatic  #164                // Method java/lang/Math.sqrt:(D)D
+       663: dconst_1
+       664: dadd
+       665: ldc2_w        #129                // double 2.0d
+       668: ddiv
+       669: goto          1023
+       672: ldc2_w        #167                // double 2.70158d
+       675: dload_1
+       676: dmul
+       677: dload_1
+       678: dmul
+       679: dload_1
+       680: dmul
+       681: ldc2_w        #169                // double 1.70158d
+       684: dload_1
+       685: dmul
+       686: dload_1
+       687: dmul
+       688: dsub
+       689: goto          1023
+       692: dconst_1
+       693: ldc2_w        #167                // double 2.70158d
+       696: dload_1
+       697: dconst_1
+       698: dsub
+       699: ldc2_w        #146                // double 3.0d
+       702: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       705: dmul
+       706: dadd
+       707: ldc2_w        #169                // double 1.70158d
+       710: dload_1
+       711: dconst_1
+       712: dsub
+       713: ldc2_w        #129                // double 2.0d
+       716: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       719: dmul
+       720: dadd
+       721: goto          1023
+       724: dload_1
+       725: ldc2_w        #138                // double 0.5d
+       728: dcmpg
+       729: ifge          760
+       732: ldc2_w        #129                // double 2.0d
+       735: dload_1
+       736: dmul
+       737: ldc2_w        #129                // double 2.0d
+       740: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       743: ldc2_w        #171                // double 7.189819d
+       746: dload_1
+       747: dmul
+       748: ldc2_w        #173                // double 2.5949095d
+       751: dsub
+       752: dmul
+       753: ldc2_w        #129                // double 2.0d
+       756: ddiv
+       757: goto          1023
+       760: ldc2_w        #129                // double 2.0d
+       763: dload_1
+       764: dmul
+       765: ldc2_w        #129                // double 2.0d
+       768: dsub
+       769: ldc2_w        #129                // double 2.0d
+       772: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       775: ldc2_w        #175                // double 3.5949095d
+       778: dload_1
+       779: ldc2_w        #129                // double 2.0d
+       782: dmul
+       783: ldc2_w        #129                // double 2.0d
+       786: dsub
+       787: dmul
+       788: ldc2_w        #173                // double 2.5949095d
+       791: dadd
+       792: dmul
+       793: ldc2_w        #129                // double 2.0d
+       796: dadd
+       797: ldc2_w        #129                // double 2.0d
+       800: ddiv
+       801: goto          1023
+       804: ldc2_w        #129                // double 2.0d
+       807: ldc2_w        #156                // double 10.0d
+       810: dload_1
+       811: dmul
+       812: ldc2_w        #156                // double 10.0d
+       815: dsub
+       816: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       819: dneg
+       820: dload_1
+       821: ldc2_w        #156                // double 10.0d
+       824: dmul
+       825: ldc2_w        #177                // double 10.75d
+       828: dsub
+       829: ldc2_w        #179                // double 2.0943951023931953d
+       832: dmul
+       833: invokestatic  #135                // Method java/lang/Math.sin:(D)D
+       836: dmul
+       837: goto          1023
+       840: ldc2_w        #129                // double 2.0d
+       843: ldc2_w        #158                // double -10.0d
+       846: dload_1
+       847: dmul
+       848: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       851: dload_1
+       852: ldc2_w        #156                // double 10.0d
+       855: dmul
+       856: ldc2_w        #181                // double 0.75d
+       859: dsub
+       860: ldc2_w        #179                // double 2.0943951023931953d
+       863: dmul
+       864: invokestatic  #135                // Method java/lang/Math.sin:(D)D
+       867: dmul
+       868: dconst_1
+       869: dadd
+       870: goto          1023
+       873: dload_1
+       874: ldc2_w        #138                // double 0.5d
+       877: dcmpg
+       878: ifge          921
+       881: ldc2_w        #129                // double 2.0d
+       884: ldc2_w        #160                // double 20.0d
+       887: dload_1
+       888: dmul
+       889: ldc2_w        #156                // double 10.0d
+       892: dsub
+       893: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       896: ldc2_w        #160                // double 20.0d
+       899: dload_1
+       900: dmul
+       901: ldc2_w        #183                // double 11.125d
+       904: dsub
+       905: ldc2_w        #185                // double 1.3962634015954636d
+       908: dmul
+       909: invokestatic  #135                // Method java/lang/Math.sin:(D)D
+       912: dmul
+       913: dneg
+       914: ldc2_w        #129                // double 2.0d
+       917: ddiv
+       918: goto          1023
+       921: ldc2_w        #129                // double 2.0d
+       924: ldc2_w        #162                // double -20.0d
+       927: dload_1
+       928: dmul
+       929: ldc2_w        #156                // double 10.0d
+       932: dadd
+       933: invokestatic  #142                // Method java/lang/Math.pow:(DD)D
+       936: ldc2_w        #160                // double 20.0d
+       939: dload_1
+       940: dmul
+       941: ldc2_w        #183                // double 11.125d
+       944: dsub
+       945: ldc2_w        #185                // double 1.3962634015954636d
+       948: dmul
+       949: invokestatic  #135                // Method java/lang/Math.sin:(D)D
+       952: dmul
+       953: ldc2_w        #129                // double 2.0d
+       956: ddiv
+       957: dconst_1
+       958: dadd
+       959: goto          1023
+       962: dconst_1
+       963: dconst_1
+       964: dload_1
+       965: dsub
+       966: invokestatic  #187                // Method bounceOut:(D)D
+       969: dsub
+       970: goto          1023
+       973: dload_1
+       974: invokestatic  #187                // Method bounceOut:(D)D
+       977: goto          1023
+       980: dload_1
+       981: ldc2_w        #138                // double 0.5d
+       984: dcmpg
+       985: ifge          1007
+       988: dconst_1
+       989: dconst_1
+       990: ldc2_w        #129                // double 2.0d
+       993: dload_1
+       994: dmul
+       995: dsub
+       996: invokestatic  #187                // Method bounceOut:(D)D
+       999: dsub
+      1000: ldc2_w        #129                // double 2.0d
+      1003: ddiv
+      1004: goto          1023
+      1007: dconst_1
+      1008: ldc2_w        #129                // double 2.0d
+      1011: dload_1
+      1012: dmul
+      1013: dconst_1
+      1014: dsub
+      1015: invokestatic  #187                // Method bounceOut:(D)D
+      1018: dadd
+      1019: ldc2_w        #129                // double 2.0d
+      1022: ddiv
+      1023: dreturn
+
+  private static double bounceOut(double);
+    Code:
+         0: ldc2_w        #190                // double 7.5625d
+         3: dstore_2
+         4: ldc2_w        #192                // double 2.75d
+         7: dstore        4
+         9: dload_0
+        10: dconst_1
+        11: dload         4
+        13: ddiv
+        14: dcmpg
+        15: ifge          24
+        18: dload_2
+        19: dload_0
+        20: dmul
+        21: dload_0
+        22: dmul
+        23: dreturn
+        24: dload_0
+        25: ldc2_w        #129                // double 2.0d
+        28: dload         4
+        30: ddiv
+        31: dcmpg
+        32: ifge          54
+        35: dload_0
+        36: ldc2_w        #194                // double 1.5d
+        39: dload         4
+        41: ddiv
+        42: dsub
+        43: dstore_0
+        44: dload_2
+        45: dload_0
+        46: dmul
+        47: dload_0
+        48: dmul
+        49: ldc2_w        #181                // double 0.75d
+        52: dadd
+        53: dreturn
+        54: dload_0
+        55: ldc2_w        #196                // double 2.5d
+        58: dload         4
+        60: ddiv
+        61: dcmpg
+        62: ifge          84
+        65: dload_0
+        66: ldc2_w        #198                // double 2.25d
+        69: dload         4
+        71: ddiv
+        72: dsub
+        73: dstore_0
+        74: dload_2
+        75: dload_0
+        76: dmul
+        77: dload_0
+        78: dmul
+        79: ldc2_w        #200                // double 0.9375d
+        82: dadd
+        83: dreturn
+        84: dload_0
+        85: ldc2_w        #202                // double 2.625d
+        88: dload         4
+        90: ddiv
+        91: dsub
+        92: dstore_0
+        93: dload_2
+        94: dload_0
+        95: dmul
+        96: dload_0
+        97: dmul
+        98: ldc2_w        #204                // double 0.984375d
+       101: dadd
+       102: dreturn
+
+  private static me.blue.protocol.Easing[] $values();
+    Code:
+         0: bipush        31
+         2: anewarray     #1                  // class me/blue/protocol/Easing
+         5: dup
+         6: iconst_0
+         7: getstatic     #5                  // Field LINEAR:Lme/blue/protocol/Easing;
+        10: aastore
+        11: dup
+        12: iconst_1
+        13: getstatic     #9                  // Field EASE_IN_SINE:Lme/blue/protocol/Easing;
+        16: aastore
+        17: dup
+        18: iconst_2
+        19: getstatic     #12                 // Field EASE_OUT_SINE:Lme/blue/protocol/Easing;
+        22: aastore
+        23: dup
+        24: iconst_3
+        25: getstatic     #15                 // Field EASE_IN_OUT_SINE:Lme/blue/protocol/Easing;
+        28: aastore
+        29: dup
+        30: iconst_4
+        31: getstatic     #18                 // Field EASE_IN_QUAD:Lme/blue/protocol/Easing;
+        34: aastore
+        35: dup
+        36: iconst_5
+        37: getstatic     #21                 // Field EASE_OUT_QUAD:Lme/blue/protocol/Easing;
+        40: aastore
+        41: dup
+        42: bipush        6
+        44: getstatic     #24                 // Field EASE_IN_OUT_QUAD:Lme/blue/protocol/Easing;
+        47: aastore
+        48: dup
+        49: bipush        7
+        51: getstatic     #27                 // Field EASE_IN_CUBIC:Lme/blue/protocol/Easing;
+        54: aastore
+        55: dup
+        56: bipush        8
+        58: getstatic     #30                 // Field EASE_OUT_CUBIC:Lme/blue/protocol/Easing;
+        61: aastore
+        62: dup
+        63: bipush        9
+        65: getstatic     #33                 // Field EASE_IN_OUT_CUBIC:Lme/blue/protocol/Easing;
+        68: aastore
+        69: dup
+        70: bipush        10
+        72: getstatic     #36                 // Field EASE_IN_QUART:Lme/blue/protocol/Easing;
+        75: aastore
+        76: dup
+        77: bipush        11
+        79: getstatic     #39                 // Field EASE_OUT_QUART:Lme/blue/protocol/Easing;
+        82: aastore
+        83: dup
+        84: bipush        12
+        86: getstatic     #42                 // Field EASE_IN_OUT_QUART:Lme/blue/protocol/Easing;
+        89: aastore
+        90: dup
+        91: bipush        13
+        93: getstatic     #45                 // Field EASE_IN_QUINT:Lme/blue/protocol/Easing;
+        96: aastore
+        97: dup
+        98: bipush        14
+       100: getstatic     #48                 // Field EASE_OUT_QUINT:Lme/blue/protocol/Easing;
+       103: aastore
+       104: dup
+       105: bipush        15
+       107: getstatic     #51                 // Field EASE_IN_OUT_QUINT:Lme/blue/protocol/Easing;
+       110: aastore
+       111: dup
+       112: bipush        16
+       114: getstatic     #54                 // Field EASE_IN_EXPO:Lme/blue/protocol/Easing;
+       117: aastore
+       118: dup
+       119: bipush        17
+       121: getstatic     #57                 // Field EASE_OUT_EXPO:Lme/blue/protocol/Easing;
+       124: aastore
+       125: dup
+       126: bipush        18
+       128: getstatic     #60                 // Field EASE_IN_OUT_EXPO:Lme/blue/protocol/Easing;
+       131: aastore
+       132: dup
+       133: bipush        19
+       135: getstatic     #63                 // Field EASE_IN_CIRC:Lme/blue/protocol/Easing;
+       138: aastore
+       139: dup
+       140: bipush        20
+       142: getstatic     #66                 // Field EASE_OUT_CIRC:Lme/blue/protocol/Easing;
+       145: aastore
+       146: dup
+       147: bipush        21
+       149: getstatic     #69                 // Field EASE_IN_OUT_CIRC:Lme/blue/protocol/Easing;
+       152: aastore
+       153: dup
+       154: bipush        22
+       156: getstatic     #72                 // Field EASE_IN_BACK:Lme/blue/protocol/Easing;
+       159: aastore
+       160: dup
+       161: bipush        23
+       163: getstatic     #75                 // Field EASE_OUT_BACK:Lme/blue/protocol/Easing;
+       166: aastore
+       167: dup
+       168: bipush        24
+       170: getstatic     #78                 // Field EASE_IN_OUT_BACK:Lme/blue/protocol/Easing;
+       173: aastore
+       174: dup
+       175: bipush        25
+       177: getstatic     #81                 // Field EASE_IN_ELASTIC:Lme/blue/protocol/Easing;
+       180: aastore
+       181: dup
+       182: bipush        26
+       184: getstatic     #84                 // Field EASE_OUT_ELASTIC:Lme/blue/protocol/Easing;
+       187: aastore
+       188: dup
+       189: bipush        27
+       191: getstatic     #87                 // Field EASE_IN_OUT_ELASTIC:Lme/blue/protocol/Easing;
+       194: aastore
+       195: dup
+       196: bipush        28
+       198: getstatic     #90                 // Field EASE_IN_BOUNCE:Lme/blue/protocol/Easing;
+       201: aastore
+       202: dup
+       203: bipush        29
+       205: getstatic     #93                 // Field EASE_OUT_BOUNCE:Lme/blue/protocol/Easing;
+       208: aastore
+       209: dup
+       210: bipush        30
+       212: getstatic     #96                 // Field EASE_IN_OUT_BOUNCE:Lme/blue/protocol/Easing;
+       215: aastore
+       216: areturn
+
+  static {};
+    Code:
+         0: new           #1                  // class me/blue/protocol/Easing
+         3: dup
+         4: ldc           #206                // String LINEAR
+         6: iconst_0
+         7: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+        10: putstatic     #5                  // Field LINEAR:Lme/blue/protocol/Easing;
+        13: new           #1                  // class me/blue/protocol/Easing
+        16: dup
+        17: ldc           #208                // String EASE_IN_SINE
+        19: iconst_1
+        20: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+        23: putstatic     #9                  // Field EASE_IN_SINE:Lme/blue/protocol/Easing;
+        26: new           #1                  // class me/blue/protocol/Easing
+        29: dup
+        30: ldc           #209                // String EASE_OUT_SINE
+        32: iconst_2
+        33: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+        36: putstatic     #12                 // Field EASE_OUT_SINE:Lme/blue/protocol/Easing;
+        39: new           #1                  // class me/blue/protocol/Easing
+        42: dup
+        43: ldc           #210                // String EASE_IN_OUT_SINE
+        45: iconst_3
+        46: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+        49: putstatic     #15                 // Field EASE_IN_OUT_SINE:Lme/blue/protocol/Easing;
+        52: new           #1                  // class me/blue/protocol/Easing
+        55: dup
+        56: ldc           #211                // String EASE_IN_QUAD
+        58: iconst_4
+        59: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+        62: putstatic     #18                 // Field EASE_IN_QUAD:Lme/blue/protocol/Easing;
+        65: new           #1                  // class me/blue/protocol/Easing
+        68: dup
+        69: ldc           #212                // String EASE_OUT_QUAD
+        71: iconst_5
+        72: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+        75: putstatic     #21                 // Field EASE_OUT_QUAD:Lme/blue/protocol/Easing;
+        78: new           #1                  // class me/blue/protocol/Easing
+        81: dup
+        82: ldc           #213                // String EASE_IN_OUT_QUAD
+        84: bipush        6
+        86: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+        89: putstatic     #24                 // Field EASE_IN_OUT_QUAD:Lme/blue/protocol/Easing;
+        92: new           #1                  // class me/blue/protocol/Easing
+        95: dup
+        96: ldc           #214                // String EASE_IN_CUBIC
+        98: bipush        7
+       100: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       103: putstatic     #27                 // Field EASE_IN_CUBIC:Lme/blue/protocol/Easing;
+       106: new           #1                  // class me/blue/protocol/Easing
+       109: dup
+       110: ldc           #215                // String EASE_OUT_CUBIC
+       112: bipush        8
+       114: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       117: putstatic     #30                 // Field EASE_OUT_CUBIC:Lme/blue/protocol/Easing;
+       120: new           #1                  // class me/blue/protocol/Easing
+       123: dup
+       124: ldc           #216                // String EASE_IN_OUT_CUBIC
+       126: bipush        9
+       128: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       131: putstatic     #33                 // Field EASE_IN_OUT_CUBIC:Lme/blue/protocol/Easing;
+       134: new           #1                  // class me/blue/protocol/Easing
+       137: dup
+       138: ldc           #217                // String EASE_IN_QUART
+       140: bipush        10
+       142: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       145: putstatic     #36                 // Field EASE_IN_QUART:Lme/blue/protocol/Easing;
+       148: new           #1                  // class me/blue/protocol/Easing
+       151: dup
+       152: ldc           #218                // String EASE_OUT_QUART
+       154: bipush        11
+       156: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       159: putstatic     #39                 // Field EASE_OUT_QUART:Lme/blue/protocol/Easing;
+       162: new           #1                  // class me/blue/protocol/Easing
+       165: dup
+       166: ldc           #219                // String EASE_IN_OUT_QUART
+       168: bipush        12
+       170: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       173: putstatic     #42                 // Field EASE_IN_OUT_QUART:Lme/blue/protocol/Easing;
+       176: new           #1                  // class me/blue/protocol/Easing
+       179: dup
+       180: ldc           #220                // String EASE_IN_QUINT
+       182: bipush        13
+       184: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       187: putstatic     #45                 // Field EASE_IN_QUINT:Lme/blue/protocol/Easing;
+       190: new           #1                  // class me/blue/protocol/Easing
+       193: dup
+       194: ldc           #221                // String EASE_OUT_QUINT
+       196: bipush        14
+       198: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       201: putstatic     #48                 // Field EASE_OUT_QUINT:Lme/blue/protocol/Easing;
+       204: new           #1                  // class me/blue/protocol/Easing
+       207: dup
+       208: ldc           #222                // String EASE_IN_OUT_QUINT
+       210: bipush        15
+       212: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       215: putstatic     #51                 // Field EASE_IN_OUT_QUINT:Lme/blue/protocol/Easing;
+       218: new           #1                  // class me/blue/protocol/Easing
+       221: dup
+       222: ldc           #223                // String EASE_IN_EXPO
+       224: bipush        16
+       226: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       229: putstatic     #54                 // Field EASE_IN_EXPO:Lme/blue/protocol/Easing;
+       232: new           #1                  // class me/blue/protocol/Easing
+       235: dup
+       236: ldc           #224                // String EASE_OUT_EXPO
+       238: bipush        17
+       240: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       243: putstatic     #57                 // Field EASE_OUT_EXPO:Lme/blue/protocol/Easing;
+       246: new           #1                  // class me/blue/protocol/Easing
+       249: dup
+       250: ldc           #225                // String EASE_IN_OUT_EXPO
+       252: bipush        18
+       254: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       257: putstatic     #60                 // Field EASE_IN_OUT_EXPO:Lme/blue/protocol/Easing;
+       260: new           #1                  // class me/blue/protocol/Easing
+       263: dup
+       264: ldc           #226                // String EASE_IN_CIRC
+       266: bipush        19
+       268: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       271: putstatic     #63                 // Field EASE_IN_CIRC:Lme/blue/protocol/Easing;
+       274: new           #1                  // class me/blue/protocol/Easing
+       277: dup
+       278: ldc           #227                // String EASE_OUT_CIRC
+       280: bipush        20
+       282: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       285: putstatic     #66                 // Field EASE_OUT_CIRC:Lme/blue/protocol/Easing;
+       288: new           #1                  // class me/blue/protocol/Easing
+       291: dup
+       292: ldc           #228                // String EASE_IN_OUT_CIRC
+       294: bipush        21
+       296: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       299: putstatic     #69                 // Field EASE_IN_OUT_CIRC:Lme/blue/protocol/Easing;
+       302: new           #1                  // class me/blue/protocol/Easing
+       305: dup
+       306: ldc           #229                // String EASE_IN_BACK
+       308: bipush        22
+       310: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       313: putstatic     #72                 // Field EASE_IN_BACK:Lme/blue/protocol/Easing;
+       316: new           #1                  // class me/blue/protocol/Easing
+       319: dup
+       320: ldc           #230                // String EASE_OUT_BACK
+       322: bipush        23
+       324: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       327: putstatic     #75                 // Field EASE_OUT_BACK:Lme/blue/protocol/Easing;
+       330: new           #1                  // class me/blue/protocol/Easing
+       333: dup
+       334: ldc           #231                // String EASE_IN_OUT_BACK
+       336: bipush        24
+       338: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       341: putstatic     #78                 // Field EASE_IN_OUT_BACK:Lme/blue/protocol/Easing;
+       344: new           #1                  // class me/blue/protocol/Easing
+       347: dup
+       348: ldc           #232                // String EASE_IN_ELASTIC
+       350: bipush        25
+       352: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       355: putstatic     #81                 // Field EASE_IN_ELASTIC:Lme/blue/protocol/Easing;
+       358: new           #1                  // class me/blue/protocol/Easing
+       361: dup
+       362: ldc           #233                // String EASE_OUT_ELASTIC
+       364: bipush        26
+       366: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       369: putstatic     #84                 // Field EASE_OUT_ELASTIC:Lme/blue/protocol/Easing;
+       372: new           #1                  // class me/blue/protocol/Easing
+       375: dup
+       376: ldc           #234                // String EASE_IN_OUT_ELASTIC
+       378: bipush        27
+       380: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       383: putstatic     #87                 // Field EASE_IN_OUT_ELASTIC:Lme/blue/protocol/Easing;
+       386: new           #1                  // class me/blue/protocol/Easing
+       389: dup
+       390: ldc           #235                // String EASE_IN_BOUNCE
+       392: bipush        28
+       394: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       397: putstatic     #90                 // Field EASE_IN_BOUNCE:Lme/blue/protocol/Easing;
+       400: new           #1                  // class me/blue/protocol/Easing
+       403: dup
+       404: ldc           #236                // String EASE_OUT_BOUNCE
+       406: bipush        29
+       408: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       411: putstatic     #93                 // Field EASE_OUT_BOUNCE:Lme/blue/protocol/Easing;
+       414: new           #1                  // class me/blue/protocol/Easing
+       417: dup
+       418: ldc           #237                // String EASE_IN_OUT_BOUNCE
+       420: bipush        30
+       422: invokespecial #207                // Method "<init>":(Ljava/lang/String;I)V
+       425: putstatic     #96                 // Field EASE_IN_OUT_BOUNCE:Lme/blue/protocol/Easing;
+       428: invokestatic  #238                // Method $values:()[Lme/blue/protocol/Easing;
+       431: putstatic     #99                 // Field $VALUES:[Lme/blue/protocol/Easing;
+       434: return
+}

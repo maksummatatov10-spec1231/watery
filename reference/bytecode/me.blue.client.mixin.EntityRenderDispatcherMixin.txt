@@ -1,0 +1,53 @@
+Compiled from "EntityRenderDispatcherMixin.java"
+public abstract class me.blue.client.mixin.EntityRenderDispatcherMixin {
+  public me.blue.client.mixin.EntityRenderDispatcherMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void blue$entityMaterial(net.minecraft.client.renderer.entity.EntityRenderer<?, ?>, net.minecraft.client.renderer.entity.state.EntityRenderState, com.mojang.blaze3d.vertex.PoseStack, net.minecraft.client.renderer.SubmitNodeCollector, net.minecraft.client.renderer.state.level.CameraRenderState, com.llamalad7.mixinextras.injector.wrapoperation.Operation<java.lang.Void>);
+    Code:
+         0: aload_2
+         1: getfield      #7                  // Field net/minecraft/client/renderer/entity/state/EntityRenderState.entityType:Lnet/minecraft/world/entity/EntityType;
+         4: invokestatic  #13                 // Method me/blue/client/shader/EntityMaterials.beginEntity:(Lnet/minecraft/world/entity/EntityType;)I
+         7: istore        7
+         9: aload         6
+        11: iconst_5
+        12: anewarray     #2                  // class java/lang/Object
+        15: dup
+        16: iconst_0
+        17: aload_1
+        18: aastore
+        19: dup
+        20: iconst_1
+        21: aload_2
+        22: aastore
+        23: dup
+        24: iconst_2
+        25: aload_3
+        26: aastore
+        27: dup
+        28: iconst_3
+        29: aload         4
+        31: aastore
+        32: dup
+        33: iconst_4
+        34: aload         5
+        36: aastore
+        37: invokeinterface #19,  2           // InterfaceMethod com/llamalad7/mixinextras/injector/wrapoperation/Operation.call:([Ljava/lang/Object;)Ljava/lang/Object;
+        42: pop
+        43: iload         7
+        45: invokestatic  #25                 // Method me/blue/client/shader/EntityMaterials.endEntity:(I)V
+        48: goto          61
+        51: astore        8
+        53: iload         7
+        55: invokestatic  #25                 // Method me/blue/client/shader/EntityMaterials.endEntity:(I)V
+        58: aload         8
+        60: athrow
+        61: return
+      Exception table:
+         from    to  target type
+             9    43    51   any
+            51    53    51   any
+}

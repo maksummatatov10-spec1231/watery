@@ -1,0 +1,107 @@
+Compiled from "WaterWorld.java"
+final class me.blue.client.water.WaterWorld$Echoes {
+  final it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap expected;
+
+  final it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap frame;
+
+  private me.blue.client.water.WaterWorld$Echoes();
+    Code:
+         0: aload_0
+         1: invokespecial #3                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #9                  // class it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap
+         8: dup
+         9: invokespecial #11                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap."<init>":()V
+        12: putfield      #12                 // Field expected:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+        15: aload_0
+        16: new           #9                  // class it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap
+        19: dup
+        20: invokespecial #11                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap."<init>":()V
+        23: putfield      #18                 // Field frame:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+        26: return
+
+  boolean consume(long, int);
+    Code:
+         0: aload_0
+         1: getfield      #12                 // Field expected:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+         4: lload_1
+         5: invokevirtual #21                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap.containsKey:(J)Z
+         8: ifeq          43
+        11: aload_0
+        12: getfield      #12                 // Field expected:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+        15: lload_1
+        16: invokevirtual #25                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap.get:(J)I
+        19: iload_3
+        20: if_icmpne     43
+        23: aload_0
+        24: getfield      #12                 // Field expected:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+        27: lload_1
+        28: invokevirtual #29                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap.remove:(J)I
+        31: pop
+        32: aload_0
+        33: getfield      #18                 // Field frame:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+        36: lload_1
+        37: invokevirtual #29                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap.remove:(J)I
+        40: pop
+        41: iconst_1
+        42: ireturn
+        43: iconst_0
+        44: ireturn
+
+  void expect(long, int, int);
+    Code:
+         0: aload_0
+         1: getfield      #12                 // Field expected:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+         4: lload_1
+         5: iload_3
+         6: invokevirtual #32                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap.put:(JI)I
+         9: pop
+        10: aload_0
+        11: getfield      #18                 // Field frame:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+        14: lload_1
+        15: iload         4
+        17: invokevirtual #32                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap.put:(JI)I
+        20: pop
+        21: return
+
+  void expire(int);
+    Code:
+         0: aload_0
+         1: getfield      #18                 // Field frame:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+         4: invokevirtual #36                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap.long2IntEntrySet:()Lit/unimi/dsi/fastutil/longs/Long2IntMap$FastEntrySet;
+         7: aload_0
+         8: iload_1
+         9: invokedynamic #40,  0             // InvokeDynamic #0:test:(Lme/blue/client/water/WaterWorld$Echoes;I)Ljava/util/function/Predicate;
+        14: invokeinterface #44,  2           // InterfaceMethod it/unimi/dsi/fastutil/longs/Long2IntMap$FastEntrySet.removeIf:(Ljava/util/function/Predicate;)Z
+        19: pop
+        20: return
+
+  void clear();
+    Code:
+         0: aload_0
+         1: getfield      #12                 // Field expected:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+         4: invokevirtual #50                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap.clear:()V
+         7: aload_0
+         8: getfield      #18                 // Field frame:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+        11: invokevirtual #50                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap.clear:()V
+        14: return
+
+  private boolean lambda$expire$0(int, it.unimi.dsi.fastutil.longs.Long2IntMap$Entry);
+    Code:
+         0: iload_1
+         1: aload_2
+         2: invokeinterface #53,  1           // InterfaceMethod it/unimi/dsi/fastutil/longs/Long2IntMap$Entry.getIntValue:()I
+         7: isub
+         8: sipush        200
+        11: if_icmple     30
+        14: aload_0
+        15: getfield      #12                 // Field expected:Lit/unimi/dsi/fastutil/longs/Long2IntOpenHashMap;
+        18: aload_2
+        19: invokeinterface #59,  1           // InterfaceMethod it/unimi/dsi/fastutil/longs/Long2IntMap$Entry.getLongKey:()J
+        24: invokevirtual #29                 // Method it/unimi/dsi/fastutil/longs/Long2IntOpenHashMap.remove:(J)I
+        27: pop
+        28: iconst_1
+        29: ireturn
+        30: iconst_0
+        31: ireturn
+}

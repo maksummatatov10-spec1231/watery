@@ -1,0 +1,153 @@
+Compiled from "RealisticSlimeFluid.java"
+public abstract class me.blue.fluid.RealisticSlimeFluid extends net.minecraft.world.level.material.FlowingFluid {
+  private static final net.minecraft.world.phys.Vec3 STUCK;
+
+  public me.blue.fluid.RealisticSlimeFluid();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method net/minecraft/world/level/material/FlowingFluid."<init>":()V
+         4: return
+
+  public net.minecraft.world.level.material.Fluid getFlowing();
+    Code:
+         0: getstatic     #7                  // Field me/blue/ModContent.FLOWING_REALISTIC_SLIME:Lnet/minecraft/world/level/material/FlowingFluid;
+         3: areturn
+
+  public net.minecraft.world.level.material.Fluid getSource();
+    Code:
+         0: getstatic     #13                 // Field me/blue/ModContent.REALISTIC_SLIME:Lnet/minecraft/world/level/material/FlowingFluid;
+         3: areturn
+
+  public net.minecraft.world.item.Item getBucket();
+    Code:
+         0: getstatic     #16                 // Field me/blue/ModContent.REALISTIC_SLIME_BUCKET:Lnet/minecraft/world/item/Item;
+         3: areturn
+
+  public static boolean isRealistic(net.minecraft.world.level.material.FluidState);
+    Code:
+         0: aload_0
+         1: invokevirtual #20                 // Method net/minecraft/world/level/material/FluidState.isEmpty:()Z
+         4: ifne          21
+         7: aload_0
+         8: invokevirtual #26                 // Method net/minecraft/world/level/material/FluidState.getType:()Lnet/minecraft/world/level/material/Fluid;
+        11: instanceof    #30                 // class me/blue/fluid/RealisticSlimeFluid
+        14: ifeq          21
+        17: iconst_1
+        18: goto          22
+        21: iconst_0
+        22: ireturn
+
+  public void tick(net.minecraft.server.level.ServerLevel, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FluidState);
+    Code:
+         0: return
+
+  public net.minecraft.core.particles.ParticleOptions getDripParticle();
+    Code:
+         0: aconst_null
+         1: areturn
+
+  protected boolean canConvertToSource(net.minecraft.server.level.ServerLevel);
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  protected void beforeDestroyingBlock(net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: aload_3
+         1: invokevirtual #32                 // Method net/minecraft/world/level/block/state/BlockState.hasBlockEntity:()Z
+         4: ifeq          17
+         7: aload_1
+         8: aload_2
+         9: invokeinterface #37,  2           // InterfaceMethod net/minecraft/world/level/LevelAccessor.getBlockEntity:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;
+        14: goto          18
+        17: aconst_null
+        18: astore        4
+        20: aload_3
+        21: aload_1
+        22: aload_2
+        23: aload         4
+        25: invokestatic  #43                 // Method net/minecraft/world/level/block/Block.dropResources:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;)V
+        28: return
+
+  protected void entityInside(net.minecraft.world.level.Level, net.minecraft.core.BlockPos, net.minecraft.world.entity.Entity, net.minecraft.world.entity.InsideBlockEffectApplier);
+    Code:
+         0: aload_3
+         1: aload_1
+         2: aload_2
+         3: invokevirtual #49                 // Method net/minecraft/world/level/Level.getBlockState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;
+         6: getstatic     #55                 // Field STUCK:Lnet/minecraft/world/phys/Vec3;
+         9: invokevirtual #59                 // Method net/minecraft/world/entity/Entity.makeStuckInBlock:(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/phys/Vec3;)V
+        12: return
+
+  public int getSlopeFindDistance(net.minecraft.world.level.LevelReader);
+    Code:
+         0: iconst_2
+         1: ireturn
+
+  public net.minecraft.world.level.block.state.BlockState createLegacyBlock(net.minecraft.world.level.material.FluidState);
+    Code:
+         0: getstatic     #65                 // Field me/blue/ModContent.REALISTIC_SLIME_BLOCK:Lnet/minecraft/world/level/block/Block;
+         3: invokevirtual #69                 // Method net/minecraft/world/level/block/Block.defaultBlockState:()Lnet/minecraft/world/level/block/state/BlockState;
+         6: getstatic     #73                 // Field net/minecraft/world/level/block/LiquidBlock.LEVEL:Lnet/minecraft/world/level/block/state/properties/IntegerProperty;
+         9: aload_1
+        10: invokestatic  #79                 // Method getLegacyLevel:(Lnet/minecraft/world/level/material/FluidState;)I
+        13: invokestatic  #83                 // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        16: invokevirtual #89                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        19: checkcast     #33                 // class net/minecraft/world/level/block/state/BlockState
+        22: getstatic     #93                 // Field me/blue/block/RealisticWaterBlock.INFINITE:Lnet/minecraft/world/level/block/state/properties/BooleanProperty;
+        25: iconst_0
+        26: invokestatic  #99                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+        29: invokevirtual #89                 // Method net/minecraft/world/level/block/state/BlockState.setValue:(Lnet/minecraft/world/level/block/state/properties/Property;Ljava/lang/Comparable;)Ljava/lang/Object;
+        32: checkcast     #33                 // class net/minecraft/world/level/block/state/BlockState
+        35: areturn
+
+  public boolean isSame(net.minecraft.world.level.material.Fluid);
+    Code:
+         0: aload_1
+         1: getstatic     #13                 // Field me/blue/ModContent.REALISTIC_SLIME:Lnet/minecraft/world/level/material/FlowingFluid;
+         4: if_acmpeq     14
+         7: aload_1
+         8: getstatic     #7                  // Field me/blue/ModContent.FLOWING_REALISTIC_SLIME:Lnet/minecraft/world/level/material/FlowingFluid;
+        11: if_acmpne     18
+        14: iconst_1
+        15: goto          19
+        18: iconst_0
+        19: ireturn
+
+  public int getDropOff(net.minecraft.world.level.LevelReader);
+    Code:
+         0: iconst_3
+         1: ireturn
+
+  public int getTickDelay(net.minecraft.world.level.LevelReader);
+    Code:
+         0: bipush        40
+         2: ireturn
+
+  public boolean canBeReplacedWith(net.minecraft.world.level.material.FluidState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.material.Fluid, net.minecraft.core.Direction);
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  protected float getExplosionResistance();
+    Code:
+         0: ldc           #104                // float 100.0f
+         2: freturn
+
+  public java.util.Optional<net.minecraft.sounds.SoundEvent> getPickupSound();
+    Code:
+         0: getstatic     #105                // Field net/minecraft/sounds/SoundEvents.BUCKET_FILL:Lnet/minecraft/sounds/SoundEvent;
+         3: invokestatic  #111                // Method java/util/Optional.of:(Ljava/lang/Object;)Ljava/util/Optional;
+         6: areturn
+
+  static {};
+    Code:
+         0: new           #117                // class net/minecraft/world/phys/Vec3
+         3: dup
+         4: ldc2_w        #119                // double 0.45d
+         7: ldc2_w        #121                // double 0.3d
+        10: ldc2_w        #119                // double 0.45d
+        13: invokespecial #123                // Method net/minecraft/world/phys/Vec3."<init>":(DDD)V
+        16: putstatic     #55                 // Field STUCK:Lnet/minecraft/world/phys/Vec3;
+        19: return
+}

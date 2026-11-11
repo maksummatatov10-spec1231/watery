@@ -1,0 +1,25 @@
+[package]
+name = "mod-watery"
+version = "1.2.2"
+edition = "2024"
+publish = false
+
+[dependencies]
+horizon-client = { path = "../vendor/horizon/crates/horizon-client" }
+watery-core = { path = ".." }
+watery-gpu = { path = "../gpu" }
+wgpu = { version = "=30.0.1", default-features = false, features = ["std", "wgsl"] }
+glam = "0.30.9"
+
+[dev-dependencies]
+horizon-mods = { path = "../vendor/horizon/crates/horizon-mods", features = ["index"] }
+pollster = "=0.4.0"
+
+[patch.crates-io]
+naga = { path = "../vendor/horizon/third_party/naga" }
+wgpu-hal = { path = "../vendor/horizon/third_party/wgpu-hal" }
+
+[profile.dev]
+debug = "line-tables-only"
+
+[workspace]

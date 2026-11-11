@@ -1,0 +1,121 @@
+Compiled from "SectionCompilerMixin.java"
+public abstract class me.blue.client.mixin.SectionCompilerMixin {
+  public me.blue.client.mixin.SectionCompilerMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void blue$blockMaterial(net.minecraft.client.renderer.block.ModelBlockRenderer, net.minecraft.client.renderer.block.BlockQuadOutput, float, float, float, net.minecraft.client.renderer.block.BlockAndTintGetter, net.minecraft.core.BlockPos, net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.block.dispatch.BlockStateModel, long, com.llamalad7.mixinextras.injector.wrapoperation.Operation<java.lang.Void>);
+    Code:
+         0: aload         8
+         2: fload         4
+         4: invokestatic  #7                  // Method me/blue/client/shader/MaterialEncoding.begin:(Lnet/minecraft/world/level/block/state/BlockState;F)V
+         7: aload         12
+         9: bipush        10
+        11: anewarray     #2                  // class java/lang/Object
+        14: dup
+        15: iconst_0
+        16: aload_1
+        17: aastore
+        18: dup
+        19: iconst_1
+        20: aload_2
+        21: aastore
+        22: dup
+        23: iconst_2
+        24: fload_3
+        25: invokestatic  #13                 // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+        28: aastore
+        29: dup
+        30: iconst_3
+        31: fload         4
+        33: invokestatic  #13                 // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+        36: aastore
+        37: dup
+        38: iconst_4
+        39: fload         5
+        41: invokestatic  #13                 // Method java/lang/Float.valueOf:(F)Ljava/lang/Float;
+        44: aastore
+        45: dup
+        46: iconst_5
+        47: aload         6
+        49: aastore
+        50: dup
+        51: bipush        6
+        53: aload         7
+        55: aastore
+        56: dup
+        57: bipush        7
+        59: aload         8
+        61: aastore
+        62: dup
+        63: bipush        8
+        65: aload         9
+        67: aastore
+        68: dup
+        69: bipush        9
+        71: lload         10
+        73: invokestatic  #19                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+        76: aastore
+        77: invokeinterface #24,  2           // InterfaceMethod com/llamalad7/mixinextras/injector/wrapoperation/Operation.call:([Ljava/lang/Object;)Ljava/lang/Object;
+        82: pop
+        83: invokestatic  #30                 // Method me/blue/client/shader/MaterialEncoding.end:()V
+        86: goto          97
+        89: astore        13
+        91: invokestatic  #30                 // Method me/blue/client/shader/MaterialEncoding.end:()V
+        94: aload         13
+        96: athrow
+        97: return
+      Exception table:
+         from    to  target type
+             7    83    89   any
+            89    91    89   any
+
+  private void blue$fluidMaterial(net.minecraft.client.renderer.block.FluidRenderer, net.minecraft.client.renderer.block.BlockAndTintGetter, net.minecraft.core.BlockPos, net.minecraft.client.renderer.block.FluidRenderer$Output, net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.material.FluidState, com.llamalad7.mixinextras.injector.wrapoperation.Operation<java.lang.Void>);
+    Code:
+         0: aload         6
+         2: aload_3
+         3: invokevirtual #33                 // Method net/minecraft/core/BlockPos.getY:()I
+         6: invokestatic  #39                 // Method me/blue/client/shader/MaterialEncoding.beginFluid:(Lnet/minecraft/world/level/material/FluidState;I)V
+         9: aload         7
+        11: bipush        6
+        13: anewarray     #2                  // class java/lang/Object
+        16: dup
+        17: iconst_0
+        18: aload_1
+        19: aastore
+        20: dup
+        21: iconst_1
+        22: aload_2
+        23: aastore
+        24: dup
+        25: iconst_2
+        26: aload_3
+        27: aastore
+        28: dup
+        29: iconst_3
+        30: aload         4
+        32: aastore
+        33: dup
+        34: iconst_4
+        35: aload         5
+        37: aastore
+        38: dup
+        39: iconst_5
+        40: aload         6
+        42: aastore
+        43: invokeinterface #24,  2           // InterfaceMethod com/llamalad7/mixinextras/injector/wrapoperation/Operation.call:([Ljava/lang/Object;)Ljava/lang/Object;
+        48: pop
+        49: invokestatic  #30                 // Method me/blue/client/shader/MaterialEncoding.end:()V
+        52: goto          63
+        55: astore        8
+        57: invokestatic  #30                 // Method me/blue/client/shader/MaterialEncoding.end:()V
+        60: aload         8
+        62: athrow
+        63: return
+      Exception table:
+         from    to  target type
+             9    49    55   any
+            55    57    55   any
+}

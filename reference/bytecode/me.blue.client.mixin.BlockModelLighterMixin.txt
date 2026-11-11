@@ -1,0 +1,26 @@
+Compiled from "BlockModelLighterMixin.java"
+public abstract class me.blue.client.mixin.BlockModelLighterMixin {
+  public me.blue.client.mixin.BlockModelLighterMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void blue$separateAo(net.minecraft.client.renderer.block.BlockAndTintGetter, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos, net.minecraft.client.resources.model.geometry.BakedQuad, com.mojang.blaze3d.vertex.QuadInstance, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: aload_1
+         1: aload         4
+         3: aload         5
+         5: iconst_1
+         6: invokestatic  #7                  // Method me/blue/client/shader/MaterialEncoding.separateAo:(Lnet/minecraft/client/renderer/block/BlockAndTintGetter;Lnet/minecraft/client/resources/model/geometry/BakedQuad;Lcom/mojang/blaze3d/vertex/QuadInstance;Z)V
+         9: return
+
+  private void blue$flatAo(net.minecraft.client.renderer.block.BlockAndTintGetter, net.minecraft.world.level.block.state.BlockState, net.minecraft.core.BlockPos, int, net.minecraft.client.resources.model.geometry.BakedQuad, com.mojang.blaze3d.vertex.QuadInstance, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: aload_1
+         1: aload         5
+         3: aload         6
+         5: iconst_0
+         6: invokestatic  #7                  // Method me/blue/client/shader/MaterialEncoding.separateAo:(Lnet/minecraft/client/renderer/block/BlockAndTintGetter;Lnet/minecraft/client/resources/model/geometry/BakedQuad;Lcom/mojang/blaze3d/vertex/QuadInstance;Z)V
+         9: return
+}

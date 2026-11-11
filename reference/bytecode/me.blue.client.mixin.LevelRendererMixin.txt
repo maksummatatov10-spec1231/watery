@@ -1,0 +1,14 @@
+Compiled from "LevelRendererMixin.java"
+public class me.blue.client.mixin.LevelRendererMixin {
+  public me.blue.client.mixin.LevelRendererMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void realisticWater$renderWater(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #7                  // Method me/blue/client/water/WaterWorld.get:()Lme/blue/client/water/WaterWorld;
+         3: invokevirtual #13                 // Method me/blue/client/water/WaterWorld.renderFrame:()V
+         6: return
+}

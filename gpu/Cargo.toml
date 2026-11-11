@@ -1,0 +1,13 @@
+[package]
+name = "watery-gpu"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+license = "GPL-3.0-only"
+publish = false
+
+[dependencies]
+watery-core = { path = ".." }
+wgpu = { version = "=30.0.1", default-features = false, features = ["std", "wgsl"] }
+
+[workspace]

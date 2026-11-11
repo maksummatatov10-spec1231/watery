@@ -1,0 +1,17 @@
+Compiled from "GameRendererMixin.java"
+public class me.blue.client.mixin.GameRendererMixin {
+  public me.blue.client.mixin.GameRendererMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private org.joml.Matrix4f realisticWater$captureProjection(org.joml.Matrix4f);
+    Code:
+         0: getstatic     #7                  // Field me/blue/client/water/WaterWorld.LEVEL_PROJECTION:Lorg/joml/Matrix4f;
+         3: aload_1
+         4: invokevirtual #13                 // Method org/joml/Matrix4f.set:(Lorg/joml/Matrix4fc;)Lorg/joml/Matrix4f;
+         7: pop
+         8: aload_1
+         9: areturn
+}

@@ -1,0 +1,42 @@
+Compiled from "CameraMixin.java"
+public class me.blue.client.mixin.CameraMixin {
+  private boolean initialized;
+
+  private net.minecraft.world.level.Level level;
+
+  public me.blue.client.mixin.CameraMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void realisticWater$noVanillaFog(org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<net.minecraft.world.level.material.FogType>);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field initialized:Z
+         4: ifeq          14
+         7: aload_0
+         8: getfield      #13                 // Field level:Lnet/minecraft/world/level/Level;
+        11: ifnonnull     15
+        14: return
+        15: aload_0
+        16: getfield      #13                 // Field level:Lnet/minecraft/world/level/Level;
+        19: aload_0
+        20: checkcast     #17                 // class net/minecraft/client/Camera
+        23: invokevirtual #19                 // Method net/minecraft/client/Camera.blockPosition:()Lnet/minecraft/core/BlockPos;
+        26: invokevirtual #23                 // Method net/minecraft/world/level/Level.getFluidState:(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/material/FluidState;
+        29: astore_2
+        30: aload_2
+        31: invokestatic  #29                 // Method me/blue/fluid/RealisticWaterFluid.isRealistic:(Lnet/minecraft/world/level/material/FluidState;)Z
+        34: ifne          51
+        37: aload_2
+        38: invokestatic  #35                 // Method me/blue/fluid/RealisticLavaFluid.isRealistic:(Lnet/minecraft/world/level/material/FluidState;)Z
+        41: ifne          51
+        44: aload_2
+        45: invokestatic  #38                 // Method me/blue/fluid/RealisticSlimeFluid.isRealistic:(Lnet/minecraft/world/level/material/FluidState;)Z
+        48: ifeq          58
+        51: aload_1
+        52: getstatic     #41                 // Field net/minecraft/world/level/material/FogType.NONE:Lnet/minecraft/world/level/material/FogType;
+        55: invokevirtual #47                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+        58: return
+}

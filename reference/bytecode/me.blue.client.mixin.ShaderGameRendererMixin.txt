@@ -1,0 +1,93 @@
+Compiled from "ShaderGameRendererMixin.java"
+public abstract class me.blue.client.mixin.ShaderGameRendererMixin {
+  public me.blue.client.mixin.ShaderGameRendererMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void tryTakeScreenshotIfNeeded();
+    Code:
+         0: new           #7                  // class java/lang/AssertionError
+         3: dup
+         4: invokespecial #9                  // Method java/lang/AssertionError."<init>":()V
+         7: athrow
+
+  private void blue$beginShaderFrame(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #10                 // Method me/blue/client/shader/ShaderRenderer.beginFrame:()V
+         3: return
+
+  private void blue$beginLevel(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #15                 // Method me/blue/client/shader/ShaderRenderer.beginLevel:()V
+         3: return
+
+  private org.joml.Matrix4f blue$levelProjection(org.joml.Matrix4f);
+    Code:
+         0: aload_1
+         1: invokestatic  #18                 // Method me/blue/client/shader/ShaderRenderer.levelProjection:(Lorg/joml/Matrix4f;)V
+         4: getstatic     #22                 // Field me/blue/client/water/WaterWorld.LEVEL_PROJECTION:Lorg/joml/Matrix4f;
+         7: aload_1
+         8: invokevirtual #28                 // Method org/joml/Matrix4f.set:(Lorg/joml/Matrix4fc;)Lorg/joml/Matrix4f;
+        11: pop
+        12: aload_1
+        13: areturn
+
+  private boolean blue$keepWorldDepth(boolean);
+    Code:
+         0: iload_1
+         1: ifeq          14
+         4: invokestatic  #34                 // Method me/blue/client/shader/ShaderRenderer.needsConsistentDepth:()Z
+         7: ifne          14
+        10: iconst_1
+        11: goto          15
+        14: iconst_0
+        15: ireturn
+
+  private void blue$worldStage(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: getstatic     #38                 // Field me/blue/client/shader/lang/Builtins$Stage.WORLD:Lme/blue/client/shader/lang/Builtins$Stage;
+         3: invokestatic  #44                 // Method me/blue/client/shader/ShaderRenderer.runStage:(Lme/blue/client/shader/lang/Builtins$Stage;)V
+         6: iconst_1
+         7: invokestatic  #48                 // Method me/blue/client/shader/ShaderRenderer.drawingHand:(Z)V
+        10: return
+
+  private void blue$handDone(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: iconst_0
+         1: invokestatic  #48                 // Method me/blue/client/shader/ShaderRenderer.drawingHand:(Z)V
+         4: return
+
+  private void blue$screenshotAfterHdr(net.minecraft.client.renderer.GameRenderer, com.llamalad7.mixinextras.injector.wrapoperation.Operation<java.lang.Void>);
+    Code:
+         0: invokestatic  #52                 // Method me/blue/client/shader/ShaderRenderer.deferScreenshot:()Z
+         3: ifne          21
+         6: aload_2
+         7: iconst_1
+         8: anewarray     #2                  // class java/lang/Object
+        11: dup
+        12: iconst_0
+        13: aload_1
+        14: aastore
+        15: invokeinterface #55,  2           // InterfaceMethod com/llamalad7/mixinextras/injector/wrapoperation/Operation.call:([Ljava/lang/Object;)Ljava/lang/Object;
+        20: pop
+        21: return
+
+  private void blue$screenStage(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: getstatic     #61                 // Field me/blue/client/shader/lang/Builtins$Stage.SCREEN:Lme/blue/client/shader/lang/Builtins$Stage;
+         3: invokestatic  #44                 // Method me/blue/client/shader/ShaderRenderer.runStage:(Lme/blue/client/shader/lang/Builtins$Stage;)V
+         6: invokestatic  #64                 // Method me/blue/client/shader/ShaderRenderer.endLevel:()V
+         9: invokestatic  #67                 // Method me/blue/client/shader/ShaderRenderer.takeScreenshotNow:()Z
+        12: ifeq          19
+        15: aload_0
+        16: invokevirtual #70                 // Method tryTakeScreenshotIfNeeded:()V
+        19: return
+
+  private void blue$finalStage(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: getstatic     #75                 // Field me/blue/client/shader/lang/Builtins$Stage.FINAL:Lme/blue/client/shader/lang/Builtins$Stage;
+         3: invokestatic  #44                 // Method me/blue/client/shader/ShaderRenderer.runStage:(Lme/blue/client/shader/lang/Builtins$Stage;)V
+         6: return
+}

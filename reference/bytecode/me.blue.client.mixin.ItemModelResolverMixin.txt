@@ -1,0 +1,22 @@
+Compiled from "ItemModelResolverMixin.java"
+public abstract class me.blue.client.mixin.ItemModelResolverMixin {
+  public me.blue.client.mixin.ItemModelResolverMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void blue$rememberItem(net.minecraft.client.renderer.item.ItemStackRenderState, net.minecraft.world.item.ItemStack, net.minecraft.world.item.ItemDisplayContext, net.minecraft.world.level.Level, net.minecraft.world.entity.ItemOwner, int, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: aload_1
+         1: checkcast     #7                  // class me/blue/client/shader/EntityMaterials$ItemHolder
+         4: aload_2
+         5: invokevirtual #9                  // Method net/minecraft/world/item/ItemStack.isEmpty:()Z
+         8: ifeq          15
+        11: aconst_null
+        12: goto          19
+        15: aload_2
+        16: invokevirtual #15                 // Method net/minecraft/world/item/ItemStack.getItem:()Lnet/minecraft/world/item/Item;
+        19: invokeinterface #19,  2           // InterfaceMethod me/blue/client/shader/EntityMaterials$ItemHolder.blue$setItem:(Lnet/minecraft/world/item/Item;)V
+        24: return
+}

@@ -1,0 +1,20 @@
+Compiled from "SubmitNodeCollectionMixin.java"
+public abstract class me.blue.client.mixin.SubmitNodeCollectionMixin {
+  public me.blue.client.mixin.SubmitNodeCollectionMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private int blue$tagModel(int);
+    Code:
+         0: iload_1
+         1: invokestatic  #7                  // Method me/blue/client/shader/EntityMaterials.tagEntity:(I)I
+         4: ireturn
+
+  private int blue$tagItem(int);
+    Code:
+         0: iload_1
+         1: invokestatic  #7                  // Method me/blue/client/shader/EntityMaterials.tagEntity:(I)I
+         4: ireturn
+}

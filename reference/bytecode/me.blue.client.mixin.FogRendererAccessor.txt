@@ -1,0 +1,9 @@
+Compiled from "FogRendererAccessor.java"
+public interface me.blue.client.mixin.FogRendererAccessor {
+  public static java.util.List<net.minecraft.client.renderer.fog.environment.FogEnvironment> realisticWater$environments();
+    Code:
+         0: new           #1                  // class java/lang/AssertionError
+         3: dup
+         4: invokespecial #3                  // Method java/lang/AssertionError."<init>":()V
+         7: athrow
+}

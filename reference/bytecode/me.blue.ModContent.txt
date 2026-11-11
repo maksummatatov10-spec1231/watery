@@ -1,0 +1,403 @@
+Compiled from "ModContent.java"
+public final class me.blue.ModContent {
+  public static final net.minecraft.world.level.material.FlowingFluid FLOWING_REALISTIC_WATER;
+
+  public static final net.minecraft.world.level.material.FlowingFluid REALISTIC_WATER;
+
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.Block> REALISTIC_WATER_BLOCK_KEY;
+
+  public static final net.minecraft.world.level.block.Block REALISTIC_WATER_BLOCK;
+
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.Item> REALISTIC_WATER_BUCKET_KEY;
+
+  public static final net.minecraft.world.item.Item REALISTIC_WATER_BUCKET;
+
+  public static final net.minecraft.world.level.material.FlowingFluid FLOWING_REALISTIC_LAVA;
+
+  public static final net.minecraft.world.level.material.FlowingFluid REALISTIC_LAVA;
+
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.Block> REALISTIC_LAVA_BLOCK_KEY;
+
+  public static final net.minecraft.world.level.block.Block REALISTIC_LAVA_BLOCK;
+
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.Item> REALISTIC_LAVA_BUCKET_KEY;
+
+  public static final net.minecraft.world.item.Item REALISTIC_LAVA_BUCKET;
+
+  public static final net.minecraft.world.level.material.FlowingFluid FLOWING_REALISTIC_SLIME;
+
+  public static final net.minecraft.world.level.material.FlowingFluid REALISTIC_SLIME;
+
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.Block> REALISTIC_SLIME_BLOCK_KEY;
+
+  public static final net.minecraft.world.level.block.Block REALISTIC_SLIME_BLOCK;
+
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.Item> REALISTIC_SLIME_BUCKET_KEY;
+
+  public static final net.minecraft.world.item.Item REALISTIC_SLIME_BUCKET;
+
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.level.block.Block> REALISTIC_SAND_KEY;
+
+  public static final net.minecraft.world.level.block.Block REALISTIC_SAND;
+
+  public static final net.minecraft.resources.ResourceKey<net.minecraft.world.item.Item> REALISTIC_SAND_ITEM_KEY;
+
+  public static final net.minecraft.world.item.Item REALISTIC_SAND_ITEM;
+
+  private me.blue.ModContent();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private static net.minecraft.world.item.Item registerBlockItem(net.minecraft.resources.ResourceKey<net.minecraft.world.item.Item>, net.minecraft.world.level.block.Block);
+    Code:
+         0: new           #7                  // class net/minecraft/world/item/BlockItem
+         3: dup
+         4: aload_1
+         5: new           #9                  // class net/minecraft/world/item/Item$Properties
+         8: dup
+         9: invokespecial #11                 // Method net/minecraft/world/item/Item$Properties."<init>":()V
+        12: invokevirtual #12                 // Method net/minecraft/world/item/Item$Properties.useBlockDescriptionPrefix:()Lnet/minecraft/world/item/Item$Properties;
+        15: aload_0
+        16: invokevirtual #16                 // Method net/minecraft/world/item/Item$Properties.setId:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/item/Item$Properties;
+        19: invokespecial #20                 // Method net/minecraft/world/item/BlockItem."<init>":(Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/item/Item$Properties;)V
+        22: astore_2
+        23: aload_2
+        24: getstatic     #23                 // Field net/minecraft/world/item/Item.BY_BLOCK:Ljava/util/Map;
+        27: aload_2
+        28: invokevirtual #29                 // Method net/minecraft/world/item/BlockItem.registerBlocks:(Ljava/util/Map;Lnet/minecraft/world/item/Item;)V
+        31: getstatic     #33                 // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+        34: aload_0
+        35: aload_2
+        36: invokestatic  #39                 // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;Ljava/lang/Object;)Ljava/lang/Object;
+        39: checkcast     #24                 // class net/minecraft/world/item/Item
+        42: areturn
+
+  static void init();
+    Code:
+         0: getstatic     #45                 // Field net/minecraft/world/item/CreativeModeTabs.TOOLS_AND_UTILITIES:Lnet/minecraft/resources/ResourceKey;
+         3: invokestatic  #51                 // Method net/fabricmc/fabric/api/creativetab/v1/CreativeModeTabEvents.modifyOutputEvent:(Lnet/minecraft/resources/ResourceKey;)Lnet/fabricmc/fabric/api/event/Event;
+         6: invokedynamic #57,  0             // InvokeDynamic #0:modifyOutput:()Lnet/fabricmc/fabric/api/creativetab/v1/CreativeModeTabEvents$ModifyOutput;
+        11: invokevirtual #61                 // Method net/fabricmc/fabric/api/event/Event.register:(Ljava/lang/Object;)V
+        14: getstatic     #66                 // Field net/minecraft/world/item/CreativeModeTabs.NATURAL_BLOCKS:Lnet/minecraft/resources/ResourceKey;
+        17: invokestatic  #51                 // Method net/fabricmc/fabric/api/creativetab/v1/CreativeModeTabEvents.modifyOutputEvent:(Lnet/minecraft/resources/ResourceKey;)Lnet/fabricmc/fabric/api/event/Event;
+        20: invokedynamic #69,  0             // InvokeDynamic #1:modifyOutput:()Lnet/fabricmc/fabric/api/creativetab/v1/CreativeModeTabEvents$ModifyOutput;
+        25: invokevirtual #61                 // Method net/fabricmc/fabric/api/event/Event.register:(Ljava/lang/Object;)V
+        28: return
+
+  private static void lambda$init$1(net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTabOutput);
+    Code:
+         0: aload_0
+         1: getstatic     #70                 // Field net/minecraft/world/item/Items.SAND:Lnet/minecraft/world/item/Item;
+         4: iconst_1
+         5: anewarray     #76                 // class net/minecraft/world/level/ItemLike
+         8: dup
+         9: iconst_0
+        10: getstatic     #78                 // Field REALISTIC_SAND_ITEM:Lnet/minecraft/world/item/Item;
+        13: aastore
+        14: invokevirtual #83                 // Method net/fabricmc/fabric/api/creativetab/v1/FabricCreativeModeTabOutput.insertAfter:(Lnet/minecraft/world/level/ItemLike;[Lnet/minecraft/world/level/ItemLike;)V
+        17: return
+
+  private static void lambda$init$0(net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTabOutput);
+    Code:
+         0: aload_0
+         1: getstatic     #89                 // Field net/minecraft/world/item/Items.WATER_BUCKET:Lnet/minecraft/world/item/Item;
+         4: iconst_1
+         5: anewarray     #76                 // class net/minecraft/world/level/ItemLike
+         8: dup
+         9: iconst_0
+        10: getstatic     #92                 // Field REALISTIC_WATER_BUCKET:Lnet/minecraft/world/item/Item;
+        13: aastore
+        14: invokevirtual #83                 // Method net/fabricmc/fabric/api/creativetab/v1/FabricCreativeModeTabOutput.insertAfter:(Lnet/minecraft/world/level/ItemLike;[Lnet/minecraft/world/level/ItemLike;)V
+        17: aload_0
+        18: getstatic     #95                 // Field net/minecraft/world/item/Items.LAVA_BUCKET:Lnet/minecraft/world/item/Item;
+        21: iconst_1
+        22: anewarray     #76                 // class net/minecraft/world/level/ItemLike
+        25: dup
+        26: iconst_0
+        27: getstatic     #98                 // Field REALISTIC_LAVA_BUCKET:Lnet/minecraft/world/item/Item;
+        30: aastore
+        31: invokevirtual #83                 // Method net/fabricmc/fabric/api/creativetab/v1/FabricCreativeModeTabOutput.insertAfter:(Lnet/minecraft/world/level/ItemLike;[Lnet/minecraft/world/level/ItemLike;)V
+        34: aload_0
+        35: getstatic     #98                 // Field REALISTIC_LAVA_BUCKET:Lnet/minecraft/world/item/Item;
+        38: iconst_1
+        39: anewarray     #76                 // class net/minecraft/world/level/ItemLike
+        42: dup
+        43: iconst_0
+        44: getstatic     #101                // Field REALISTIC_SLIME_BUCKET:Lnet/minecraft/world/item/Item;
+        47: aastore
+        48: invokevirtual #83                 // Method net/fabricmc/fabric/api/creativetab/v1/FabricCreativeModeTabOutput.insertAfter:(Lnet/minecraft/world/level/ItemLike;[Lnet/minecraft/world/level/ItemLike;)V
+        51: return
+
+  private static boolean lambda$static$2(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos, net.minecraft.world.phys.AABB);
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  private static boolean lambda$static$1(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.BlockGetter, net.minecraft.core.BlockPos);
+    Code:
+         0: iconst_0
+         1: ireturn
+
+  private static int lambda$static$0(net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: bipush        15
+         2: ireturn
+
+  static {};
+    Code:
+         0: getstatic     #104                // Field net/minecraft/core/registries/BuiltInRegistries.FLUID:Lnet/minecraft/core/DefaultedRegistry;
+         3: ldc           #107                // String flowing_realistic_water
+         5: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+         8: new           #115                // class me/blue/fluid/RealisticWaterFluid$Flowing
+        11: dup
+        12: invokespecial #117                // Method me/blue/fluid/RealisticWaterFluid$Flowing."<init>":()V
+        15: invokestatic  #118                // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/Identifier;Ljava/lang/Object;)Ljava/lang/Object;
+        18: checkcast     #121                // class net/minecraft/world/level/material/FlowingFluid
+        21: putstatic     #123                // Field FLOWING_REALISTIC_WATER:Lnet/minecraft/world/level/material/FlowingFluid;
+        24: getstatic     #104                // Field net/minecraft/core/registries/BuiltInRegistries.FLUID:Lnet/minecraft/core/DefaultedRegistry;
+        27: ldc           #127                // String realistic_water
+        29: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+        32: new           #129                // class me/blue/fluid/RealisticWaterFluid$Source
+        35: dup
+        36: invokespecial #131                // Method me/blue/fluid/RealisticWaterFluid$Source."<init>":()V
+        39: invokestatic  #118                // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/Identifier;Ljava/lang/Object;)Ljava/lang/Object;
+        42: checkcast     #121                // class net/minecraft/world/level/material/FlowingFluid
+        45: putstatic     #132                // Field REALISTIC_WATER:Lnet/minecraft/world/level/material/FlowingFluid;
+        48: getstatic     #135                // Field net/minecraft/core/registries/Registries.BLOCK:Lnet/minecraft/resources/ResourceKey;
+        51: ldc           #127                // String realistic_water
+        53: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+        56: invokestatic  #140                // Method net/minecraft/resources/ResourceKey.create:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/ResourceKey;
+        59: putstatic     #146                // Field REALISTIC_WATER_BLOCK_KEY:Lnet/minecraft/resources/ResourceKey;
+        62: getstatic     #149                // Field net/minecraft/core/registries/BuiltInRegistries.BLOCK:Lnet/minecraft/core/DefaultedRegistry;
+        65: getstatic     #146                // Field REALISTIC_WATER_BLOCK_KEY:Lnet/minecraft/resources/ResourceKey;
+        68: new           #151                // class me/blue/block/RealisticWaterBlock
+        71: dup
+        72: getstatic     #132                // Field REALISTIC_WATER:Lnet/minecraft/world/level/material/FlowingFluid;
+        75: invokestatic  #153                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.of:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+        78: getstatic     #159                // Field net/minecraft/world/level/material/MapColor.WATER:Lnet/minecraft/world/level/material/MapColor;
+        81: invokevirtual #165                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.mapColor:(Lnet/minecraft/world/level/material/MapColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+        84: invokevirtual #169                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.replaceable:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+        87: invokevirtual #172                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.noCollision:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+        90: ldc           #175                // float 100.0f
+        92: invokevirtual #176                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.strength:(F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+        95: getstatic     #180                // Field net/minecraft/world/level/material/PushReaction.POPPED:Lnet/minecraft/world/level/material/PushReaction;
+        98: invokevirtual #186                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.pushReaction:(Lnet/minecraft/world/level/material/PushReaction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       101: invokevirtual #190                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.noLootTable:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       104: invokevirtual #193                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.liquid:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       107: getstatic     #196                // Field net/minecraft/world/level/block/SoundType.EMPTY:Lnet/minecraft/world/level/block/SoundType;
+       110: invokevirtual #202                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.sound:(Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       113: getstatic     #146                // Field REALISTIC_WATER_BLOCK_KEY:Lnet/minecraft/resources/ResourceKey;
+       116: invokevirtual #206                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.setId:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       119: invokespecial #209                // Method me/blue/block/RealisticWaterBlock."<init>":(Lnet/minecraft/world/level/material/FlowingFluid;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+       122: invokestatic  #39                 // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;Ljava/lang/Object;)Ljava/lang/Object;
+       125: checkcast     #212                // class net/minecraft/world/level/block/Block
+       128: putstatic     #214                // Field REALISTIC_WATER_BLOCK:Lnet/minecraft/world/level/block/Block;
+       131: getstatic     #218                // Field net/minecraft/core/registries/Registries.ITEM:Lnet/minecraft/resources/ResourceKey;
+       134: ldc           #220                // String realistic_water_bucket
+       136: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       139: invokestatic  #140                // Method net/minecraft/resources/ResourceKey.create:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/ResourceKey;
+       142: putstatic     #222                // Field REALISTIC_WATER_BUCKET_KEY:Lnet/minecraft/resources/ResourceKey;
+       145: getstatic     #33                 // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+       148: getstatic     #222                // Field REALISTIC_WATER_BUCKET_KEY:Lnet/minecraft/resources/ResourceKey;
+       151: new           #225                // class net/minecraft/world/item/BucketItem
+       154: dup
+       155: getstatic     #132                // Field REALISTIC_WATER:Lnet/minecraft/world/level/material/FlowingFluid;
+       158: new           #9                  // class net/minecraft/world/item/Item$Properties
+       161: dup
+       162: invokespecial #11                 // Method net/minecraft/world/item/Item$Properties."<init>":()V
+       165: getstatic     #227                // Field net/minecraft/world/item/Items.BUCKET:Lnet/minecraft/world/item/Item;
+       168: invokevirtual #230                // Method net/minecraft/world/item/Item$Properties.craftRemainder:(Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/item/Item$Properties;
+       171: iconst_1
+       172: invokevirtual #234                // Method net/minecraft/world/item/Item$Properties.stacksTo:(I)Lnet/minecraft/world/item/Item$Properties;
+       175: getstatic     #222                // Field REALISTIC_WATER_BUCKET_KEY:Lnet/minecraft/resources/ResourceKey;
+       178: invokevirtual #16                 // Method net/minecraft/world/item/Item$Properties.setId:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/item/Item$Properties;
+       181: invokespecial #238                // Method net/minecraft/world/item/BucketItem."<init>":(Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/world/item/Item$Properties;)V
+       184: invokestatic  #39                 // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;Ljava/lang/Object;)Ljava/lang/Object;
+       187: checkcast     #24                 // class net/minecraft/world/item/Item
+       190: putstatic     #92                 // Field REALISTIC_WATER_BUCKET:Lnet/minecraft/world/item/Item;
+       193: getstatic     #104                // Field net/minecraft/core/registries/BuiltInRegistries.FLUID:Lnet/minecraft/core/DefaultedRegistry;
+       196: ldc           #241                // String flowing_realistic_lava
+       198: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       201: new           #243                // class me/blue/fluid/RealisticLavaFluid$Flowing
+       204: dup
+       205: invokespecial #245                // Method me/blue/fluid/RealisticLavaFluid$Flowing."<init>":()V
+       208: invokestatic  #118                // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/Identifier;Ljava/lang/Object;)Ljava/lang/Object;
+       211: checkcast     #121                // class net/minecraft/world/level/material/FlowingFluid
+       214: putstatic     #246                // Field FLOWING_REALISTIC_LAVA:Lnet/minecraft/world/level/material/FlowingFluid;
+       217: getstatic     #104                // Field net/minecraft/core/registries/BuiltInRegistries.FLUID:Lnet/minecraft/core/DefaultedRegistry;
+       220: ldc           #249                // String realistic_lava
+       222: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       225: new           #251                // class me/blue/fluid/RealisticLavaFluid$Source
+       228: dup
+       229: invokespecial #253                // Method me/blue/fluid/RealisticLavaFluid$Source."<init>":()V
+       232: invokestatic  #118                // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/Identifier;Ljava/lang/Object;)Ljava/lang/Object;
+       235: checkcast     #121                // class net/minecraft/world/level/material/FlowingFluid
+       238: putstatic     #254                // Field REALISTIC_LAVA:Lnet/minecraft/world/level/material/FlowingFluid;
+       241: getstatic     #135                // Field net/minecraft/core/registries/Registries.BLOCK:Lnet/minecraft/resources/ResourceKey;
+       244: ldc           #249                // String realistic_lava
+       246: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       249: invokestatic  #140                // Method net/minecraft/resources/ResourceKey.create:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/ResourceKey;
+       252: putstatic     #257                // Field REALISTIC_LAVA_BLOCK_KEY:Lnet/minecraft/resources/ResourceKey;
+       255: getstatic     #149                // Field net/minecraft/core/registries/BuiltInRegistries.BLOCK:Lnet/minecraft/core/DefaultedRegistry;
+       258: getstatic     #257                // Field REALISTIC_LAVA_BLOCK_KEY:Lnet/minecraft/resources/ResourceKey;
+       261: new           #260                // class me/blue/block/RealisticLavaBlock
+       264: dup
+       265: getstatic     #254                // Field REALISTIC_LAVA:Lnet/minecraft/world/level/material/FlowingFluid;
+       268: invokestatic  #153                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.of:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       271: getstatic     #262                // Field net/minecraft/world/level/material/MapColor.FIRE:Lnet/minecraft/world/level/material/MapColor;
+       274: invokevirtual #165                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.mapColor:(Lnet/minecraft/world/level/material/MapColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       277: invokevirtual #169                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.replaceable:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       280: invokevirtual #172                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.noCollision:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       283: ldc           #175                // float 100.0f
+       285: invokevirtual #176                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.strength:(F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       288: getstatic     #180                // Field net/minecraft/world/level/material/PushReaction.POPPED:Lnet/minecraft/world/level/material/PushReaction;
+       291: invokevirtual #186                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.pushReaction:(Lnet/minecraft/world/level/material/PushReaction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       294: invokevirtual #190                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.noLootTable:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       297: invokevirtual #193                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.liquid:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       300: invokedynamic #265,  0            // InvokeDynamic #2:applyAsInt:()Ljava/util/function/ToIntFunction;
+       305: invokevirtual #269                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.lightLevel:(Ljava/util/function/ToIntFunction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       308: getstatic     #196                // Field net/minecraft/world/level/block/SoundType.EMPTY:Lnet/minecraft/world/level/block/SoundType;
+       311: invokevirtual #202                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.sound:(Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       314: getstatic     #257                // Field REALISTIC_LAVA_BLOCK_KEY:Lnet/minecraft/resources/ResourceKey;
+       317: invokevirtual #206                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.setId:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       320: invokespecial #273                // Method me/blue/block/RealisticLavaBlock."<init>":(Lnet/minecraft/world/level/material/FlowingFluid;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+       323: invokestatic  #39                 // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;Ljava/lang/Object;)Ljava/lang/Object;
+       326: checkcast     #212                // class net/minecraft/world/level/block/Block
+       329: putstatic     #274                // Field REALISTIC_LAVA_BLOCK:Lnet/minecraft/world/level/block/Block;
+       332: getstatic     #218                // Field net/minecraft/core/registries/Registries.ITEM:Lnet/minecraft/resources/ResourceKey;
+       335: ldc_w         #277                // String realistic_lava_bucket
+       338: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       341: invokestatic  #140                // Method net/minecraft/resources/ResourceKey.create:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/ResourceKey;
+       344: putstatic     #279                // Field REALISTIC_LAVA_BUCKET_KEY:Lnet/minecraft/resources/ResourceKey;
+       347: getstatic     #33                 // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+       350: getstatic     #279                // Field REALISTIC_LAVA_BUCKET_KEY:Lnet/minecraft/resources/ResourceKey;
+       353: new           #225                // class net/minecraft/world/item/BucketItem
+       356: dup
+       357: getstatic     #254                // Field REALISTIC_LAVA:Lnet/minecraft/world/level/material/FlowingFluid;
+       360: new           #9                  // class net/minecraft/world/item/Item$Properties
+       363: dup
+       364: invokespecial #11                 // Method net/minecraft/world/item/Item$Properties."<init>":()V
+       367: getstatic     #227                // Field net/minecraft/world/item/Items.BUCKET:Lnet/minecraft/world/item/Item;
+       370: invokevirtual #230                // Method net/minecraft/world/item/Item$Properties.craftRemainder:(Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/item/Item$Properties;
+       373: iconst_1
+       374: invokevirtual #234                // Method net/minecraft/world/item/Item$Properties.stacksTo:(I)Lnet/minecraft/world/item/Item$Properties;
+       377: getstatic     #279                // Field REALISTIC_LAVA_BUCKET_KEY:Lnet/minecraft/resources/ResourceKey;
+       380: invokevirtual #16                 // Method net/minecraft/world/item/Item$Properties.setId:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/item/Item$Properties;
+       383: invokespecial #238                // Method net/minecraft/world/item/BucketItem."<init>":(Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/world/item/Item$Properties;)V
+       386: invokestatic  #39                 // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;Ljava/lang/Object;)Ljava/lang/Object;
+       389: checkcast     #24                 // class net/minecraft/world/item/Item
+       392: putstatic     #98                 // Field REALISTIC_LAVA_BUCKET:Lnet/minecraft/world/item/Item;
+       395: getstatic     #104                // Field net/minecraft/core/registries/BuiltInRegistries.FLUID:Lnet/minecraft/core/DefaultedRegistry;
+       398: ldc_w         #282                // String flowing_realistic_slime
+       401: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       404: new           #284                // class me/blue/fluid/RealisticSlimeFluid$Flowing
+       407: dup
+       408: invokespecial #286                // Method me/blue/fluid/RealisticSlimeFluid$Flowing."<init>":()V
+       411: invokestatic  #118                // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/Identifier;Ljava/lang/Object;)Ljava/lang/Object;
+       414: checkcast     #121                // class net/minecraft/world/level/material/FlowingFluid
+       417: putstatic     #287                // Field FLOWING_REALISTIC_SLIME:Lnet/minecraft/world/level/material/FlowingFluid;
+       420: getstatic     #104                // Field net/minecraft/core/registries/BuiltInRegistries.FLUID:Lnet/minecraft/core/DefaultedRegistry;
+       423: ldc_w         #290                // String realistic_slime
+       426: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       429: new           #292                // class me/blue/fluid/RealisticSlimeFluid$Source
+       432: dup
+       433: invokespecial #294                // Method me/blue/fluid/RealisticSlimeFluid$Source."<init>":()V
+       436: invokestatic  #118                // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/Identifier;Ljava/lang/Object;)Ljava/lang/Object;
+       439: checkcast     #121                // class net/minecraft/world/level/material/FlowingFluid
+       442: putstatic     #295                // Field REALISTIC_SLIME:Lnet/minecraft/world/level/material/FlowingFluid;
+       445: getstatic     #135                // Field net/minecraft/core/registries/Registries.BLOCK:Lnet/minecraft/resources/ResourceKey;
+       448: ldc_w         #290                // String realistic_slime
+       451: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       454: invokestatic  #140                // Method net/minecraft/resources/ResourceKey.create:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/ResourceKey;
+       457: putstatic     #298                // Field REALISTIC_SLIME_BLOCK_KEY:Lnet/minecraft/resources/ResourceKey;
+       460: getstatic     #149                // Field net/minecraft/core/registries/BuiltInRegistries.BLOCK:Lnet/minecraft/core/DefaultedRegistry;
+       463: getstatic     #298                // Field REALISTIC_SLIME_BLOCK_KEY:Lnet/minecraft/resources/ResourceKey;
+       466: new           #151                // class me/blue/block/RealisticWaterBlock
+       469: dup
+       470: getstatic     #295                // Field REALISTIC_SLIME:Lnet/minecraft/world/level/material/FlowingFluid;
+       473: invokestatic  #153                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.of:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       476: getstatic     #301                // Field net/minecraft/world/level/material/MapColor.GRASS:Lnet/minecraft/world/level/material/MapColor;
+       479: invokevirtual #165                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.mapColor:(Lnet/minecraft/world/level/material/MapColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       482: invokevirtual #169                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.replaceable:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       485: invokevirtual #172                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.noCollision:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       488: ldc           #175                // float 100.0f
+       490: invokevirtual #176                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.strength:(F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       493: getstatic     #180                // Field net/minecraft/world/level/material/PushReaction.POPPED:Lnet/minecraft/world/level/material/PushReaction;
+       496: invokevirtual #186                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.pushReaction:(Lnet/minecraft/world/level/material/PushReaction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       499: invokevirtual #190                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.noLootTable:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       502: invokevirtual #193                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.liquid:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       505: getstatic     #196                // Field net/minecraft/world/level/block/SoundType.EMPTY:Lnet/minecraft/world/level/block/SoundType;
+       508: invokevirtual #202                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.sound:(Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       511: getstatic     #298                // Field REALISTIC_SLIME_BLOCK_KEY:Lnet/minecraft/resources/ResourceKey;
+       514: invokevirtual #206                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.setId:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       517: invokespecial #209                // Method me/blue/block/RealisticWaterBlock."<init>":(Lnet/minecraft/world/level/material/FlowingFluid;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+       520: invokestatic  #39                 // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;Ljava/lang/Object;)Ljava/lang/Object;
+       523: checkcast     #212                // class net/minecraft/world/level/block/Block
+       526: putstatic     #304                // Field REALISTIC_SLIME_BLOCK:Lnet/minecraft/world/level/block/Block;
+       529: getstatic     #218                // Field net/minecraft/core/registries/Registries.ITEM:Lnet/minecraft/resources/ResourceKey;
+       532: ldc_w         #307                // String realistic_slime_bucket
+       535: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       538: invokestatic  #140                // Method net/minecraft/resources/ResourceKey.create:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/ResourceKey;
+       541: putstatic     #309                // Field REALISTIC_SLIME_BUCKET_KEY:Lnet/minecraft/resources/ResourceKey;
+       544: getstatic     #33                 // Field net/minecraft/core/registries/BuiltInRegistries.ITEM:Lnet/minecraft/core/DefaultedRegistry;
+       547: getstatic     #309                // Field REALISTIC_SLIME_BUCKET_KEY:Lnet/minecraft/resources/ResourceKey;
+       550: new           #312                // class me/blue/ModContent$1
+       553: dup
+       554: getstatic     #295                // Field REALISTIC_SLIME:Lnet/minecraft/world/level/material/FlowingFluid;
+       557: new           #9                  // class net/minecraft/world/item/Item$Properties
+       560: dup
+       561: invokespecial #11                 // Method net/minecraft/world/item/Item$Properties."<init>":()V
+       564: getstatic     #227                // Field net/minecraft/world/item/Items.BUCKET:Lnet/minecraft/world/item/Item;
+       567: invokevirtual #230                // Method net/minecraft/world/item/Item$Properties.craftRemainder:(Lnet/minecraft/world/item/Item;)Lnet/minecraft/world/item/Item$Properties;
+       570: iconst_1
+       571: invokevirtual #234                // Method net/minecraft/world/item/Item$Properties.stacksTo:(I)Lnet/minecraft/world/item/Item$Properties;
+       574: getstatic     #309                // Field REALISTIC_SLIME_BUCKET_KEY:Lnet/minecraft/resources/ResourceKey;
+       577: invokevirtual #16                 // Method net/minecraft/world/item/Item$Properties.setId:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/item/Item$Properties;
+       580: invokespecial #314                // Method me/blue/ModContent$1."<init>":(Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/world/item/Item$Properties;)V
+       583: invokestatic  #39                 // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;Ljava/lang/Object;)Ljava/lang/Object;
+       586: checkcast     #24                 // class net/minecraft/world/item/Item
+       589: putstatic     #101                // Field REALISTIC_SLIME_BUCKET:Lnet/minecraft/world/item/Item;
+       592: getstatic     #135                // Field net/minecraft/core/registries/Registries.BLOCK:Lnet/minecraft/resources/ResourceKey;
+       595: ldc_w         #315                // String realistic_sand
+       598: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       601: invokestatic  #140                // Method net/minecraft/resources/ResourceKey.create:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/ResourceKey;
+       604: putstatic     #317                // Field REALISTIC_SAND_KEY:Lnet/minecraft/resources/ResourceKey;
+       607: getstatic     #149                // Field net/minecraft/core/registries/BuiltInRegistries.BLOCK:Lnet/minecraft/core/DefaultedRegistry;
+       610: getstatic     #317                // Field REALISTIC_SAND_KEY:Lnet/minecraft/resources/ResourceKey;
+       613: new           #320                // class me/blue/block/RealisticSandBlock
+       616: dup
+       617: invokestatic  #153                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.of:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       620: getstatic     #322                // Field net/minecraft/world/level/material/MapColor.SAND:Lnet/minecraft/world/level/material/MapColor;
+       623: invokevirtual #165                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.mapColor:(Lnet/minecraft/world/level/material/MapColor;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       626: getstatic     #324                // Field net/minecraft/world/level/block/state/properties/NoteBlockInstrument.SNARE:Lnet/minecraft/world/level/block/state/properties/NoteBlockInstrument;
+       629: invokevirtual #330                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.instrument:(Lnet/minecraft/world/level/block/state/properties/NoteBlockInstrument;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       632: ldc_w         #334                // float 0.5f
+       635: invokevirtual #176                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.strength:(F)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       638: getstatic     #335                // Field net/minecraft/world/level/block/SoundType.SAND:Lnet/minecraft/world/level/block/SoundType;
+       641: invokevirtual #202                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.sound:(Lnet/minecraft/world/level/block/SoundType;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       644: invokevirtual #337                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.noOcclusion:()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       647: getstatic     #180                // Field net/minecraft/world/level/material/PushReaction.POPPED:Lnet/minecraft/world/level/material/PushReaction;
+       650: invokevirtual #186                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.pushReaction:(Lnet/minecraft/world/level/material/PushReaction;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       653: invokedynamic #340,  0            // InvokeDynamic #3:test:()Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;
+       658: invokevirtual #344                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.isSuffocating:(Lnet/minecraft/world/level/block/state/BlockBehaviour$StatePredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       661: invokedynamic #348,  0            // InvokeDynamic #4:test:()Lnet/minecraft/world/level/block/state/BlockBehaviour$StateArgumentPredicate;
+       666: invokevirtual #351                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.isViewBlocking:(Lnet/minecraft/world/level/block/state/BlockBehaviour$StateArgumentPredicate;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       669: getstatic     #317                // Field REALISTIC_SAND_KEY:Lnet/minecraft/resources/ResourceKey;
+       672: invokevirtual #206                // Method net/minecraft/world/level/block/state/BlockBehaviour$Properties.setId:(Lnet/minecraft/resources/ResourceKey;)Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;
+       675: invokespecial #355                // Method me/blue/block/RealisticSandBlock."<init>":(Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+       678: invokestatic  #39                 // InterfaceMethod net/minecraft/core/Registry.register:(Lnet/minecraft/core/Registry;Lnet/minecraft/resources/ResourceKey;Ljava/lang/Object;)Ljava/lang/Object;
+       681: checkcast     #212                // class net/minecraft/world/level/block/Block
+       684: putstatic     #358                // Field REALISTIC_SAND:Lnet/minecraft/world/level/block/Block;
+       687: getstatic     #218                // Field net/minecraft/core/registries/Registries.ITEM:Lnet/minecraft/resources/ResourceKey;
+       690: ldc_w         #315                // String realistic_sand
+       693: invokestatic  #109                // Method me/blue/RealisticWater.id:(Ljava/lang/String;)Lnet/minecraft/resources/Identifier;
+       696: invokestatic  #140                // Method net/minecraft/resources/ResourceKey.create:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/resources/Identifier;)Lnet/minecraft/resources/ResourceKey;
+       699: putstatic     #361                // Field REALISTIC_SAND_ITEM_KEY:Lnet/minecraft/resources/ResourceKey;
+       702: getstatic     #361                // Field REALISTIC_SAND_ITEM_KEY:Lnet/minecraft/resources/ResourceKey;
+       705: getstatic     #358                // Field REALISTIC_SAND:Lnet/minecraft/world/level/block/Block;
+       708: invokestatic  #364                // Method registerBlockItem:(Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/item/Item;
+       711: putstatic     #78                 // Field REALISTIC_SAND_ITEM:Lnet/minecraft/world/item/Item;
+       714: return
+}

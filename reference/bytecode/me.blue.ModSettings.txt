@@ -1,0 +1,16 @@
+Compiled from "ModSettings.java"
+public final class me.blue.ModSettings {
+  public static boolean lavaIgniteFlammables;
+
+  private me.blue.ModSettings();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  static {};
+    Code:
+         0: iconst_1
+         1: putstatic     #7                  // Field lavaIgniteFlammables:Z
+         4: return
+}

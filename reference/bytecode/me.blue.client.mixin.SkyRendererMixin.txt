@@ -1,0 +1,22 @@
+Compiled from "SkyRendererMixin.java"
+public abstract class me.blue.client.mixin.SkyRendererMixin {
+  public me.blue.client.mixin.SkyRendererMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void blue$tiltSunPath(com.mojang.renderpearl.api.commands.RenderPass, com.mojang.blaze3d.vertex.PoseStack, float, float, float, net.minecraft.world.level.MoonPhase, float, float, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #7                  // Method me/blue/client/shader/ShaderRenderer.sunPathRotation:()F
+         3: fstore        10
+         5: fload         10
+         7: fconst_0
+         8: fcmpl
+         9: ifeq          21
+        12: aload_2
+        13: getstatic     #13                 // Field com/mojang/math/Axis.ZP:Lcom/mojang/math/Axis;
+        16: fload         10
+        18: invokevirtual #19                 // Method com/mojang/blaze3d/vertex/PoseStack.rotateDegrees:(Lcom/mojang/math/Axis;F)V
+        21: return
+}

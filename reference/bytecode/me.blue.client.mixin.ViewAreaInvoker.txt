@@ -1,0 +1,4 @@
+Compiled from "ViewAreaInvoker.java"
+public interface me.blue.client.mixin.ViewAreaInvoker {
+  public abstract net.minecraft.client.renderer.chunk.SectionRenderDispatcher$RenderSection blue$getRenderSection(long);
+}

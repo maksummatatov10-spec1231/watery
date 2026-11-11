@@ -1,0 +1,536 @@
+Compiled from "WaterSettingsScreen.java"
+public class me.blue.client.water.WaterSettingsScreen extends net.minecraft.client.gui.screens.options.OptionsSubScreen {
+  private static java.lang.String lastCategory;
+
+  private static boolean openPending;
+
+  private final java.lang.String category;
+
+  private static final java.util.Map<me.blue.client.water.WaterSettingsInfo$Cost, java.lang.Integer> COST_COLORS;
+
+  public me.blue.client.water.WaterSettingsScreen(net.minecraft.client.gui.screens.Screen, java.lang.String);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #1                  // Method net/minecraft/client/Minecraft.getInstance:()Lnet/minecraft/client/Minecraft;
+         5: getfield      #7                  // Field net/minecraft/client/Minecraft.options:Lnet/minecraft/client/Options;
+         8: ldc           #11                 // String watery.settings.title
+        10: invokestatic  #13                 // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        13: invokespecial #19                 // Method net/minecraft/client/gui/screens/options/OptionsSubScreen."<init>":(Lnet/minecraft/client/gui/screens/Screen;Lnet/minecraft/client/Options;Lnet/minecraft/network/chat/Component;)V
+        16: invokestatic  #25                 // Method me/blue/client/water/WaterSettingsInfo.categories:()Ljava/util/List;
+        19: astore_3
+        20: aload_0
+        21: aload_3
+        22: aload_2
+        23: invokeinterface #31,  2           // InterfaceMethod java/util/List.contains:(Ljava/lang/Object;)Z
+        28: ifeq          35
+        31: aload_2
+        32: goto          44
+        35: aload_3
+        36: invokeinterface #37,  1           // InterfaceMethod java/util/List.getFirst:()Ljava/lang/Object;
+        41: checkcast     #41                 // class java/lang/String
+        44: putfield      #43                 // Field category:Ljava/lang/String;
+        47: aload_0
+        48: getfield      #43                 // Field category:Ljava/lang/String;
+        51: putstatic     #49                 // Field lastCategory:Ljava/lang/String;
+        54: return
+
+  public static void openNextTick();
+    Code:
+         0: iconst_1
+         1: putstatic     #52                 // Field openPending:Z
+         4: return
+
+  public static void tick(net.minecraft.client.Minecraft);
+    Code:
+         0: getstatic     #52                 // Field openPending:Z
+         3: ifeq          34
+         6: iconst_0
+         7: putstatic     #52                 // Field openPending:Z
+        10: aload_0
+        11: getfield      #56                 // Field net/minecraft/client/Minecraft.gui:Lnet/minecraft/client/gui/Gui;
+        14: new           #44                 // class me/blue/client/water/WaterSettingsScreen
+        17: dup
+        18: aload_0
+        19: getfield      #56                 // Field net/minecraft/client/Minecraft.gui:Lnet/minecraft/client/gui/Gui;
+        22: invokevirtual #60                 // Method net/minecraft/client/gui/Gui.screen:()Lnet/minecraft/client/gui/screens/Screen;
+        25: getstatic     #49                 // Field lastCategory:Ljava/lang/String;
+        28: invokespecial #66                 // Method "<init>":(Lnet/minecraft/client/gui/screens/Screen;Ljava/lang/String;)V
+        31: invokevirtual #69                 // Method net/minecraft/client/gui/Gui.setScreen:(Lnet/minecraft/client/gui/screens/Screen;)V
+        34: return
+
+  protected void addOptions();
+    Code:
+         0: invokedynamic #73,  0             // InvokeDynamic #0:apply:()Ljava/util/function/Function;
+         5: aload_0
+         6: getfield      #43                 // Field category:Ljava/lang/String;
+         9: invokestatic  #77                 // Method net/minecraft/client/gui/components/CycleButton.builder:(Ljava/util/function/Function;Ljava/lang/Object;)Lnet/minecraft/client/gui/components/CycleButton$Builder;
+        12: invokestatic  #25                 // Method me/blue/client/water/WaterSettingsInfo.categories:()Ljava/util/List;
+        15: invokevirtual #83                 // Method net/minecraft/client/gui/components/CycleButton$Builder.withValues:(Ljava/util/Collection;)Lnet/minecraft/client/gui/components/CycleButton$Builder;
+        18: ldc           #89                 // String watery.settings.category
+        20: invokestatic  #13                 // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        23: aload_0
+        24: invokedynamic #91,  0             // InvokeDynamic #1:onValueChange:(Lme/blue/client/water/WaterSettingsScreen;)Lnet/minecraft/client/gui/components/CycleButton$OnValueChange;
+        29: invokevirtual #95                 // Method net/minecraft/client/gui/components/CycleButton$Builder.create:(Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/gui/components/CycleButton$OnValueChange;)Lnet/minecraft/client/gui/components/CycleButton;
+        32: astore_1
+        33: aload_1
+        34: ldc           #99                 // String watery.settings.hint
+        36: invokestatic  #13                 // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        39: invokestatic  #101                // Method net/minecraft/client/gui/components/Tooltip.create:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/components/Tooltip;
+        42: invokevirtual #106                // Method net/minecraft/client/gui/components/CycleButton.setTooltip:(Lnet/minecraft/client/gui/components/Tooltip;)V
+        45: aload_0
+        46: getfield      #110                // Field list:Lnet/minecraft/client/gui/components/OptionsList;
+        49: aload_1
+        50: invokevirtual #114                // Method net/minecraft/client/gui/components/OptionsList.addBig:(Lnet/minecraft/client/gui/components/AbstractWidget;)V
+        53: new           #120                // class java/util/ArrayList
+        56: dup
+        57: invokespecial #122                // Method java/util/ArrayList."<init>":()V
+        60: astore_2
+        61: aload_0
+        62: getfield      #43                 // Field category:Ljava/lang/String;
+        65: invokestatic  #125                // Method me/blue/client/water/WaterSettingsInfo.names:(Ljava/lang/String;)Ljava/util/List;
+        68: invokeinterface #129,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        73: astore_3
+        74: aload_3
+        75: invokeinterface #133,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        80: ifeq          113
+        83: aload_3
+        84: invokeinterface #139,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        89: checkcast     #41                 // class java/lang/String
+        92: astore        4
+        94: aload_2
+        95: aload_0
+        96: aload         4
+        98: invokestatic  #142                // Method me/blue/client/water/WaterSettingsInfo.get:(Ljava/lang/String;)Lme/blue/client/water/WaterSettingsInfo$Info;
+       101: invokevirtual #146                // Method widget:(Lme/blue/client/water/WaterSettingsInfo$Info;)Lnet/minecraft/client/gui/components/AbstractWidget;
+       104: invokeinterface #150,  2          // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       109: pop
+       110: goto          74
+       113: aload_0
+       114: getfield      #110                // Field list:Lnet/minecraft/client/gui/components/OptionsList;
+       117: aload_2
+       118: invokevirtual #153                // Method net/minecraft/client/gui/components/OptionsList.addSmall:(Ljava/util/List;)V
+       121: return
+
+  public void removed();
+    Code:
+         0: aload_0
+         1: invokespecial #157                // Method net/minecraft/client/gui/screens/options/OptionsSubScreen.removed:()V
+         4: invokestatic  #160                // Method me/blue/client/water/WaterSettings.save:()V
+         7: return
+
+  protected void addFooter();
+    Code:
+         0: aload_0
+         1: getfield      #165                // Field layout:Lnet/minecraft/client/gui/layouts/HeaderAndFooterLayout;
+         4: invokestatic  #169                // Method net/minecraft/client/gui/layouts/LinearLayout.horizontal:()Lnet/minecraft/client/gui/layouts/LinearLayout;
+         7: bipush        8
+         9: invokevirtual #175                // Method net/minecraft/client/gui/layouts/LinearLayout.spacing:(I)Lnet/minecraft/client/gui/layouts/LinearLayout;
+        12: invokevirtual #179                // Method net/minecraft/client/gui/layouts/HeaderAndFooterLayout.addToFooter:(Lnet/minecraft/client/gui/layouts/LayoutElement;)Lnet/minecraft/client/gui/layouts/LayoutElement;
+        15: checkcast     #170                // class net/minecraft/client/gui/layouts/LinearLayout
+        18: astore_1
+        19: ldc           #185                // String watery.settings.resetCategory
+        21: invokestatic  #13                 // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        24: aload_0
+        25: invokedynamic #187,  0            // InvokeDynamic #2:onPress:(Lme/blue/client/water/WaterSettingsScreen;)Lnet/minecraft/client/gui/components/Button$OnPress;
+        30: invokestatic  #191                // Method net/minecraft/client/gui/components/Button.builder:(Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/gui/components/Button$OnPress;)Lnet/minecraft/client/gui/components/Button$Builder;
+        33: invokevirtual #196                // Method net/minecraft/client/gui/components/Button$Builder.build:()Lnet/minecraft/client/gui/components/Button;
+        36: astore_2
+        37: aload_2
+        38: ldc           #202                // String watery.settings.resetCategory.tooltip
+        40: invokestatic  #13                 // InterfaceMethod net/minecraft/network/chat/Component.translatable:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        43: invokestatic  #101                // Method net/minecraft/client/gui/components/Tooltip.create:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/components/Tooltip;
+        46: invokevirtual #204                // Method net/minecraft/client/gui/components/Button.setTooltip:(Lnet/minecraft/client/gui/components/Tooltip;)V
+        49: aload_1
+        50: aload_2
+        51: invokevirtual #205                // Method net/minecraft/client/gui/layouts/LinearLayout.addChild:(Lnet/minecraft/client/gui/layouts/LayoutElement;)Lnet/minecraft/client/gui/layouts/LayoutElement;
+        54: pop
+        55: aload_1
+        56: getstatic     #208                // Field net/minecraft/network/chat/CommonComponents.GUI_DONE:Lnet/minecraft/network/chat/Component;
+        59: aload_0
+        60: invokedynamic #214,  0            // InvokeDynamic #3:onPress:(Lme/blue/client/water/WaterSettingsScreen;)Lnet/minecraft/client/gui/components/Button$OnPress;
+        65: invokestatic  #191                // Method net/minecraft/client/gui/components/Button.builder:(Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/gui/components/Button$OnPress;)Lnet/minecraft/client/gui/components/Button$Builder;
+        68: invokevirtual #196                // Method net/minecraft/client/gui/components/Button$Builder.build:()Lnet/minecraft/client/gui/components/Button;
+        71: invokevirtual #205                // Method net/minecraft/client/gui/layouts/LinearLayout.addChild:(Lnet/minecraft/client/gui/layouts/LayoutElement;)Lnet/minecraft/client/gui/layouts/LayoutElement;
+        74: pop
+        75: return
+
+  private net.minecraft.client.gui.components.AbstractWidget widget(me.blue.client.water.WaterSettingsInfo$Info);
+    Code:
+         0: getstatic     #215                // Field me/blue/client/water/WaterSettingsScreen$1.$SwitchMap$me$blue$client$water$WaterSettingsInfo$Kind:[I
+         3: aload_1
+         4: invokevirtual #221                // Method me/blue/client/water/WaterSettingsInfo$Info.kind:()Lme/blue/client/water/WaterSettingsInfo$Kind;
+         7: invokevirtual #227                // Method me/blue/client/water/WaterSettingsInfo$Kind.ordinal:()I
+        10: iaload
+        11: lookupswitch  { // 2
+
+                       1: 36
+
+                       2: 68
+                 default: 141
+            }
+        36: aload_1
+        37: invokevirtual #233                // Method me/blue/client/water/WaterSettingsInfo$Info.name:()Ljava/lang/String;
+        40: invokestatic  #237                // Method value:(Ljava/lang/String;)Ljava/lang/String;
+        43: invokestatic  #241                // Method java/lang/Boolean.parseBoolean:(Ljava/lang/String;)Z
+        46: invokestatic  #247                // Method net/minecraft/client/gui/components/CycleButton.onOffBuilder:(Z)Lnet/minecraft/client/gui/components/CycleButton$Builder;
+        49: aload_1
+        50: invokevirtual #251                // Method me/blue/client/water/WaterSettingsInfo$Info.label:()Ljava/lang/String;
+        53: invokestatic  #254                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        56: aload_1
+        57: invokedynamic #257,  0            // InvokeDynamic #4:onValueChange:(Lme/blue/client/water/WaterSettingsInfo$Info;)Lnet/minecraft/client/gui/components/CycleButton$OnValueChange;
+        62: invokevirtual #95                 // Method net/minecraft/client/gui/components/CycleButton$Builder.create:(Lnet/minecraft/network/chat/Component;Lnet/minecraft/client/gui/components/CycleButton$OnValueChange;)Lnet/minecraft/client/gui/components/CycleButton;
+        65: goto          149
+        68: new           #260                // class net/minecraft/client/gui/components/EditBox
+        71: dup
+        72: aload_0
+        73: getfield      #262                // Field font:Lnet/minecraft/client/gui/Font;
+        76: sipush        150
+        79: bipush        20
+        81: aload_1
+        82: invokevirtual #251                // Method me/blue/client/water/WaterSettingsInfo$Info.label:()Ljava/lang/String;
+        85: invokestatic  #254                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        88: invokespecial #266                // Method net/minecraft/client/gui/components/EditBox."<init>":(Lnet/minecraft/client/gui/Font;IILnet/minecraft/network/chat/Component;)V
+        91: astore_3
+        92: aload_3
+        93: sipush        1024
+        96: invokevirtual #269                // Method net/minecraft/client/gui/components/EditBox.setMaxLength:(I)V
+        99: aload_3
+       100: aload_1
+       101: invokevirtual #233                // Method me/blue/client/water/WaterSettingsInfo$Info.name:()Ljava/lang/String;
+       104: invokestatic  #237                // Method value:(Ljava/lang/String;)Ljava/lang/String;
+       107: invokevirtual #273                // Method net/minecraft/client/gui/components/EditBox.setValue:(Ljava/lang/String;)V
+       110: aload_3
+       111: aload_1
+       112: invokevirtual #251                // Method me/blue/client/water/WaterSettingsInfo$Info.label:()Ljava/lang/String;
+       115: invokestatic  #254                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       118: getstatic     #277                // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+       121: invokevirtual #283                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+       124: invokevirtual #289                // Method net/minecraft/client/gui/components/EditBox.setHint:(Lnet/minecraft/network/chat/Component;)V
+       127: aload_3
+       128: aload_1
+       129: invokedynamic #293,  0            // InvokeDynamic #5:accept:(Lme/blue/client/water/WaterSettingsInfo$Info;)Ljava/util/function/Consumer;
+       134: invokevirtual #297                // Method net/minecraft/client/gui/components/EditBox.setResponder:(Ljava/util/function/Consumer;)V
+       137: aload_3
+       138: goto          149
+       141: new           #301                // class me/blue/client/water/WaterSettingsScreen$SettingSlider
+       144: dup
+       145: aload_1
+       146: invokespecial #303                // Method me/blue/client/water/WaterSettingsScreen$SettingSlider."<init>":(Lme/blue/client/water/WaterSettingsInfo$Info;)V
+       149: astore_2
+       150: aload_2
+       151: aload_1
+       152: invokestatic  #306                // Method tooltip:(Lme/blue/client/water/WaterSettingsInfo$Info;)Lnet/minecraft/network/chat/Component;
+       155: invokestatic  #101                // Method net/minecraft/client/gui/components/Tooltip.create:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/client/gui/components/Tooltip;
+       158: invokevirtual #310                // Method net/minecraft/client/gui/components/AbstractWidget.setTooltip:(Lnet/minecraft/client/gui/components/Tooltip;)V
+       161: aload_2
+       162: areturn
+
+  private static java.lang.String value(java.lang.String);
+    Code:
+         0: aload_0
+         1: invokestatic  #313                // Method me/blue/client/water/WaterSettings.get:(Ljava/lang/String;)Ljava/lang/String;
+         4: areturn
+         5: astore_1
+         6: ldc_w         #317                // String
+         9: areturn
+      Exception table:
+         from    to  target type
+             0     4     5   Class java/lang/ReflectiveOperationException
+
+  private static void set(java.lang.String, java.lang.String);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #319                // Method me/blue/client/water/WaterSettings.set:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+         5: pop
+         6: goto          37
+         9: astore_2
+        10: getstatic     #325                // Field me/blue/RealisticWater.LOGGER:Lorg/slf4j/Logger;
+        13: ldc_w         #331                // String Couldn\'t set {} to {}
+        16: iconst_3
+        17: anewarray     #333                // class java/lang/Object
+        20: dup
+        21: iconst_0
+        22: aload_0
+        23: aastore
+        24: dup
+        25: iconst_1
+        26: aload_1
+        27: aastore
+        28: dup
+        29: iconst_2
+        30: aload_2
+        31: aastore
+        32: invokeinterface #335,  3          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;[Ljava/lang/Object;)V
+        37: return
+      Exception table:
+         from    to  target type
+             0     6     9   Class java/lang/ReflectiveOperationException
+             0     6     9   Class java/lang/NumberFormatException
+
+  static net.minecraft.network.chat.Component tooltip(me.blue.client.water.WaterSettingsInfo$Info);
+    Code:
+         0: invokestatic  #341                // InterfaceMethod net/minecraft/network/chat/Component.empty:()Lnet/minecraft/network/chat/MutableComponent;
+         3: astore_1
+         4: aload_1
+         5: aload_0
+         6: invokevirtual #251                // Method me/blue/client/water/WaterSettingsInfo$Info.label:()Ljava/lang/String;
+         9: invokestatic  #254                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        12: iconst_2
+        13: anewarray     #278                // class net/minecraft/ChatFormatting
+        16: dup
+        17: iconst_0
+        18: getstatic     #345                // Field net/minecraft/ChatFormatting.WHITE:Lnet/minecraft/ChatFormatting;
+        21: aastore
+        22: dup
+        23: iconst_1
+        24: getstatic     #348                // Field net/minecraft/ChatFormatting.BOLD:Lnet/minecraft/ChatFormatting;
+        27: aastore
+        28: invokevirtual #351                // Method net/minecraft/network/chat/MutableComponent.withStyle:([Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+        31: invokevirtual #354                // Method net/minecraft/network/chat/MutableComponent.append:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+        34: pop
+        35: aload_1
+        36: aload_0
+        37: invokevirtual #233                // Method me/blue/client/water/WaterSettingsInfo$Info.name:()Ljava/lang/String;
+        40: invokedynamic #358,  0            // InvokeDynamic #6:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+        45: invokestatic  #254                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        48: getstatic     #277                // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+        51: invokevirtual #283                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+        54: invokevirtual #354                // Method net/minecraft/network/chat/MutableComponent.append:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+        57: pop
+        58: aload_1
+        59: aload_0
+        60: invokevirtual #361                // Method me/blue/client/water/WaterSettingsInfo$Info.description:()Ljava/lang/String;
+        63: invokedynamic #364,  0            // InvokeDynamic #7:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+        68: invokestatic  #254                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        71: getstatic     #365                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+        74: invokevirtual #283                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+        77: invokevirtual #354                // Method net/minecraft/network/chat/MutableComponent.append:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+        80: pop
+        81: aload_1
+        82: aload_0
+        83: invokevirtual #368                // Method me/blue/client/water/WaterSettingsInfo$Info.cost:()Lme/blue/client/water/WaterSettingsInfo$Cost;
+        86: getfield      #372                // Field me/blue/client/water/WaterSettingsInfo$Cost.label:Ljava/lang/String;
+        89: invokedynamic #376,  0            // InvokeDynamic #8:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+        94: invokestatic  #254                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+        97: aload_0
+        98: invokedynamic #377,  0            // InvokeDynamic #9:apply:(Lme/blue/client/water/WaterSettingsInfo$Info;)Ljava/util/function/UnaryOperator;
+       103: invokevirtual #380                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Ljava/util/function/UnaryOperator;)Lnet/minecraft/network/chat/MutableComponent;
+       106: invokevirtual #354                // Method net/minecraft/network/chat/MutableComponent.append:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+       109: pop
+       110: aload_0
+       111: invokevirtual #383                // Method me/blue/client/water/WaterSettingsInfo$Info.costNote:()Ljava/lang/String;
+       114: invokevirtual #386                // Method java/lang/String.isEmpty:()Z
+       117: ifeq          130
+       120: aload_0
+       121: invokevirtual #368                // Method me/blue/client/water/WaterSettingsInfo$Info.cost:()Lme/blue/client/water/WaterSettingsInfo$Cost;
+       124: getfield      #389                // Field me/blue/client/water/WaterSettingsInfo$Cost.meaning:Ljava/lang/String;
+       127: goto          134
+       130: aload_0
+       131: invokevirtual #383                // Method me/blue/client/water/WaterSettingsInfo$Info.costNote:()Ljava/lang/String;
+       134: astore_2
+       135: aload_1
+       136: aload_2
+       137: invokedynamic #364,  0            // InvokeDynamic #7:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+       142: invokestatic  #254                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       145: getstatic     #365                // Field net/minecraft/ChatFormatting.GRAY:Lnet/minecraft/ChatFormatting;
+       148: invokevirtual #283                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+       151: invokevirtual #354                // Method net/minecraft/network/chat/MutableComponent.append:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+       154: pop
+       155: aload_0
+       156: invokevirtual #233                // Method me/blue/client/water/WaterSettingsInfo$Info.name:()Ljava/lang/String;
+       159: invokestatic  #392                // Method me/blue/client/water/WaterSettings.defaultValue:(Ljava/lang/String;)Ljava/lang/String;
+       162: astore_3
+       163: aload_1
+       164: aload_3
+       165: invokevirtual #386                // Method java/lang/String.isEmpty:()Z
+       168: ifeq          177
+       171: ldc_w         #395                // String (empty)
+       174: goto          178
+       177: aload_3
+       178: invokedynamic #397,  0            // InvokeDynamic #10:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+       183: invokestatic  #254                // InterfaceMethod net/minecraft/network/chat/Component.literal:(Ljava/lang/String;)Lnet/minecraft/network/chat/MutableComponent;
+       186: getstatic     #277                // Field net/minecraft/ChatFormatting.DARK_GRAY:Lnet/minecraft/ChatFormatting;
+       189: invokevirtual #283                // Method net/minecraft/network/chat/MutableComponent.withStyle:(Lnet/minecraft/ChatFormatting;)Lnet/minecraft/network/chat/MutableComponent;
+       192: invokevirtual #354                // Method net/minecraft/network/chat/MutableComponent.append:(Lnet/minecraft/network/chat/Component;)Lnet/minecraft/network/chat/MutableComponent;
+       195: pop
+       196: aload_1
+       197: areturn
+
+  static java.lang.String format(me.blue.client.water.WaterSettingsInfo$Info, double);
+    Code:
+         0: aload_0
+         1: invokevirtual #221                // Method me/blue/client/water/WaterSettingsInfo$Info.kind:()Lme/blue/client/water/WaterSettingsInfo$Kind;
+         4: getstatic     #398                // Field me/blue/client/water/WaterSettingsInfo$Kind.INTEGER:Lme/blue/client/water/WaterSettingsInfo$Kind;
+         7: if_acmpne     18
+        10: dload_1
+        11: invokestatic  #402                // Method java/lang/Math.round:(D)J
+        14: invokestatic  #408                // Method java/lang/String.valueOf:(J)Ljava/lang/String;
+        17: areturn
+        18: aload_0
+        19: invokevirtual #412                // Method me/blue/client/water/WaterSettingsInfo$Info.step:()D
+        22: dconst_0
+        23: dcmpl
+        24: ifle          53
+        27: aload_0
+        28: invokevirtual #412                // Method me/blue/client/water/WaterSettingsInfo$Info.step:()D
+        31: invokestatic  #416                // Method java/lang/Math.log10:(D)D
+        34: dneg
+        35: ldc2_w        #420                // double 1.0E-9d
+        38: dsub
+        39: invokestatic  #422                // Method java/lang/Math.ceil:(D)D
+        42: d2i
+        43: i2l
+        44: iconst_0
+        45: bipush        6
+        47: invokestatic  #425                // Method java/lang/Math.clamp:(JII)I
+        50: goto          54
+        53: iconst_3
+        54: istore_3
+        55: getstatic     #429                // Field java/util/Locale.ROOT:Ljava/util/Locale;
+        58: iload_3
+        59: invokedynamic #435,  0            // InvokeDynamic #11:makeConcatWithConstants:(I)Ljava/lang/String;
+        64: iconst_1
+        65: anewarray     #333                // class java/lang/Object
+        68: dup
+        69: iconst_0
+        70: dload_1
+        71: invokestatic  #438                // Method java/lang/Double.valueOf:(D)Ljava/lang/Double;
+        74: aastore
+        75: invokestatic  #443                // Method java/lang/String.format:(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        78: astore        4
+        80: aload         4
+        82: ldc_w         #447                // String .
+        85: invokevirtual #449                // Method java/lang/String.contains:(Ljava/lang/CharSequence;)Z
+        88: ifeq          113
+        91: aload         4
+        93: ldc_w         #452                // String 0+$
+        96: ldc_w         #317                // String
+        99: invokevirtual #454                // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+       102: ldc_w         #457                // String \\.$
+       105: ldc_w         #317                // String
+       108: invokevirtual #454                // Method java/lang/String.replaceAll:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+       111: astore        4
+       113: aload         4
+       115: areturn
+
+  private static net.minecraft.network.chat.Style lambda$tooltip$0(me.blue.client.water.WaterSettingsInfo$Info, net.minecraft.network.chat.Style);
+    Code:
+         0: aload_1
+         1: getstatic     #459                // Field COST_COLORS:Ljava/util/Map;
+         4: aload_0
+         5: invokevirtual #368                // Method me/blue/client/water/WaterSettingsInfo$Info.cost:()Lme/blue/client/water/WaterSettingsInfo$Cost;
+         8: invokeinterface #463,  2          // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        13: checkcast     #468                // class java/lang/Integer
+        16: invokevirtual #470                // Method java/lang/Integer.intValue:()I
+        19: invokestatic  #473                // Method net/minecraft/network/chat/TextColor.fromRgb:(I)Lnet/minecraft/network/chat/TextColor;
+        22: invokevirtual #479                // Method net/minecraft/network/chat/Style.withColor:(Lnet/minecraft/network/chat/TextColor;)Lnet/minecraft/network/chat/Style;
+        25: areturn
+
+  private static void lambda$widget$1(me.blue.client.water.WaterSettingsInfo$Info, java.lang.String);
+    Code:
+         0: aload_0
+         1: invokevirtual #233                // Method me/blue/client/water/WaterSettingsInfo$Info.name:()Ljava/lang/String;
+         4: aload_1
+         5: invokevirtual #386                // Method java/lang/String.isEmpty:()Z
+         8: ifeq          17
+        11: ldc_w         #485                // String -
+        14: goto          18
+        17: aload_1
+        18: invokestatic  #487                // Method set:(Ljava/lang/String;Ljava/lang/String;)V
+        21: return
+
+  private static void lambda$widget$0(me.blue.client.water.WaterSettingsInfo$Info, net.minecraft.client.gui.components.CycleButton, java.lang.Boolean);
+    Code:
+         0: aload_0
+         1: invokevirtual #233                // Method me/blue/client/water/WaterSettingsInfo$Info.name:()Ljava/lang/String;
+         4: aload_2
+         5: invokevirtual #490                // Method java/lang/Boolean.toString:()Ljava/lang/String;
+         8: invokestatic  #487                // Method set:(Ljava/lang/String;Ljava/lang/String;)V
+        11: return
+
+  private void lambda$addFooter$1(net.minecraft.client.gui.components.Button);
+    Code:
+         0: aload_0
+         1: invokevirtual #493                // Method onClose:()V
+         4: return
+
+  private void lambda$addFooter$0(net.minecraft.client.gui.components.Button);
+    Code:
+         0: aload_0
+         1: getfield      #43                 // Field category:Ljava/lang/String;
+         4: invokestatic  #125                // Method me/blue/client/water/WaterSettingsInfo.names:(Ljava/lang/String;)Ljava/util/List;
+         7: invokeinterface #129,  1          // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        12: astore_2
+        13: aload_2
+        14: invokeinterface #133,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        19: ifeq          58
+        22: aload_2
+        23: invokeinterface #139,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        28: checkcast     #41                 // class java/lang/String
+        31: astore_3
+        32: aload_3
+        33: invokestatic  #496                // Method me/blue/client/water/WaterSettings.reset:(Ljava/lang/String;)V
+        36: goto          55
+        39: astore        4
+        41: getstatic     #325                // Field me/blue/RealisticWater.LOGGER:Lorg/slf4j/Logger;
+        44: ldc_w         #499                // String Couldn\'t reset {}
+        47: aload_3
+        48: aload         4
+        50: invokeinterface #501,  4          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+        55: goto          13
+        58: aload_0
+        59: getfield      #504                // Field minecraft:Lnet/minecraft/client/Minecraft;
+        62: getfield      #56                 // Field net/minecraft/client/Minecraft.gui:Lnet/minecraft/client/gui/Gui;
+        65: new           #44                 // class me/blue/client/water/WaterSettingsScreen
+        68: dup
+        69: aload_0
+        70: getfield      #508                // Field lastScreen:Lnet/minecraft/client/gui/screens/Screen;
+        73: aload_0
+        74: getfield      #43                 // Field category:Ljava/lang/String;
+        77: invokespecial #66                 // Method "<init>":(Lnet/minecraft/client/gui/screens/Screen;Ljava/lang/String;)V
+        80: invokevirtual #69                 // Method net/minecraft/client/gui/Gui.setScreen:(Lnet/minecraft/client/gui/screens/Screen;)V
+        83: return
+      Exception table:
+         from    to  target type
+            32    36    39   Class java/lang/ReflectiveOperationException
+            32    36    39   Class java/lang/NumberFormatException
+
+  private void lambda$addOptions$0(net.minecraft.client.gui.components.CycleButton, java.lang.String);
+    Code:
+         0: aload_0
+         1: getfield      #504                // Field minecraft:Lnet/minecraft/client/Minecraft;
+         4: getfield      #56                 // Field net/minecraft/client/Minecraft.gui:Lnet/minecraft/client/gui/Gui;
+         7: new           #44                 // class me/blue/client/water/WaterSettingsScreen
+        10: dup
+        11: aload_0
+        12: getfield      #508                // Field lastScreen:Lnet/minecraft/client/gui/screens/Screen;
+        15: aload_2
+        16: invokespecial #66                 // Method "<init>":(Lnet/minecraft/client/gui/screens/Screen;Ljava/lang/String;)V
+        19: invokevirtual #69                 // Method net/minecraft/client/gui/Gui.setScreen:(Lnet/minecraft/client/gui/screens/Screen;)V
+        22: return
+
+  static {};
+    Code:
+         0: ldc_w         #317                // String
+         3: putstatic     #49                 // Field lastCategory:Ljava/lang/String;
+         6: getstatic     #512                // Field me/blue/client/water/WaterSettingsInfo$Cost.NONE:Lme/blue/client/water/WaterSettingsInfo$Cost;
+         9: ldc_w         #516                // int 10135480
+        12: invokestatic  #517                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        15: getstatic     #520                // Field me/blue/client/water/WaterSettingsInfo$Cost.LOW:Lme/blue/client/water/WaterSettingsInfo$Cost;
+        18: ldc_w         #523                // int 8257440
+        21: invokestatic  #517                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        24: getstatic     #524                // Field me/blue/client/water/WaterSettingsInfo$Cost.MEDIUM:Lme/blue/client/water/WaterSettingsInfo$Cost;
+        27: ldc_w         #527                // int 16769136
+        30: invokestatic  #517                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        33: getstatic     #528                // Field me/blue/client/water/WaterSettingsInfo$Cost.HIGH:Lme/blue/client/water/WaterSettingsInfo$Cost;
+        36: ldc_w         #531                // int 16752720
+        39: invokestatic  #517                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        42: getstatic     #532                // Field me/blue/client/water/WaterSettingsInfo$Cost.EXTREME:Lme/blue/client/water/WaterSettingsInfo$Cost;
+        45: ldc_w         #535                // int 16736352
+        48: invokestatic  #517                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        51: invokestatic  #536                // InterfaceMethod java/util/Map.of:(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+        54: putstatic     #459                // Field COST_COLORS:Ljava/util/Map;
+        57: return
+}

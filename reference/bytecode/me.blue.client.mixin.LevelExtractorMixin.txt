@@ -1,0 +1,21 @@
+Compiled from "LevelExtractorMixin.java"
+public abstract class me.blue.client.mixin.LevelExtractorMixin {
+  public me.blue.client.mixin.LevelExtractorMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void blue$lightSection(int, int, int, boolean, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: iload_1
+         1: iload_2
+         2: iload_3
+         3: invokestatic  #7                  // Method me/blue/client/shader/ColoredLight.sectionChanged:(III)V
+         6: return
+
+  private void blue$lightEverything(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #13                 // Method me/blue/client/shader/ColoredLight.everythingChanged:()V
+         3: return
+}

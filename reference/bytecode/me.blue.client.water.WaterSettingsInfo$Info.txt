@@ -1,0 +1,137 @@
+Compiled from "WaterSettingsInfo.java"
+public final class me.blue.client.water.WaterSettingsInfo$Info extends java.lang.Record {
+  private final java.lang.String name;
+
+  private final java.lang.String category;
+
+  private final java.lang.String label;
+
+  private final me.blue.client.water.WaterSettingsInfo$Kind kind;
+
+  private final me.blue.client.water.WaterSettingsInfo$Cost cost;
+
+  private final java.lang.String costNote;
+
+  private final java.lang.String description;
+
+  private final double min;
+
+  private final double max;
+
+  private final double step;
+
+  public me.blue.client.water.WaterSettingsInfo$Info(java.lang.String, java.lang.String, java.lang.String, me.blue.client.water.WaterSettingsInfo$Kind, me.blue.client.water.WaterSettingsInfo$Cost, java.lang.String, java.lang.String, double, double, double);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Record."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #7                  // Field name:Ljava/lang/String;
+         9: aload_0
+        10: aload_2
+        11: putfield      #13                 // Field category:Ljava/lang/String;
+        14: aload_0
+        15: aload_3
+        16: putfield      #16                 // Field label:Ljava/lang/String;
+        19: aload_0
+        20: aload         4
+        22: putfield      #19                 // Field kind:Lme/blue/client/water/WaterSettingsInfo$Kind;
+        25: aload_0
+        26: aload         5
+        28: putfield      #23                 // Field cost:Lme/blue/client/water/WaterSettingsInfo$Cost;
+        31: aload_0
+        32: aload         6
+        34: putfield      #27                 // Field costNote:Ljava/lang/String;
+        37: aload_0
+        38: aload         7
+        40: putfield      #30                 // Field description:Ljava/lang/String;
+        43: aload_0
+        44: dload         8
+        46: putfield      #33                 // Field min:D
+        49: aload_0
+        50: dload         10
+        52: putfield      #37                 // Field max:D
+        55: aload_0
+        56: dload         12
+        58: putfield      #40                 // Field step:D
+        61: return
+
+  public final java.lang.String toString();
+    Code:
+         0: aload_0
+         1: invokedynamic #43,  0             // InvokeDynamic #0:toString:(Lme/blue/client/water/WaterSettingsInfo$Info;)Ljava/lang/String;
+         6: areturn
+
+  public final int hashCode();
+    Code:
+         0: aload_0
+         1: invokedynamic #47,  0             // InvokeDynamic #0:hashCode:(Lme/blue/client/water/WaterSettingsInfo$Info;)I
+         6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokedynamic #51,  0             // InvokeDynamic #0:equals:(Lme/blue/client/water/WaterSettingsInfo$Info;Ljava/lang/Object;)Z
+         7: ireturn
+
+  public java.lang.String name();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field name:Ljava/lang/String;
+         4: areturn
+
+  public java.lang.String category();
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field category:Ljava/lang/String;
+         4: areturn
+
+  public java.lang.String label();
+    Code:
+         0: aload_0
+         1: getfield      #16                 // Field label:Ljava/lang/String;
+         4: areturn
+
+  public me.blue.client.water.WaterSettingsInfo$Kind kind();
+    Code:
+         0: aload_0
+         1: getfield      #19                 // Field kind:Lme/blue/client/water/WaterSettingsInfo$Kind;
+         4: areturn
+
+  public me.blue.client.water.WaterSettingsInfo$Cost cost();
+    Code:
+         0: aload_0
+         1: getfield      #23                 // Field cost:Lme/blue/client/water/WaterSettingsInfo$Cost;
+         4: areturn
+
+  public java.lang.String costNote();
+    Code:
+         0: aload_0
+         1: getfield      #27                 // Field costNote:Ljava/lang/String;
+         4: areturn
+
+  public java.lang.String description();
+    Code:
+         0: aload_0
+         1: getfield      #30                 // Field description:Ljava/lang/String;
+         4: areturn
+
+  public double min();
+    Code:
+         0: aload_0
+         1: getfield      #33                 // Field min:D
+         4: dreturn
+
+  public double max();
+    Code:
+         0: aload_0
+         1: getfield      #37                 // Field max:D
+         4: dreturn
+
+  public double step();
+    Code:
+         0: aload_0
+         1: getfield      #40                 // Field step:D
+         4: dreturn
+}

@@ -1,0 +1,189 @@
+Compiled from "Material.java"
+public final class me.blue.client.water.Material extends java.lang.Enum<me.blue.client.water.Material> {
+  public static final me.blue.client.water.Material WATER;
+
+  public static final me.blue.client.water.Material SAND;
+
+  public static final me.blue.client.water.Material LAVA;
+
+  public static final me.blue.client.water.Material SLIME;
+
+  private static final me.blue.client.water.Material[] $VALUES;
+
+  public static me.blue.client.water.Material[] values();
+    Code:
+         0: getstatic     #16                 // Field $VALUES:[Lme/blue/client/water/Material;
+         3: invokevirtual #20                 // Method "[Lme/blue/client/water/Material;".clone:()Ljava/lang/Object;
+         6: checkcast     #21                 // class "[Lme/blue/client/water/Material;"
+         9: areturn
+
+  public static me.blue.client.water.Material valueOf(java.lang.String);
+    Code:
+         0: ldc           #1                  // class me/blue/client/water/Material
+         2: aload_0
+         3: invokestatic  #25                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+         6: checkcast     #1                  // class me/blue/client/water/Material
+         9: areturn
+
+  private me.blue.client.water.Material();
+    Code:
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: invokespecial #31                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+         6: return
+
+  float shaderId();
+    Code:
+         0: aload_0
+         1: invokevirtual #35                 // Method ordinal:()I
+         4: tableswitch   { // 1 to 3
+
+                       1: 32
+
+                       2: 36
+
+                       3: 40
+                 default: 45
+            }
+        32: fconst_1
+        33: goto          46
+        36: fconst_2
+        37: goto          46
+        40: ldc           #39                 // float 3.0f
+        42: goto          46
+        45: fconst_0
+        46: freturn
+
+  boolean isGranular();
+    Code:
+         0: aload_0
+         1: getstatic     #7                  // Field SAND:Lme/blue/client/water/Material;
+         4: if_acmpne     11
+         7: iconst_1
+         8: goto          12
+        11: iconst_0
+        12: ireturn
+
+  boolean isFluidSim();
+    Code:
+         0: aload_0
+         1: getstatic     #3                  // Field WATER:Lme/blue/client/water/Material;
+         4: if_acmpeq     21
+         7: aload_0
+         8: getstatic     #10                 // Field LAVA:Lme/blue/client/water/Material;
+        11: if_acmpeq     21
+        14: aload_0
+        15: getstatic     #13                 // Field SLIME:Lme/blue/client/water/Material;
+        18: if_acmpne     25
+        21: iconst_1
+        22: goto          26
+        25: iconst_0
+        26: ireturn
+
+  boolean usesWhitewater();
+    Code:
+         0: aload_0
+         1: getstatic     #3                  // Field WATER:Lme/blue/client/water/Material;
+         4: if_acmpne     11
+         7: iconst_1
+         8: goto          12
+        11: iconst_0
+        12: ireturn
+
+  byte syncId();
+    Code:
+         0: aload_0
+         1: invokevirtual #35                 // Method ordinal:()I
+         4: tableswitch   { // 1 to 3
+
+                       1: 32
+
+                       2: 36
+
+                       3: 40
+                 default: 44
+            }
+        32: iconst_1
+        33: goto          45
+        36: iconst_2
+        37: goto          45
+        40: iconst_3
+        41: goto          45
+        44: iconst_0
+        45: ireturn
+
+  java.lang.String label();
+    Code:
+         0: aload_0
+         1: invokevirtual #35                 // Method ordinal:()I
+         4: tableswitch   { // 1 to 3
+
+                       1: 32
+
+                       2: 37
+
+                       3: 42
+                 default: 47
+            }
+        32: ldc           #42                 // String sand
+        34: goto          49
+        37: ldc           #44                 // String lava
+        39: goto          49
+        42: ldc           #46                 // String slime
+        44: goto          49
+        47: ldc           #48                 // String water
+        49: areturn
+
+  private static me.blue.client.water.Material[] $values();
+    Code:
+         0: iconst_4
+         1: anewarray     #1                  // class me/blue/client/water/Material
+         4: dup
+         5: iconst_0
+         6: getstatic     #3                  // Field WATER:Lme/blue/client/water/Material;
+         9: aastore
+        10: dup
+        11: iconst_1
+        12: getstatic     #7                  // Field SAND:Lme/blue/client/water/Material;
+        15: aastore
+        16: dup
+        17: iconst_2
+        18: getstatic     #10                 // Field LAVA:Lme/blue/client/water/Material;
+        21: aastore
+        22: dup
+        23: iconst_3
+        24: getstatic     #13                 // Field SLIME:Lme/blue/client/water/Material;
+        27: aastore
+        28: areturn
+
+  static {};
+    Code:
+         0: new           #1                  // class me/blue/client/water/Material
+         3: dup
+         4: ldc           #50                 // String WATER
+         6: iconst_0
+         7: invokespecial #51                 // Method "<init>":(Ljava/lang/String;I)V
+        10: putstatic     #3                  // Field WATER:Lme/blue/client/water/Material;
+        13: new           #1                  // class me/blue/client/water/Material
+        16: dup
+        17: ldc           #52                 // String SAND
+        19: iconst_1
+        20: invokespecial #51                 // Method "<init>":(Ljava/lang/String;I)V
+        23: putstatic     #7                  // Field SAND:Lme/blue/client/water/Material;
+        26: new           #1                  // class me/blue/client/water/Material
+        29: dup
+        30: ldc           #53                 // String LAVA
+        32: iconst_2
+        33: invokespecial #51                 // Method "<init>":(Ljava/lang/String;I)V
+        36: putstatic     #10                 // Field LAVA:Lme/blue/client/water/Material;
+        39: new           #1                  // class me/blue/client/water/Material
+        42: dup
+        43: ldc           #54                 // String SLIME
+        45: iconst_3
+        46: invokespecial #51                 // Method "<init>":(Ljava/lang/String;I)V
+        49: putstatic     #13                 // Field SLIME:Lme/blue/client/water/Material;
+        52: invokestatic  #55                 // Method $values:()[Lme/blue/client/water/Material;
+        55: putstatic     #16                 // Field $VALUES:[Lme/blue/client/water/Material;
+        58: return
+}

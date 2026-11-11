@@ -1,0 +1,608 @@
+Compiled from "DiskAssetStore.java"
+public final class me.blue.client.asset.DiskAssetStore implements me.blue.protocol.asset.AssetStore {
+  private static final int FILES_PER_FOLDER = 500;
+
+  private static final java.lang.String TEMP_PREFIX = ".tmp-";
+
+  private static final java.util.Map<java.nio.file.Path, me.blue.client.asset.DiskAssetStore$CachedHash> HASHES;
+
+  private final java.nio.file.Path root;
+
+  private final java.util.Map<java.lang.String, java.nio.file.Path> files;
+
+  private final java.util.Map<java.lang.String, java.lang.Long> sizes;
+
+  private final java.util.Map<java.lang.Integer, java.lang.Integer> folderCounts;
+
+  private long totalSize;
+
+  private boolean loaded;
+
+  public me.blue.client.asset.DiskAssetStore(java.nio.file.Path);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #7                  // class java/util/HashMap
+         8: dup
+         9: invokespecial #9                  // Method java/util/HashMap."<init>":()V
+        12: putfield      #10                 // Field files:Ljava/util/Map;
+        15: aload_0
+        16: new           #7                  // class java/util/HashMap
+        19: dup
+        20: invokespecial #9                  // Method java/util/HashMap."<init>":()V
+        23: putfield      #16                 // Field sizes:Ljava/util/Map;
+        26: aload_0
+        27: new           #19                 // class java/util/TreeMap
+        30: dup
+        31: invokespecial #21                 // Method java/util/TreeMap."<init>":()V
+        34: putfield      #22                 // Field folderCounts:Ljava/util/Map;
+        37: aload_0
+        38: aload_1
+        39: putfield      #25                 // Field root:Ljava/nio/file/Path;
+        42: return
+
+  public long size(java.lang.String);
+    Code:
+         0: aload_0
+         1: invokevirtual #29                 // Method load:()V
+         4: aload_0
+         5: getfield      #16                 // Field sizes:Ljava/util/Map;
+         8: aload_1
+         9: ldc2_w        #32                 // long -1l
+        12: invokestatic  #34                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+        15: invokeinterface #40,  3           // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        20: checkcast     #35                 // class java/lang/Long
+        23: invokevirtual #46                 // Method java/lang/Long.longValue:()J
+        26: lreturn
+
+  public me.blue.protocol.asset.AssetHash hash(java.lang.String) throws java.io.IOException;
+    Code:
+         0: aload_0
+         1: invokevirtual #29                 // Method load:()V
+         4: aload_0
+         5: getfield      #10                 // Field files:Ljava/util/Map;
+         8: aload_1
+         9: invokeinterface #50,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        14: checkcast     #54                 // class java/nio/file/Path
+        17: astore_2
+        18: aload_2
+        19: ifnonnull     36
+        22: new           #56                 // class java/io/IOException
+        25: dup
+        26: aload_1
+        27: invokedynamic #58,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+        32: invokespecial #62                 // Method java/io/IOException."<init>":(Ljava/lang/String;)V
+        35: athrow
+        36: aload_2
+        37: ldc           #65                 // class java/nio/file/attribute/BasicFileAttributes
+        39: iconst_0
+        40: anewarray     #67                 // class java/nio/file/LinkOption
+        43: invokestatic  #69                 // Method java/nio/file/Files.readAttributes:(Ljava/nio/file/Path;Ljava/lang/Class;[Ljava/nio/file/LinkOption;)Ljava/nio/file/attribute/BasicFileAttributes;
+        46: astore_3
+        47: getstatic     #75                 // Field HASHES:Ljava/util/Map;
+        50: aload_2
+        51: invokeinterface #50,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        56: checkcast     #78                 // class me/blue/client/asset/DiskAssetStore$CachedHash
+        59: astore        4
+        61: aload         4
+        63: ifnull        105
+        66: aload         4
+        68: getfield      #80                 // Field me/blue/client/asset/DiskAssetStore$CachedHash.size:J
+        71: aload_3
+        72: invokeinterface #84,  1           // InterfaceMethod java/nio/file/attribute/BasicFileAttributes.size:()J
+        77: lcmp
+        78: ifne          105
+        81: aload         4
+        83: getfield      #86                 // Field me/blue/client/asset/DiskAssetStore$CachedHash.modified:J
+        86: aload_3
+        87: invokeinterface #89,  1           // InterfaceMethod java/nio/file/attribute/BasicFileAttributes.lastModifiedTime:()Ljava/nio/file/attribute/FileTime;
+        92: invokevirtual #93                 // Method java/nio/file/attribute/FileTime.toMillis:()J
+        95: lcmp
+        96: ifne          105
+        99: aload         4
+       101: getfield      #98                 // Field me/blue/client/asset/DiskAssetStore$CachedHash.hash:Lme/blue/protocol/asset/AssetHash;
+       104: areturn
+       105: invokestatic  #102                // Method me/blue/protocol/asset/AssetHash.sha256:()Ljava/security/MessageDigest;
+       108: astore        5
+       110: ldc           #108                // int 65536
+       112: newarray       byte
+       114: astore        6
+       116: aload_2
+       117: iconst_0
+       118: anewarray     #109                // class java/nio/file/OpenOption
+       121: invokestatic  #111                // Method java/nio/file/Files.newInputStream:(Ljava/nio/file/Path;[Ljava/nio/file/OpenOption;)Ljava/io/InputStream;
+       124: astore        7
+       126: aload         7
+       128: aload         6
+       130: invokevirtual #115                // Method java/io/InputStream.read:([B)I
+       133: dup
+       134: istore        8
+       136: ifle          152
+       139: aload         5
+       141: aload         6
+       143: iconst_0
+       144: iload         8
+       146: invokevirtual #121                // Method java/security/MessageDigest.update:([BII)V
+       149: goto          126
+       152: aload         7
+       154: ifnull        192
+       157: aload         7
+       159: invokevirtual #127                // Method java/io/InputStream.close:()V
+       162: goto          192
+       165: astore        8
+       167: aload         7
+       169: ifnull        189
+       172: aload         7
+       174: invokevirtual #127                // Method java/io/InputStream.close:()V
+       177: goto          189
+       180: astore        9
+       182: aload         8
+       184: aload         9
+       186: invokevirtual #132                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       189: aload         8
+       191: athrow
+       192: aload         5
+       194: invokevirtual #136                // Method java/security/MessageDigest.digest:()[B
+       197: invokestatic  #140                // Method me/blue/protocol/asset/AssetHash.fromBytes:([B)Lme/blue/protocol/asset/AssetHash;
+       200: astore        7
+       202: getstatic     #75                 // Field HASHES:Ljava/util/Map;
+       205: aload_2
+       206: new           #78                 // class me/blue/client/asset/DiskAssetStore$CachedHash
+       209: dup
+       210: aload_3
+       211: invokeinterface #84,  1           // InterfaceMethod java/nio/file/attribute/BasicFileAttributes.size:()J
+       216: aload_3
+       217: invokeinterface #89,  1           // InterfaceMethod java/nio/file/attribute/BasicFileAttributes.lastModifiedTime:()Ljava/nio/file/attribute/FileTime;
+       222: invokevirtual #93                 // Method java/nio/file/attribute/FileTime.toMillis:()J
+       225: aload         7
+       227: invokespecial #144                // Method me/blue/client/asset/DiskAssetStore$CachedHash."<init>":(JJLme/blue/protocol/asset/AssetHash;)V
+       230: invokeinterface #147,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       235: pop
+       236: aload         7
+       238: areturn
+      Exception table:
+         from    to  target type
+           126   152   165   Class java/lang/Throwable
+           172   177   180   Class java/lang/Throwable
+
+  public byte[] read(java.lang.String) throws java.io.IOException;
+    Code:
+         0: aload_0
+         1: invokevirtual #29                 // Method load:()V
+         4: aload_0
+         5: getfield      #10                 // Field files:Ljava/util/Map;
+         8: aload_1
+         9: invokeinterface #50,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        14: checkcast     #54                 // class java/nio/file/Path
+        17: astore_2
+        18: aload_2
+        19: ifnonnull     26
+        22: aconst_null
+        23: goto          30
+        26: aload_2
+        27: invokestatic  #150                // Method java/nio/file/Files.readAllBytes:(Ljava/nio/file/Path;)[B
+        30: areturn
+
+  public java.util.List<java.lang.String> ids();
+    Code:
+         0: aload_0
+         1: invokevirtual #29                 // Method load:()V
+         4: aload_0
+         5: getfield      #10                 // Field files:Ljava/util/Map;
+         8: invokeinterface #154,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+        13: invokestatic  #158                // InterfaceMethod java/util/List.copyOf:(Ljava/util/Collection;)Ljava/util/List;
+        16: areturn
+
+  public long totalSize();
+    Code:
+         0: aload_0
+         1: invokevirtual #29                 // Method load:()V
+         4: aload_0
+         5: getfield      #164                // Field totalSize:J
+         8: lreturn
+
+  public int fileCount();
+    Code:
+         0: aload_0
+         1: invokevirtual #29                 // Method load:()V
+         4: aload_0
+         5: getfield      #10                 // Field files:Ljava/util/Map;
+         8: invokeinterface #167,  1          // InterfaceMethod java/util/Map.size:()I
+        13: ireturn
+
+  public void write(java.lang.String, byte[]) throws java.io.IOException;
+    Code:
+         0: aload_0
+         1: invokevirtual #29                 // Method load:()V
+         4: aload_0
+         5: getfield      #10                 // Field files:Ljava/util/Map;
+         8: aload_1
+         9: invokeinterface #50,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        14: checkcast     #54                 // class java/nio/file/Path
+        17: astore_3
+        18: aload_3
+        19: ifnonnull     26
+        22: iconst_1
+        23: goto          27
+        26: iconst_0
+        27: istore        4
+        29: iload         4
+        31: ifeq          60
+        34: aload_0
+        35: getfield      #25                 // Field root:Ljava/nio/file/Path;
+        38: aload_0
+        39: invokevirtual #170                // Method freeFolder:()I
+        42: invokestatic  #173                // Method java/lang/Integer.toString:(I)Ljava/lang/String;
+        45: invokeinterface #179,  2          // InterfaceMethod java/nio/file/Path.resolve:(Ljava/lang/String;)Ljava/nio/file/Path;
+        50: aload_1
+        51: invokestatic  #183                // Method me/blue/protocol/Protocol.requireAssetId:(Ljava/lang/String;)Ljava/lang/String;
+        54: invokeinterface #179,  2          // InterfaceMethod java/nio/file/Path.resolve:(Ljava/lang/String;)Ljava/nio/file/Path;
+        59: astore_3
+        60: aload_3
+        61: invokeinterface #188,  1          // InterfaceMethod java/nio/file/Path.getParent:()Ljava/nio/file/Path;
+        66: iconst_0
+        67: anewarray     #192                // class java/nio/file/attribute/FileAttribute
+        70: invokestatic  #194                // Method java/nio/file/Files.createDirectories:(Ljava/nio/file/Path;[Ljava/nio/file/attribute/FileAttribute;)Ljava/nio/file/Path;
+        73: pop
+        74: aload_3
+        75: aload_1
+        76: invokedynamic #198,  0            // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+        81: invokeinterface #199,  2          // InterfaceMethod java/nio/file/Path.resolveSibling:(Ljava/lang/String;)Ljava/nio/file/Path;
+        86: astore        5
+        88: aload         5
+        90: aload_2
+        91: iconst_0
+        92: anewarray     #109                // class java/nio/file/OpenOption
+        95: invokestatic  #202                // Method java/nio/file/Files.write:(Ljava/nio/file/Path;[B[Ljava/nio/file/OpenOption;)Ljava/nio/file/Path;
+        98: pop
+        99: aload         5
+       101: aload_3
+       102: iconst_2
+       103: anewarray     #206                // class java/nio/file/CopyOption
+       106: dup
+       107: iconst_0
+       108: getstatic     #208                // Field java/nio/file/StandardCopyOption.REPLACE_EXISTING:Ljava/nio/file/StandardCopyOption;
+       111: aastore
+       112: dup
+       113: iconst_1
+       114: getstatic     #214                // Field java/nio/file/StandardCopyOption.ATOMIC_MOVE:Ljava/nio/file/StandardCopyOption;
+       117: aastore
+       118: invokestatic  #217                // Method java/nio/file/Files.move:(Ljava/nio/file/Path;Ljava/nio/file/Path;[Ljava/nio/file/CopyOption;)Ljava/nio/file/Path;
+       121: pop
+       122: goto          144
+       125: astore        6
+       127: aload         5
+       129: aload_3
+       130: iconst_1
+       131: anewarray     #206                // class java/nio/file/CopyOption
+       134: dup
+       135: iconst_0
+       136: getstatic     #208                // Field java/nio/file/StandardCopyOption.REPLACE_EXISTING:Ljava/nio/file/StandardCopyOption;
+       139: aastore
+       140: invokestatic  #217                // Method java/nio/file/Files.move:(Ljava/nio/file/Path;Ljava/nio/file/Path;[Ljava/nio/file/CopyOption;)Ljava/nio/file/Path;
+       143: pop
+       144: getstatic     #75                 // Field HASHES:Ljava/util/Map;
+       147: aload_3
+       148: invokeinterface #223,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+       153: pop
+       154: aload_0
+       155: dup
+       156: getfield      #164                // Field totalSize:J
+       159: aload_2
+       160: arraylength
+       161: i2l
+       162: aload_0
+       163: getfield      #16                 // Field sizes:Ljava/util/Map;
+       166: aload_1
+       167: lconst_0
+       168: invokestatic  #34                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+       171: invokeinterface #40,  3           // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       176: checkcast     #35                 // class java/lang/Long
+       179: invokevirtual #46                 // Method java/lang/Long.longValue:()J
+       182: lsub
+       183: ladd
+       184: putfield      #164                // Field totalSize:J
+       187: aload_0
+       188: getfield      #16                 // Field sizes:Ljava/util/Map;
+       191: aload_1
+       192: aload_2
+       193: arraylength
+       194: i2l
+       195: invokestatic  #34                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+       198: invokeinterface #147,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       203: pop
+       204: aload_0
+       205: getfield      #10                 // Field files:Ljava/util/Map;
+       208: aload_1
+       209: aload_3
+       210: invokeinterface #147,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       215: pop
+       216: iload         4
+       218: ifeq          249
+       221: aload_0
+       222: getfield      #22                 // Field folderCounts:Ljava/util/Map;
+       225: aload_3
+       226: invokeinterface #188,  1          // InterfaceMethod java/nio/file/Path.getParent:()Ljava/nio/file/Path;
+       231: invokestatic  #226                // Method folderNumber:(Ljava/nio/file/Path;)Ljava/lang/Integer;
+       234: iconst_1
+       235: invokestatic  #230                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       238: invokedynamic #233,  0            // InvokeDynamic #2:apply:()Ljava/util/function/BiFunction;
+       243: invokeinterface #237,  4          // InterfaceMethod java/util/Map.merge:(Ljava/lang/Object;Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object;
+       248: pop
+       249: return
+      Exception table:
+         from    to  target type
+            99   122   125   Class java/nio/file/AtomicMoveNotSupportedException
+
+  public void delete(java.lang.String) throws java.io.IOException;
+    Code:
+         0: aload_0
+         1: invokevirtual #29                 // Method load:()V
+         4: aload_0
+         5: getfield      #10                 // Field files:Ljava/util/Map;
+         8: aload_1
+         9: invokeinterface #223,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        14: checkcast     #54                 // class java/nio/file/Path
+        17: astore_2
+        18: aload_2
+        19: ifnonnull     23
+        22: return
+        23: aload_2
+        24: invokestatic  #241                // Method java/nio/file/Files.deleteIfExists:(Ljava/nio/file/Path;)Z
+        27: pop
+        28: getstatic     #75                 // Field HASHES:Ljava/util/Map;
+        31: aload_2
+        32: invokeinterface #223,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        37: pop
+        38: aload_0
+        39: dup
+        40: getfield      #164                // Field totalSize:J
+        43: aload_0
+        44: getfield      #16                 // Field sizes:Ljava/util/Map;
+        47: aload_1
+        48: invokeinterface #223,  2          // InterfaceMethod java/util/Map.remove:(Ljava/lang/Object;)Ljava/lang/Object;
+        53: checkcast     #35                 // class java/lang/Long
+        56: invokevirtual #46                 // Method java/lang/Long.longValue:()J
+        59: lsub
+        60: putfield      #164                // Field totalSize:J
+        63: aload_0
+        64: getfield      #22                 // Field folderCounts:Ljava/util/Map;
+        67: aload_2
+        68: invokeinterface #188,  1          // InterfaceMethod java/nio/file/Path.getParent:()Ljava/nio/file/Path;
+        73: invokestatic  #226                // Method folderNumber:(Ljava/nio/file/Path;)Ljava/lang/Integer;
+        76: iconst_m1
+        77: invokestatic  #230                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        80: invokedynamic #233,  0            // InvokeDynamic #2:apply:()Ljava/util/function/BiFunction;
+        85: invokeinterface #237,  4          // InterfaceMethod java/util/Map.merge:(Ljava/lang/Object;Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object;
+        90: pop
+        91: return
+
+  private int freeFolder();
+    Code:
+         0: iconst_0
+         1: istore_1
+         2: aload_0
+         3: getfield      #22                 // Field folderCounts:Ljava/util/Map;
+         6: iload_1
+         7: invokestatic  #230                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        10: iconst_0
+        11: invokestatic  #230                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        14: invokeinterface #40,  3           // InterfaceMethod java/util/Map.getOrDefault:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        19: checkcast     #174                // class java/lang/Integer
+        22: invokevirtual #245                // Method java/lang/Integer.intValue:()I
+        25: sipush        500
+        28: if_icmpge     33
+        31: iload_1
+        32: ireturn
+        33: iinc          1, 1
+        36: goto          2
+
+  private void load();
+    Code:
+         0: aload_0
+         1: getfield      #248                // Field loaded:Z
+         4: ifeq          8
+         7: return
+         8: aload_0
+         9: iconst_1
+        10: putfield      #248                // Field loaded:Z
+        13: aload_0
+        14: getfield      #25                 // Field root:Ljava/nio/file/Path;
+        17: iconst_0
+        18: anewarray     #67                 // class java/nio/file/LinkOption
+        21: invokestatic  #252                // Method java/nio/file/Files.isDirectory:(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+        24: ifne          28
+        27: return
+        28: aload_0
+        29: getfield      #25                 // Field root:Ljava/nio/file/Path;
+        32: invokedynamic #256,  0            // InvokeDynamic #3:accept:()Ljava/nio/file/DirectoryStream$Filter;
+        37: invokestatic  #260                // Method java/nio/file/Files.newDirectoryStream:(Ljava/nio/file/Path;Ljava/nio/file/DirectoryStream$Filter;)Ljava/nio/file/DirectoryStream;
+        40: astore_1
+        41: aload_1
+        42: invokeinterface #264,  1          // InterfaceMethod java/nio/file/DirectoryStream.iterator:()Ljava/util/Iterator;
+        47: astore_2
+        48: aload_2
+        49: invokeinterface #270,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        54: ifeq          91
+        57: aload_2
+        58: invokeinterface #276,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        63: checkcast     #54                 // class java/nio/file/Path
+        66: astore_3
+        67: aload_3
+        68: invokestatic  #226                // Method folderNumber:(Ljava/nio/file/Path;)Ljava/lang/Integer;
+        71: astore        4
+        73: aload         4
+        75: ifnull        88
+        78: aload_0
+        79: aload         4
+        81: invokevirtual #245                // Method java/lang/Integer.intValue:()I
+        84: aload_3
+        85: invokevirtual #280                // Method loadFolder:(ILjava/nio/file/Path;)V
+        88: goto          48
+        91: aload_1
+        92: ifnull        126
+        95: aload_1
+        96: invokeinterface #284,  1          // InterfaceMethod java/nio/file/DirectoryStream.close:()V
+       101: goto          126
+       104: astore_2
+       105: aload_1
+       106: ifnull        124
+       109: aload_1
+       110: invokeinterface #284,  1          // InterfaceMethod java/nio/file/DirectoryStream.close:()V
+       115: goto          124
+       118: astore_3
+       119: aload_2
+       120: aload_3
+       121: invokevirtual #132                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       124: aload_2
+       125: athrow
+       126: goto          146
+       129: astore_1
+       130: getstatic     #285                // Field me/blue/RealisticWater.LOGGER:Lorg/slf4j/Logger;
+       133: ldc_w         #291                // String Could not read cache folder {}
+       136: aload_0
+       137: getfield      #25                 // Field root:Ljava/nio/file/Path;
+       140: aload_1
+       141: invokeinterface #293,  4          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+       146: return
+      Exception table:
+         from    to  target type
+            41    91   104   Class java/lang/Throwable
+           109   115   118   Class java/lang/Throwable
+            28   126   129   Class java/io/IOException
+
+  private void loadFolder(int, java.nio.file.Path) throws java.io.IOException;
+    Code:
+         0: iconst_0
+         1: istore_3
+         2: aload_2
+         3: invokestatic  #299                // Method java/nio/file/Files.newDirectoryStream:(Ljava/nio/file/Path;)Ljava/nio/file/DirectoryStream;
+         6: astore        4
+         8: aload         4
+        10: invokeinterface #264,  1          // InterfaceMethod java/nio/file/DirectoryStream.iterator:()Ljava/util/Iterator;
+        15: astore        5
+        17: aload         5
+        19: invokeinterface #270,  1          // InterfaceMethod java/util/Iterator.hasNext:()Z
+        24: ifeq          174
+        27: aload         5
+        29: invokeinterface #276,  1          // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        34: checkcast     #54                 // class java/nio/file/Path
+        37: astore        6
+        39: aload         6
+        41: invokeinterface #302,  1          // InterfaceMethod java/nio/file/Path.getFileName:()Ljava/nio/file/Path;
+        46: invokeinterface #305,  1          // InterfaceMethod java/nio/file/Path.toString:()Ljava/lang/String;
+        51: astore        7
+        53: aload         7
+        55: ldc_w         #308                // String .tmp-
+        58: invokevirtual #310                // Method java/lang/String.startsWith:(Ljava/lang/String;)Z
+        61: ifeq          73
+        64: aload         6
+        66: invokestatic  #241                // Method java/nio/file/Files.deleteIfExists:(Ljava/nio/file/Path;)Z
+        69: pop
+        70: goto          17
+        73: aload         7
+        75: invokestatic  #316                // Method me/blue/protocol/Protocol.isValidAssetId:(Ljava/lang/String;)Z
+        78: ifeq          17
+        81: aload         6
+        83: iconst_0
+        84: anewarray     #67                 // class java/nio/file/LinkOption
+        87: invokestatic  #319                // Method java/nio/file/Files.isRegularFile:(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+        90: ifne          96
+        93: goto          17
+        96: aload_0
+        97: getfield      #10                 // Field files:Ljava/util/Map;
+       100: aload         7
+       102: invokeinterface #322,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       107: ifeq          119
+       110: aload         6
+       112: invokestatic  #241                // Method java/nio/file/Files.deleteIfExists:(Ljava/nio/file/Path;)Z
+       115: pop
+       116: goto          17
+       119: aload         6
+       121: invokestatic  #326                // Method java/nio/file/Files.size:(Ljava/nio/file/Path;)J
+       124: lstore        8
+       126: aload_0
+       127: getfield      #10                 // Field files:Ljava/util/Map;
+       130: aload         7
+       132: aload         6
+       134: invokeinterface #147,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       139: pop
+       140: aload_0
+       141: getfield      #16                 // Field sizes:Ljava/util/Map;
+       144: aload         7
+       146: lload         8
+       148: invokestatic  #34                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+       151: invokeinterface #147,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       156: pop
+       157: aload_0
+       158: dup
+       159: getfield      #164                // Field totalSize:J
+       162: lload         8
+       164: ladd
+       165: putfield      #164                // Field totalSize:J
+       168: iinc          3, 1
+       171: goto          17
+       174: aload         4
+       176: ifnull        218
+       179: aload         4
+       181: invokeinterface #284,  1          // InterfaceMethod java/nio/file/DirectoryStream.close:()V
+       186: goto          218
+       189: astore        5
+       191: aload         4
+       193: ifnull        215
+       196: aload         4
+       198: invokeinterface #284,  1          // InterfaceMethod java/nio/file/DirectoryStream.close:()V
+       203: goto          215
+       206: astore        6
+       208: aload         5
+       210: aload         6
+       212: invokevirtual #132                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       215: aload         5
+       217: athrow
+       218: aload_0
+       219: getfield      #22                 // Field folderCounts:Ljava/util/Map;
+       222: iload_1
+       223: invokestatic  #230                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       226: iload_3
+       227: invokestatic  #230                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       230: invokeinterface #147,  3          // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       235: pop
+       236: return
+      Exception table:
+         from    to  target type
+             8   174   189   Class java/lang/Throwable
+           196   203   206   Class java/lang/Throwable
+
+  private static java.lang.Integer folderNumber(java.nio.file.Path);
+    Code:
+         0: aload_0
+         1: invokeinterface #302,  1          // InterfaceMethod java/nio/file/Path.getFileName:()Ljava/nio/file/Path;
+         6: invokeinterface #305,  1          // InterfaceMethod java/nio/file/Path.toString:()Ljava/lang/String;
+        11: astore_1
+        12: aload_1
+        13: ldc_w         #329                // String [0-9]{1,6}
+        16: invokevirtual #331                // Method java/lang/String.matches:(Ljava/lang/String;)Z
+        19: ifeq          29
+        22: aload_1
+        23: invokestatic  #334                // Method java/lang/Integer.valueOf:(Ljava/lang/String;)Ljava/lang/Integer;
+        26: goto          30
+        29: aconst_null
+        30: areturn
+
+  private static boolean lambda$load$0(java.nio.file.Path) throws java.io.IOException;
+    Code:
+         0: aload_0
+         1: iconst_0
+         2: anewarray     #67                 // class java/nio/file/LinkOption
+         5: invokestatic  #252                // Method java/nio/file/Files.isDirectory:(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+         8: ireturn
+
+  static {};
+    Code:
+         0: new           #337                // class java/util/concurrent/ConcurrentHashMap
+         3: dup
+         4: invokespecial #339                // Method java/util/concurrent/ConcurrentHashMap."<init>":()V
+         7: putstatic     #75                 // Field HASHES:Ljava/util/Map;
+        10: return
+}

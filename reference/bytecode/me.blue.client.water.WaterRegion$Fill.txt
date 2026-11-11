@@ -1,0 +1,141 @@
+Compiled from "WaterRegion.java"
+public final class me.blue.client.water.WaterRegion$Fill extends java.lang.Record {
+  private final int x;
+
+  private final int y;
+
+  private final int z;
+
+  private final int dx;
+
+  private final int dy;
+
+  private final int dz;
+
+  private final byte[] fill;
+
+  private final byte[] speed;
+
+  public me.blue.client.water.WaterRegion$Fill(int, int, int, int, int, int, byte[], byte[]);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Record."<init>":()V
+         4: aload_0
+         5: iload_1
+         6: putfield      #7                  // Field x:I
+         9: aload_0
+        10: iload_2
+        11: putfield      #13                 // Field y:I
+        14: aload_0
+        15: iload_3
+        16: putfield      #16                 // Field z:I
+        19: aload_0
+        20: iload         4
+        22: putfield      #19                 // Field dx:I
+        25: aload_0
+        26: iload         5
+        28: putfield      #22                 // Field dy:I
+        31: aload_0
+        32: iload         6
+        34: putfield      #25                 // Field dz:I
+        37: aload_0
+        38: aload         7
+        40: putfield      #28                 // Field fill:[B
+        43: aload_0
+        44: aload         8
+        46: putfield      #32                 // Field speed:[B
+        49: return
+
+  float fullness(int);
+    Code:
+         0: aload_0
+         1: getfield      #28                 // Field fill:[B
+         4: iload_1
+         5: baload
+         6: sipush        255
+         9: iand
+        10: i2f
+        11: ldc           #35                 // float 255.0f
+        13: fdiv
+        14: freturn
+
+  float blocksPerSecond(int);
+    Code:
+         0: aload_0
+         1: getfield      #32                 // Field speed:[B
+         4: iload_1
+         5: baload
+         6: sipush        255
+         9: iand
+        10: i2f
+        11: ldc           #36                 // float 16.0f
+        13: fdiv
+        14: freturn
+
+  public final java.lang.String toString();
+    Code:
+         0: aload_0
+         1: invokedynamic #37,  0             // InvokeDynamic #0:toString:(Lme/blue/client/water/WaterRegion$Fill;)Ljava/lang/String;
+         6: areturn
+
+  public final int hashCode();
+    Code:
+         0: aload_0
+         1: invokedynamic #41,  0             // InvokeDynamic #0:hashCode:(Lme/blue/client/water/WaterRegion$Fill;)I
+         6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokedynamic #45,  0             // InvokeDynamic #0:equals:(Lme/blue/client/water/WaterRegion$Fill;Ljava/lang/Object;)Z
+         7: ireturn
+
+  public int x();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field x:I
+         4: ireturn
+
+  public int y();
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field y:I
+         4: ireturn
+
+  public int z();
+    Code:
+         0: aload_0
+         1: getfield      #16                 // Field z:I
+         4: ireturn
+
+  public int dx();
+    Code:
+         0: aload_0
+         1: getfield      #19                 // Field dx:I
+         4: ireturn
+
+  public int dy();
+    Code:
+         0: aload_0
+         1: getfield      #22                 // Field dy:I
+         4: ireturn
+
+  public int dz();
+    Code:
+         0: aload_0
+         1: getfield      #25                 // Field dz:I
+         4: ireturn
+
+  public byte[] fill();
+    Code:
+         0: aload_0
+         1: getfield      #28                 // Field fill:[B
+         4: areturn
+
+  public byte[] speed();
+    Code:
+         0: aload_0
+         1: getfield      #32                 // Field speed:[B
+         4: areturn
+}

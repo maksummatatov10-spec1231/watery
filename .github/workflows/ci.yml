@@ -1,0 +1,112 @@
+name: Watery CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-and-package:
+    name: Core, Horizon adapter, and package reader
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Check out Watery
+        uses: actions/checkout@v4
+
+      - name: Read pinned Horizon revision
+        id: horizon
+        run: |
+          echo "commit=$(python3 -c 'import json; print(json.load(open("reference/horizon-source.json"))["commit"])')" >> "$GITHUB_OUTPUT"
+
+      - name: Check out the pinned Horizon source
+        uses: actions/checkout@v4
+        with:
+          repository: horizon-rust/horizon
+          ref: ${{ steps.horizon.outputs.commit }}
+          path: vendor/horizon
+          persist-credentials: false
+
+      - name: Install Linux build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential pkg-config libasound2-dev libudev-dev
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.99.1
+          components: rustfmt, clippy
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify preserved original assets
+        run: python3 tools/verify_reference.py
+
+      - name: Test core library
+        run: cargo test --locked --manifest-path Cargo.toml
+
+      - name: Verify deterministic development package
+        run: |
+          python3 tools/package_native.py
+          cmp artifacts/watery-1.2.2-dev.hnmod watery-1.2.2-dev.hnmod
+          sha256sum artifacts/watery-1.2.2-dev.hnmod > /tmp/watery-package.sha256
+          python3 tools/package_native.py
+          cmp artifacts/watery-1.2.2-dev.hnmod watery-1.2.2-dev.hnmod
+          sha256sum --check /tmp/watery-package.sha256
+
+      - name: Compile adapter and read the package with Horizon
+        run: python3 tools/check_native.py --test
+
+  gpu:
+    name: GPU pipelines and simulation regressions (Vulkan / lavapipe)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Check out Watery
+        uses: actions/checkout@v4
+
+      - name: Read pinned Horizon revision
+        id: horizon
+        run: |
+          echo "commit=$(python3 -c 'import json; print(json.load(open("reference/horizon-source.json"))["commit"])')" >> "$GITHUB_OUTPUT"
+
+      - name: Check out the pinned Horizon shader dependencies
+        uses: actions/checkout@v4
+        with:
+          repository: horizon-rust/horizon
+          ref: ${{ steps.horizon.outputs.commit }}
+          path: vendor/horizon
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.99.1
+          components: rustfmt, clippy
+
+      - name: Install Vulkan software driver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libvulkan1 mesa-vulkan-drivers
+          test -f /usr/share/vulkan/icd.d/lvp_icd.x86_64.json
+
+      - name: Run GPU pipeline and simulation checks
+        env:
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.x86_64.json
+        run: cargo run --locked --manifest-path tools/gpu-check/Cargo.toml
+
+      - name: Save GPU check report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gpu-check-report
+          path: reference/gpu-check-report.md
+          if-no-files-found: ignore

@@ -1,0 +1,268 @@
+Compiled from "WaterRegion.java"
+public final class me.blue.client.water.WaterRegion$Emitter extends java.lang.Record {
+  private final double minX;
+
+  private final double minY;
+
+  private final double minZ;
+
+  private final double maxX;
+
+  private final double maxY;
+
+  private final double maxZ;
+
+  private final float vx;
+
+  private final float vy;
+
+  private final float vz;
+
+  public me.blue.client.water.WaterRegion$Emitter(double, double, double, double, double, double, float, float, float);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Record."<init>":()V
+         4: aload_0
+         5: dload_1
+         6: putfield      #7                  // Field minX:D
+         9: aload_0
+        10: dload_3
+        11: putfield      #13                 // Field minY:D
+        14: aload_0
+        15: dload         5
+        17: putfield      #16                 // Field minZ:D
+        20: aload_0
+        21: dload         7
+        23: putfield      #19                 // Field maxX:D
+        26: aload_0
+        27: dload         9
+        29: putfield      #22                 // Field maxY:D
+        32: aload_0
+        33: dload         11
+        35: putfield      #25                 // Field maxZ:D
+        38: aload_0
+        39: fload         13
+        41: putfield      #28                 // Field vx:F
+        44: aload_0
+        45: fload         14
+        47: putfield      #32                 // Field vy:F
+        50: aload_0
+        51: fload         15
+        53: putfield      #35                 // Field vz:F
+        56: return
+
+  int[] lattice(int);
+    Code:
+         0: iconst_3
+         1: newarray       int
+         3: dup
+         4: iconst_0
+         5: iconst_1
+         6: aload_0
+         7: getfield      #19                 // Field maxX:D
+        10: aload_0
+        11: getfield      #7                  // Field minX:D
+        14: dsub
+        15: iload_1
+        16: i2d
+        17: dmul
+        18: ldc2_w        #38                 // double 2.0d
+        21: dmul
+        22: invokestatic  #40                 // Method java/lang/Math.round:(D)J
+        25: l2i
+        26: invokestatic  #46                 // Method java/lang/Math.max:(II)I
+        29: iastore
+        30: dup
+        31: iconst_1
+        32: iconst_1
+        33: aload_0
+        34: getfield      #22                 // Field maxY:D
+        37: aload_0
+        38: getfield      #13                 // Field minY:D
+        41: dsub
+        42: iload_1
+        43: i2d
+        44: dmul
+        45: ldc2_w        #38                 // double 2.0d
+        48: dmul
+        49: invokestatic  #40                 // Method java/lang/Math.round:(D)J
+        52: l2i
+        53: invokestatic  #46                 // Method java/lang/Math.max:(II)I
+        56: iastore
+        57: dup
+        58: iconst_2
+        59: iconst_1
+        60: aload_0
+        61: getfield      #25                 // Field maxZ:D
+        64: aload_0
+        65: getfield      #16                 // Field minZ:D
+        68: dsub
+        69: iload_1
+        70: i2d
+        71: dmul
+        72: ldc2_w        #38                 // double 2.0d
+        75: dmul
+        76: invokestatic  #40                 // Method java/lang/Math.round:(D)J
+        79: l2i
+        80: invokestatic  #46                 // Method java/lang/Math.max:(II)I
+        83: iastore
+        84: areturn
+
+  int count(int);
+    Code:
+         0: aload_0
+         1: iload_1
+         2: invokevirtual #50                 // Method lattice:(I)[I
+         5: astore_2
+         6: aload_2
+         7: iconst_0
+         8: iaload
+         9: aload_2
+        10: iconst_1
+        11: iaload
+        12: imul
+        13: aload_2
+        14: iconst_2
+        15: iaload
+        16: imul
+        17: ireturn
+
+  int[] cells(int);
+    Code:
+         0: bipush        6
+         2: newarray       int
+         4: dup
+         5: iconst_0
+         6: aload_0
+         7: getfield      #7                  // Field minX:D
+        10: iload_1
+        11: i2d
+        12: dmul
+        13: invokestatic  #54                 // Method java/lang/Math.floor:(D)D
+        16: d2i
+        17: iastore
+        18: dup
+        19: iconst_1
+        20: aload_0
+        21: getfield      #13                 // Field minY:D
+        24: iload_1
+        25: i2d
+        26: dmul
+        27: invokestatic  #54                 // Method java/lang/Math.floor:(D)D
+        30: d2i
+        31: iastore
+        32: dup
+        33: iconst_2
+        34: aload_0
+        35: getfield      #16                 // Field minZ:D
+        38: iload_1
+        39: i2d
+        40: dmul
+        41: invokestatic  #54                 // Method java/lang/Math.floor:(D)D
+        44: d2i
+        45: iastore
+        46: dup
+        47: iconst_3
+        48: aload_0
+        49: getfield      #19                 // Field maxX:D
+        52: iload_1
+        53: i2d
+        54: dmul
+        55: invokestatic  #58                 // Method java/lang/Math.ceil:(D)D
+        58: d2i
+        59: iastore
+        60: dup
+        61: iconst_4
+        62: aload_0
+        63: getfield      #22                 // Field maxY:D
+        66: iload_1
+        67: i2d
+        68: dmul
+        69: invokestatic  #58                 // Method java/lang/Math.ceil:(D)D
+        72: d2i
+        73: iastore
+        74: dup
+        75: iconst_5
+        76: aload_0
+        77: getfield      #25                 // Field maxZ:D
+        80: iload_1
+        81: i2d
+        82: dmul
+        83: invokestatic  #58                 // Method java/lang/Math.ceil:(D)D
+        86: d2i
+        87: iastore
+        88: areturn
+
+  public final java.lang.String toString();
+    Code:
+         0: aload_0
+         1: invokedynamic #61,  0             // InvokeDynamic #0:toString:(Lme/blue/client/water/WaterRegion$Emitter;)Ljava/lang/String;
+         6: areturn
+
+  public final int hashCode();
+    Code:
+         0: aload_0
+         1: invokedynamic #65,  0             // InvokeDynamic #0:hashCode:(Lme/blue/client/water/WaterRegion$Emitter;)I
+         6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokedynamic #69,  0             // InvokeDynamic #0:equals:(Lme/blue/client/water/WaterRegion$Emitter;Ljava/lang/Object;)Z
+         7: ireturn
+
+  public double minX();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field minX:D
+         4: dreturn
+
+  public double minY();
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field minY:D
+         4: dreturn
+
+  public double minZ();
+    Code:
+         0: aload_0
+         1: getfield      #16                 // Field minZ:D
+         4: dreturn
+
+  public double maxX();
+    Code:
+         0: aload_0
+         1: getfield      #19                 // Field maxX:D
+         4: dreturn
+
+  public double maxY();
+    Code:
+         0: aload_0
+         1: getfield      #22                 // Field maxY:D
+         4: dreturn
+
+  public double maxZ();
+    Code:
+         0: aload_0
+         1: getfield      #25                 // Field maxZ:D
+         4: dreturn
+
+  public float vx();
+    Code:
+         0: aload_0
+         1: getfield      #28                 // Field vx:F
+         4: freturn
+
+  public float vy();
+    Code:
+         0: aload_0
+         1: getfield      #32                 // Field vy:F
+         4: freturn
+
+  public float vz();
+    Code:
+         0: aload_0
+         1: getfield      #35                 // Field vz:F
+         4: freturn
+}

@@ -1,0 +1,27 @@
+Compiled from "ModContent.java"
+class me.blue.ModContent$1 extends net.minecraft.world.item.BucketItem {
+  me.blue.ModContent$1(net.minecraft.world.level.material.Fluid, net.minecraft.world.item.Item$Properties);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokespecial #1                  // Method net/minecraft/world/item/BucketItem."<init>":(Lnet/minecraft/world/level/material/Fluid;Lnet/minecraft/world/item/Item$Properties;)V
+         6: return
+
+  protected void playEmptySound(net.minecraft.world.entity.LivingEntity, net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos);
+    Code:
+         0: aload_2
+         1: aload_1
+         2: aload_3
+         3: getstatic     #7                  // Field net/minecraft/sounds/SoundEvents.SLIME_BLOCK_PLACE:Lnet/minecraft/sounds/SoundEvent;
+         6: getstatic     #13                 // Field net/minecraft/sounds/SoundSource.BLOCKS:Lnet/minecraft/sounds/SoundSource;
+         9: fconst_1
+        10: fconst_1
+        11: invokeinterface #19,  7           // InterfaceMethod net/minecraft/world/level/LevelAccessor.playSound:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V
+        16: aload_2
+        17: aload_1
+        18: getstatic     #25                 // Field net/minecraft/world/level/gameevent/GameEvent.FLUID_PLACE:Lnet/minecraft/core/Holder$Reference;
+        21: aload_3
+        22: invokeinterface #31,  4           // InterfaceMethod net/minecraft/world/level/LevelAccessor.gameEvent:(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/core/Holder;Lnet/minecraft/core/BlockPos;)V
+        27: return
+}

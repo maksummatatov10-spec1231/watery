@@ -1,0 +1,3567 @@
+[
+  {
+    "path": "META-INF/MANIFEST.MF",
+    "bytes": 31205,
+    "sha256": "5d044119796a794ffcc45330bbded611f030be11b6ca5c072169bdb08491d241"
+  },
+  {
+    "path": "me/blue/ModContent$1.class",
+    "bytes": 1920,
+    "sha256": "5b6aabeffe78073da7e7b38ed8b861961038846cfb921ba87ac7ec423edf4861"
+  },
+  {
+    "path": "me/blue/ModContent.class",
+    "bytes": 11609,
+    "sha256": "66134ab4ded56dc3a7b1284effbac3fe0846cfbf1eb137f646f0ef2e9780a258"
+  },
+  {
+    "path": "me/blue/ModSettings.class",
+    "bytes": 377,
+    "sha256": "9ef5dc88b1a79fca723a3e0d98bd2cb3f66b3823359168477a176c2b055da82a"
+  },
+  {
+    "path": "me/blue/RealisticWater.class",
+    "bytes": 8002,
+    "sha256": "03a56a82e206a2aab91c6578b1ac9a182dec4f440c7c902244ea76a8f0e12003"
+  },
+  {
+    "path": "me/blue/block/RealisticLavaBlock.class",
+    "bytes": 986,
+    "sha256": "b01dde3f8e371ba802bbfc062b3b4ad3766fc987b6a2dab2cba27f11e11dda22"
+  },
+  {
+    "path": "me/blue/block/RealisticSandBlock.class",
+    "bytes": 6818,
+    "sha256": "92baa651ee075aa7d62a751ba3ac34aeb33aa363e347bdc40eeeb51f9e872a24"
+  },
+  {
+    "path": "me/blue/block/RealisticWaterBlock.class",
+    "bytes": 3140,
+    "sha256": "65224db9ef4aafe349537e98372fbd8f16dae30be8febecd84a80825895a67c2"
+  },
+  {
+    "path": "me/blue/fluid/RealisticLavaFluid$Flowing.class",
+    "bytes": 2044,
+    "sha256": "1ade18d14348d2fa07d749865a9b8db67f89e88ffd2857e679aae825eaa0b034"
+  },
+  {
+    "path": "me/blue/fluid/RealisticLavaFluid$Source.class",
+    "bytes": 725,
+    "sha256": "16ffea6aa40537c592ea442a437845c69c17587e34dea7674b1793a0b03bfbd3"
+  },
+  {
+    "path": "me/blue/fluid/RealisticLavaFluid.class",
+    "bytes": 9942,
+    "sha256": "bfb75ada5aa73442f8371a933069e9861cbeb732a7ec595f1edc0cf7e965e935"
+  },
+  {
+    "path": "me/blue/fluid/RealisticSlimeFluid$Flowing.class",
+    "bytes": 2048,
+    "sha256": "7b43cfa8b90b3a3fb03bd6d7e877b0f6cf6c4fdcacc314cb8b163e86b8b7a2c5"
+  },
+  {
+    "path": "me/blue/fluid/RealisticSlimeFluid$Source.class",
+    "bytes": 729,
+    "sha256": "ba320aad80d00226a474c290066d8040a60eeda56bbaa700acd538be9cb4f752"
+  },
+  {
+    "path": "me/blue/fluid/RealisticSlimeFluid.class",
+    "bytes": 6450,
+    "sha256": "a271a2df1e6f0b7aee845a89d55c8cc0fe3ca566ab786714f9d36687c0dc6916"
+  },
+  {
+    "path": "me/blue/fluid/RealisticWaterFluid$Flowing.class",
+    "bytes": 2048,
+    "sha256": "809b883ccf124b90f3f903bac441a8456f4eaba0e5bd6a37f1b28d9613a1d3fd"
+  },
+  {
+    "path": "me/blue/fluid/RealisticWaterFluid$Source.class",
+    "bytes": 729,
+    "sha256": "21ee335eb946fbc4c2f307b402fcd80df4117ca88cb0159238ac4a9b5a01f0c2"
+  },
+  {
+    "path": "me/blue/fluid/RealisticWaterFluid.class",
+    "bytes": 6619,
+    "sha256": "1dad665847f14a503f7f712ba6aa7e38fc9090d4e27eb53bb9b01ca03b69fc64"
+  },
+  {
+    "path": "me/blue/mixin/PistonBaseBlockMixin.class",
+    "bytes": 1170,
+    "sha256": "5fd00d865ee166b1e0a1f7a0d1617240c2818e002827b08d650482b87a6214da"
+  },
+  {
+    "path": "me/blue/mixin/PistonStructureResolverMixin.class",
+    "bytes": 1214,
+    "sha256": "c639c75bb83b0b4242572c0fb989b5c617e4f6b823d2c2c80f210d385693a941"
+  },
+  {
+    "path": "me/blue/net/LavaSyncPayload.class",
+    "bytes": 7243,
+    "sha256": "166cc04a8e71051bfaae9714bbc3b53e6c7193b184064f241651ffb9899af9bf"
+  },
+  {
+    "path": "me/blue/net/RemoveAllWaterPayload.class",
+    "bytes": 7265,
+    "sha256": "9ee37fbe3a26a9da2034842fc1a7dfadbe37d87dfa0cd2437702e83611185a97"
+  },
+  {
+    "path": "me/blue/net/SandSyncPayload.class",
+    "bytes": 6673,
+    "sha256": "ce0dd3952bbbe4b180b4977dfa0b22c3806ae6eec5db43b546f9dd6a997890ad"
+  },
+  {
+    "path": "me/blue/net/SlimeSyncPayload.class",
+    "bytes": 7257,
+    "sha256": "11a9345a4900e3d628165159799250bc9116806f81fb9a02ad7d872c5d0d2fc0"
+  },
+  {
+    "path": "me/blue/net/SyncMaterial.class",
+    "bytes": 1116,
+    "sha256": "a20bcad361c908fe9be98c0e2979c6978ca2d78b09f5b4860ae2b03ab9afb561"
+  },
+  {
+    "path": "me/blue/net/WaterSyncPayload.class",
+    "bytes": 7257,
+    "sha256": "3abc65828127f69d6a8bddb11cadfa7dd40714a2ef6b09a75d75741088aa3cdc"
+  },
+  {
+    "path": "fabric.mod.json",
+    "bytes": 642,
+    "sha256": "3b5a7cb2593ed5d1c08fbf5e4cef83c243b3ade80212ba49bf88ec8b53f65007"
+  },
+  {
+    "path": "watery.mixins.json",
+    "bytes": 253,
+    "sha256": "28ad2eb054c9728310bec6ffa323a4745a1edf5510672cb2c6e3c914a312f2a8"
+  },
+  {
+    "path": "assets/watery/icon.png",
+    "bytes": 23054,
+    "sha256": "0b0785b5da3dce08a95b778af3284705d82ebf9f688bdda3dd3e24c349bbab39"
+  },
+  {
+    "path": "assets/watery/blockstates/realistic_lava.json",
+    "bytes": 78,
+    "sha256": "a614db407b6c310b4f947e7da5441148b19a4e0400f7316cf203f8674efd97ed"
+  },
+  {
+    "path": "assets/watery/blockstates/realistic_sand.json",
+    "bytes": 85,
+    "sha256": "0a88e0ca83b49ded39319774d608d564cd108b867ef57e033faeb14ccc3790c8"
+  },
+  {
+    "path": "assets/watery/blockstates/realistic_slime.json",
+    "bytes": 85,
+    "sha256": "49ea9fa9acbe2c52b0fd1419ccd1cb6c330f6a1fb237d8acbe9b55e152438d58"
+  },
+  {
+    "path": "assets/watery/blockstates/realistic_water.json",
+    "bytes": 79,
+    "sha256": "590e1d52b50db0647a36c74bc9ab03b608f80f2e06b7ce0795d6939da0384611"
+  },
+  {
+    "path": "assets/watery/items/realistic_lava_bucket.json",
+    "bytes": 101,
+    "sha256": "952e44e4ee1ca130f55da414d08b39f2f673c27a537c504e4871db8b5adf8b61"
+  },
+  {
+    "path": "assets/watery/items/realistic_sand.json",
+    "bytes": 95,
+    "sha256": "ec0f6198049a5507b7c1ef5049f31c0f40a54ef34f6a6044d7b2d6bbe31518a6"
+  },
+  {
+    "path": "assets/watery/items/realistic_slime_bucket.json",
+    "bytes": 102,
+    "sha256": "a5fc5073cfcd7b9c912c1caa04e58fadd01494bf0f7ea9eb7bab79298076eea4"
+  },
+  {
+    "path": "assets/watery/items/realistic_water_bucket.json",
+    "bytes": 102,
+    "sha256": "367fea51201e4bd072103a01817bcb71b9ce6718c7f761de912ca50b2154a831"
+  },
+  {
+    "path": "assets/watery/lang/en_us.json",
+    "bytes": 2666,
+    "sha256": "8fc12c9cfa00f224e1fd2960d3a8b356bf35d5c58adfeb73f9914199860a9ce3"
+  },
+  {
+    "path": "assets/watery/models/block/realistic_sand.json",
+    "bytes": 98,
+    "sha256": "c83abf73252ceff1fededa11ab19d1edb4c330669c76131b92c8f5f8adcb9594"
+  },
+  {
+    "path": "assets/watery/models/item/realistic_lava_bucket.json",
+    "bytes": 107,
+    "sha256": "659f8dfdc3f2fa8f8aad7f1e87422747d6e753f4e15710549eb1c095adb86509"
+  },
+  {
+    "path": "assets/watery/models/item/realistic_slime_bucket.json",
+    "bytes": 115,
+    "sha256": "7493b74d93f9da7b3f1e02fe6cf6609755c5100d3980d00e1c5b2b8a71d6af08"
+  },
+  {
+    "path": "assets/watery/models/item/realistic_water_bucket.json",
+    "bytes": 108,
+    "sha256": "a8c94e713a12c8ed70ab2e27a0a0d73491eb5019e512c41c0902e533e922bbab"
+  },
+  {
+    "path": "assets/watery/textures/item/realistic_slime_bucket.png",
+    "bytes": 378,
+    "sha256": "3e698537855ba965006d88cba10cf636656ee38cbbfec5e911b08dd0ba10fbf6"
+  },
+  {
+    "path": "data/minecraft/tags/fluid/lava.json",
+    "bytes": 107,
+    "sha256": "20e9dea39aad515363fbc5b087cf0aaf9eb65434f4cd454695afe66d0562c44b"
+  },
+  {
+    "path": "data/minecraft/tags/fluid/water.json",
+    "bytes": 109,
+    "sha256": "d13fb57258c2c66e03cccc794f81516c510aba0bdad873a0853d6e98db8118d1"
+  },
+  {
+    "path": "data/watery/loot_table/blocks/realistic_sand.json",
+    "bytes": 425,
+    "sha256": "6b675f70290dba69dfe494889c7f9985f0ec65cd35da0053be8bba472284b282"
+  },
+  {
+    "path": "me/blue/client/RealisticWaterClient$1.class",
+    "bytes": 1477,
+    "sha256": "824f85aad53b72d22a4158d2bc8bf410e1e203b595f8b3ad9e47e382ed87bf96"
+  },
+  {
+    "path": "me/blue/client/RealisticWaterClient.class",
+    "bytes": 6934,
+    "sha256": "aba768cb1a75f53c36eded5ef26ca56f69ed38fea61bdbadfa161db5bf68a649"
+  },
+  {
+    "path": "me/blue/client/asset/DiskAssetStore$CachedHash.class",
+    "bytes": 1896,
+    "sha256": "2feb0556bde258dc721bbb3d972deff899e3b80c35d26c905c3840fa423ad44f"
+  },
+  {
+    "path": "me/blue/client/asset/DiskAssetStore.class",
+    "bytes": 10091,
+    "sha256": "19b63fbb51f2c7ac316e04b4043b39a783bb1072d35f7062c27862b66417d670"
+  },
+  {
+    "path": "me/blue/client/gui/ClientGuis$Partial.class",
+    "bytes": 1612,
+    "sha256": "8bd75d954258738209a4d5036c7a81cac7a7cd258f60df2ccf0cff2ea2ec6587"
+  },
+  {
+    "path": "me/blue/client/gui/ClientGuis.class",
+    "bytes": 24415,
+    "sha256": "61be9aba74b9ad5619a04719e028fce5252a372ec983d5bc7388bfef1dc4f3a0"
+  },
+  {
+    "path": "me/blue/client/gui/GuiBindings$1.class",
+    "bytes": 949,
+    "sha256": "c69e2800296f2f1a382223ebbf1bd55c6bedc78581645a80a8542a5ebac3c3f7"
+  },
+  {
+    "path": "me/blue/client/gui/GuiBindings$Setter.class",
+    "bytes": 329,
+    "sha256": "8104e9185236a39915584a4d0943f6eebba406073afc38238a46f55f50cc3373"
+  },
+  {
+    "path": "me/blue/client/gui/GuiBindings$StyleHandle.class",
+    "bytes": 2482,
+    "sha256": "5012265444b8e151a02a04c5fe9efa686e9e900c7104f555fbf68249dacd0575"
+  },
+  {
+    "path": "me/blue/client/gui/GuiBindings.class",
+    "bytes": 90272,
+    "sha256": "4fcdce32609794e704218070629225e87ec5ac50c6366be5138b343456673dab"
+  },
+  {
+    "path": "me/blue/client/gui/GuiPainter$1.class",
+    "bytes": 2136,
+    "sha256": "626db0cd7a401263b85ae241ef7d8ddb90f493d2c520985e28839525464e2742"
+  },
+  {
+    "path": "me/blue/client/gui/GuiPainter.class",
+    "bytes": 30245,
+    "sha256": "bc13b1228acf7e5172e23148bfdce4dad0dcfaeb3dab8479444e5843ba46d1b4"
+  },
+  {
+    "path": "me/blue/client/gui/GuiScreen.class",
+    "bytes": 14060,
+    "sha256": "b36ebb613efd42d4db3e5b4f3f93535916cb75826a7761b95331da118e247a27"
+  },
+  {
+    "path": "me/blue/client/gui/GuiSession$1.class",
+    "bytes": 813,
+    "sha256": "35484e90fed5b9462986ab490906b3265ca77474c67928276e824c05d0ba1e1e"
+  },
+  {
+    "path": "me/blue/client/gui/GuiSession.class",
+    "bytes": 14417,
+    "sha256": "679666454297d8deb88d8801c43ebb746d6e47374b4172e6e1cb4917ccc119ce"
+  },
+  {
+    "path": "me/blue/client/gui/GuiText$1.class",
+    "bytes": 1346,
+    "sha256": "9ed24693fe5178a424a69d361ed90f1168c373cb38c87b8516d30bda41a81364"
+  },
+  {
+    "path": "me/blue/client/gui/GuiText$Atom.class",
+    "bytes": 2442,
+    "sha256": "43644f60b2ed7ddc6e1b718a4cf6444ff49003cc28dad708bf898879a6eb30f9"
+  },
+  {
+    "path": "me/blue/client/gui/GuiText$Layout.class",
+    "bytes": 1803,
+    "sha256": "68b89ea075d7205d3cbca3a9fc21b18433cd5a2e5a6a7869e30948af9e645c09"
+  },
+  {
+    "path": "me/blue/client/gui/GuiText$Line.class",
+    "bytes": 1931,
+    "sha256": "c24add1a9b94b6a9b9eeddbe814d5537f531e6609cc3892dc69a97d5d80e6907"
+  },
+  {
+    "path": "me/blue/client/gui/GuiText$Look.class",
+    "bytes": 3078,
+    "sha256": "21a5aa1b699fd01c32ee4a5d22a5aaaf94990628812273c62e132d0ac58f3111"
+  },
+  {
+    "path": "me/blue/client/gui/GuiText$Pic.class",
+    "bytes": 2158,
+    "sha256": "25bdec8a43ad6dd41d2cb1943a1efeee57206460f99b9b82e038a3525ad830f6"
+  },
+  {
+    "path": "me/blue/client/gui/GuiText$Piece.class",
+    "bytes": 378,
+    "sha256": "31707bd32a00151fa8d1f8ef64d87df871e601ac03774ad3cab494982e3407c3"
+  },
+  {
+    "path": "me/blue/client/gui/GuiText$Run.class",
+    "bytes": 2538,
+    "sha256": "c944d553d483a9dfe725cc9c636a58d8a88dad274be5fac8c8d07c19b4a048e6"
+  },
+  {
+    "path": "me/blue/client/gui/GuiText.class",
+    "bytes": 17235,
+    "sha256": "55843f03c20cc32c71906528c9cfbcd3343efc02df985a44c0f95e11ac390306"
+  },
+  {
+    "path": "me/blue/client/gui/GuiTextures$Texture.class",
+    "bytes": 3361,
+    "sha256": "fc142019aed4891481156fd60ee554a49aa8a6a713d7565a9f82fff8af765d88"
+  },
+  {
+    "path": "me/blue/client/gui/GuiTextures.class",
+    "bytes": 22531,
+    "sha256": "85edf9fa52d8896a5d7f1a5ee49af99294707e1f795751a2a436b522f9727626"
+  },
+  {
+    "path": "me/blue/client/gui/HudData$BossBar.class",
+    "bytes": 2000,
+    "sha256": "a099a02c6bf6cb08c573b200ee7db8b6133dc35dc8b456cb24f82c88f29fcc7d"
+  },
+  {
+    "path": "me/blue/client/gui/HudData$Effect.class",
+    "bytes": 2012,
+    "sha256": "d484bed6c19e55161578895a665ffc05af21d0d0bb7aae9f719336260c891141"
+  },
+  {
+    "path": "me/blue/client/gui/HudData$Sidebar.class",
+    "bytes": 1977,
+    "sha256": "7b764f40bb04413c88cb1118681968e085b1b0346d7d05d467e0672ab35bdcd9"
+  },
+  {
+    "path": "me/blue/client/gui/HudData$SidebarLine.class",
+    "bytes": 1734,
+    "sha256": "63c1124aec1445a448b69d7425eb47901e94d9a3ef1b9c90091be9d12ea09cd0"
+  },
+  {
+    "path": "me/blue/client/gui/HudData.class",
+    "bytes": 18687,
+    "sha256": "a691a7c53761d1749dde4c64cda2331a3376623e39550e93d9b14a5e1abea35f"
+  },
+  {
+    "path": "me/blue/client/gui/HudParts$1.class",
+    "bytes": 1713,
+    "sha256": "48125ad36bb55a80794b6bfdf4bfa8b0f1a1855ee61b48ccc0bef485ae041ea1"
+  },
+  {
+    "path": "me/blue/client/gui/HudParts.class",
+    "bytes": 3297,
+    "sha256": "278958a9bd35846d6b4bbfeda54e29ac6dd8e9bf22fcad0d18f27f496d129d00"
+  },
+  {
+    "path": "me/blue/client/gui/McGuiPlatform.class",
+    "bytes": 7027,
+    "sha256": "4d164556667092571403a8dbb5f3dfeff884009774da0ea57f00503339f37b7e"
+  },
+  {
+    "path": "me/blue/client/gui/Shapes$Mesh.class",
+    "bytes": 916,
+    "sha256": "9f703ffc65893c0da3c6cae1d33a61c2b021ddf382a6d87bb7238f6898f646ec"
+  },
+  {
+    "path": "me/blue/client/gui/Shapes$ShapeState.class",
+    "bytes": 3889,
+    "sha256": "1480b0c4f9ba73a1c85dab3d99580d99de5d91b50f2af613ce2ff0a82513df18"
+  },
+  {
+    "path": "me/blue/client/gui/Shapes.class",
+    "bytes": 22367,
+    "sha256": "0b8ea6fa268ed84612a7bc784d9a4220392f4731a26504aeca0e5e88def5bd7e"
+  },
+  {
+    "path": "me/blue/client/gui/VanillaPeers$Base.class",
+    "bytes": 5028,
+    "sha256": "4b544843db6cdf2d269ba3c347a75da96b78cf5a887c70bfcf53a03c4c97b54c"
+  },
+  {
+    "path": "me/blue/client/gui/VanillaPeers$ButtonPeer.class",
+    "bytes": 2588,
+    "sha256": "5e35ee770c35516fe912836618d29146cebac110b8946c25492e2c67e54d5500"
+  },
+  {
+    "path": "me/blue/client/gui/VanillaPeers$CheckboxPeer.class",
+    "bytes": 3575,
+    "sha256": "49deb6139d04c227d9f9f7bf18b18b1c3899a6ca584ad92e23da5d90f303d1de"
+  },
+  {
+    "path": "me/blue/client/gui/VanillaPeers$CyclePeer.class",
+    "bytes": 5410,
+    "sha256": "f4b8abd878646525c78ccc4c39a78ff912527bfc23c3b27df05352067465da3b"
+  },
+  {
+    "path": "me/blue/client/gui/VanillaPeers$FieldPeer.class",
+    "bytes": 2823,
+    "sha256": "093cfe0c2be526a783610d2a87963f1577caf57d84493970c9974cee02cb67cd"
+  },
+  {
+    "path": "me/blue/client/gui/VanillaPeers$Peer.class",
+    "bytes": 341,
+    "sha256": "5981e05815f5520aac7cf92dd00e088f598250e16863cbeee61ef38ce0d2a52c"
+  },
+  {
+    "path": "me/blue/client/gui/VanillaPeers$RangeSlider.class",
+    "bytes": 2767,
+    "sha256": "670991f658eac933d008028a8b52435a9ef35ccd530735f03f78efb0eb2b8387"
+  },
+  {
+    "path": "me/blue/client/gui/VanillaPeers$SliderPeer.class",
+    "bytes": 2092,
+    "sha256": "5f5594537db86e99c5704d085ffa1e020841776e44ff0d650a88c4938fcd12fa"
+  },
+  {
+    "path": "me/blue/client/gui/VanillaPeers.class",
+    "bytes": 1984,
+    "sha256": "8204d7ad7991275387ad676b7432d31749b7e7d9efb31ca4e9d5462355bab18f"
+  },
+  {
+    "path": "me/blue/client/gui/WidgetHover.class",
+    "bytes": 635,
+    "sha256": "6d13e9a5aedbf0893bc237283e1ddc779405b144f35d82bd217f35372b2c2448"
+  },
+  {
+    "path": "me/blue/client/gui/element/Affine.class",
+    "bytes": 3803,
+    "sha256": "690c9a42d60410807154c2acf27eee0f8069553c7f46751e9aea0efc1f75fa63"
+  },
+  {
+    "path": "me/blue/client/gui/element/Animation$Step.class",
+    "bytes": 932,
+    "sha256": "7baad266b76062e35fe2342a93217521bca512b6384479c53438ff5af0d4dde9"
+  },
+  {
+    "path": "me/blue/client/gui/element/Animation.class",
+    "bytes": 6641,
+    "sha256": "f32ce0f1dc216cd79642e064fe5c4904eaff7abce32df9405c93ee101c2ae678"
+  },
+  {
+    "path": "me/blue/client/gui/element/BoxElement.class",
+    "bytes": 927,
+    "sha256": "16bc1ef706e04a71cb67d87e11ffbf4ce8feb4fe1747b4797f17a286381d8dd6"
+  },
+  {
+    "path": "me/blue/client/gui/element/ButtonElement.class",
+    "bytes": 3668,
+    "sha256": "cbc31c7cab76c4bb3dfcf710521c45d7157f61fca5ec32f65b6872b528802578"
+  },
+  {
+    "path": "me/blue/client/gui/element/CanvasElement$Circle.class",
+    "bytes": 2104,
+    "sha256": "a16fd77860c9a76c1b8cc0e2101db89b390db0376f9a8d491f581dcdd91ce3cd"
+  },
+  {
+    "path": "me/blue/client/gui/element/CanvasElement$Graphics.class",
+    "bytes": 2752,
+    "sha256": "c19e0e0cd4c56d3c1465b358ef8eeeab0e9d0b1ed5f59ead51cc0910193fbeb4"
+  },
+  {
+    "path": "me/blue/client/gui/element/CanvasElement$Label.class",
+    "bytes": 2193,
+    "sha256": "a7a5460314e86ad0307da2a177f8ad4d14cbf3bc1c5574c68a24b09473acc87a"
+  },
+  {
+    "path": "me/blue/client/gui/element/CanvasElement$Line.class",
+    "bytes": 2200,
+    "sha256": "ed259642da81ecbd7f4e172fae24fa690ddb66df03397c0a579f4e3362f532a0"
+  },
+  {
+    "path": "me/blue/client/gui/element/CanvasElement$Op.class",
+    "bytes": 620,
+    "sha256": "7ff7b7b952b4504ec69bc9eaab68d1974c521d9c6b70814fb0700dde85f3183a"
+  },
+  {
+    "path": "me/blue/client/gui/element/CanvasElement$Picture.class",
+    "bytes": 2268,
+    "sha256": "e715880edb7f7d1c8641fe45fe95e1f211983dd2a3c27000673283463165cf3d"
+  },
+  {
+    "path": "me/blue/client/gui/element/CanvasElement$Rect.class",
+    "bytes": 2212,
+    "sha256": "0bead2a2b1b3cec97be0367ebf6782dfb45597a649196f918e1fab1137b31173"
+  },
+  {
+    "path": "me/blue/client/gui/element/CanvasElement.class",
+    "bytes": 1987,
+    "sha256": "55621e77264652ac2f15595e47e1455c51826c8940a4847af3c4d7d979294f74"
+  },
+  {
+    "path": "me/blue/client/gui/element/Easing.class",
+    "bytes": 3278,
+    "sha256": "569dac04e950903b4fc5f26d403dd36e933ac8688af6e67c5a7c30af5207e308"
+  },
+  {
+    "path": "me/blue/client/gui/element/Element$Tween.class",
+    "bytes": 2319,
+    "sha256": "061c70c374860f92776824768353512d9631cc3f2c0329513e30270561173ef6"
+  },
+  {
+    "path": "me/blue/client/gui/element/Element.class",
+    "bytes": 17201,
+    "sha256": "6392e0fdefb34f31fd1ebe34adce52c49c0459260e9be24f98e1bf3d1954436e"
+  },
+  {
+    "path": "me/blue/client/gui/element/FieldElement.class",
+    "bytes": 11734,
+    "sha256": "ba05913e6fd6401179671966e9fb90b862b4b738f7e1071c65841f442ccba5e7"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiDocument.class",
+    "bytes": 31140,
+    "sha256": "94c51064a8a69c51f31576a84d9e918896586453a7864d6e4f1b9c33924694ec"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$Align.class",
+    "bytes": 1370,
+    "sha256": "4da04e588d38bee05753d2d88715c3973fdd98b293e4b477678009f2d32ec715"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$Allow.class",
+    "bytes": 1433,
+    "sha256": "6f80bfe7d2ccf1e3960ac7083ea6981509100490852b8782505bff946c4f18bb"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$Axis.class",
+    "bytes": 1301,
+    "sha256": "b38917199f0931e06e2769fc2d5ff0e8fd69a3d6aa393b55e42c6009ab4faf76"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$Blend.class",
+    "bytes": 1267,
+    "sha256": "d7edcff630e911ec0c2699aa1b16ac3670f7bc02b72a2aa081ee8b08859e41e3"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$Cursor.class",
+    "bytes": 1612,
+    "sha256": "8661bf59c1fb07fd5c3e7e7ca09bef2ab4c4e0aa4f308ccad3d8dca02fc01ba9"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$FontKind.class",
+    "bytes": 1397,
+    "sha256": "f4bf0cfe1396d410ddf9b10b21c8d77a0efda3cf702d8ea5d0367a0273c94129"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$ImageMode.class",
+    "bytes": 1452,
+    "sha256": "fc4ff966beaa232f9f745b593c966d2b6e2105103e59bc4c2fe7aa376f0b0c7c"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$Justify.class",
+    "bytes": 1491,
+    "sha256": "575b2c0e5901b6222321628decab35f315908d5db98fb899dccafb20b9e15968"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$LayoutMode.class",
+    "bytes": 1350,
+    "sha256": "345a67d9c242351eae306a464bdcd19640e6e27a0df60e4dfe6d4a151fb7e1d0"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$MouseButton.class",
+    "bytes": 1411,
+    "sha256": "c08b58f3166b185db2d3d65f092ec4b412349a58b1a98e3860fa4eeb314b7ce5"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$ScrollbarStyle.class",
+    "bytes": 1437,
+    "sha256": "2cca17eb8fd4bfceefd49555879db591360d68a7a82ccce31eff3e6910507710"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums$TextAlign.class",
+    "bytes": 1345,
+    "sha256": "2b3a80d602d7f20a069598ce557da7b15439e6206811fbbd551986235dc2a66d"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEnums.class",
+    "bytes": 1198,
+    "sha256": "e33b826f74c418aea20ffd6f4cc7867a7c053c829a91f595a2078ef84f9b2307"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEvents$DropEvent.class",
+    "bytes": 787,
+    "sha256": "a4bc86a1f5a3872dfb403dc22ab57485e51f5146afeb4f6925c6b50e2366254c"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEvents$Event.class",
+    "bytes": 602,
+    "sha256": "ef4ed0d1f11858f89ebc98e4dce3773f993509c490a80c1f449ddca234c6e53b"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEvents$KeyInput.class",
+    "bytes": 1613,
+    "sha256": "75d88d662b34015794104546222cb46c8a582e055981253a47bf07b6625eccaa"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEvents$MouseEvent.class",
+    "bytes": 1195,
+    "sha256": "ac2516e6193f16105cc8146a465629a357ea00b9510d5f337f2b4a69df8277ee"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEvents$ScrollEvent.class",
+    "bytes": 850,
+    "sha256": "e77914b5c0640125afc799115e535387c04353600a6f90404000cd42e603a64d"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiEvents.class",
+    "bytes": 1331,
+    "sha256": "19f02bff119f4b4a1e5b2b62e325cf5e1dacbb485ed3fbca2de5a99904545326"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiPlatform$TextLayout.class",
+    "bytes": 287,
+    "sha256": "8cfcdd6eee0032530da285f8917f8c058e5e1e1ef8506d6e14cc5f2e001fddfa"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiPlatform.class",
+    "bytes": 752,
+    "sha256": "3134717836dff4aa569bf1f4b85018ba496a865e6df3017ab346572e919cd50f"
+  },
+  {
+    "path": "me/blue/client/gui/element/GuiTimer.class",
+    "bytes": 893,
+    "sha256": "fae02832ebb6b58b55a3e907d49107263b0f791286f3c096433eebe9fe0f3488"
+  },
+  {
+    "path": "me/blue/client/gui/element/Layout$1.class",
+    "bytes": 1447,
+    "sha256": "5d0e9e916ab8a39b30ec4bbd719f8a494b91036ddd434e7b9703e225781a59ea"
+  },
+  {
+    "path": "me/blue/client/gui/element/Layout.class",
+    "bytes": 9410,
+    "sha256": "c54191de0820957354d2eb75d55665b7242298c7b383219601a7d56b3a6e944e"
+  },
+  {
+    "path": "me/blue/client/gui/element/PictureElements$EntityElement.class",
+    "bytes": 851,
+    "sha256": "2c433dd42e47376fbaf0f0fc870ec02c962cc5dd443277f757e8223c2556b59e"
+  },
+  {
+    "path": "me/blue/client/gui/element/PictureElements$HeadElement.class",
+    "bytes": 825,
+    "sha256": "6393cd6509dc830ae952dfa990a23db7017afbc38b7780cfa5d79b1a68789f5a"
+  },
+  {
+    "path": "me/blue/client/gui/element/PictureElements$ImageElement.class",
+    "bytes": 1109,
+    "sha256": "737af07070989c8211991611af2b9ce55588cedcd64476191fc5ad69be2a9ef2"
+  },
+  {
+    "path": "me/blue/client/gui/element/PictureElements$ItemElement.class",
+    "bytes": 1148,
+    "sha256": "c4c8fc2f66ead4698d9f37fb96f21760b618f6527456483fb2122814a8a77aff"
+  },
+  {
+    "path": "me/blue/client/gui/element/PictureElements$Picture.class",
+    "bytes": 1089,
+    "sha256": "0ae5b232fd6d7c7dbfd4b23e071d7e9b79f95e7cf60209b632c231db0eb00e20"
+  },
+  {
+    "path": "me/blue/client/gui/element/PictureElements.class",
+    "bytes": 791,
+    "sha256": "084d8a9946a2aba5df1cc62fad4c4458e418002753318670e9cbf2c2ceb01763"
+  },
+  {
+    "path": "me/blue/client/gui/element/Prop$Kind.class",
+    "bytes": 1280,
+    "sha256": "760e1c11c3016ec46dc571e1efca4a9b57da4b9cb2bccff7da5cedcbc311b8a8"
+  },
+  {
+    "path": "me/blue/client/gui/element/Prop.class",
+    "bytes": 4238,
+    "sha256": "74630c4dd329e23d2f3cc11f47c495379122ebca7ee79e92c513c8c978033bb9"
+  },
+  {
+    "path": "me/blue/client/gui/element/PropSet.class",
+    "bytes": 1165,
+    "sha256": "9dfba72454deba068628d3d4e04014ae029534dd72fc72f85a4ed5d788b82da9"
+  },
+  {
+    "path": "me/blue/client/gui/element/PropTarget.class",
+    "bytes": 199,
+    "sha256": "b5d1815503246da0982df1c781281f6b9adbf4014e1abe0b32cfa203e5bcb2dc"
+  },
+  {
+    "path": "me/blue/client/gui/element/SliderElement.class",
+    "bytes": 5862,
+    "sha256": "35a20d9ed35321149183f1c456be1c51c0d69e1c531d9ce2683f2a8b6228042c"
+  },
+  {
+    "path": "me/blue/client/gui/element/TextEditor$1.class",
+    "bytes": 990,
+    "sha256": "c2e94874bd5731fb32be4a4b4e8775539625ccaac5a1c9e6187f29368cb046fa"
+  },
+  {
+    "path": "me/blue/client/gui/element/TextEditor$Snapshot.class",
+    "bytes": 1816,
+    "sha256": "89fc86a4a754e33fc127c8b053285425697a29aa7bc128b3e8f007ff772c13fd"
+  },
+  {
+    "path": "me/blue/client/gui/element/TextEditor.class",
+    "bytes": 8402,
+    "sha256": "b54707a4953b4855794e29bf580ebdb52491c76ca4c671430faad9957e215b71"
+  },
+  {
+    "path": "me/blue/client/gui/element/TextElement.class",
+    "bytes": 3665,
+    "sha256": "f86b1776d66cd8801f4b2a778fb4867f0e0b6f993cc39afbe0017d55c0f108f3"
+  },
+  {
+    "path": "me/blue/client/gui/element/WidgetElement$Kind.class",
+    "bytes": 1684,
+    "sha256": "98f61b4fd5c910e83c0dc4f9d910a884c078d10389fdb79a4d0d82cfb72990a0"
+  },
+  {
+    "path": "me/blue/client/gui/element/WidgetElement.class",
+    "bytes": 1862,
+    "sha256": "944aa581d30dc62c0b1dba245c7e2fea98d327a214317b58c834f87f13283e96"
+  },
+  {
+    "path": "me/blue/client/gui/element/WidgetPeer.class",
+    "bytes": 672,
+    "sha256": "4d961f320aefc745548077ba6db33b4ca4124551fe8a19aa0af4cec7e5503f4c"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Annotation.class",
+    "bytes": 1707,
+    "sha256": "84a254128d3b422ab06941b18f6afa5c1610b6033ed49b7710ec6f017a48155f"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Assign.class",
+    "bytes": 2124,
+    "sha256": "10169502e97d1261f1cc67fe3abbbda88ef2541869d21b69fe15af7a383d92e6"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Binary.class",
+    "bytes": 2120,
+    "sha256": "4bac1fac0cac66dbaa7a0161916003c8e239a6bb7ca7fa0a28c8544324b9bdc7"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Block.class",
+    "bytes": 2042,
+    "sha256": "62764cbb28457ae98c2f287af485c422650e5109fd505ab30978ea5cc1bb0dee"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Break.class",
+    "bytes": 1564,
+    "sha256": "a9b15531f793e7801b50bd563b88bde11d328d61a04ac0b557336e8b14a9e02d"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Call.class",
+    "bytes": 2470,
+    "sha256": "2b26ba0800a4e6eda0e07772adfd597f5208e1edd9caefacc9548e7e472aac27"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Case.class",
+    "bytes": 2831,
+    "sha256": "16284e7d15ae62cd75f6f93f1ef5b851e0b4830b428a28554715f7222e3244df"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Cast.class",
+    "bytes": 2095,
+    "sha256": "d3b260be69bc5fb6cb1bd1554005de6f760d799bbad7e18b3b88efb3d5334c39"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Catch.class",
+    "bytes": 2260,
+    "sha256": "1331908a2912ca7e05ad151c2ad3299e2282f4d5ff1d999da164752833263871"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$ClassDecl.class",
+    "bytes": 2958,
+    "sha256": "41900384d0de82cc87ec4cdfb0402e87a410a72e3f386d24f6f87879dddcd66e"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$ClassLit.class",
+    "bytes": 1749,
+    "sha256": "75e92c853bdcbb0d23950b15cf5f2bca4fe71745bf0a98b32bd25b2d8e2b0d53"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$ColorLit.class",
+    "bytes": 1442,
+    "sha256": "45a872f756a0d629d584caae2338fc7ff73bdddecbddbcf3e43733b5c6696d32"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Conditional.class",
+    "bytes": 2166,
+    "sha256": "1476ded88f556c7bd1a6604fc5cb77bf0bbb85306fa3c6f2b1bdd45ac42d2ccc"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Constructor.class",
+    "bytes": 3127,
+    "sha256": "980aa99ce8f217391460e50427265a10258d9ab5a908f2589ba43edaab9bf836"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Continue.class",
+    "bytes": 1582,
+    "sha256": "97385da5532da0e864f810df49b2a09785898d10136f342e6412b0d3c6e437c0"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Declarator.class",
+    "bytes": 1988,
+    "sha256": "f010861d2e3ee7f45a152f716c264805adc27edd2ed19b61efeba673ca611c92"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$DoWhile.class",
+    "bytes": 2102,
+    "sha256": "8be4075165cbcf59439879c05c1aedd7c4afb9de2c88b207f4c468bd0ebe18f8"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$DurationLit.class",
+    "bytes": 1468,
+    "sha256": "0e8c039ccf6961ed8ff85f4ebd8cfcb0c35d817ffd8f04812fb67a1342ea2351"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Empty.class",
+    "bytes": 1564,
+    "sha256": "659297caf8c35c28d1171fe6b03f59cbaa654b8c3ed874fe233363d93683f8e1"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$EnumConstant.class",
+    "bytes": 2249,
+    "sha256": "27dabf2317734b372cfa8e4d5e499f41baa577db6e91eae6507a8040f52b45d1"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$EnumDecl.class",
+    "bytes": 3034,
+    "sha256": "9976f8ded09c824cce8703aa2b81301cf14b86ee3008f809acf977c729868cfc"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Expr.class",
+    "bytes": 1217,
+    "sha256": "9e617d20ab5c4063589f6c71d5458e979d399639e48c7967b10f9084b6068115"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$ExprStmt.class",
+    "bytes": 1869,
+    "sha256": "1d6f4c48b3ad7eb43057ebedadedeb8622a49a68e7ba1d48bbdb5d6e7c20223b"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Field.class",
+    "bytes": 2630,
+    "sha256": "4673f4f40d7c4c8b9673bb41af79b086db0f70c0622257757afb1fcfafdb3e74"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$For.class",
+    "bytes": 2945,
+    "sha256": "beb85dcedb07113a7999ad30d796f760cd92da6abfb7b8095cc6f5d5c544fe2d"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$ForEach.class",
+    "bytes": 2699,
+    "sha256": "e8a15263c739238f1acf5c2625284b66d29fcead97b36c4bc17112ee5de3d63d"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$If.class",
+    "bytes": 2238,
+    "sha256": "75fcc092401d36f393bb2233393581b45b87d1954c66215d36d6721d9dfbada7"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Import.class",
+    "bytes": 1824,
+    "sha256": "75fc65c776c2012b9eb5051781862b522e6aa93dc2a65cdcb567e93bf2ad5acd"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$IncDec.class",
+    "bytes": 2080,
+    "sha256": "a1495d721b8b57578890f502b9e982df72ade1202cff10f53396bff33410d787"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$InstanceOf.class",
+    "bytes": 2299,
+    "sha256": "bb661e797cac070798c173fa77c93731e6ce85d69cc729bc107635f609d1bf0b"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Lambda.class",
+    "bytes": 2278,
+    "sha256": "fd092491f5dab81ce29cbe951bf7f9b58ca3968227984667dfb0d60aaaed4e75"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Literal.class",
+    "bytes": 1747,
+    "sha256": "70bf2f7116bfcb9f069d5f6862c087e275b92846367e46e3627035a164faa9b0"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$LocalVar.class",
+    "bytes": 2617,
+    "sha256": "60c73f26047af3599898a19973d758252868ca4efd10bf0ccedfd8fac6ff93d0"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Member.class",
+    "bytes": 595,
+    "sha256": "5161ba19eac48f8020a2573cba9e10521aa4b878eb38fbb0993202e0509712ea"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Method.class",
+    "bytes": 3301,
+    "sha256": "92f1e962486fea7b2649e8d6820e06d1310234be0c521d2bb609f79b810a1b97"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Modifiers.class",
+    "bytes": 3541,
+    "sha256": "e93cf0b304e711ae964a17c870cdbda73b070d2f04c1ee484e4c116b9f14289a"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Name.class",
+    "bytes": 1725,
+    "sha256": "697ccc2f4270189c7c9c5bc47b54ffaaf47196291d4a171bebd175442e41faa5"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$New.class",
+    "bytes": 2350,
+    "sha256": "a322e6f692c1f46253e116c53d7955a82de48af07bdb39d5aba61abe63036fe6"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Param.class",
+    "bytes": 2113,
+    "sha256": "a6ae7f14359a2b0bc4944f4cba8fcb273b1ff7ad8f51564858df5c6b082173ef"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$PercentLit.class",
+    "bytes": 1463,
+    "sha256": "f79a1bf24adb000fb52b4e86578dad6be4d27b5c51498a839696f272733894ff"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$RecordDecl.class",
+    "bytes": 3013,
+    "sha256": "8ba3236855c5f4792789e7450e6f243118db437b1a784be870a03733d4be228a"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Return.class",
+    "bytes": 1859,
+    "sha256": "2bd19901a187169ec251899ff0e6031072ea0d938e43e42e434fc8f6384406a6"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Select.class",
+    "bytes": 1970,
+    "sha256": "6d59bc294aedfcc284b2606bd6b5038a78ca899f44435cdbcb8937a7ce89e75d"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Stmt.class",
+    "bytes": 1193,
+    "sha256": "611e893cc4f26405fb22a19a7443c04c7d97d1057338f9ed3e259107e65a8bd5"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Switch.class",
+    "bytes": 2551,
+    "sha256": "1c8e911c0bb4c0136ed3554e03b07a778c289cd4e8e18f91de1345304985c64e"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$SwitchExpr.class",
+    "bytes": 2523,
+    "sha256": "b26752cfc979454d0b9d8672a816f8147f30a6a5fcc2436592c388713a95e4ce"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$This.class",
+    "bytes": 1558,
+    "sha256": "78d3c7eb3a9adbb4c7f587f2860bd5c914eb343c6e91cba165d0edf7c1ce5c69"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Throw.class",
+    "bytes": 1853,
+    "sha256": "737abc5a833730bd70bcbef6c33b0da5e5f194ec6fd7494cd981cc0f91083d78"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Try.class",
+    "bytes": 2608,
+    "sha256": "5367d719ba84ef273bb2ada35775b0c3a0474dcee2e1b73785ba2c33e317b787"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$TypeRef.class",
+    "bytes": 2890,
+    "sha256": "990eb4b4f1b4ea948b07bfc33be390bafb0cf5cedcf6adc17f0558a123d45f19"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Unary.class",
+    "bytes": 1962,
+    "sha256": "7dc9b0e600d5b3212517218b424ee5d03513b0410a167ea11de6488b4038381f"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Unit.class",
+    "bytes": 2590,
+    "sha256": "112dd2480c272e96f0c21e0b5306b410d4f0d1cce2d4d23616e17f81fc3d2d81"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$While.class",
+    "bytes": 2090,
+    "sha256": "d38c1030f8ca9eea1a59b5e2879026dd05318b67ebff6ca66f8fb67fd40ed5d9"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast$Yield.class",
+    "bytes": 1853,
+    "sha256": "af2c4bf9ca6d0942f9aa9cc3692d68143caebacbd09d568bdec6446c79a7d7b5"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Ast.class",
+    "bytes": 3517,
+    "sha256": "e16727ce8c2e3d678e4fc86cd489d1a46a0515ec043bdf341ece0e514977cfc8"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/ClassInfo$Kind.class",
+    "bytes": 1458,
+    "sha256": "7e50b152a28dd3748669f16bfab2aec47f8b3680cf4f5db298be5a81a16c4572"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/ClassInfo.class",
+    "bytes": 5181,
+    "sha256": "61125702e27b9fbc77e4952b7a7d9e686e68873c8b9b4211cc474bc6a0083435"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/ColorValue.class",
+    "bytes": 2706,
+    "sha256": "8641644a42b95a288dbbb7155125fb5f6c003ff00c141a88dc3c1a3f5c7480ec"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/CompileError.class",
+    "bytes": 2149,
+    "sha256": "fdff2184b1a02a3ab78f2394deb0a361914e3f6fdb424c55a2d01c8187ece62e"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/CompileException.class",
+    "bytes": 1677,
+    "sha256": "4b3538b2d1a3f2a87bb96825d21f5072c3b4d40eebe5d5f7a69ef8712e7a120d"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$1.class",
+    "bytes": 1622,
+    "sha256": "56143c786489b8481cbacfcd4324aaed9c4aad4a48642f95e2f51bdf33029c8f"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$2.class",
+    "bytes": 1809,
+    "sha256": "81e49e874903141cb1228a384dc15495a1758f1ab466291ab0a9194eb9dc4783"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$3.class",
+    "bytes": 2715,
+    "sha256": "17674d7db2493d05918df3f6ba9fa8176311788086352485e0c3ebb4acd1cb53"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$4.class",
+    "bytes": 1845,
+    "sha256": "2f8f3463a166405417f05205712435c4a8e9e8868885fadae4a675755e3e7fed"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$Choice.class",
+    "bytes": 2095,
+    "sha256": "9bbbcb5f581004b7393332d81fe2394333870717779e0567cfd0d9acdf5431b3"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$FieldInit.class",
+    "bytes": 1910,
+    "sha256": "b96cd2e9cdffa918559ea08efbfe17ad0be75ae8ababfd670ced64321b3dec5c"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$FuncCtx.class",
+    "bytes": 2095,
+    "sha256": "0c5b61aab10a4e48c04ed2cf3a3525187f9893c238b8b782c0451a1472480836"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$LambdaValue.class",
+    "bytes": 2544,
+    "sha256": "4df8a4b45db2600f90c8b3df055c182d18cc6f6eebc1c3368b56e6b1ec0c3e4d"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$Local.class",
+    "bytes": 2190,
+    "sha256": "4fe4492ca6fa3256293523df18ee1fda884d12a81f95b4af20058667a9ccd90d"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$PendingBody.class",
+    "bytes": 2916,
+    "sha256": "15199e25abed28398a4e2c60cbc6ca1960468a5291dede4c90449717e6ef388e"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$Place.class",
+    "bytes": 462,
+    "sha256": "3702a278695c7b722321907747abdbf5736af996d54b0b56813e9f591af2bc10"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$PlaceInfo.class",
+    "bytes": 1888,
+    "sha256": "c6c4eec283a4c56e74856fe814de967c56e3b669d3ba794442fc71068174bced"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$Pre.class",
+    "bytes": 2352,
+    "sha256": "9c9dc21033c824e932fecde191cba777276df015fd66eaf0d757d5da44669a57"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$Scope.class",
+    "bytes": 793,
+    "sha256": "dcead0aa276895e58b4ca89deafc26e0673f947e5cc30236815c4b08e02b1f20"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$SwitchPlan.class",
+    "bytes": 2558,
+    "sha256": "9d109c644839c06eeb9fbdb916381151eefec934bf07a61a35456a3bc8f309b7"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$SwitchValue.class",
+    "bytes": 535,
+    "sha256": "8892799f3b46484a2fc7fe5bb48653d83b7bd9e8b15f8615000b44a8cdc8ea43"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler$T.class",
+    "bytes": 1841,
+    "sha256": "998119f63c6bccedcc70684ac88ca200cf4bc6e093673141f3314fa93d3b0a67"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Compiler.class",
+    "bytes": 165661,
+    "sha256": "f97affb31333ba39a1bce04ce245443ed4ca7a21b324ee65d0d3a53e1b72d8b2"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/DurationValue.class",
+    "bytes": 1826,
+    "sha256": "b6ec15677381c2da85a994820dd0d9f8e9a7ca5a6d28b020e3bd314198e2c460"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/EnumValue.class",
+    "bytes": 982,
+    "sha256": "efa31f4dd03816be47378041d487b86b4b364ae2fbb0baf9e893ff11eb453794"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/ExceptionValue.class",
+    "bytes": 1751,
+    "sha256": "6b258e16387b1bbb2dfb736899ca6d3a7425052ef0493f0fb48324ad0230107c"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/FieldInfo.class",
+    "bytes": 994,
+    "sha256": "1a653b112b2291a83f97e1524e3d2cd8c2487f3af9bb2aed9b3af5103aa4b2d3"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Fn.class",
+    "bytes": 239,
+    "sha256": "5149a43c68533c79ec21470997eeb200c3d482bc6d8dfa61eb20bf6a2e016c1c"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Frame$Ev.class",
+    "bytes": 346,
+    "sha256": "f1718ad73719e6121d5c8a1486c532da32a625774556bfd92d54c00085bf72a3"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Frame$Ex.class",
+    "bytes": 329,
+    "sha256": "87ce2746eaabb9d888ec3fe9b2ab311fff4035cbffdc30af7e98204fc90476a9"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Frame.class",
+    "bytes": 813,
+    "sha256": "757915f3dd7d7a139337939a64397b9b40b8a531c0100c21a6234cdc1be44db4"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Invoker.class",
+    "bytes": 315,
+    "sha256": "8a4e2134443ee60286a7f3e6e86357a4e609017195e5671f35f864cbb0e2b58f"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/LengthValue.class",
+    "bytes": 3167,
+    "sha256": "c1e34ea9d67b0c96386464dd1be0b9ef5f5d0015dd46c8fa248731685be353bb"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Lexer.class",
+    "bytes": 14608,
+    "sha256": "2cb771b03a2a4bb7092cd209de1920b4d93503cc4a844ca3bb3658b66c482341"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/MethodImpl$Code.class",
+    "bytes": 1790,
+    "sha256": "3c34129ce253853119278be6d29cd0a644a6993c81fd1bafef4c4e6a90edd57c"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/MethodImpl.class",
+    "bytes": 1539,
+    "sha256": "dddd502f6c8fadce6af3f5fd8a1ac91c4631a720ec1f37e8623897657c9a2c5c"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/MethodInfo$Returns.class",
+    "bytes": 1320,
+    "sha256": "507ac6d597609f4e78ef8cd0a74d412178eec0d7dd4b8c5b6aa36cffa86d6d8a"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/MethodInfo.class",
+    "bytes": 3227,
+    "sha256": "45f06df5b8876f2f7234cb17d8218b5013fa6a7816f61614b4c61735cb84ac21"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Parser$1.class",
+    "bytes": 1247,
+    "sha256": "daaba9e5251f90f3a6a232e9549e50cf12b29d2239d7c3f879fc4bb7ecb73ad4"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Parser$SwitchParts.class",
+    "bytes": 2339,
+    "sha256": "05a7d80efcbc6c55ae6660f8fdd15781cc71f5295ad74013087948dfc7b56209"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Parser.class",
+    "bytes": 37628,
+    "sha256": "74842852374bb0bfb6e189daff86fe2fb70f707d1a043dad5a1c2199f0f62f39"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Pos.class",
+    "bytes": 1791,
+    "sha256": "6c41b09b9364b3f860c7097eff75af1941373bd2b02a70039a7f3a9a570778f4"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/RecordValue.class",
+    "bytes": 2309,
+    "sha256": "f8f247479a5aabeb38bc0c75de9e8a13fec5b973b5ba316f6e17fa6b926e75d2"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/ScriptException.class",
+    "bytes": 2668,
+    "sha256": "6f46c07bc8bc467ee694f7718206f51a2ba576272c7b5c1fe30d1534232bbb4f"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/SfyClass$1.class",
+    "bytes": 938,
+    "sha256": "5b092ab5b1ea2833b4d89850d55a154ef1e798186f147f90055c056a5c0d5921"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/SfyClass.class",
+    "bytes": 19460,
+    "sha256": "03c1e974631c251a96958268ec58c0cf377458e8cfb4e1a6808becc24ba53622"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/SfyInstance.class",
+    "bytes": 773,
+    "sha256": "04ab429a31e5fb404e8cf9acdbc133b6e18cdbd6b35343d6e99c26b9ebb1cbe9"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/SfyLibrary$SignatureReader.class",
+    "bytes": 4920,
+    "sha256": "0770ce2b1c52610bddc1b1dcef7493012700664abf67226bae9ad32f1ca38a6c"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/SfyLibrary.class",
+    "bytes": 18423,
+    "sha256": "52492bb051cab9da55f6fe6102d19e633a9f098f9d9df99b670662a2c9183c50"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/SfyMethod.class",
+    "bytes": 1780,
+    "sha256": "a61f158cbd7978bf7e481ec470c4e8f2dc4bf032125a806082fd0df75dc92307"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Stdlib$Logger.class",
+    "bytes": 1721,
+    "sha256": "8f366188210f775b6de96e4e1ef8299c2e38e3c99f20ad0ceefcf73e530156d7"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Stdlib.class",
+    "bytes": 27275,
+    "sha256": "b57b6542825b19c96a63ad7e1c24e6a4bceff38e8e60e7da5aa40915ef4f5d38"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Token$Kind.class",
+    "bytes": 1739,
+    "sha256": "616202da0977043be238637c972ac35ab6318323428856ddc15c649115dc4528"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Token.class",
+    "bytes": 2937,
+    "sha256": "7d3b721b261162839bb39f9562fb5c67f6167dfec3fdeb2e49561cc1f24c4996"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Type$Prim.class",
+    "bytes": 1635,
+    "sha256": "7af34614a9fa42d35d3711aa15a82267f7864d87ef8580751759aaa92ba3a7d5"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Type$PrimKind.class",
+    "bytes": 1725,
+    "sha256": "c8443b0b88e281a8cc22f73b7184432c053d35cbc5d160bc19e45fa7e21837c6"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Type$Ref.class",
+    "bytes": 3676,
+    "sha256": "a2d592d214196f5ab96b00414a8dd958a1a20bdc3c78de90505dd21c5caa41c2"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Type$Special.class",
+    "bytes": 558,
+    "sha256": "c76efd2aee410186a261d69839de450b734d0288f6801089639ab2447943b3ec"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Type$Var.class",
+    "bytes": 1543,
+    "sha256": "80ced3d5eba917098294fcab0a1c0c076e9053d67481c5efb6497305706d594b"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Type.class",
+    "bytes": 2823,
+    "sha256": "dea494a8acf12171457b923b236c763a4b9913af0d92b93dcc8fd020b87f3fe7"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/UserType.class",
+    "bytes": 840,
+    "sha256": "f316f31b3d7216d49f7236bba66af8ca598728cb2b439f07a806020509cd453b"
+  },
+  {
+    "path": "me/blue/client/gui/sfy/Values.class",
+    "bytes": 4861,
+    "sha256": "c33aa9b9ad53c656f832ed55eb176b11cb58621d27a85253d5e5245b09ee6935"
+  },
+  {
+    "path": "me/blue/client/gui/text/MiniMessage$ColorRun.class",
+    "bytes": 1202,
+    "sha256": "0911c3af7e51fb0b1452108a62b477bbda1f5c5f0e6f25dc74b0cb99d6626b6f"
+  },
+  {
+    "path": "me/blue/client/gui/text/MiniMessage$Node.class",
+    "bytes": 384,
+    "sha256": "36aa6f6a7c43de810f3cd946db19298caaf6ab549e0b7592f125c6d4356e7ae6"
+  },
+  {
+    "path": "me/blue/client/gui/text/MiniMessage$Reader.class",
+    "bytes": 5133,
+    "sha256": "4cbe75ec1029ed2cc9291141de8fff53bf0834affdf80b794c998e89beb53133"
+  },
+  {
+    "path": "me/blue/client/gui/text/MiniMessage$State.class",
+    "bytes": 2071,
+    "sha256": "a427301ac6db10adbdf47beb184fe233bbfe76d118b61927eaa6745ed59d8e7c"
+  },
+  {
+    "path": "me/blue/client/gui/text/MiniMessage$Tag.class",
+    "bytes": 2508,
+    "sha256": "2e9765fb880fedaeec081c1b7eaea6e523ccc4c769ccaa39b727f54f243fbdab"
+  },
+  {
+    "path": "me/blue/client/gui/text/MiniMessage$Text.class",
+    "bytes": 1577,
+    "sha256": "22f5de92c40d58ae1ac2f6dba15122a3fae8c3b08c1513ca7a5b68e6ea91b0f3"
+  },
+  {
+    "path": "me/blue/client/gui/text/MiniMessage.class",
+    "bytes": 15486,
+    "sha256": "9c8319889a077b8c2e57cd7d37fef974b57c4b789599abed0f5d57cbcf438098"
+  },
+  {
+    "path": "me/blue/client/gui/text/RichText$Chars.class",
+    "bytes": 1898,
+    "sha256": "8293477d22ca340bfd83e9d246310b53530108cd244df2eecaa1a5268f93da9e"
+  },
+  {
+    "path": "me/blue/client/gui/text/RichText$Picture.class",
+    "bytes": 2386,
+    "sha256": "ce703a49d60645b1e8d47104e7efcf6fafe80faa16155fdff8701927567891b4"
+  },
+  {
+    "path": "me/blue/client/gui/text/RichText$PictureKind.class",
+    "bytes": 1286,
+    "sha256": "d739308391fb2f77bb49fda69680c4be95a7dd2d962b3797cd25b1d5a3c35ccf"
+  },
+  {
+    "path": "me/blue/client/gui/text/RichText$Span.class",
+    "bytes": 512,
+    "sha256": "9a28d18edd95147faf196c7009b333cc810103fee09df81eb636f700dd007a6d"
+  },
+  {
+    "path": "me/blue/client/gui/text/RichText$SpanStyle.class",
+    "bytes": 3121,
+    "sha256": "c9a7e1fe014540646e11e31c495f9e61082f284ae92ae738d904b09bcbdd918e"
+  },
+  {
+    "path": "me/blue/client/gui/text/RichText.class",
+    "bytes": 4106,
+    "sha256": "5cf893ef50036873bf28c8da3e8a03097a292624a6894d9a2f800b368d1acf22"
+  },
+  {
+    "path": "me/blue/client/mixin/BlockModelLighterMixin.class",
+    "bytes": 2250,
+    "sha256": "b64a76b6f292e6afaa24d14cea5bfa3f96c5183b1a81c042fc820cca47688b08"
+  },
+  {
+    "path": "me/blue/client/mixin/BossHealthOverlayAccessor.class",
+    "bytes": 559,
+    "sha256": "69bbfe841422c4b10328a1f601cf2813fa0b6a38b4a851c79a1cdfe6b874bcd5"
+  },
+  {
+    "path": "me/blue/client/mixin/BufferBuilderMixin.class",
+    "bytes": 1534,
+    "sha256": "e2694a518f97cd2b29cd72b578e7e8217b5605618028bd70ac5d39129e53608a"
+  },
+  {
+    "path": "me/blue/client/mixin/CameraMixin.class",
+    "bytes": 2278,
+    "sha256": "aaa0d27c82b5a6a330e7edeeb61b35b34e7c5fffead4cadc57d9e71672a44011"
+  },
+  {
+    "path": "me/blue/client/mixin/ClientLevelMixin.class",
+    "bytes": 3260,
+    "sha256": "1ee6c11d7629bc70bb63fc911fb6e03483ef64c64e1559ff70e299f2a79a5224"
+  },
+  {
+    "path": "me/blue/client/mixin/ClientPacketListenerMixin.class",
+    "bytes": 1387,
+    "sha256": "3c545ac059890b0f8f2b218a831e7df26c354a53767b122fcf87c7ef8f72cb7f"
+  },
+  {
+    "path": "me/blue/client/mixin/CloudRendererMixin.class",
+    "bytes": 1657,
+    "sha256": "5f54dc0dce9cdc2b1a72337e2e1fdd6759e7f96aa02a7cb2e120ac4bb8efc395"
+  },
+  {
+    "path": "me/blue/client/mixin/DeltaTrackerTimerMixin.class",
+    "bytes": 1144,
+    "sha256": "779588d3c3e8d59c375cbb2b41f0f356248c045bf51b70fb7e98bb03e2c7c14c"
+  },
+  {
+    "path": "me/blue/client/mixin/EntityRenderDispatcherMixin.class",
+    "bytes": 3266,
+    "sha256": "71a3aea1edc0ca3209edef0a68a246ecdb36b8d56bab13234e1a8927a9e94ded"
+  },
+  {
+    "path": "me/blue/client/mixin/EntityRendererMixin.class",
+    "bytes": 1487,
+    "sha256": "beaf93c886d3894abc3b4c38c6b9e9fbe918fb477322c505475ced78b5395829"
+  },
+  {
+    "path": "me/blue/client/mixin/FogRendererAccessor.class",
+    "bytes": 677,
+    "sha256": "e6fd52f316e537068204e72bffec9ddfe795210086ba9ca190a3a00dfadb94af"
+  },
+  {
+    "path": "me/blue/client/mixin/FrontendCommandEncoderMixin.class",
+    "bytes": 1184,
+    "sha256": "2008ca386e16062c6d45b4d56cffe920d81d1d4ca6752c748cfd27102e1eca38"
+  },
+  {
+    "path": "me/blue/client/mixin/FrontendGpuDeviceAccessor.class",
+    "bytes": 496,
+    "sha256": "c7734c8c06b62bd044bddb1b4508d9c5e4043590ab6e399ef59471ea5ab5892e"
+  },
+  {
+    "path": "me/blue/client/mixin/FrontendRenderPassMixin.class",
+    "bytes": 2851,
+    "sha256": "ee081f59e4c80083df25c3b312fdee9ddab81b0d6a43102fc5270eadf2df1024"
+  },
+  {
+    "path": "me/blue/client/mixin/GameRendererMixin.class",
+    "bytes": 1152,
+    "sha256": "24fef6beb9315605b86d32382dcde0c066829ee41dfa4404b0d0a8183bd84cf0"
+  },
+  {
+    "path": "me/blue/client/mixin/GuiGraphicsExtractorAccessor.class",
+    "bytes": 663,
+    "sha256": "7b962d198b6caaab4242764d252d0b9043c0fc0ffa4f5c3d7b1c4d74dfe7e273"
+  },
+  {
+    "path": "me/blue/client/mixin/GuiGraphicsExtractorMixin.class",
+    "bytes": 1579,
+    "sha256": "3956254b94a45570fdb935cb27d081d7d8350a459465da9f4e2b58903c3a5eb9"
+  },
+  {
+    "path": "me/blue/client/mixin/ItemModelResolverMixin.class",
+    "bytes": 2257,
+    "sha256": "b63b2cac42bff90804c06ecf2ff7617d3bb2a3469501b0de6960f9a4eb51703a"
+  },
+  {
+    "path": "me/blue/client/mixin/ItemStackRenderStateMixin.class",
+    "bytes": 1507,
+    "sha256": "205092300679f02c889b0af8d5df03642983cedb328094dace75fc576184b41d"
+  },
+  {
+    "path": "me/blue/client/mixin/LevelExtractorMixin.class",
+    "bytes": 1311,
+    "sha256": "24b477d32bc3aa3bd2aeb447b49da32141aa7ba361d332c0fd3ff7b464090533"
+  },
+  {
+    "path": "me/blue/client/mixin/LevelRendererAccessor.class",
+    "bytes": 841,
+    "sha256": "168f1fcb64253b3d8afa1f5caa1d5b4fcf625af44ebe4f788aaf89dc20752b7a"
+  },
+  {
+    "path": "me/blue/client/mixin/LevelRendererMixin.class",
+    "bytes": 1017,
+    "sha256": "fea6db632ddba338ab3488bc5243d832cca5946aaa531d6a7357f48907cd28ba"
+  },
+  {
+    "path": "me/blue/client/mixin/MinecraftMixin.class",
+    "bytes": 1713,
+    "sha256": "494064cc0037dfe518e9a3c5c765d470b1017183abe420ee6620b950bc8315d3"
+  },
+  {
+    "path": "me/blue/client/mixin/MouseHandlerMixin.class",
+    "bytes": 1188,
+    "sha256": "15aaa7bdfc9428f0597096cf654fac44200c3349e32fd5c2aab836f9a2ac959b"
+  },
+  {
+    "path": "me/blue/client/mixin/OptionsMixin.class",
+    "bytes": 1984,
+    "sha256": "341b66ba8bfa320f4cf12497e3672d919a3b018651aee56612de7a7101ce818b"
+  },
+  {
+    "path": "me/blue/client/mixin/PipelineCacheAccessor.class",
+    "bytes": 474,
+    "sha256": "b36e1adf580b1ef8dd6bc01367984933cf8ee91f9fdf68c813c95cd6f8f2813f"
+  },
+  {
+    "path": "me/blue/client/mixin/RenderSystemAccessor.class",
+    "bytes": 811,
+    "sha256": "ee794460510df0a13e3893aa078aa7c1935d2348933535669c43e1890928d0d1"
+  },
+  {
+    "path": "me/blue/client/mixin/RenderSystemMixin.class",
+    "bytes": 1713,
+    "sha256": "b1f3e37792a039e433dcff3d28d950190cbdb77334699bfe6c8352fbe77f2203"
+  },
+  {
+    "path": "me/blue/client/mixin/RenderTargetAccessor.class",
+    "bytes": 806,
+    "sha256": "26de1bd072863f131a85840a35a6ca0ed4a319e1eeade6b0f4c487f3bdc263b9"
+  },
+  {
+    "path": "me/blue/client/mixin/SectionCompilerMixin.class",
+    "bytes": 5007,
+    "sha256": "78b6546883aa9079977ebe09a483b745546041875c219d436040e4a5b1a54164"
+  },
+  {
+    "path": "me/blue/client/mixin/ShaderGameRendererMixin.class",
+    "bytes": 4748,
+    "sha256": "f2ef171fb359450d9939cafc87bfea2f0aacccab2d5d4e0ac9bde57ce010ec1b"
+  },
+  {
+    "path": "me/blue/client/mixin/ShaderLevelRendererMixin.class",
+    "bytes": 6774,
+    "sha256": "77d1517673e09c9562bb4032422df1db7ab28befbb0a7fc2011e2dc4fa086b32"
+  },
+  {
+    "path": "me/blue/client/mixin/SkyRendererMixin.class",
+    "bytes": 1951,
+    "sha256": "bf325d2a152d50d7006fd47c43ac2bc1eb6e3f80e8408b1838809cd4c61d4251"
+  },
+  {
+    "path": "me/blue/client/mixin/SubmitNodeCollectionMixin.class",
+    "bytes": 1052,
+    "sha256": "bb329703f646e346d33dae4f437bea728c61bc5b9acb4e3dfc07e01bc3bdbd4a"
+  },
+  {
+    "path": "me/blue/client/mixin/VideoSettingsScreenMixin.class",
+    "bytes": 3110,
+    "sha256": "4d53496d3a8469757f7f59cd1a76ce80c2c939c8b2505d7675a27ecd45c31f12"
+  },
+  {
+    "path": "me/blue/client/mixin/ViewAreaInvoker.class",
+    "bytes": 769,
+    "sha256": "6e4c194891f027caeb15f39e053275433668642b9d4ae62ff6b7f40da27a8dd2"
+  },
+  {
+    "path": "me/blue/client/pack/PackBuilder.class",
+    "bytes": 5147,
+    "sha256": "da02f2ea5a9bf010823adaa81b6ccc2af8efd8049fda8d4db1b1e78a6a635efd"
+  },
+  {
+    "path": "me/blue/client/shader/BlockSelectors.class",
+    "bytes": 8083,
+    "sha256": "55d34b9b5e766c026132b64ceb89981641163f5b5aa5d74342687edc887899fa"
+  },
+  {
+    "path": "me/blue/client/shader/CloudShadows.class",
+    "bytes": 6966,
+    "sha256": "8731210687033c81bf3e27d8a4d6f869f393f78c8693b492668fcacdf847686c"
+  },
+  {
+    "path": "me/blue/client/shader/ColoredLight.class",
+    "bytes": 29538,
+    "sha256": "158cd0dbebfb018c54fd25b05eaef92dbb1142e60e79348279596db0d10a7fec"
+  },
+  {
+    "path": "me/blue/client/shader/EffectShaderSource.class",
+    "bytes": 5620,
+    "sha256": "b70ba79701c8d9b33d8430ac1be1ff5c56fbc66c5c1dfda56fb7edb417bf38b3"
+  },
+  {
+    "path": "me/blue/client/shader/EntityMaterials$ItemHolder.class",
+    "bytes": 465,
+    "sha256": "b7fc58ac606d50bfb7d6dfa1d8ede591df9c73ae0d1b97d7a91aaf7db8f2a845"
+  },
+  {
+    "path": "me/blue/client/shader/EntityMaterials.class",
+    "bytes": 4165,
+    "sha256": "13c01b2b2b11722def4fef8119e0bc0c0c2f757cd1f3416ea3780f16d6f723e2"
+  },
+  {
+    "path": "me/blue/client/shader/FileValues.class",
+    "bytes": 4415,
+    "sha256": "bbe9cfd4a8afac3c1b2e36ae3bf225fcd224c7f142085d5dbaf6a48714338cfb"
+  },
+  {
+    "path": "me/blue/client/shader/FrameLayout$Slot.class",
+    "bytes": 1913,
+    "sha256": "4a90ac8cee9ab64079907a18197a7431c0d15bfdee83c16132b292b6da96b339"
+  },
+  {
+    "path": "me/blue/client/shader/FrameLayout.class",
+    "bytes": 4390,
+    "sha256": "fa1795e1d583c3bdd79e1fb25a594f328f7814165d01ba6276d330f8033b8176"
+  },
+  {
+    "path": "me/blue/client/shader/FrameUniforms$Extras.class",
+    "bytes": 5401,
+    "sha256": "29a81905338536651d44336245fa51ef1278fea580146401b7185957a4e58e54"
+  },
+  {
+    "path": "me/blue/client/shader/FrameUniforms$Player.class",
+    "bytes": 3515,
+    "sha256": "c4f44aa934805da4d6945a50eb0fd290151f0310ae544b2b6b453430f65e648d"
+  },
+  {
+    "path": "me/blue/client/shader/FrameUniforms$Values.class",
+    "bytes": 6295,
+    "sha256": "58563e920bdd781c97e897bf19f319ae56d79f909485272d62111865206793c6"
+  },
+  {
+    "path": "me/blue/client/shader/FrameUniforms.class",
+    "bytes": 32578,
+    "sha256": "185669908b57edf2c4373c32852a8361aaa60a9142508bddd79ea29b4d34a7e7"
+  },
+  {
+    "path": "me/blue/client/shader/IdMaterials.class",
+    "bytes": 4697,
+    "sha256": "31451a8eee839a054d187e3ce8e0482f72e0584afec09347c3a58d7e92503469"
+  },
+  {
+    "path": "me/blue/client/shader/MaterialEncoding.class",
+    "bytes": 7974,
+    "sha256": "f7d2573fdc3c1855a271c6eff197fc5bf0ea43d11f7d2f468a3375085e96aded"
+  },
+  {
+    "path": "me/blue/client/shader/PipelineTwins$Origin.class",
+    "bytes": 2079,
+    "sha256": "4ee20c566c8665cd2914bef9ac58e8abeca6066720bb45ae7046f92720e79000"
+  },
+  {
+    "path": "me/blue/client/shader/PipelineTwins$Pending.class",
+    "bytes": 2949,
+    "sha256": "06bd0a796c4ca52f52abb1d5fb70311df76521ee4416271bcab168a86756c584"
+  },
+  {
+    "path": "me/blue/client/shader/PipelineTwins.class",
+    "bytes": 17818,
+    "sha256": "33520cc85452c21c47433f1b113201f76465f386e3c79a6db29f489e2c88cc6a"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderEffect$1.class",
+    "bytes": 1337,
+    "sha256": "9a8d859d78517ffbb9536410ebea8a36badd036ad96f8799479b1baf5a939e35"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderEffect$Assets.class",
+    "bytes": 1596,
+    "sha256": "62048ff197e4d1d1dfc8ecad1a884a73126ce7110e822f3cfa90dc41c63bc635"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderEffect$Compile.class",
+    "bytes": 4709,
+    "sha256": "dfa317a9b871e92683d53da43b6a7291be8c675adb66ff54c3a91a5eccff5699"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderEffect$PassRuntime.class",
+    "bytes": 1013,
+    "sha256": "6100f528a90d6101c48265d85d6a3e031f8ae91cd198fde3ba067e2e8ea4603f"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderEffect$Sampled.class",
+    "bytes": 2219,
+    "sha256": "c1057da99beb7b5a2bbb8836e2523494d5f37713cafea342c224797cfba08ffb"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderEffect$Status.class",
+    "bytes": 1377,
+    "sha256": "fd73495acc53f15afe9be8c527c494c5e06929301bced51fe606ab7da0ef7c53"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderEffect$TargetRuntime.class",
+    "bytes": 1282,
+    "sha256": "a55dd2164eff1a55af78b3137974436da6e4b06d5b7786f094a0356b21527b4b"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderEffect.class",
+    "bytes": 42109,
+    "sha256": "a6094c9437076b8a98d172234d2100f94b73a4bd9d57aa6b3c81df2da6fd7298"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderOptions$1.class",
+    "bytes": 4855,
+    "sha256": "69523486fd9c7cc3231b33b04c15a02bcc8584ccf42c24fc00f8a5c612cb8b07"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderOptions.class",
+    "bytes": 6505,
+    "sha256": "7d9bb84e6175c18e4477b46bae4a9962da111dfdc1caabfda591b478508d49cf"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderPacks$Compiled.class",
+    "bytes": 2712,
+    "sha256": "b6bf35515843a805421f5034d11eb5195d7a73dcf2898276a1bc912a65bf8f33"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderPacks$Result.class",
+    "bytes": 3025,
+    "sha256": "354b5f21e0e927a67a89b0f19b36b68686219e938ab0361ce5de61ca439ba27e"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderPacks.class",
+    "bytes": 32913,
+    "sha256": "488e62677d4767846812ebc1e616d946e4983eccc4a925ab2a1626928d87f231"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderRenderer$Blank.class",
+    "bytes": 1883,
+    "sha256": "1d06f0d11abdfa57507e330d5f7f5824b5b387400e23be578ff403ebba6d6fd9"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderRenderer$ColoredLightState.class",
+    "bytes": 2659,
+    "sha256": "cba14de03475019d21e1a975ccaabad5bcec2c411fea2edc0d4d93694175bea3"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderRenderer$Entry.class",
+    "bytes": 1284,
+    "sha256": "97a7b891f8ff5fa19e7c69546f37d534fdf10daf0228edcad72c1cf92c281e0e"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderRenderer$Resolve.class",
+    "bytes": 7708,
+    "sha256": "ce4d763528f12814e20a933dece060f36ef46fce3b8ad52c0669d8a4546fa588"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderRenderer$Scratch.class",
+    "bytes": 2167,
+    "sha256": "f1f10baa34ba1d5141d9214bad1b2612ff7b93f19dcbeb8acde2810a44e016c6"
+  },
+  {
+    "path": "me/blue/client/shader/ShaderRenderer.class",
+    "bytes": 52799,
+    "sha256": "004b9718cf34e887b53a9992d37edb3e7ecd89fd09e739698ab5cc4ec52459c6"
+  },
+  {
+    "path": "me/blue/client/shader/ShadowMap$Section.class",
+    "bytes": 2108,
+    "sha256": "09326621f8c29c60dda9a59e2df83c2c23033f3d60b393fe38d39f8f041f51fb"
+  },
+  {
+    "path": "me/blue/client/shader/ShadowMap.class",
+    "bytes": 28190,
+    "sha256": "6f4d8cd466717ad08777cb23bf2a738a78e1e00d44ffb1749a16b083394df8b1"
+  },
+  {
+    "path": "me/blue/client/shader/UniformValues$1.class",
+    "bytes": 867,
+    "sha256": "40a2897a4896334e124ed34c1eb978c5d769369d71145c718dc627b0727eaf70"
+  },
+  {
+    "path": "me/blue/client/shader/UniformValues$Animation.class",
+    "bytes": 2129,
+    "sha256": "999003ee78f4e9ce24df657a62068755081e11bede218d2b83fcffc7db4bb490"
+  },
+  {
+    "path": "me/blue/client/shader/UniformValues.class",
+    "bytes": 11404,
+    "sha256": "2eb11db630a46b4ff9af6bbf8b165a3438cab2bbc84ae89cbf6bfd5b7f92498f"
+  },
+  {
+    "path": "me/blue/client/shader/WorldPrograms$Variant.class",
+    "bytes": 3462,
+    "sha256": "917571a2b116853ed1c6297e27435c924615546ecc3808dee5fada788469401c"
+  },
+  {
+    "path": "me/blue/client/shader/WorldPrograms.class",
+    "bytes": 16463,
+    "sha256": "4056cc6ae5b60a5dc54f0a21cbbcfeabd03e422777a704adc073a07ff0369ada"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Builtins$Blend.class",
+    "bytes": 1372,
+    "sha256": "2c66de396dc232a284bae6ee83074836bd96272d4f6a457e38934a2e6665e1f9"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Builtins$Context.class",
+    "bytes": 1334,
+    "sha256": "b3d02c030782a5d8164aaaf5ee9480bb61e52629265547f3e9f92b4faabbd474"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Builtins$Filter.class",
+    "bytes": 1275,
+    "sha256": "8b22f4dc2f74451cfeeda787f0054c159a68d1f23fea0eb351c16a2a695f4e00"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Builtins$Format.class",
+    "bytes": 1328,
+    "sha256": "43380148f91c9c545fac5daa9b8743ace8e682b5be8803459d34224caf80118d"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Builtins$FrameField.class",
+    "bytes": 1702,
+    "sha256": "c1594d21d0d8f691a3f8a646d7a1737bda7443e488c534e53949186c936b30b3"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Builtins$Function.class",
+    "bytes": 3179,
+    "sha256": "44c311f13c9640da95a7d2d0a11cd40b48ea66e4b269e63f241ea0c9fb04cf42"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Builtins$Program.class",
+    "bytes": 2157,
+    "sha256": "3ee8ecc5eee343767324d3811d3e7b2ec3c5e1e13a4304102a10972ef34a5ecb"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Builtins$Stage.class",
+    "bytes": 1373,
+    "sha256": "a35c4c27922399ff8628c9ed269d659687bfefedccb54d1e75938321534dec97"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Builtins$Value.class",
+    "bytes": 2181,
+    "sha256": "cf849522476ab85249fb2228f6284336510374549f2a02e514c063021887d0ac"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Builtins$Wrap.class",
+    "bytes": 1259,
+    "sha256": "6738f18ae3bbdb350c69fb3f53fd251eb9931c1f3f488dc816c279ba74aada11"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Builtins.class",
+    "bytes": 32206,
+    "sha256": "0c9d765918d91a610c8535f66f1a1a0cc2b1687a8953c63cd954c67a8c4bf53a"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Const$1.class",
+    "bytes": 853,
+    "sha256": "c687cb9dcb09a3ada174fc94a5f043915062a8bf3f6e9949baee60a93d7b3ffa"
+  },
+  {
+    "path": "me/blue/client/shader/lang/Const.class",
+    "bytes": 4205,
+    "sha256": "2bb18e32ba3088c1aa86980895cb2b1abc8c8ee16bd276d4d6227c3b7a5b7765"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShType$ArrayType.class",
+    "bytes": 2236,
+    "sha256": "1b8ebfd82993578fa002f5e4eb3b6ab4e5c518e4d68d22f8c81b29050b184870"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShType$Base.class",
+    "bytes": 1291,
+    "sha256": "8fdfa52908b6477a6b2b7f0dc95f330cdff60efdb05851023c13cfe91ef48952"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShType$Matrix.class",
+    "bytes": 2466,
+    "sha256": "368e6c1b3beb577120966c1d92a2ea52a862c9ff985021b56d61498f8065be2d"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShType$Scalar.class",
+    "bytes": 2199,
+    "sha256": "9537c9bd325d3d188431fd348f6c307a5d48d12a8b7ce3ebfc033632a3f6cd41"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShType$StructDef.class",
+    "bytes": 2129,
+    "sha256": "dd0ddce3e7e393784795cd9aa359e1b2516fb3066fd6359803e52bae5285ddde"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShType$StructField.class",
+    "bytes": 2071,
+    "sha256": "2070e03ab47df696cf581b24c759d08a349b8778746fbc669c08e33ef85028f2"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShType$StructType.class",
+    "bytes": 1880,
+    "sha256": "49e7ad42586399384b5daf7be79eab59b4009cf7c81c8e4cd39d64d713f13216"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShType$TextureType.class",
+    "bytes": 1516,
+    "sha256": "b891496e5f648532ca1a3c1e1ce258b4bec934bfaa7c1a55bc015446a0848a32"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShType$Vector.class",
+    "bytes": 2647,
+    "sha256": "a7a75cea86f2ab2da1d6a199d8c56c7e03b43f76d50feead3bd4a6afa85d33f7"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShType$VoidType.class",
+    "bytes": 1480,
+    "sha256": "04c458b0e97d2cf87e2c22f01826ddec4abe8b77f8b37b4ab3285ac781e2ca1e"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShType.class",
+    "bytes": 5046,
+    "sha256": "b4a7f268f2f013888ae81dea803e5b0e630320430aaf22dc572509c6e7a73601"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAssembler$1.class",
+    "bytes": 1605,
+    "sha256": "c6d8334457a707f95152703583330f6835a17dd175e34bb35f4a568c53deaf6b"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAssembler.class",
+    "bytes": 29113,
+    "sha256": "6868eb0a5e934d4f52ebfefcd03b418067ce0092b7fd0f22ebea49dd991bcc60"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Annotation.class",
+    "bytes": 2901,
+    "sha256": "80efb35e980f1f1e2aae02a632630e01ea24d4eba595007980858a49d5a4fec1"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$AnnotationArg.class",
+    "bytes": 2112,
+    "sha256": "8e8a1f203b1390c12b764bf57fa4b94c9389bbada01c2b345ee55bf97388d6e6"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$ArrayInit.class",
+    "bytes": 2164,
+    "sha256": "5ad9ad27d0ef9e0703c7da27df8b37972c504a11d1282b2f5e8e023b61e9fa8a"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Assign.class",
+    "bytes": 2240,
+    "sha256": "3a1b1d72cb0309d369e603e726977e09ae007faaca4fd8e4943bb0069084dd15"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Binary.class",
+    "bytes": 2236,
+    "sha256": "975e75aee7d9b0ec31592373c4886b24b2137994de1b64e33ed257b2e0971bbc"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Block.class",
+    "bytes": 2148,
+    "sha256": "29d625e1d54d5ee41be7ae16a3144a9e12a3f941a48a63916bf0a59e863f7618"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Break.class",
+    "bytes": 1640,
+    "sha256": "e58a2e0df0a9b9c993e9a2e97728d427aec15899bd0e8202b01f10a16bca1eff"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Call.class",
+    "bytes": 2616,
+    "sha256": "a375e6e5bd251191a4e8eb6a1d4a10e7a94058b73fef49f306933800b6e3fe04"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Case.class",
+    "bytes": 2829,
+    "sha256": "30e0f646348b3129a7ee6fbd6f124eb014f81b5f3df77dc42c554403768a2bfb"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Cast.class",
+    "bytes": 2066,
+    "sha256": "07949dbb257d00da104201c17a99d8a960251c263454a7c8b28baa9baf87a633"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$ClassDecl.class",
+    "bytes": 2823,
+    "sha256": "7276c9da0ca08b33dea15c4ca180ead5bae13c616fddf9f3d6d7744a95664cb9"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Conditional.class",
+    "bytes": 2292,
+    "sha256": "200ed3423ec1749a83b3305821d379e504e6c3922e3cf25c494a8d1b80286100"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Continue.class",
+    "bytes": 1658,
+    "sha256": "fe0a7473b12e562c923d6ad679a28f5551a16c2af5efe6b66eddfd77934a0402"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Declarator.class",
+    "bytes": 2094,
+    "sha256": "da74583bbf9be14ba89f55f4f2f5d0cb26dc05906c020254816a75fdf9aa8e2b"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Discard.class",
+    "bytes": 1652,
+    "sha256": "416c1d185500dcbe384491ae0d8ab280e55e62ccca793e9faf24c5cd61f09b69"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$DoWhile.class",
+    "bytes": 2248,
+    "sha256": "2d7defbd074fca1876192c0041d8be11e1e550ff59eba67bdec59db3ce990254"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Empty.class",
+    "bytes": 1640,
+    "sha256": "7c5de31af0ed119dfe3d862b55abfb02fb42a9b4701d4881bb845ef7e5120a2d"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Expr.class",
+    "bytes": 1271,
+    "sha256": "3a20f955e234a0c15a69202b99fbd1cc66523b8c677e649bcd527bf7cc2f80c9"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$ExprStmt.class",
+    "bytes": 1985,
+    "sha256": "6460e6ebd857fe67a26fc279c8b4d0543a8828bbfe5619baf9be23cadd63e350"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Field.class",
+    "bytes": 3506,
+    "sha256": "4f434ee5dc6cb30bfa2f21d8fd9221cd3e14f1909f104ceab7704ec00de47fc5"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$For.class",
+    "bytes": 3171,
+    "sha256": "be8592a168523a106c9ec5268e0f04e8f33414c2d300d58176a28f69c987d460"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$ForEach.class",
+    "bytes": 2745,
+    "sha256": "e60c6f11465af573b57741a95ec71dfc15f2c7a5986f6044d7c255b8d48519ac"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$If.class",
+    "bytes": 2394,
+    "sha256": "89a53841acd430d66b6c948d7c7dd25c9f830442cefda85644b1a7cd2cf31ed4"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Import.class",
+    "bytes": 1890,
+    "sha256": "2c028d9aff332aade6d7cf292fd14216ac25bc7bab98a95da7cab0e17e4f4c64"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$IncDec.class",
+    "bytes": 2186,
+    "sha256": "1f9c82d8fbe01a4d75f50a6eec24e6eb3215a0fe8948ee08bde2efdc3301da92"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Index.class",
+    "bytes": 2076,
+    "sha256": "67f2d8ceb7bc6ce648dac8397f6b6b4889e8048e6c1e555e56128e206a996013"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Literal.class",
+    "bytes": 2341,
+    "sha256": "66becce04e80d4fba8e78494face5c0b2954ffee8b7a7db7377f9bfa008079ac"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$LiteralKind.class",
+    "bytes": 1524,
+    "sha256": "0c81a13c1a3768a27291809affe501d32582c747c8c3dc08119cb9ae650213f3"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$LocalVar.class",
+    "bytes": 2914,
+    "sha256": "fd2b0c76e8e468b6ac3c46a118fa3fef917073d5d2c8b63ff11fb2d76db1c2d7"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Member.class",
+    "bytes": 521,
+    "sha256": "a88843a0587673bffc2e1b91b0cd20bd20371ddef6e9702640311da4b55bbaf6"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Method.class",
+    "bytes": 3965,
+    "sha256": "de6ae133f6edabc0deb570cafc9a54c3f706cf8a44faff4ec8f6504ab410041f"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Name.class",
+    "bytes": 1801,
+    "sha256": "4e01dd789673c65ce0a590a07844a6718f77f2c143e3e157e6e14af2217b10c2"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$NewArray.class",
+    "bytes": 2646,
+    "sha256": "0bd0088f1af1b47f651096a8606ecee997d594afad88ae03f251c91453f122cc"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$NewRecord.class",
+    "bytes": 2339,
+    "sha256": "18b90ec6d763bb991c3e68155f3eb72b0e8877ee1d95dc43d5767fc5a8d8dc7b"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Param.class",
+    "bytes": 2079,
+    "sha256": "b5e1b8c61ddd460ba17ae2a2cc5c538f75f90a7448c8db28193e3623b265c45f"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$RecordDecl.class",
+    "bytes": 2761,
+    "sha256": "1909c5130e5a5682ab1a838d8531c8a2a21aa4fe67dbd23e444f64893955ea6a"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Return.class",
+    "bytes": 1975,
+    "sha256": "a57b8fcd1533608bdeb76a25414ccaa06d1938cea00bf144c7afb6d47f54aafc"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Select.class",
+    "bytes": 2076,
+    "sha256": "6c4226d929878f378f11961b6b32ea73d0cb83beaadd87875fe14614cb5518a1"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Stmt.class",
+    "bytes": 1255,
+    "sha256": "41e51bfcf2e4aca423f117825821349e48a6363b7a5064867aee51c22b6d20af"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Switch.class",
+    "bytes": 2578,
+    "sha256": "7911407a2f209fb834d5a88f3e3c4cc54da8c8b6851e0dcf85a2182b4fa3476c"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$TypeRef.class",
+    "bytes": 2182,
+    "sha256": "b1f5444ec20b8181f1f94a53b2d0b121550fc93c4690c429f280f938dc7317bf"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Unary.class",
+    "bytes": 2068,
+    "sha256": "687a1f0ea0a8610fe668352e3064d20c7f2c0d823040a383a39e6ebd03d1284f"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$Unit.class",
+    "bytes": 2746,
+    "sha256": "6726686f81764eb1d8d183d63cdbaabf64e5d525025be38b5be3fe5d7a7087d7"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst$While.class",
+    "bytes": 2236,
+    "sha256": "8bdb1e84137b6492e44a3c24ddeb28537e239c263933a78261ba1cce23a5cc5c"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderAst.class",
+    "bytes": 3391,
+    "sha256": "7a6d7349d1c2f40c58a033de14c1701293ae55ce67ed2541ddc430440974a75c"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderChecker$1.class",
+    "bytes": 1468,
+    "sha256": "37192282d9737caf54b8dfe3c52c10a3079e41aff3c0bc89c1f2a4dda4b4b3b5"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderChecker$Checked.class",
+    "bytes": 3119,
+    "sha256": "ef9a2d1f99e12e4b0429bfc964b128e812d4cbf4f57c5a6e2745e56e5c054d3d"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderChecker$Classes.class",
+    "bytes": 5319,
+    "sha256": "09492247982c61b072ef0ccf4f70e81cf667d532c97342ad3bef5881e19d6a3a"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderChecker$Ex.class",
+    "bytes": 2904,
+    "sha256": "94f4ac0b45d4dc4d5d689845045436603f7755bf3a8e73faaecfe16484c2bba1"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderChecker$FieldSym$Kind.class",
+    "bytes": 1643,
+    "sha256": "e3fdeab9055ee87668e0c28e09b1175245f829d978e8301e82efe47d40d391e0"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderChecker$FieldSym.class",
+    "bytes": 2337,
+    "sha256": "9ac8313142f4a125fe94270df2d70ea01e19673af486e30d7ba5cf2fb2efdd51"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderChecker$Local.class",
+    "bytes": 2309,
+    "sha256": "b7aa1a3df772fb3593b962ba2bcd5195431757f2452e457d1f86e8e9df45eaa0"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderChecker$MethodSym$Kind.class",
+    "bytes": 1542,
+    "sha256": "25d615925375df5be18bd6f623e853456fe5ffa80a82236f0c09dac76bd14850"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderChecker$MethodSym.class",
+    "bytes": 3830,
+    "sha256": "18bf0c3cd0ac9248599045b8e4080440a78281e88f57ee85f6b7a59af3f6a6c5"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderChecker.class",
+    "bytes": 135745,
+    "sha256": "0b26ee677b451c49b8daf0246f2ed17e8c8baa5778691b147b175cb402c44c53"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderCompiler$Result.class",
+    "bytes": 2791,
+    "sha256": "e7ec4b397bdaa996a6504cac5cd706ce25af5cef6b7575d4563357bf09d6ec3b"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderCompiler.class",
+    "bytes": 4013,
+    "sha256": "ec0b8f3cc1d1ba239baacd746aadf892b0c2c403b80032259604e475dc8165f8"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderLexer.class",
+    "bytes": 10900,
+    "sha256": "302de3d69208683627789dadaa012b7aabbed128b33fe834de41539d52a00be5"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule$Hook.class",
+    "bytes": 5338,
+    "sha256": "8c4f77b496688b427eb5dee258fd5bec1b7e98cb322eb65de37755b0258ca972"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule$Light.class",
+    "bytes": 2445,
+    "sha256": "0b86da290c9195c2c9afebef37d1d8f2c698088629c9c06b82bc7c64d7313ba9"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule$LightGroup.class",
+    "bytes": 2131,
+    "sha256": "da96f27f82e241b985b86be01f078cf8fedec0925ff3bc0cf94c14d137fa7c00"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule$Option.class",
+    "bytes": 3862,
+    "sha256": "09cdce181d7d2e3c6e412e96a0d8ad7552a04fc31e9d3131b025d3a85f01c1df"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule$Output.class",
+    "bytes": 2408,
+    "sha256": "9fb681cfa2a9fe866d1d6f4ebb2b9d5fa9ccce5a5330b21880ef224ee212d0e6"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule$Pass.class",
+    "bytes": 3597,
+    "sha256": "3c216427f1b324e2f7613d38e12a3b6781e13d00e648f93c8802a2b862b515b6"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule$Setting.class",
+    "bytes": 1705,
+    "sha256": "7be75d024a34acdb0696b488f2b679a0a1c4d88494a71144ad3c20e381262e23"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule$Settings.class",
+    "bytes": 2543,
+    "sha256": "63fd452abff86383daf71b4e5d2e773fed1f75b83fd993034b4d53fd8d02480e"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule$Target.class",
+    "bytes": 2948,
+    "sha256": "2e48b3a95044e09c2584f7cda009050f159853e67320f60c5b616bcf448de57e"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule$TextureSource.class",
+    "bytes": 2581,
+    "sha256": "01e6f4388487fcacfae3d913e628fe18249063d11bbbd105432d07147ceb9fc1"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule$Uniform.class",
+    "bytes": 2719,
+    "sha256": "5acff3e64bea459cf3e9ce03f32b3812f98d04179657405b3198e6c680c351a6"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderModule.class",
+    "bytes": 8957,
+    "sha256": "54de9bf8ea0542c0efaf38420d9890945d145c7910ca79fbf2367927a4bb4f5e"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderParser$1.class",
+    "bytes": 1135,
+    "sha256": "88531be3be942ca35f4c146891c881033a2ffebede8c3826b1bcbbb412d54471"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderParser.class",
+    "bytes": 28196,
+    "sha256": "26a92f95f62c8873005c1b34520b3c0fbd5130cc18e22b480d23762f581f40e6"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderToken$Kind.class",
+    "bytes": 1651,
+    "sha256": "073b6eeddf53c7a2e1d54d6641465ec961051f0d04353e6be041176c39ed650f"
+  },
+  {
+    "path": "me/blue/client/shader/lang/ShaderToken.class",
+    "bytes": 3023,
+    "sha256": "7bb4f008a0eb30f99d1ca0b05091823a0e363b474ee2365688d356a7b488d7d5"
+  },
+  {
+    "path": "me/blue/client/shader/pack/PackFiles$PackException.class",
+    "bytes": 509,
+    "sha256": "006109d5c3945b5264159e3975fc95372cd3e593ed0281cec7b858be3751bcd7"
+  },
+  {
+    "path": "me/blue/client/shader/pack/PackFiles.class",
+    "bytes": 12285,
+    "sha256": "f489f603ab0dc38a5817c2b031789e80886b053f9d5b94875c717cb2c2f8d50c"
+  },
+  {
+    "path": "me/blue/client/shader/pack/PackLibrary$Builder.class",
+    "bytes": 1430,
+    "sha256": "1b42bcb4722ace821572ffa162f411b88baa2f339581e45477ce1f7b9f7a441b"
+  },
+  {
+    "path": "me/blue/client/shader/pack/PackLibrary$ClassRef.class",
+    "bytes": 1784,
+    "sha256": "d2c3acf76dba03a65fb3412b5e4ca960d7451e5984b82cb6a05ecde2dee502c6"
+  },
+  {
+    "path": "me/blue/client/shader/pack/PackLibrary$Loaded.class",
+    "bytes": 2483,
+    "sha256": "586bfef32df7527eaa25bb6f4033faf1ece43136b58ef30ffda1ddf6a13e3bb1"
+  },
+  {
+    "path": "me/blue/client/shader/pack/PackLibrary.class",
+    "bytes": 11740,
+    "sha256": "8b4b1f641e74b9f33ade9dc8ef8f0c7edcfa96483eb73a8b0ed0b2f657f3816f"
+  },
+  {
+    "path": "me/blue/client/shader/pack/ShaderMenu.class",
+    "bytes": 17825,
+    "sha256": "8b54f3c6ba4c6cd61427418705ea5ecf09892b6dc2cd55aa0fb50c1de78dfcc3"
+  },
+  {
+    "path": "me/blue/client/shader/pack/ShaderPack$Kind.class",
+    "bytes": 1327,
+    "sha256": "331def72aa643cc505c299f19d1ae5b6ef3a5f298e1c6331e5dac535ede6924f"
+  },
+  {
+    "path": "me/blue/client/shader/pack/ShaderPack$Link.class",
+    "bytes": 1672,
+    "sha256": "57665cfd3e41c4a47404417a2820f0f51253cb730afd66f585eda13ebeaeaf71"
+  },
+  {
+    "path": "me/blue/client/shader/pack/ShaderPack$LoadException.class",
+    "bytes": 563,
+    "sha256": "1d13fa25cd6a87f7d6d3dae1569056997e28afacbffab0668343ea82c4c24b6c"
+  },
+  {
+    "path": "me/blue/client/shader/pack/ShaderPack$State.class",
+    "bytes": 1336,
+    "sha256": "df7b3380acfff37a3737482d358106ee6f810a93003a28355c5fca5df4a7456d"
+  },
+  {
+    "path": "me/blue/client/shader/pack/ShaderPack.class",
+    "bytes": 7625,
+    "sha256": "fb3a38cf03b649ffe504334064dab09556cf07d20dd30a3fa0e6626430b9af58"
+  },
+  {
+    "path": "me/blue/client/vk/ComputeProgram.class",
+    "bytes": 4524,
+    "sha256": "413e1eeb81dd03c2498834b0e1e3777e0b6a136136969098d1f54a258eaeb6d3"
+  },
+  {
+    "path": "me/blue/client/vk/Desc.class",
+    "bytes": 3052,
+    "sha256": "8ba1d8f02dccdf58c098420aaa23ee2e6cf4ad4f5f4b2c1ed0bc6ac145639277"
+  },
+  {
+    "path": "me/blue/client/vk/GraphicsProgram$Blend.class",
+    "bytes": 1247,
+    "sha256": "11e3e2ad65a7e2386b97d202f59dfee3305cdbdcfa4816e2cc083397ca29ee43"
+  },
+  {
+    "path": "me/blue/client/vk/GraphicsProgram$State.class",
+    "bytes": 2717,
+    "sha256": "a470430f7d720016cb814ef6f39f99611acfa530d6927058bdcb5301dbefb866"
+  },
+  {
+    "path": "me/blue/client/vk/GraphicsProgram.class",
+    "bytes": 16463,
+    "sha256": "1a3db3fcc1158980f30812a774528201d7ddfeacc3fe495cd379937767efa112"
+  },
+  {
+    "path": "me/blue/client/vk/Program.class",
+    "bytes": 8222,
+    "sha256": "fb704b131a38fb0f33aa49706f2ddd30ec0ff2cdf72b20c86e303a5d744706ed"
+  },
+  {
+    "path": "me/blue/client/vk/Sampler.class",
+    "bytes": 2042,
+    "sha256": "d1396a8b3492b34173bba44a71db9c8f9f150985abc34864ba404a3cdb133179"
+  },
+  {
+    "path": "me/blue/client/vk/Shaders.class",
+    "bytes": 7366,
+    "sha256": "81c14c9751180a2d1dba79aefa7ae0efc781efc66ef532e38076daf85bd0ecce"
+  },
+  {
+    "path": "me/blue/client/vk/Vk$Deferred.class",
+    "bytes": 1633,
+    "sha256": "43137b72acfdcc1f991fd4d030ddff7292c394a73d95dc439fb18bd9435f674c"
+  },
+  {
+    "path": "me/blue/client/vk/Vk.class",
+    "bytes": 7300,
+    "sha256": "4500aedae9e7e0c31d3eb39371a58a93a847f938c0f96d7e04d7b14c54ded792"
+  },
+  {
+    "path": "me/blue/client/vk/VkBuf.class",
+    "bytes": 6027,
+    "sha256": "86e6e81ed5ed5c3bc54ce4a21d818571da389bf51491b65d0c32e11d34766dd1"
+  },
+  {
+    "path": "me/blue/client/vk/VkTex.class",
+    "bytes": 6526,
+    "sha256": "2424f959fa65d092b870f2817a497504f42509c90735c406e9e5b2982a2d0017"
+  },
+  {
+    "path": "me/blue/client/water/ClipRecorder$FfmpegSink.class",
+    "bytes": 6432,
+    "sha256": "3fd7adeb56af8ae3f5a647b846413fa39dff5cbbc073a7abec31e02d7c811fe0"
+  },
+  {
+    "path": "me/blue/client/water/ClipRecorder$PngSink.class",
+    "bytes": 5141,
+    "sha256": "0af621844b7750f3b2ceddb92e363c35f919a8e442b448102db9522f05e22177"
+  },
+  {
+    "path": "me/blue/client/water/ClipRecorder$Sink.class",
+    "bytes": 384,
+    "sha256": "51db981c252b1880197ba1de536948c3b2bb7b5f0cff64f40a687ba0e7b24e0b"
+  },
+  {
+    "path": "me/blue/client/water/ClipRecorder.class",
+    "bytes": 18499,
+    "sha256": "ed7ab358d343e4df5dfe07dc059b08aafc30ae8f0d1c7fe6500ab741660bab8f"
+  },
+  {
+    "path": "me/blue/client/water/FlowSounds$Pending.class",
+    "bytes": 2339,
+    "sha256": "a42c6233fbfd00754cc4d918ee674302dfb7a6f387285daec0fae3ba73043232"
+  },
+  {
+    "path": "me/blue/client/water/FlowSounds.class",
+    "bytes": 7103,
+    "sha256": "7ce829c5a0fab3fc6ba624d5ef2643117d4633d1e82d960ca7c64aa46002ecb8"
+  },
+  {
+    "path": "me/blue/client/water/Material.class",
+    "bytes": 2119,
+    "sha256": "1e657af727d25160af7265a80d32011ef5dfeaa4fc1c4321259f8090b287c36c"
+  },
+  {
+    "path": "me/blue/client/water/PressureSolver$Programs.class",
+    "bytes": 2166,
+    "sha256": "1997cc065edbdd793751576f05a67ea4f7eae330ed9bd1cff5ab453ace829a20"
+  },
+  {
+    "path": "me/blue/client/water/PressureSolver.class",
+    "bytes": 9926,
+    "sha256": "d6743cf41726d838ae985217415c99c22d018d61e236170cfe36892cb42edff9"
+  },
+  {
+    "path": "me/blue/client/water/SandRenderer.class",
+    "bytes": 10152,
+    "sha256": "10dc9c8cd215af7a1fc594ad10a0b7f7a48c80e72f65ec4deccdedfe2c3d0db0"
+  },
+  {
+    "path": "me/blue/client/water/SlimeFogEnvironment.class",
+    "bytes": 3004,
+    "sha256": "2a317b4332f8ac8d093ac5eceb84039a5bebec01b1722648a4ff186e891b6104"
+  },
+  {
+    "path": "me/blue/client/water/SolidCache$Section.class",
+    "bytes": 595,
+    "sha256": "c43383e7b3f20e68a691658d86d0b1e2edba7ca847874fea0a3a3f2d0a9fc66c"
+  },
+  {
+    "path": "me/blue/client/water/SolidCache.class",
+    "bytes": 8266,
+    "sha256": "7fe95aaeb200bd359c4e3b6864ef3d0e6e8aacc0a2eef8d933d0872208ebcb51"
+  },
+  {
+    "path": "me/blue/client/water/SurfaceMesher.class",
+    "bytes": 12092,
+    "sha256": "04eca9602c87c7b10b60ab9fe5486d0708b1137689cc9f8d467e92e1fa890257"
+  },
+  {
+    "path": "me/blue/client/water/WaterCommands.class",
+    "bytes": 13548,
+    "sha256": "ed994df1e3cda03a772f053c3ffcc05c0ce1ac929cf6e664de840c292fd58c46"
+  },
+  {
+    "path": "me/blue/client/water/WaterRegion$Emitter.class",
+    "bytes": 3104,
+    "sha256": "e8465a4049dd57316301758c387202b02cd55d09ce3f32f844ca50fa13356152"
+  },
+  {
+    "path": "me/blue/client/water/WaterRegion$Fill.class",
+    "bytes": 2533,
+    "sha256": "5f93bf44d6a766d2366614f70e3fae856494c34b074bb82407af282c5aa2019b"
+  },
+  {
+    "path": "me/blue/client/water/WaterRegion$Removal.class",
+    "bytes": 2112,
+    "sha256": "12983bd844c4d603e71c4d8050ea3e7b0300b5fe673018bcaf6737af56a53433"
+  },
+  {
+    "path": "me/blue/client/water/WaterRegion.class",
+    "bytes": 36712,
+    "sha256": "8d4091ab5210629cc12546937ff3348a59ad7b1e1018890c6918b6886694594e"
+  },
+  {
+    "path": "me/blue/client/water/WaterRenderer$Body.class",
+    "bytes": 1792,
+    "sha256": "be44ce745f9fa99adb2eaf53ff11ea5ef716cb74f365193e5eceb77ab383dfb4"
+  },
+  {
+    "path": "me/blue/client/water/WaterRenderer$LightViews.class",
+    "bytes": 1922,
+    "sha256": "97a38b71eb3a87992f8b3755f49c9db990bec65f633a55966e8018dfd63f57db"
+  },
+  {
+    "path": "me/blue/client/water/WaterRenderer.class",
+    "bytes": 13952,
+    "sha256": "9e719491d8f2bb4d4b69128ba0405d7ef719d2140e18b00b3ec9055671445623"
+  },
+  {
+    "path": "me/blue/client/water/WaterSettings.class",
+    "bytes": 14386,
+    "sha256": "8454f3615748180a23768993b833dc7a28883fd41576c6c4f854cfd5eaf94b1d"
+  },
+  {
+    "path": "me/blue/client/water/WaterSettingsInfo$Cost.class",
+    "bytes": 1919,
+    "sha256": "38a9c98278accec9c1d212941ecab2762457b9bfb324e5fe7adcb87babd7d0d6"
+  },
+  {
+    "path": "me/blue/client/water/WaterSettingsInfo$Info.class",
+    "bytes": 3177,
+    "sha256": "267d4bce163d3b759ff9bce02fcd74d161bd0b6522cac97fe5833b79123ab50b"
+  },
+  {
+    "path": "me/blue/client/water/WaterSettingsInfo$Kind.class",
+    "bytes": 1395,
+    "sha256": "79b3ada2a951e8f3b7b9b84dfc841486af5f138986cb01fb2f1fdec54980a31c"
+  },
+  {
+    "path": "me/blue/client/water/WaterSettingsInfo.class",
+    "bytes": 33102,
+    "sha256": "391007f3c9d0b20697c85ac1f1722db7d829c484b1af69275ed68f4d9c0bc64c"
+  },
+  {
+    "path": "me/blue/client/water/WaterSettingsScreen$1.class",
+    "bytes": 865,
+    "sha256": "a5ffcae6e1883607665dc1811954b4bf610630af6e88f594134a369eb8b33c4f"
+  },
+  {
+    "path": "me/blue/client/water/WaterSettingsScreen$SettingSlider.class",
+    "bytes": 2772,
+    "sha256": "5d25be7352eeaa719858a9573435b63f26b2a7e5d2bb6546f96a28ef09126394"
+  },
+  {
+    "path": "me/blue/client/water/WaterSettingsScreen.class",
+    "bytes": 15276,
+    "sha256": "428b5d686bbf165e56efddea32202eb1fec1828531192ad21f4a2b49d7946d2e"
+  },
+  {
+    "path": "me/blue/client/water/WaterWorld$1.class",
+    "bytes": 767,
+    "sha256": "9fd0696462bc9a543996e6699f69b7bb212dfb2add5afdcfd31932242fc51094"
+  },
+  {
+    "path": "me/blue/client/water/WaterWorld$Echoes.class",
+    "bytes": 2496,
+    "sha256": "2fd6d36ef8440a8d3ca6bb616663c1a753ba4c9824ecf2ec2d9e7d452f634014"
+  },
+  {
+    "path": "me/blue/client/water/WaterWorld.class",
+    "bytes": 61666,
+    "sha256": "963b143245a991294cfb51115d75a354ca155aea324110b2a167c49ef0ea5329"
+  },
+  {
+    "path": "me/blue/protocol/Easing.class",
+    "bytes": 5123,
+    "sha256": "3eef90d10c6b68cf5a0f7e47d20a13167f4f622e7f28ae15e3354423a5c08c1f"
+  },
+  {
+    "path": "me/blue/protocol/Protocol.class",
+    "bytes": 3322,
+    "sha256": "10a5295476ca6fb42171eeb0608426cdfaaa37ac12ab4e42cc531e556f78e639"
+  },
+  {
+    "path": "me/blue/protocol/ProtocolException.class",
+    "bytes": 384,
+    "sha256": "8faf8c177cba0108a7d1887c229403c152e4f81fcbc50b55f1cc97e71067d44f"
+  },
+  {
+    "path": "me/blue/protocol/asset/AssetHash.class",
+    "bytes": 3802,
+    "sha256": "c0f4f31a28cf62a901dc15542cb16c8588ea6f79db49fa843441395fba98b41b"
+  },
+  {
+    "path": "me/blue/protocol/asset/AssetStore.class",
+    "bytes": 534,
+    "sha256": "a29d06751e9da8edd450db1231a97957e76d7558e6ed5973a9b0cce67daacc19"
+  },
+  {
+    "path": "me/blue/protocol/fov/FovEasing.class",
+    "bytes": 3153,
+    "sha256": "2452d8d755bc7e397d55291948b6d02aa3f708fca980f904d6e64fbebdb0190d"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiCodec.class",
+    "bytes": 18828,
+    "sha256": "171d10dabf71733288345f78a25e3e86760638b7f3536f92d4704eea334287a2"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$Call.class",
+    "bytes": 2339,
+    "sha256": "952ba4c324280f6957ed5711acdadc114056d5879d2caeec9b38a7299c6be250"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$CallResult.class",
+    "bytes": 1955,
+    "sha256": "5aaf1355210b2e6ca367b975a83d0e0bcb05235f1191bf9a5980a1a06091d712"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$Close.class",
+    "bytes": 1305,
+    "sha256": "c1f85d5e01d417067137b5e06d58acb1641118588500951ef69832e2b7a0bffa"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$CloseReason.class",
+    "bytes": 1433,
+    "sha256": "2f7dd2ba41ffbcf96adad33d31937e04c04768e680d4e50c037bc80c286f5a0c"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$Closed.class",
+    "bytes": 1849,
+    "sha256": "456588550c8a897dee4265860ae7f07843e415452790ce88973ce04bf6afb788"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$DefineFonts.class",
+    "bytes": 1916,
+    "sha256": "44a5c53b29f36f37cab6283d56bce302202b8dcc7679fd7a549a457eb1fe61cf"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$Error.class",
+    "bytes": 1975,
+    "sha256": "799992d2beacfc18a09351fd60f11af9adae1cc214390252ebeb4d2b6208b400"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$ErrorKind.class",
+    "bytes": 1317,
+    "sha256": "123ad19ec78a3e62a5d35e81c6a8f36aa0fdd010a6d6eafb29d4e5eff184a251"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$FileChunk.class",
+    "bytes": 2610,
+    "sha256": "d0aa55965dcf356832302b62de30cb59149c36286b64bbe3cde99bcb25ee7df7"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$FontDefinition.class",
+    "bytes": 2895,
+    "sha256": "f3823f2d14dda30366861c1f2559586fe2297c4727dca86e0a3ddd740ebc23c5"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$HideHud.class",
+    "bytes": 1681,
+    "sha256": "4bf9565f1bdfdfca1a3bd6176c6b7f6db12ca1702db35ee5253416b5c5698736"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$HudHidden.class",
+    "bytes": 1867,
+    "sha256": "adc6861a3b1a661ef2f5eef6ce8c1c9d2913f2150dd4785fd9445494c3ec1403"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$HudPart.class",
+    "bytes": 2277,
+    "sha256": "eb8b81f55fd2cd2e9f11f618c547d5d270e2d7c9cbc7ad2f529f4fb1f1f3e4cd"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$HudShown.class",
+    "bytes": 1669,
+    "sha256": "85280a3213e16cfc0f122260a17284becce11719c0acfa8cc93ba0604d942e02"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$Log.class",
+    "bytes": 1960,
+    "sha256": "6f1211d41670759fdfe35eb2fdbd9d7332b3ea6c170bc2954191cb80cda7298a"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$LogLevel.class",
+    "bytes": 1302,
+    "sha256": "aacb7a33b221cd664594ca9a473c9594e8da6896148afd51c33a1a28aa71741d"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$Message.class",
+    "bytes": 2086,
+    "sha256": "bb1a28dd713fa8361c5f2255ef5f9933bba9ed0e90c4017d847838918f88aa5b"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$Open.class",
+    "bytes": 2206,
+    "sha256": "2587559be5ad8b7ba5202524b22267b438dabc4c1d312a51dd2a26935dbb2578"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$OpenLink.class",
+    "bytes": 1507,
+    "sha256": "9d9a4e644957788756cee86bd5b1eb7486f3bc914bcce4abcf43fd2d3145aaf3"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$Opened.class",
+    "bytes": 1657,
+    "sha256": "6b43f6ae5b3f4dcc42a9ec663661421c5ba591c3afb9b18c2b339147fdb27a6a"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$RemoveFile.class",
+    "bytes": 1603,
+    "sha256": "aefd72b435aecb4b280b2f77a2778676f5e03a1d310e873725d002f6c485f33b"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$ReplaceMethod.class",
+    "bytes": 1801,
+    "sha256": "53b778644862d13cd1ddeda3a804ebea6e60e6d57a74421c30cf7e69ca32f04d"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$SetHudPart.class",
+    "bytes": 2469,
+    "sha256": "c9282169ac999f2f1d6a60c2671c747e372a28aa275f8ed391eb6c94d37b6433"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket$ShowHud.class",
+    "bytes": 2355,
+    "sha256": "d3f5b693fdea61f8d23fa97dfe1053084279b7807870f55cd03e5396047e9bbc"
+  },
+  {
+    "path": "me/blue/protocol/gui/GuiPacket.class",
+    "bytes": 1815,
+    "sha256": "0964ef790e2934c4d7fdbe32ae27c7c862c67f7657268b365b9291115eb93d61"
+  },
+  {
+    "path": "me/blue/protocol/io/PacketReader.class",
+    "bytes": 5767,
+    "sha256": "11a355919c57984db07aeefab3728532cf836cf8d2dadaf37dec493e02495c10"
+  },
+  {
+    "path": "me/blue/protocol/io/PacketWriter.class",
+    "bytes": 5270,
+    "sha256": "c34b44a767133cf4e3525485a89ecf3904bcf436e5a3ed1a3576cda9e9485764"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersCodec.class",
+    "bytes": 10682,
+    "sha256": "919e85e579b743d830588683bc40497d76622783e0f9ee216364711871378fa9"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$ClientShaderMode.class",
+    "bytes": 1425,
+    "sha256": "46fad035b2dc8e993c8ed035f507c305346761448828b3b6cc918b930683962c"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$ClientShaderState.class",
+    "bytes": 1732,
+    "sha256": "056e990d41b449b992a4d008b8152fad569033ec8ac42f401b1ee731f2b3b903"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$Disable.class",
+    "bytes": 1645,
+    "sha256": "8617f4100be63c02d207bb2f91f59dfe6d9b6ed12c7da48bdb61abb46ff67cac"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$DisableAll.class",
+    "bytes": 1387,
+    "sha256": "ceda365963c2e1aa365e869bac791029ade5095079026931452909b353a1439b"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$Enable.class",
+    "bytes": 2321,
+    "sha256": "d12b2566dc1432385cd602c546eab6782057d4a6d80dabaf3e3e730311f386af"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$Error.class",
+    "bytes": 2059,
+    "sha256": "fd6168fbb33bc08ec456548592806b728b82918cbc991fef6aa0bc791ccbb246"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$ErrorKind.class",
+    "bytes": 1377,
+    "sha256": "6b64793beb35a81b0eb3a2191d04a4c9dd37826b2d5cc7c1728464370fd8942a"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$FileChunk.class",
+    "bytes": 2669,
+    "sha256": "7aa666c895b0be61a8a3d053e1beb6a883fc5a2980f25b2ca3145011d4d547fc"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$RemoveFile.class",
+    "bytes": 1663,
+    "sha256": "afd82e2aa9b4098bcfdfe08cee7ac5abaa17a1d8d6718529231a83018a2adfae"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$SetClientShaders.class",
+    "bytes": 2009,
+    "sha256": "58db5fb2a1e211171a6ab279c49d20b4411936a3f2211aa3370af4d8d2f45d5a"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$SetUniforms.class",
+    "bytes": 3123,
+    "sha256": "548cd7f6c78e9d68453454a535b195f8fce47aef3afefa307d92b5b5f3c0287c"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket$State.class",
+    "bytes": 1698,
+    "sha256": "1ac5b8a71e5bc04177c03aa033c8b55d3c45bfe08a4fd5095b63f153bb581784"
+  },
+  {
+    "path": "me/blue/protocol/shaders/ShadersPacket.class",
+    "bytes": 1221,
+    "sha256": "d2a4dc9e16cd2b05765cb0411c1594ba57ae1fd6dea76390e8d8c5a738c67f93"
+  },
+  {
+    "path": "watery.client.mixins.json",
+    "bytes": 1133,
+    "sha256": "4906273f468d4304bf1316ee4be62d8d411f703cff1a3dfcbcf65a67a7d122c0"
+  },
+  {
+    "path": "assets/watery/shaders/args.comp",
+    "bytes": 998,
+    "sha256": "755c7a21009f86f47541717746cf52d6b17df83860fa58d5847a2841ee36ab32"
+  },
+  {
+    "path": "assets/watery/shaders/blast.comp",
+    "bytes": 1119,
+    "sha256": "ee2c81be031eb3640a83e97e48756e8bcc3f9305094ceb9b230b1141b7d5906d"
+  },
+  {
+    "path": "assets/watery/shaders/blockfill.comp",
+    "bytes": 2106,
+    "sha256": "213667776a81cc890017773a7762186f402ffd08617128ab472394caaa7b6fd9"
+  },
+  {
+    "path": "assets/watery/shaders/blur.comp",
+    "bytes": 1738,
+    "sha256": "b1e75ee3aad639521096dfe50d2482813fceb3b0f2ca583a927dcb6712e5699d"
+  },
+  {
+    "path": "assets/watery/shaders/cg_apply.comp",
+    "bytes": 1058,
+    "sha256": "23dd2332711098a644df5407aff0fca989fe861f646ab38f21d2df381554e252"
+  },
+  {
+    "path": "assets/watery/shaders/cg_direction.comp",
+    "bytes": 699,
+    "sha256": "4ceb85f60c4aa3c6e91f6d19401c138a59ccce909120943ac4bedb9d1c65f21b"
+  },
+  {
+    "path": "assets/watery/shaders/cg_dot.comp",
+    "bytes": 733,
+    "sha256": "daa83f335996006e82cdaffdcc73b453697d336816c992c992c226d2803b2c1c"
+  },
+  {
+    "path": "assets/watery/shaders/cg_init.comp",
+    "bytes": 617,
+    "sha256": "346e5c7548fca255c2e2d835427cccb1642fb5517e83f2449d718a8db685e3e2"
+  },
+  {
+    "path": "assets/watery/shaders/cg_reduce.comp",
+    "bytes": 678,
+    "sha256": "e50a15285eedb5fb5bc796495ef09435bbcee4ee1b3bfcc79826f808b5fbf5ec"
+  },
+  {
+    "path": "assets/watery/shaders/cg_update.comp",
+    "bytes": 770,
+    "sha256": "ca560590e1b8d1d116bea1f00a4923d7880344ae41352897fee73d316a4842a2"
+  },
+  {
+    "path": "assets/watery/shaders/classify.comp",
+    "bytes": 761,
+    "sha256": "43da7cf559372ebaead87ef77e46123d24329412418883260eecd7ada26292db"
+  },
+  {
+    "path": "assets/watery/shaders/clear_box.comp",
+    "bytes": 725,
+    "sha256": "bc0bdc9c9c8b0c881597a41e4664524512be0b0a181c242147c35bc381f2f5b9"
+  },
+  {
+    "path": "assets/watery/shaders/common.glsl",
+    "bytes": 5951,
+    "sha256": "50b1a5937cb1df079887faecdfb22b21fba21b817a6741b486ed990e1d0134cd"
+  },
+  {
+    "path": "assets/watery/shaders/composite.frag",
+    "bytes": 14198,
+    "sha256": "7b2207013530f800cafa45950090eca0ecd980e5ca64105df5dc883dda867acf"
+  },
+  {
+    "path": "assets/watery/shaders/divergence.comp",
+    "bytes": 1034,
+    "sha256": "9696d747ae21c70d50d4c9a25d653f43eb06b1063248498a9b80b0e11e336c29"
+  },
+  {
+    "path": "assets/watery/shaders/droplet_cull.comp",
+    "bytes": 1069,
+    "sha256": "ffac41fc46f08850fc4ce4b255e2b903683b98bc235d8e0e619c777adc3cbc6e"
+  },
+  {
+    "path": "assets/watery/shaders/droplet_front.frag",
+    "bytes": 676,
+    "sha256": "be983062e873816a54f5c5cebb86968b614ffe61ac2eafe0e333b34cc65bd0bb"
+  },
+  {
+    "path": "assets/watery/shaders/droplet_thickness.frag",
+    "bytes": 664,
+    "sha256": "5a80ad23537704c0a18520e6903b3e8a16ff2937113f9b1023b0e71827bf8495"
+  },
+  {
+    "path": "assets/watery/shaders/emit.comp",
+    "bytes": 1473,
+    "sha256": "e086ac9e3808e80e2567e818657aeab2f29aa9527269bc2e6b6f5bea18c05026"
+  },
+  {
+    "path": "assets/watery/shaders/extrapolate.comp",
+    "bytes": 1033,
+    "sha256": "285a214db11818687a9bf4232afd9ad375591ab3293867e111286a996a20a7b2"
+  },
+  {
+    "path": "assets/watery/shaders/faces.comp",
+    "bytes": 1175,
+    "sha256": "0e8a0de467ab80c0848574f924c2ac3684e16c88fa8f409ecff6c76573a451cd"
+  },
+  {
+    "path": "assets/watery/shaders/fine_clear.comp",
+    "bytes": 681,
+    "sha256": "a62aea71d37cd44e6c42b9e8b747caa6a147a04f8ef710312030c7cab5169bc4"
+  },
+  {
+    "path": "assets/watery/shaders/fluid_light.glsl",
+    "bytes": 3778,
+    "sha256": "ba59bb4886dbb4bf3a6fccba642651afbb59f90d80f5401a939dc06b5d40dbbf"
+  },
+  {
+    "path": "assets/watery/shaders/fullscreen.vert",
+    "bytes": 146,
+    "sha256": "8a7ede2f191f911d6c8bf4b49780fb3b8fde941a3cbbfb541b5a1cebdaa01c8c"
+  },
+  {
+    "path": "assets/watery/shaders/g2p.comp",
+    "bytes": 8825,
+    "sha256": "fdeabd298588f1adca9f8abf772375b08e957c9ff24b4f458f6d9ea1926bc3cf"
+  },
+  {
+    "path": "assets/watery/shaders/grain.frag",
+    "bytes": 1139,
+    "sha256": "9c9115729754c5f074afd2d3902b60c0f7542dc3560b0f53b14b86c2d8faca92"
+  },
+  {
+    "path": "assets/watery/shaders/grain.vert",
+    "bytes": 1841,
+    "sha256": "d58638bf1cb81a06d8b185b20af9ada1303cdceb6845396a8592606f79edba47"
+  },
+  {
+    "path": "assets/watery/shaders/grain_common.glsl",
+    "bytes": 75,
+    "sha256": "da28e881a932abd815bf5f6cb55bdb34df649d535ebf3320c4ca0d297a144690"
+  },
+  {
+    "path": "assets/watery/shaders/grain_cull.comp",
+    "bytes": 1828,
+    "sha256": "b91638d281ef8a0f8938f8cc02c8dc37b8f4177cf6fd60f63be738546d95c241"
+  },
+  {
+    "path": "assets/watery/shaders/gridsample.glsl",
+    "bytes": 1051,
+    "sha256": "1f50319dde9baacf0c23ba4bf668b62e8c10016ced3a9dd388d1b28296aac2d8"
+  },
+  {
+    "path": "assets/watery/shaders/inflow.comp",
+    "bytes": 1508,
+    "sha256": "72a1ec45996b8371c234fb89dfea48624f82128bd412528acd6607ad821deabd"
+  },
+  {
+    "path": "assets/watery/shaders/merge.comp",
+    "bytes": 741,
+    "sha256": "a0c208243a46cc04fb5c2827ddeac32c07ff34231598e3fd4891e52f178f40dc"
+  },
+  {
+    "path": "assets/watery/shaders/mesh.vert",
+    "bytes": 716,
+    "sha256": "cc21593ac187aa76971ffc57c30c2ca27b378b0906f4984f646221f9ab5deaee"
+  },
+  {
+    "path": "assets/watery/shaders/mesh_args.comp",
+    "bytes": 380,
+    "sha256": "eb7334ebfc33089fb4a6ec5dab3f096d52731ed39abb38475cbe5f8ac7db42bd"
+  },
+  {
+    "path": "assets/watery/shaders/mesh_bin.comp",
+    "bytes": 841,
+    "sha256": "77a67c1246dd0467b46994459bde43b2433f25102bc3b013d8debfd7eec9e2f8"
+  },
+  {
+    "path": "assets/watery/shaders/mesh_bin_total.comp",
+    "bytes": 451,
+    "sha256": "4ca21452e7e47681ef3341a0557c28bb19e0880a231acc127c61d800c9417f1d"
+  },
+  {
+    "path": "assets/watery/shaders/mesh_depth.comp",
+    "bytes": 864,
+    "sha256": "47428659970be2b9bbb8274fda021b789b4b1d0974801a8d238fcd19954493f0"
+  },
+  {
+    "path": "assets/watery/shaders/mesh_front.frag",
+    "bytes": 734,
+    "sha256": "613b7456fe01887079219762f5485086ec5bf067f9623a8b811d4820603483d3"
+  },
+  {
+    "path": "assets/watery/shaders/mesh_occupancy.comp",
+    "bytes": 591,
+    "sha256": "631ea32b7af451371ad0aac79a6c2259fb8bf560142aaf67b07a03470fe99bc2"
+  },
+  {
+    "path": "assets/watery/shaders/mesh_thickness.frag",
+    "bytes": 757,
+    "sha256": "0febb66306db583e0def16c4f79758119651c69c39aa55e4137edbbb47ca4444"
+  },
+  {
+    "path": "assets/watery/shaders/mg_bottom.comp",
+    "bytes": 544,
+    "sha256": "5edca6a70b5735bec2f3465a2a2c203e2625ee59faf33804f547aac5cbfa9986"
+  },
+  {
+    "path": "assets/watery/shaders/mg_coarse.comp",
+    "bytes": 1947,
+    "sha256": "8de00b6656f55aeee0f89599052ecdd64cc509a155c26801e93e2a12ac520ab5"
+  },
+  {
+    "path": "assets/watery/shaders/mg_coarsen.comp",
+    "bytes": 908,
+    "sha256": "24c7f9bb5c130a162d8eb7912aec1c4f21d5042feadfe9d56b6ff84cb6a3e394"
+  },
+  {
+    "path": "assets/watery/shaders/mg_common.glsl",
+    "bytes": 889,
+    "sha256": "eaec30039cc5648540fe598856cb42add0dc23b402eea7341684bb0773c95410"
+  },
+  {
+    "path": "assets/watery/shaders/mg_flags0.comp",
+    "bytes": 369,
+    "sha256": "04684c454c516fe561bca7cf6aec25b1b5964d42c167f7c07aa689ebbe6dfebf"
+  },
+  {
+    "path": "assets/watery/shaders/mg_inline.glsl",
+    "bytes": 4651,
+    "sha256": "f8c4ab9a4e2a7681d99b25cb4455999d9f94e1571e873ca47b2eb13ae525bb39"
+  },
+  {
+    "path": "assets/watery/shaders/mg_ops.glsl",
+    "bytes": 488,
+    "sha256": "e78360fdee4dc5d9c78dd54ef3af9f97514bbcb85ce26ecc8730371eed020429"
+  },
+  {
+    "path": "assets/watery/shaders/mg_prolong.comp",
+    "bytes": 608,
+    "sha256": "0ecdb13410fff2cd03be3052d1c95a6c2094d0ae5dc989d85154268ea08c9ee6"
+  },
+  {
+    "path": "assets/watery/shaders/mg_restrict.comp",
+    "bytes": 1226,
+    "sha256": "ca8a9f8b3c629de56d7480e7cd92e920f50610756021e660b9c8c0822153ba0a"
+  },
+  {
+    "path": "assets/watery/shaders/mg_smooth.comp",
+    "bytes": 1184,
+    "sha256": "05bb1dc2cf76d3ba65c0fdbf5c39557d7f566e2fac55bde978743b7871612f76"
+  },
+  {
+    "path": "assets/watery/shaders/mg_solve_small.comp",
+    "bytes": 4814,
+    "sha256": "a5b558742a3434be50e16b4c6957ad93a06cd7ac39300070d388818c3b718240"
+  },
+  {
+    "path": "assets/watery/shaders/mpm.glsl",
+    "bytes": 3031,
+    "sha256": "531a853ca1c61c68643e999e8470475d84745ef4895bcd14307965d6ce7d15a8"
+  },
+  {
+    "path": "assets/watery/shaders/mpm_clear.comp",
+    "bytes": 380,
+    "sha256": "cedc4bc2f67ce54ca03032bef6fc8af086454d4fd5ea40f4a1ed8d77574c9bb1"
+  },
+  {
+    "path": "assets/watery/shaders/mpm_g2p.comp",
+    "bytes": 6460,
+    "sha256": "6b05453a14421fcd52ede738e4a2f76aa2401cf19d537c9dee72e93f7181ebb8"
+  },
+  {
+    "path": "assets/watery/shaders/mpm_grid.comp",
+    "bytes": 1596,
+    "sha256": "275c99ab877e8ec9de6436807a4915633d54afe30396a8e47b180b9d9992ba9b"
+  },
+  {
+    "path": "assets/watery/shaders/mpm_p2g.comp",
+    "bytes": 2130,
+    "sha256": "5def9eea058ca1ebafb091036f888036dd4ed33b76d1a5a2caf2b329108cd59f"
+  },
+  {
+    "path": "assets/watery/shaders/nets_quads.comp",
+    "bytes": 1904,
+    "sha256": "71648504d41f01c9852efc781c8fe5c463044a54c11a83f10e5ca855b00f0925"
+  },
+  {
+    "path": "assets/watery/shaders/nets_vertices.comp",
+    "bytes": 3610,
+    "sha256": "765894ff66b4e0df678c1892fc2504c24cd784dd2d3ccacdfb4ff489e92dc893"
+  },
+  {
+    "path": "assets/watery/shaders/p2g.comp",
+    "bytes": 2214,
+    "sha256": "9dfa6379d988d1fe343b061fad23729c7ef3ed5f8c7df03dbfcfd0f125121263"
+  },
+  {
+    "path": "assets/watery/shaders/particle.vert",
+    "bytes": 1740,
+    "sha256": "adcf9d5c6ca651bcca25ca8fc6c9a0bb612dbf6ba6623109782c3e8e138a2fc3"
+  },
+  {
+    "path": "assets/watery/shaders/potential.comp",
+    "bytes": 3113,
+    "sha256": "7c511f387241ea94c953907cf701a2425e872e871d45ba2c6f680d6bd0e18191"
+  },
+  {
+    "path": "assets/watery/shaders/probe.comp",
+    "bytes": 1126,
+    "sha256": "2573e74b0d84801c70f11aa2afde4d4096e59b71e04422aea7794333afef243b"
+  },
+  {
+    "path": "assets/watery/shaders/project.comp",
+    "bytes": 1031,
+    "sha256": "1487c5ccdf7aae5ee99769eae8c1fdc1c1306c937404c508ce06524bb710fd24"
+  },
+  {
+    "path": "assets/watery/shaders/region_light.glsl",
+    "bytes": 1058,
+    "sha256": "acf3905545eb477bd29a2d13cb9623a2ec6a6979a8f5bdad2c20e7124550629e"
+  },
+  {
+    "path": "assets/watery/shaders/remove.comp",
+    "bytes": 618,
+    "sha256": "e8fbb24bf26eaafd8060ea2c4681d68dabb99ec9423ad74acd159aa9d62a093f"
+  },
+  {
+    "path": "assets/watery/shaders/sand_friction.comp",
+    "bytes": 1227,
+    "sha256": "181552db077e99cfe3f6c6be77784dfc4dca3bddaa664dc988b2fe3b6ce04ec3"
+  },
+  {
+    "path": "assets/watery/shaders/sand_mesh.frag",
+    "bytes": 1447,
+    "sha256": "92637e0dec5c2ad1d8fe8e705ec9eb4a7be93ac91a6fbe717b0653ddc7a6b9b6"
+  },
+  {
+    "path": "assets/watery/shaders/sand_scale.comp",
+    "bytes": 871,
+    "sha256": "1531ff2c27e2d813c79d183bf0054ad58705cfb56449d232d90a266c82d6032e"
+  },
+  {
+    "path": "assets/watery/shaders/sand_shade.glsl",
+    "bytes": 1487,
+    "sha256": "1ca619b02220e646d6556b519acab9adac57a1cbe1cfc443207b6dc430de507a"
+  },
+  {
+    "path": "assets/watery/shaders/sand_strain.glsl",
+    "bytes": 1831,
+    "sha256": "549f7832e5f8752fb56eca7df5352e49f07755160a7f8d1d194206955ca7f6ca"
+  },
+  {
+    "path": "assets/watery/shaders/sand_stress.comp",
+    "bytes": 1680,
+    "sha256": "1acb3a8e5f6e30328b0420ee13524b6d907f5b6177333a3567596b2e7d0dd046"
+  },
+  {
+    "path": "assets/watery/shaders/scan_add.comp",
+    "bytes": 462,
+    "sha256": "4f38f6489dc7bed2e0fe0c6863ecfa02d4db85438d5bca062cf57ca4ecb7bee3"
+  },
+  {
+    "path": "assets/watery/shaders/scan_local.comp",
+    "bytes": 1142,
+    "sha256": "628f8487ed50177cb267c11f16b77cd2de65ce8c1ca0d7edfb9fc0ac72dab230"
+  },
+  {
+    "path": "assets/watery/shaders/shadow.glsl",
+    "bytes": 1040,
+    "sha256": "e6ecfa9d20aad5e47c94cd52088d0aac96cd548bb3cf3f471d9565e0e34b2e32"
+  },
+  {
+    "path": "assets/watery/shaders/sheet_fill.comp",
+    "bytes": 1781,
+    "sha256": "b504b3e1979269349c6cfef16d6035ab0001848fb64202a87671f72716b5472b"
+  },
+  {
+    "path": "assets/watery/shaders/shift.comp",
+    "bytes": 409,
+    "sha256": "6e65a72d32983a2514c62ac5a52dced795f4bcce2c9b571cd8d66a11d0b52aa8"
+  },
+  {
+    "path": "assets/watery/shaders/splat.comp",
+    "bytes": 898,
+    "sha256": "c0ab4ff4bbc53b02fe63ae36f91cd6afc871de74f6435b342eb01496d2a449c9"
+  },
+  {
+    "path": "assets/watery/shaders/viscosity.comp",
+    "bytes": 1575,
+    "sha256": "dce722506fd61919a83485e08d9ca9d58f7851f249fbc9f1ec702a04e84af652"
+  },
+  {
+    "path": "assets/watery/shaders/wall_fill.comp",
+    "bytes": 1653,
+    "sha256": "117a7d3140da1875d33f27ee2a4c0d28403eb57433261770ffa4d5d1cafe8729"
+  },
+  {
+    "path": "assets/watery/shaders/whitewater.frag",
+    "bytes": 1450,
+    "sha256": "840e96066e77c3a3838751551372ff3a6a714466df636c720235cbc9da438912"
+  },
+  {
+    "path": "assets/watery/shaders/ww_update.comp",
+    "bytes": 2351,
+    "sha256": "7c8c6d70a32bc308fdfb0c717a37d74a511c610d88650d1fa97980cee7a743d4"
+  },
+  {
+    "path": "assets/watery/shaders/zb_field.comp",
+    "bytes": 1038,
+    "sha256": "5ce9c4d13ea62f15ff2cdad9f4b3cee7f875cf40d61a9ad1e9cea88038616a43"
+  },
+  {
+    "path": "assets/watery/shaders/zb_gather.comp",
+    "bytes": 2466,
+    "sha256": "50097b6357169237054d794c95b9b267987a7eed06733df2f645a7e1eab07c30"
+  },
+  {
+    "path": "assets/watery/shaders/zb_splat.comp",
+    "bytes": 1777,
+    "sha256": "b8499a24ec351b4fe2d2ffbdbdb97bf81cc49f47166ab05b1972809d8746d62f"
+  },
+  {
+    "path": "blue_guis/blue/menu/ShaderMenu.sfy",
+    "bytes": 15400,
+    "sha256": "e3f640eb18c7759f96348ae0f2dd8149ae63078d5955fb0f4e4dbc5ade5997a1"
+  },
+  {
+    "path": "blue_shaders/vista/resources/icon.png",
+    "bytes": 28450,
+    "sha256": "6f1e5142697f33a24348f77f2c97f7b8b23977c727b66238dac7d8f26b87f792"
+  },
+  {
+    "path": "blue_shaders/vista/resources/vista_noise.png",
+    "bytes": 253848,
+    "sha256": "5a66c8981b0ded3c647c38ff663b426ed0bf6dc64a8f8dd4f0897c97ba7c6047"
+  },
+  {
+    "path": "blue_shaders/vista/shaders/blue/vista/Clouds.sfy",
+    "bytes": 4047,
+    "sha256": "9fd6e708d222c22e4ecbd44668a4766ff0926d533a78f040bbfcbcee512ecc3c"
+  },
+  {
+    "path": "blue_shaders/vista/shaders/blue/vista/Lighting.sfy",
+    "bytes": 6318,
+    "sha256": "e073462e6572914d08fe5f0133b70ab1e5c4f3213ed0e0ab537e42d7db753ccc"
+  },
+  {
+    "path": "blue_shaders/vista/shaders/blue/vista/Palette.sfy",
+    "bytes": 3106,
+    "sha256": "4281853039c6de3a85ae249045c3043797a538c88aeb2b7aa7d34e2e1e52e488"
+  },
+  {
+    "path": "blue_shaders/vista/shaders/blue/vista/Post.sfy",
+    "bytes": 14014,
+    "sha256": "553759f43e5b65ab8a055706cf356e9ffb4660c7edffc4d5e7942d8ed07ca5a7"
+  },
+  {
+    "path": "blue_shaders/vista/shaders/blue/vista/Rays.sfy",
+    "bytes": 1219,
+    "sha256": "78a0cae35b3d6aad7240f6004a3fd27d356c8296c96adc2ada8e699a6389eaa9"
+  },
+  {
+    "path": "blue_shaders/vista/shaders/blue/vista/Sky.sfy",
+    "bytes": 1366,
+    "sha256": "6f60ca77e76f1f2eba1b467de6cfdf9f2bdb21d978a3ebe0195e0c953871dff6"
+  },
+  {
+    "path": "blue_shaders/vista/shaders/blue/vista/Surface.sfy",
+    "bytes": 11897,
+    "sha256": "4293123d03588b735dc9f5e4e2f568788bd1fe38cb3dadf229ea4ffb60649751"
+  },
+  {
+    "path": "blue_shaders/vista/shaders/blue/vista/Vista.sfy",
+    "bytes": 16209,
+    "sha256": "c84c4527a7a4e1198fabb1620deacee15082fd0da1a287c833f5c6d4b6a5c5b2"
+  },
+  {
+    "path": "blue_shaders/vista/shaders/blue/vista/VistaShader.sfy",
+    "bytes": 519,
+    "sha256": "1152622fb9a07db012ae8bb08cc4d89f454f9be73876e77ff54c56262bf05096"
+  },
+  {
+    "path": "blue_shaders/vista/shaders/blue/vista/Water.sfy",
+    "bytes": 4746,
+    "sha256": "f1d75f7a0d9e48d6d7d0e90c5b47a3c1c8b2bc32e66e4f87c69b9b858ac8c466"
+  },
+  {
+    "path": "blue_templates/beacon.fsh",
+    "bytes": 2052,
+    "sha256": "bfe839de877518806dd1c3fa56dd7c030608839b8f02914cafb9c7067e54e6d6"
+  },
+  {
+    "path": "blue_templates/beacon.vsh",
+    "bytes": 990,
+    "sha256": "c758bebc01b9dca463cc47f3e2e0da9800ba674566f443c1fb6b0200e7103cf6"
+  },
+  {
+    "path": "blue_templates/block.fsh",
+    "bytes": 2283,
+    "sha256": "9f157b0e9d4d89b3edeb1139af6c9d65f986110b11212e2f0ea123494bee3434"
+  },
+  {
+    "path": "blue_templates/block.vsh",
+    "bytes": 1680,
+    "sha256": "81c8eea0a31a9d6a3225fef8f5a237b20cf2d5a542cff4ae0febab6ea28a5a47"
+  },
+  {
+    "path": "blue_templates/celestial.fsh",
+    "bytes": 1415,
+    "sha256": "f856f0a307e6acb21c195a1176aba5effc35b5a5e6753f6c4790665f23860c07"
+  },
+  {
+    "path": "blue_templates/celestial.vsh",
+    "bytes": 818,
+    "sha256": "c97ed65bb40c85d49285c8385eddeee8d32c115178f3533ac6925f967f0b5de6"
+  },
+  {
+    "path": "blue_templates/clouds.fsh",
+    "bytes": 1839,
+    "sha256": "e6dabe72ed1bb1006b82d91b370960bf5d12a031765ccb242f66490df303a8dc"
+  },
+  {
+    "path": "blue_templates/clouds.vsh",
+    "bytes": 2731,
+    "sha256": "5551c0fba5e04ffa3bc9862bc77f854af376670b2bc23eb4364c327d2e21fae3"
+  },
+  {
+    "path": "blue_templates/crumbling.fsh",
+    "bytes": 2134,
+    "sha256": "e7b35b944f360cf2dd808e00db40ecce1cc411a36d7e9b932e56834e01672968"
+  },
+  {
+    "path": "blue_templates/crumbling.vsh",
+    "bytes": 1297,
+    "sha256": "d855bebab1bb4cbd64307fae787591796207654bf92b6784e52adb034d3210dc"
+  },
+  {
+    "path": "blue_templates/end_portal.fsh",
+    "bytes": 3156,
+    "sha256": "9169c8e93c93c149e4259c57f732a984fe289c402b6b86686f9a07505cb460a0"
+  },
+  {
+    "path": "blue_templates/end_portal.vsh",
+    "bytes": 1145,
+    "sha256": "1a6761314ccd0534396f25bddb4822522778c029a6e8672d353250760242c0cc"
+  },
+  {
+    "path": "blue_templates/end_sky.fsh",
+    "bytes": 1431,
+    "sha256": "3da01c65fff0e09aef2fb54bba607af50c90e5e4644528191587a26de3ff573e"
+  },
+  {
+    "path": "blue_templates/end_sky.vsh",
+    "bytes": 800,
+    "sha256": "5c37b7d35473ef6b5628b47ff4b23f3456b3e8657b33742651e0231f9408231a"
+  },
+  {
+    "path": "blue_templates/entity.fsh",
+    "bytes": 3603,
+    "sha256": "e98b210804f9eee037392c024b4e6a0fa1de3f3169a6034000550091861db6ad"
+  },
+  {
+    "path": "blue_templates/entity.vsh",
+    "bytes": 3084,
+    "sha256": "5ffb2cbd48638a132d3045612411a619f8ba95db8fd8213ae3530390cfbd8105"
+  },
+  {
+    "path": "blue_templates/glint.fsh",
+    "bytes": 1773,
+    "sha256": "89729f560e773c2a2f26047cc7e7499c95184f088db9793c97133efabfefd544"
+  },
+  {
+    "path": "blue_templates/glint.vsh",
+    "bytes": 1167,
+    "sha256": "a614311bf058d61dbe64cfbff9ac6bc8fca856f91445e91d223571899e76b08c"
+  },
+  {
+    "path": "blue_templates/item.fsh",
+    "bytes": 2946,
+    "sha256": "a58140e1d2e730cc0f3e285d85b0e61d89d4953f3357e0b5b04a9f30db085d55"
+  },
+  {
+    "path": "blue_templates/item.vsh",
+    "bytes": 2438,
+    "sha256": "2fdf35bd144c127b2939bdc1876caef47225c007a28d3af74360927b51546dd7"
+  },
+  {
+    "path": "blue_templates/leash.fsh",
+    "bytes": 1622,
+    "sha256": "797b5af890254313aa69bd465ae413eeee15422b1364da48eb809454a713c046"
+  },
+  {
+    "path": "blue_templates/leash.vsh",
+    "bytes": 1387,
+    "sha256": "227bf51476c1388e1f5534c8c84c50def9edc60759da49c1e2c5a3e58f9ca2ad"
+  },
+  {
+    "path": "blue_templates/lightning.fsh",
+    "bytes": 1807,
+    "sha256": "0f2050e7539f999bd78f06fb8f3bdaede86b28fdc52152b9723087698b987e61"
+  },
+  {
+    "path": "blue_templates/lightning.vsh",
+    "bytes": 1081,
+    "sha256": "67e401129322e5188b319e76ffc726eeb10c2dde880569ad14736ea037c958d9"
+  },
+  {
+    "path": "blue_templates/lines.fsh",
+    "bytes": 1929,
+    "sha256": "47e9f935b86df430bcf1400e7065dda6746c696981cd153b7acf27caf4922b20"
+  },
+  {
+    "path": "blue_templates/lines.vsh",
+    "bytes": 2049,
+    "sha256": "54db008cb3f9bb722fb0e6aa927164756ecd0b7c00a71869158aecaa6c9d9e25"
+  },
+  {
+    "path": "blue_templates/model.fsh",
+    "bytes": 4124,
+    "sha256": "f1c8848d8718e83acd0b3a2358b57ffc85ba8955fddabad2f8b02f016841d14e"
+  },
+  {
+    "path": "blue_templates/model.vsh",
+    "bytes": 2451,
+    "sha256": "e52c64fe3416eac1b52d2f6e275119b2f4ac3135c805326f346d83d1179f0453"
+  },
+  {
+    "path": "blue_templates/particle.fsh",
+    "bytes": 2176,
+    "sha256": "eaf72cf99ca7a6b826d281cfb2162bc72703b661dbffb34649cbbe5accec14e5"
+  },
+  {
+    "path": "blue_templates/particle.vsh",
+    "bytes": 1462,
+    "sha256": "1a337293b8587e6be2237ecbf80868eaad6e3fe201c7859473f79eb6517b1dbe"
+  },
+  {
+    "path": "blue_templates/shadow_terrain.fsh",
+    "bytes": 1880,
+    "sha256": "8f1752d77bc10bacc75b97617ce6a02113b5230234913205d48e8e50c9f842a7"
+  },
+  {
+    "path": "blue_templates/shadow_terrain.vsh",
+    "bytes": 1745,
+    "sha256": "fe63d45d92ac7574954d65ab91b3cc58ec7a2e1d639d832342da120837edac69"
+  },
+  {
+    "path": "blue_templates/sky.fsh",
+    "bytes": 1597,
+    "sha256": "6f37c0041330ed94608cd21d558379a57141cfac6897ee7e47ec7cb3430060af"
+  },
+  {
+    "path": "blue_templates/sky.vsh",
+    "bytes": 799,
+    "sha256": "77134dbd721b15f70f8fdc818f231692fd61655cfe1f1b59751a95d0b757fbe0"
+  },
+  {
+    "path": "blue_templates/sky_common.glsl",
+    "bytes": 953,
+    "sha256": "ec7b7566ec75f46885b10359ce860497438e8d6b5499f6a2169cdee1cf67610e"
+  },
+  {
+    "path": "blue_templates/stars.fsh",
+    "bytes": 1245,
+    "sha256": "6c3cf132367a301b2e752654072e6bc4d74218a4d063b37c5d819323083c32a5"
+  },
+  {
+    "path": "blue_templates/stars.vsh",
+    "bytes": 689,
+    "sha256": "bde45dc5827fe3b0e02610a65f2551e2cd0820199244ec798b8cd568b6c157fe"
+  },
+  {
+    "path": "blue_templates/sunrise.fsh",
+    "bytes": 1606,
+    "sha256": "dcaf16ba49028ee65850a17d6f650511f3d0d7e8dfd75ed93537b7c5002aa7f4"
+  },
+  {
+    "path": "blue_templates/sunrise.vsh",
+    "bytes": 716,
+    "sha256": "d5c1868006f860d469ac1e34dd153c8846953dcf1c5a5a9710005f24f791aa40"
+  },
+  {
+    "path": "blue_templates/template.glsl",
+    "bytes": 1279,
+    "sha256": "8a0ec74e5e8086a0c791a52677cd3d87174d551b6d00666568987a0d3559c1b8"
+  },
+  {
+    "path": "blue_templates/terrain.fsh",
+    "bytes": 2644,
+    "sha256": "a3296bf3636e8490835a9bfcdf5f7159779ae82ee60668e4610dcd027863d1d1"
+  },
+  {
+    "path": "blue_templates/terrain.vsh",
+    "bytes": 2650,
+    "sha256": "a10fda0e2019e92ed55b92135cf56c437d60c8734d1e9d5640ff8553a0a15fdb"
+  },
+  {
+    "path": "blue_templates/text.fsh",
+    "bytes": 2333,
+    "sha256": "82bc8493e2ee130e2a0dac259c708e5c94d534b07eb0d07aa715def913f3c352"
+  },
+  {
+    "path": "blue_templates/text.vsh",
+    "bytes": 1778,
+    "sha256": "f050a173a93740ae795053714e8abd7886337dbbb0befa982d179d62d00c26e7"
+  },
+  {
+    "path": "blue_templates/world_border.fsh",
+    "bytes": 1658,
+    "sha256": "54a434017920c85d42bfba54c365ff450b6a0187a046133087d22df4091a7ac4"
+  },
+  {
+    "path": "blue_templates/world_border.vsh",
+    "bytes": 1016,
+    "sha256": "624db0efe17f4acf5f5419ab5ae590a18e2fe8c0ecba79e1fba682df8be06d02"
+  },
+  {
+    "path": "LICENSE_watery",
+    "bytes": 34674,
+    "sha256": "fb981668c18a279e285fc4d83fba1e836cc84dd4daa73c9697d3cfd2d8aca6e0"
+  }
+]

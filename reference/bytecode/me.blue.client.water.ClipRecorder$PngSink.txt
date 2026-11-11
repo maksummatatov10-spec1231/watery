@@ -1,0 +1,262 @@
+Compiled from "ClipRecorder.java"
+final class me.blue.client.water.ClipRecorder$PngSink implements me.blue.client.water.ClipRecorder$Sink {
+  private static final java.lang.Runnable END;
+
+  private final java.nio.file.Path dir;
+
+  private final int width;
+
+  private final int height;
+
+  private final int fps;
+
+  private final java.util.concurrent.BlockingQueue<java.lang.Runnable> queue;
+
+  private final java.lang.Thread writer;
+
+  private int written;
+
+  me.blue.client.water.ClipRecorder$PngSink(java.nio.file.Path, int, int, int);
+    Code:
+         0: aload_0
+         1: invokespecial #3                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #9                  // class java/util/concurrent/ArrayBlockingQueue
+         8: dup
+         9: iconst_4
+        10: invokespecial #11                 // Method java/util/concurrent/ArrayBlockingQueue."<init>":(I)V
+        13: putfield      #14                 // Field queue:Ljava/util/concurrent/BlockingQueue;
+        16: aload_0
+        17: aload_1
+        18: putfield      #20                 // Field dir:Ljava/nio/file/Path;
+        21: aload_0
+        22: iload_2
+        23: putfield      #24                 // Field width:I
+        26: aload_0
+        27: iload_3
+        28: putfield      #28                 // Field height:I
+        31: aload_0
+        32: iload         4
+        34: putfield      #31                 // Field fps:I
+        37: aload_0
+        38: new           #34                 // class java/lang/Thread
+        41: dup
+        42: aload_0
+        43: invokedynamic #36,  0             // InvokeDynamic #0:run:(Lme/blue/client/water/ClipRecorder$PngSink;)Ljava/lang/Runnable;
+        48: ldc           #40                 // String watery-png-writer
+        50: invokespecial #42                 // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;Ljava/lang/String;)V
+        53: putfield      #45                 // Field writer:Ljava/lang/Thread;
+        56: aload_0
+        57: getfield      #45                 // Field writer:Ljava/lang/Thread;
+        60: iconst_1
+        61: invokevirtual #49                 // Method java/lang/Thread.setDaemon:(Z)V
+        64: aload_0
+        65: getfield      #45                 // Field writer:Ljava/lang/Thread;
+        68: invokevirtual #53                 // Method java/lang/Thread.start:()V
+        71: return
+
+  private void pump();
+    Code:
+         0: aload_0
+         1: getfield      #14                 // Field queue:Ljava/util/concurrent/BlockingQueue;
+         4: invokeinterface #56,  1           // InterfaceMethod java/util/concurrent/BlockingQueue.take:()Ljava/lang/Object;
+         9: checkcast     #62                 // class java/lang/Runnable
+        12: astore_1
+        13: aload_1
+        14: getstatic     #64                 // Field END:Ljava/lang/Runnable;
+        17: if_acmpne     21
+        20: return
+        21: aload_1
+        22: invokeinterface #68,  1           // InterfaceMethod java/lang/Runnable.run:()V
+        27: goto          0
+        30: astore_1
+        31: invokestatic  #72                 // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;
+        34: invokevirtual #76                 // Method java/lang/Thread.interrupt:()V
+        37: return
+      Exception table:
+         from    to  target type
+             0    20    30   Class java/lang/InterruptedException
+            21    30    30   Class java/lang/InterruptedException
+
+  public void frame(byte[]) throws java.lang.InterruptedException;
+    Code:
+         0: aload_0
+         1: dup
+         2: getfield      #79                 // Field written:I
+         5: dup_x1
+         6: iconst_1
+         7: iadd
+         8: putfield      #79                 // Field written:I
+        11: istore_2
+        12: aload_0
+        13: getfield      #14                 // Field queue:Ljava/util/concurrent/BlockingQueue;
+        16: aload_0
+        17: aload_1
+        18: iload_2
+        19: invokedynamic #82,  0             // InvokeDynamic #1:run:(Lme/blue/client/water/ClipRecorder$PngSink;[BI)Ljava/lang/Runnable;
+        24: invokeinterface #85,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+        29: return
+
+  private void write(byte[], int);
+    Code:
+         0: new           #89                 // class com/mojang/blaze3d/platform/NativeImage
+         3: dup
+         4: aload_0
+         5: getfield      #24                 // Field width:I
+         8: aload_0
+         9: getfield      #28                 // Field height:I
+        12: iconst_0
+        13: invokespecial #91                 // Method com/mojang/blaze3d/platform/NativeImage."<init>":(IIZ)V
+        16: astore_3
+        17: iconst_0
+        18: istore        4
+        20: iload         4
+        22: aload_0
+        23: getfield      #28                 // Field height:I
+        26: if_icmpge     131
+        29: iload         4
+        31: aload_0
+        32: getfield      #24                 // Field width:I
+        35: imul
+        36: iconst_4
+        37: imul
+        38: istore        5
+        40: aload_0
+        41: getfield      #28                 // Field height:I
+        44: iload         4
+        46: isub
+        47: iconst_1
+        48: isub
+        49: istore        6
+        51: iconst_0
+        52: istore        7
+        54: iload         7
+        56: aload_0
+        57: getfield      #24                 // Field width:I
+        60: if_icmpge     125
+        63: iload         5
+        65: iload         7
+        67: iconst_4
+        68: imul
+        69: iadd
+        70: istore        8
+        72: aload_3
+        73: iload         7
+        75: iload         6
+        77: aload_1
+        78: iload         8
+        80: baload
+        81: sipush        255
+        84: iand
+        85: aload_1
+        86: iload         8
+        88: iconst_1
+        89: iadd
+        90: baload
+        91: sipush        255
+        94: iand
+        95: bipush        8
+        97: ishl
+        98: ior
+        99: aload_1
+       100: iload         8
+       102: iconst_2
+       103: iadd
+       104: baload
+       105: sipush        255
+       108: iand
+       109: bipush        16
+       111: ishl
+       112: ior
+       113: ldc           #94                 // int -16777216
+       115: ior
+       116: invokevirtual #95                 // Method com/mojang/blaze3d/platform/NativeImage.setPixelABGR:(III)V
+       119: iinc          7, 1
+       122: goto          54
+       125: iinc          4, 1
+       128: goto          20
+       131: aload_3
+       132: aload_0
+       133: getfield      #20                 // Field dir:Ljava/nio/file/Path;
+       136: ldc           #99                 // String %06d.png
+       138: iconst_1
+       139: anewarray     #4                  // class java/lang/Object
+       142: dup
+       143: iconst_0
+       144: iload_2
+       145: invokestatic  #101                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       148: aastore
+       149: invokestatic  #107                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+       152: invokeinterface #113,  2          // InterfaceMethod java/nio/file/Path.resolve:(Ljava/lang/String;)Ljava/nio/file/Path;
+       157: invokevirtual #119                // Method com/mojang/blaze3d/platform/NativeImage.writeToFile:(Ljava/nio/file/Path;)V
+       160: aload_3
+       161: invokevirtual #123                // Method com/mojang/blaze3d/platform/NativeImage.close:()V
+       164: goto          188
+       167: astore        4
+       169: aload_3
+       170: invokevirtual #123                // Method com/mojang/blaze3d/platform/NativeImage.close:()V
+       173: goto          185
+       176: astore        5
+       178: aload         4
+       180: aload         5
+       182: invokevirtual #128                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+       185: aload         4
+       187: athrow
+       188: goto          207
+       191: astore_3
+       192: getstatic     #136                // Field me/blue/RealisticWater.LOGGER:Lorg/slf4j/Logger;
+       195: ldc           #142                // String Could not write clip frame {}
+       197: iload_2
+       198: invokestatic  #101                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       201: aload_3
+       202: invokeinterface #144,  4          // InterfaceMethod org/slf4j/Logger.error:(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V
+       207: return
+      Exception table:
+         from    to  target type
+            17   160   167   Class java/lang/Throwable
+           169   173   176   Class java/lang/Throwable
+             0   188   191   Class java/io/IOException
+             0   188   191   Class java/lang/RuntimeException
+
+  public java.lang.String close() throws java.lang.Exception;
+    Code:
+         0: aload_0
+         1: getfield      #14                 // Field queue:Ljava/util/concurrent/BlockingQueue;
+         4: getstatic     #64                 // Field END:Ljava/lang/Runnable;
+         7: invokeinterface #85,  2           // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+        12: aload_0
+        13: getfield      #45                 // Field writer:Ljava/lang/Thread;
+        16: ldc2_w        #150                // long 120000l
+        19: invokevirtual #152                // Method java/lang/Thread.join:(J)V
+        22: aload_0
+        23: getfield      #20                 // Field dir:Ljava/nio/file/Path;
+        26: ldc           #156                // String encode.sh
+        28: invokeinterface #113,  2          // InterfaceMethod java/nio/file/Path.resolve:(Ljava/lang/String;)Ljava/nio/file/Path;
+        33: aload_0
+        34: getfield      #31                 // Field fps:I
+        37: invokedynamic #158,  0            // InvokeDynamic #2:makeConcatWithConstants:(I)Ljava/lang/String;
+        42: iconst_0
+        43: anewarray     #162                // class java/nio/file/OpenOption
+        46: invokestatic  #164                // Method java/nio/file/Files.writeString:(Ljava/nio/file/Path;Ljava/lang/CharSequence;[Ljava/nio/file/OpenOption;)Ljava/nio/file/Path;
+        49: pop
+        50: ldc           #170                // String  - run encode.sh in that folder, or install ffmpeg and render again for an .mp4 directly
+        52: areturn
+
+  private void lambda$frame$0(byte[], int);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: invokevirtual #172                // Method write:([BI)V
+         6: return
+
+  private static void lambda$static$0();
+    Code:
+         0: return
+
+  static {};
+    Code:
+         0: invokedynamic #176,  0            // InvokeDynamic #3:run:()Ljava/lang/Runnable;
+         5: putstatic     #64                 // Field END:Ljava/lang/Runnable;
+         8: return
+}

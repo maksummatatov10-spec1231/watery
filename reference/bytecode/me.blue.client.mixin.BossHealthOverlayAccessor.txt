@@ -1,0 +1,4 @@
+Compiled from "BossHealthOverlayAccessor.java"
+public interface me.blue.client.mixin.BossHealthOverlayAccessor {
+  public abstract java.util.Map<java.util.UUID, net.minecraft.client.gui.components.LerpingBossEvent> blue$events();
+}

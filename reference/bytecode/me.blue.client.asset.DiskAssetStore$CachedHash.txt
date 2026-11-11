@@ -1,0 +1,60 @@
+Compiled from "DiskAssetStore.java"
+final class me.blue.client.asset.DiskAssetStore$CachedHash extends java.lang.Record {
+  private final long size;
+
+  private final long modified;
+
+  private final me.blue.protocol.asset.AssetHash hash;
+
+  private me.blue.client.asset.DiskAssetStore$CachedHash(long, long, me.blue.protocol.asset.AssetHash);
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Record."<init>":()V
+         4: aload_0
+         5: lload_1
+         6: putfield      #7                  // Field size:J
+         9: aload_0
+        10: lload_3
+        11: putfield      #13                 // Field modified:J
+        14: aload_0
+        15: aload         5
+        17: putfield      #16                 // Field hash:Lme/blue/protocol/asset/AssetHash;
+        20: return
+
+  public final java.lang.String toString();
+    Code:
+         0: aload_0
+         1: invokedynamic #20,  0             // InvokeDynamic #0:toString:(Lme/blue/client/asset/DiskAssetStore$CachedHash;)Ljava/lang/String;
+         6: areturn
+
+  public final int hashCode();
+    Code:
+         0: aload_0
+         1: invokedynamic #24,  0             // InvokeDynamic #0:hashCode:(Lme/blue/client/asset/DiskAssetStore$CachedHash;)I
+         6: ireturn
+
+  public final boolean equals(java.lang.Object);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokedynamic #28,  0             // InvokeDynamic #0:equals:(Lme/blue/client/asset/DiskAssetStore$CachedHash;Ljava/lang/Object;)Z
+         7: ireturn
+
+  public long size();
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field size:J
+         4: lreturn
+
+  public long modified();
+    Code:
+         0: aload_0
+         1: getfield      #13                 // Field modified:J
+         4: lreturn
+
+  public me.blue.protocol.asset.AssetHash hash();
+    Code:
+         0: aload_0
+         1: getfield      #16                 // Field hash:Lme/blue/protocol/asset/AssetHash;
+         4: areturn
+}

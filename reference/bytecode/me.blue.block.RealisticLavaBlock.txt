@@ -1,0 +1,15 @@
+Compiled from "RealisticLavaBlock.java"
+public class me.blue.block.RealisticLavaBlock extends me.blue.block.RealisticWaterBlock {
+  public me.blue.block.RealisticLavaBlock(net.minecraft.world.level.material.FlowingFluid, net.minecraft.world.level.block.state.BlockBehaviour$Properties);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokespecial #1                  // Method me/blue/block/RealisticWaterBlock."<init>":(Lnet/minecraft/world/level/material/FlowingFluid;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+         6: return
+
+  protected boolean propagatesSkylightDown(net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: iconst_0
+         1: ireturn
+}

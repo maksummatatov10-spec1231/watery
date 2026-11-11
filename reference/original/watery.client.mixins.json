@@ -1,0 +1,48 @@
+{
+	"required": true,
+	"package": "me.blue.client.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"BlockModelLighterMixin",
+		"BossHealthOverlayAccessor",
+		"BufferBuilderMixin",
+		"CameraMixin",
+		"ClientLevelMixin",
+		"ClientPacketListenerMixin",
+		"CloudRendererMixin",
+		"DeltaTrackerTimerMixin",
+		"EntityRenderDispatcherMixin",
+		"EntityRendererMixin",
+		"FogRendererAccessor",
+		"FrontendCommandEncoderMixin",
+		"FrontendGpuDeviceAccessor",
+		"FrontendRenderPassMixin",
+		"GuiGraphicsExtractorAccessor",
+		"GuiGraphicsExtractorMixin",
+		"ItemModelResolverMixin",
+		"ItemStackRenderStateMixin",
+		"LevelExtractorMixin",
+		"LevelRendererAccessor",
+		"LevelRendererMixin",
+		"MinecraftMixin",
+		"MouseHandlerMixin",
+		"OptionsMixin",
+		"PipelineCacheAccessor",
+		"RenderSystemAccessor",
+		"RenderSystemMixin",
+		"RenderTargetAccessor",
+		"SectionCompilerMixin",
+		"ShaderGameRendererMixin",
+		"ShaderLevelRendererMixin",
+		"SkyRendererMixin",
+		"SubmitNodeCollectionMixin",
+		"VideoSettingsScreenMixin",
+		"ViewAreaInvoker"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

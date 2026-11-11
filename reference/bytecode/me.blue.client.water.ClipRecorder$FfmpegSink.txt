@@ -1,0 +1,366 @@
+Compiled from "ClipRecorder.java"
+final class me.blue.client.water.ClipRecorder$FfmpegSink implements me.blue.client.water.ClipRecorder$Sink {
+  private static final byte[] END;
+
+  private final java.lang.Process process;
+
+  private final java.io.OutputStream out;
+
+  private final java.util.concurrent.BlockingQueue<byte[]> queue;
+
+  private final java.lang.Thread writer;
+
+  private final java.nio.file.Path output;
+
+  private volatile java.lang.Exception failure;
+
+  me.blue.client.water.ClipRecorder$FfmpegSink(java.lang.String, java.nio.file.Path, int, int, int) throws java.io.IOException;
+    Code:
+         0: aload_0
+         1: invokespecial #3                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: new           #9                  // class java/util/concurrent/ArrayBlockingQueue
+         8: dup
+         9: iconst_4
+        10: invokespecial #11                 // Method java/util/concurrent/ArrayBlockingQueue."<init>":(I)V
+        13: putfield      #14                 // Field queue:Ljava/util/concurrent/BlockingQueue;
+        16: aload_0
+        17: aload_2
+        18: putfield      #20                 // Field output:Ljava/nio/file/Path;
+        21: new           #24                 // class java/lang/ProcessBuilder
+        24: dup
+        25: bipush        28
+        27: anewarray     #26                 // class java/lang/String
+        30: dup
+        31: iconst_0
+        32: aload_1
+        33: aastore
+        34: dup
+        35: iconst_1
+        36: ldc           #28                 // String -hide_banner
+        38: aastore
+        39: dup
+        40: iconst_2
+        41: ldc           #30                 // String -loglevel
+        43: aastore
+        44: dup
+        45: iconst_3
+        46: ldc           #32                 // String error
+        48: aastore
+        49: dup
+        50: iconst_4
+        51: ldc           #34                 // String -y
+        53: aastore
+        54: dup
+        55: iconst_5
+        56: ldc           #36                 // String -f
+        58: aastore
+        59: dup
+        60: bipush        6
+        62: ldc           #38                 // String rawvideo
+        64: aastore
+        65: dup
+        66: bipush        7
+        68: ldc           #40                 // String -pixel_format
+        70: aastore
+        71: dup
+        72: bipush        8
+        74: ldc           #42                 // String rgba
+        76: aastore
+        77: dup
+        78: bipush        9
+        80: ldc           #44                 // String -video_size
+        82: aastore
+        83: dup
+        84: bipush        10
+        86: iload_3
+        87: iload         4
+        89: invokedynamic #46,  0             // InvokeDynamic #0:makeConcatWithConstants:(II)Ljava/lang/String;
+        94: aastore
+        95: dup
+        96: bipush        11
+        98: ldc           #50                 // String -framerate
+       100: aastore
+       101: dup
+       102: bipush        12
+       104: iload         5
+       106: invokestatic  #52                 // Method java/lang/String.valueOf:(I)Ljava/lang/String;
+       109: aastore
+       110: dup
+       111: bipush        13
+       113: ldc           #56                 // String -i
+       115: aastore
+       116: dup
+       117: bipush        14
+       119: ldc           #58                 // String -
+       121: aastore
+       122: dup
+       123: bipush        15
+       125: ldc           #60                 // String -vf
+       127: aastore
+       128: dup
+       129: bipush        16
+       131: ldc           #62                 // String vflip,scale=trunc(iw/2)*2:trunc(ih/2)*2
+       133: aastore
+       134: dup
+       135: bipush        17
+       137: ldc           #64                 // String -c:v
+       139: aastore
+       140: dup
+       141: bipush        18
+       143: ldc           #66                 // String libx264
+       145: aastore
+       146: dup
+       147: bipush        19
+       149: ldc           #68                 // String -preset
+       151: aastore
+       152: dup
+       153: bipush        20
+       155: ldc           #70                 // String medium
+       157: aastore
+       158: dup
+       159: bipush        21
+       161: ldc           #72                 // String -crf
+       163: aastore
+       164: dup
+       165: bipush        22
+       167: ldc           #74                 // String 16
+       169: aastore
+       170: dup
+       171: bipush        23
+       173: ldc           #76                 // String -pix_fmt
+       175: aastore
+       176: dup
+       177: bipush        24
+       179: ldc           #78                 // String yuv420p
+       181: aastore
+       182: dup
+       183: bipush        25
+       185: ldc           #80                 // String -movflags
+       187: aastore
+       188: dup
+       189: bipush        26
+       191: ldc           #82                 // String +faststart
+       193: aastore
+       194: dup
+       195: bipush        27
+       197: aload_2
+       198: invokeinterface #84,  1           // InterfaceMethod java/nio/file/Path.toString:()Ljava/lang/String;
+       203: aastore
+       204: invokespecial #90                 // Method java/lang/ProcessBuilder."<init>":([Ljava/lang/String;)V
+       207: astore        6
+       209: aload         6
+       211: iconst_1
+       212: invokevirtual #93                 // Method java/lang/ProcessBuilder.redirectErrorStream:(Z)Ljava/lang/ProcessBuilder;
+       215: pop
+       216: aload_0
+       217: aload         6
+       219: invokevirtual #97                 // Method java/lang/ProcessBuilder.start:()Ljava/lang/Process;
+       222: putfield      #101                // Field process:Ljava/lang/Process;
+       225: aload_0
+       226: aload_0
+       227: getfield      #101                // Field process:Ljava/lang/Process;
+       230: invokevirtual #105                // Method java/lang/Process.getOutputStream:()Ljava/io/OutputStream;
+       233: putfield      #111                // Field out:Ljava/io/OutputStream;
+       236: new           #115                // class java/lang/Thread
+       239: dup
+       240: aload_0
+       241: invokedynamic #117,  0            // InvokeDynamic #1:run:(Lme/blue/client/water/ClipRecorder$FfmpegSink;)Ljava/lang/Runnable;
+       246: ldc           #121                // String watery-ffmpeg-log
+       248: invokespecial #123                // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;Ljava/lang/String;)V
+       251: astore        7
+       253: aload         7
+       255: iconst_1
+       256: invokevirtual #126                // Method java/lang/Thread.setDaemon:(Z)V
+       259: aload         7
+       261: invokevirtual #130                // Method java/lang/Thread.start:()V
+       264: aload_0
+       265: new           #115                // class java/lang/Thread
+       268: dup
+       269: aload_0
+       270: invokedynamic #132,  0            // InvokeDynamic #2:run:(Lme/blue/client/water/ClipRecorder$FfmpegSink;)Ljava/lang/Runnable;
+       275: ldc           #133                // String watery-ffmpeg-writer
+       277: invokespecial #123                // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;Ljava/lang/String;)V
+       280: putfield      #135                // Field writer:Ljava/lang/Thread;
+       283: aload_0
+       284: getfield      #135                // Field writer:Ljava/lang/Thread;
+       287: iconst_1
+       288: invokevirtual #126                // Method java/lang/Thread.setDaemon:(Z)V
+       291: aload_0
+       292: getfield      #135                // Field writer:Ljava/lang/Thread;
+       295: invokevirtual #130                // Method java/lang/Thread.start:()V
+       298: return
+
+  private void drainOutput();
+    Code:
+         0: new           #26                 // class java/lang/String
+         3: dup
+         4: aload_0
+         5: getfield      #101                // Field process:Ljava/lang/Process;
+         8: invokevirtual #139                // Method java/lang/Process.getInputStream:()Ljava/io/InputStream;
+        11: invokevirtual #143                // Method java/io/InputStream.readAllBytes:()[B
+        14: invokespecial #149                // Method java/lang/String."<init>":([B)V
+        17: invokevirtual #152                // Method java/lang/String.lines:()Ljava/util/stream/Stream;
+        20: invokedynamic #156,  0            // InvokeDynamic #3:test:()Ljava/util/function/Predicate;
+        25: invokeinterface #160,  2          // InterfaceMethod java/util/stream/Stream.filter:(Ljava/util/function/Predicate;)Ljava/util/stream/Stream;
+        30: invokedynamic #166,  0            // InvokeDynamic #4:accept:()Ljava/util/function/Consumer;
+        35: invokeinterface #170,  2          // InterfaceMethod java/util/stream/Stream.forEach:(Ljava/util/function/Consumer;)V
+        40: goto          44
+        43: astore_1
+        44: return
+      Exception table:
+         from    to  target type
+             0    40    43   Class java/io/IOException
+
+  private void pump();
+    Code:
+         0: aload_0
+         1: getfield      #14                 // Field queue:Ljava/util/concurrent/BlockingQueue;
+         4: invokeinterface #176,  1          // InterfaceMethod java/util/concurrent/BlockingQueue.take:()Ljava/lang/Object;
+         9: checkcast     #182                // class "[B"
+        12: astore_1
+        13: aload_1
+        14: getstatic     #184                // Field END:[B
+        17: if_acmpne     23
+        20: goto          34
+        23: aload_0
+        24: getfield      #111                // Field out:Ljava/io/OutputStream;
+        27: aload_1
+        28: invokevirtual #187                // Method java/io/OutputStream.write:([B)V
+        31: goto          0
+        34: aload_0
+        35: getfield      #111                // Field out:Ljava/io/OutputStream;
+        38: invokevirtual #192                // Method java/io/OutputStream.flush:()V
+        41: aload_0
+        42: getfield      #111                // Field out:Ljava/io/OutputStream;
+        45: invokevirtual #195                // Method java/io/OutputStream.close:()V
+        48: goto          110
+        51: astore_1
+        52: goto          110
+        55: astore_1
+        56: aload_0
+        57: aload_1
+        58: putfield      #198                // Field failure:Ljava/lang/Exception;
+        61: aload_0
+        62: getfield      #111                // Field out:Ljava/io/OutputStream;
+        65: invokevirtual #195                // Method java/io/OutputStream.close:()V
+        68: goto          110
+        71: astore_1
+        72: goto          110
+        75: astore_1
+        76: invokestatic  #204                // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;
+        79: invokevirtual #208                // Method java/lang/Thread.interrupt:()V
+        82: aload_0
+        83: getfield      #111                // Field out:Ljava/io/OutputStream;
+        86: invokevirtual #195                // Method java/io/OutputStream.close:()V
+        89: goto          110
+        92: astore_1
+        93: goto          110
+        96: astore_2
+        97: aload_0
+        98: getfield      #111                // Field out:Ljava/io/OutputStream;
+       101: invokevirtual #195                // Method java/io/OutputStream.close:()V
+       104: goto          108
+       107: astore_3
+       108: aload_2
+       109: athrow
+       110: return
+      Exception table:
+         from    to  target type
+            41    48    51   Class java/io/IOException
+             0    41    55   Class java/io/IOException
+            61    68    71   Class java/io/IOException
+             0    41    75   Class java/lang/InterruptedException
+            82    89    92   Class java/io/IOException
+             0    41    96   any
+            55    61    96   any
+            75    82    96   any
+            97   104   107   Class java/io/IOException
+
+  public void frame(byte[]) throws java.lang.InterruptedException;
+    Code:
+         0: aload_0
+         1: getfield      #198                // Field failure:Ljava/lang/Exception;
+         4: astore_2
+         5: aload_2
+         6: ifnull        20
+         9: new           #211                // class java/lang/IllegalStateException
+        12: dup
+        13: ldc           #213                // String ffmpeg stopped accepting frames
+        15: aload_2
+        16: invokespecial #215                // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+        19: athrow
+        20: aload_0
+        21: getfield      #14                 // Field queue:Ljava/util/concurrent/BlockingQueue;
+        24: aload_1
+        25: invokeinterface #218,  2          // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+        30: return
+
+  public java.lang.String close() throws java.lang.Exception;
+    Code:
+         0: aload_0
+         1: getfield      #14                 // Field queue:Ljava/util/concurrent/BlockingQueue;
+         4: getstatic     #184                // Field END:[B
+         7: invokeinterface #218,  2          // InterfaceMethod java/util/concurrent/BlockingQueue.put:(Ljava/lang/Object;)V
+        12: aload_0
+        13: getfield      #135                // Field writer:Ljava/lang/Thread;
+        16: ldc2_w        #222                // long 30000l
+        19: invokevirtual #224                // Method java/lang/Thread.join:(J)V
+        22: aload_0
+        23: getfield      #101                // Field process:Ljava/lang/Process;
+        26: invokevirtual #228                // Method java/lang/Process.waitFor:()I
+        29: istore_1
+        30: iload_1
+        31: ifeq          41
+        34: iload_1
+        35: invokedynamic #232,  0            // InvokeDynamic #5:makeConcatWithConstants:(I)Ljava/lang/String;
+        40: areturn
+        41: ldc           #234                // String  (%.1f MB)
+        43: iconst_1
+        44: anewarray     #4                  // class java/lang/Object
+        47: dup
+        48: iconst_0
+        49: aload_0
+        50: getfield      #20                 // Field output:Ljava/nio/file/Path;
+        53: iconst_0
+        54: anewarray     #236                // class java/nio/file/LinkOption
+        57: invokestatic  #238                // Method java/nio/file/Files.exists:(Ljava/nio/file/Path;[Ljava/nio/file/LinkOption;)Z
+        60: ifeq          73
+        63: aload_0
+        64: getfield      #20                 // Field output:Ljava/nio/file/Path;
+        67: invokestatic  #244                // Method java/nio/file/Files.size:(Ljava/nio/file/Path;)J
+        70: goto          74
+        73: lconst_0
+        74: l2d
+        75: ldc2_w        #248                // double 1000000.0d
+        78: ddiv
+        79: invokestatic  #250                // Method java/lang/Double.valueOf:(D)Ljava/lang/Double;
+        82: aastore
+        83: invokestatic  #255                // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+        86: areturn
+
+  private static void lambda$drainOutput$1(java.lang.String);
+    Code:
+         0: getstatic     #259                // Field me/blue/RealisticWater.LOGGER:Lorg/slf4j/Logger;
+         3: ldc_w         #265                // String ffmpeg: {}
+         6: aload_0
+         7: invokeinterface #267,  3          // InterfaceMethod org/slf4j/Logger.warn:(Ljava/lang/String;Ljava/lang/Object;)V
+        12: return
+
+  private static boolean lambda$drainOutput$0(java.lang.String);
+    Code:
+         0: aload_0
+         1: invokevirtual #273                // Method java/lang/String.isBlank:()Z
+         4: ifne          11
+         7: iconst_1
+         8: goto          12
+        11: iconst_0
+        12: ireturn
+
+  static {};
+    Code:
+         0: iconst_0
+         1: newarray       byte
+         3: putstatic     #184                // Field END:[B
+         6: return
+}

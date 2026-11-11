@@ -1,0 +1,20 @@
+Compiled from "SolidCache.java"
+final class me.blue.client.water.SolidCache$Section {
+  final byte[] kind;
+
+  final long[][] partial;
+
+  private me.blue.client.water.SolidCache$Section();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: sipush        4096
+         8: newarray       byte
+        10: putfield      #7                  // Field kind:[B
+        13: aload_0
+        14: sipush        4096
+        17: anewarray     #13                 // class "[J"
+        20: putfield      #15                 // Field partial:[[J
+        23: return
+}

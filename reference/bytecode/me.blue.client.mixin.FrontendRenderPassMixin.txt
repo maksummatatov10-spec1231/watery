@@ -1,0 +1,34 @@
+Compiled from "FrontendRenderPassMixin.java"
+public abstract class me.blue.client.mixin.FrontendRenderPassMixin {
+  private java.util.List<com.mojang.renderpearl.api.commands.RenderPassDescriptor$Attachment<java.util.Optional<org.joml.Vector4fc>>> colorAttachments;
+
+  public me.blue.client.mixin.FrontendRenderPassMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline blue$fitPipeline(com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline);
+    Code:
+         0: aload_0
+         1: getfield      #7                  // Field colorAttachments:Ljava/util/List;
+         4: aload_1
+         5: invokestatic  #13                 // Method me/blue/client/shader/ShaderRenderer.adapt:(Ljava/util/List;Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;)Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;
+         8: areturn
+
+  private void blue$bindShaderUniforms(com.mojang.renderpearl.api.pipeline.CompiledRenderPipeline, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: aload_0
+         1: checkcast     #19                 // class com/mojang/renderpearl/api/commands/RenderPass
+         4: aload_1
+         5: invokestatic  #21                 // Method me/blue/client/shader/ShaderRenderer.bind:(Lcom/mojang/renderpearl/api/commands/RenderPass;Lcom/mojang/renderpearl/api/pipeline/CompiledRenderPipeline;)V
+         8: return
+
+  private void blue$skipShadowDraws(org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #25                 // Method me/blue/client/shader/ShaderRenderer.skipsDraws:()Z
+         3: ifeq          10
+         6: aload_1
+         7: invokevirtual #29                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+        10: return
+}

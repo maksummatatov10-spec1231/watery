@@ -1,0 +1,6 @@
+Compiled from "ClipRecorder.java"
+interface me.blue.client.water.ClipRecorder$Sink {
+  public abstract void frame(byte[]) throws java.lang.InterruptedException;
+
+  public abstract java.lang.String close() throws java.lang.Exception;
+}

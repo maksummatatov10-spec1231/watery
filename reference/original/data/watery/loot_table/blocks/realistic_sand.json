@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "condition": {
+        "type": "minecraft:match_block",
+        "blocks": "watery:realistic_sand",
+        "state": {
+          "layers": "8"
+        }
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "watery:realistic_sand"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "watery:blocks/realistic_sand"
+}

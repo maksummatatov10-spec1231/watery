@@ -1,0 +1,13 @@
+Compiled from "CloudRendererMixin.java"
+public abstract class me.blue.client.mixin.CloudRendererMixin {
+  public me.blue.client.mixin.CloudRendererMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private void blue$cloudsReloaded(java.util.Optional<?>, net.minecraft.server.packs.resources.ResourceManager, net.minecraft.util.profiling.ProfilerFiller, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+         0: invokestatic  #7                  // Method me/blue/client/shader/CloudShadows.reloaded:()V
+         3: return
+}

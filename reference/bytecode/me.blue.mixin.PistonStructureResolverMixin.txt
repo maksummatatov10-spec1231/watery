@@ -1,0 +1,22 @@
+Compiled from "PistonStructureResolverMixin.java"
+public class me.blue.mixin.PistonStructureResolverMixin {
+  public me.blue.mixin.PistonStructureResolverMixin();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  private boolean realisticWater$sandIsAir(net.minecraft.world.level.block.state.BlockState);
+    Code:
+         0: aload_1
+         1: invokevirtual #7                  // Method net/minecraft/world/level/block/state/BlockState.isAir:()Z
+         4: ifne          17
+         7: aload_1
+         8: invokevirtual #13                 // Method net/minecraft/world/level/block/state/BlockState.getBlock:()Lnet/minecraft/world/level/block/Block;
+        11: instanceof    #17                 // class me/blue/block/RealisticSandBlock
+        14: ifeq          21
+        17: iconst_1
+        18: goto          22
+        21: iconst_0
+        22: ireturn
+}
