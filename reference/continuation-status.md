@@ -18,7 +18,8 @@ adapter запускает только диагностическую обла�
 - Добавлен `.github/workflows/ci.yml`: pinned Horizon checkout, core-тесты,
   две последовательные сборки пакета с проверкой одинакового SHA, Horizon
   `Bundle::read` integration test и GPU pipeline/regression job на lavapipe.
-  Workflow запускался на GitHub дважды, обе попытки завершились ошибкой; подробности ниже.
+  Первые два GitHub Actions runs завершились ошибкой; после сборочного исправления
+  третий run прошёл core/package job, но GPU regression остался красным (ниже).
 - `tools/check_native.py` и `tools/check_horizon.py` больше не зависят только от
   Windows-пути `K:\Rust\...`; они используют `CARGO`/PATH с Windows fallback,
   `--locked` и project `target/`. Генераторы settings/uniforms аналогично ищут
@@ -45,17 +46,20 @@ adapter запускает только диагностическую обла�
   новый package `1.2.2-dev.1`; старый tag `watery-1.2.2-dev` намеренно не меняется.
   Требуется удалить старую версию из тестового instance и добавить новый tag.
 - GitHub Actions runs 43107007344 и 43107372714 были failure: core job завершился
-  exit 101; GPU job — при установке Vulkan driver (exit 1), до GPU checks.
-  CI raw logs недоступны в этом окружении, поэтому совпадение core ошибки с
-  `build.log` не подтверждено, а точная причина GPU failure неизвестна. Workflow
-  теперь ищет Lavapipe ICD вместо предположения о единственном имени файла; новый
-  workflow run ещё не прошёл.
+  exit 101; GPU job — при установке Vulkan driver (exit 1), до GPU checks. В run
+  43110851912 на commit `0ecbb40` после исправления core job прошёл полностью:
+  `cargo test`, повторная deterministic package build, Horizon adapter compilation
+  и `Bundle::read` — PASS. Обновлённый поиск Lavapipe ICD тоже прошёл.
+- Тот же run `43110851912` всё ещё overall failure: шаг `Run GPU pipeline and
+  simulation checks` завершился exit 101. Raw logs и GPU report artifact из Actions
+  недоступны из этого окружения (EOF), точная причина не установлена. Это не
+  полный зелёный CI и не проверка в реальном Horizon runtime.
 - Версия `watery-1.2.2-dev.1` пересобрана дважды детерминированно: 207 entries,
   SHA256 `43f62d359bc6174bb516beb557f7e99d4a761dcce33cc5128f63465a19d60cdd`;
   root copy byte-identical, `native-bundle/` содержит исправленный `projection.rs`.
   `tools/verify_reference.py`, Python `py_compile` и `git diff --check` прошли.
-  Cargo/rustc отсутствуют локально: Rust tests, Horizon package reader и новая
-  source-package compilation ещё не подтверждены; нужно дождаться CI.
+  Создан prerelease `watery-1.2.2-dev.1` на commit `0ecbb406e8692f183c59a7a1b3723086e2eabeba`;
+  у него нет release assets, installation идёт через GitHub source archive.
 
 ## Технические детали адаптера, сохранённые в workspace
 
@@ -82,8 +86,8 @@ Collision boxes сохраняются до chunk invalidation; resolution 4 и�
   YAML распарсен PyYAML. Tree-sitter синтаксически проверил 38 Rust-файлов без
   ошибок; это не Rust typecheck и не сборка.
 - `cargo`, `rustc`, `rustfmt` и `rust-analyzer` сейчас отсутствуют в PATH;
-  локальные Rust checks не запускались. В CI `cargo test` был начат и завершился
-  ошибкой; Horizon package reader и GPU execution не были достигнуты.
+  локальные Rust checks не запускались. Последний CI run подтвердил core tests,
+  adapter compilation и package reader; GPU checks завершились ошибкой 101.
 - Локальный путь `vendor/horizon/` отсутствует. Снимок Horizon найден только
   вне репозитория в `/tmp/watery_analysis/handoff/vendor/horizon`; его revision
   указан в `reference/horizon-source.json`.
