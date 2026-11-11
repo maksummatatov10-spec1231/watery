@@ -1,0 +1,7 @@
+[mod]
+id="watery"
+version="1.2.2-dev"
+[compatibility]
+horizon_revision="b880384691b88d317553067109d28e785990bda3"
+[api]
+path="api"

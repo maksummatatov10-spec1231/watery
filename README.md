@@ -40,8 +40,9 @@ GPU execution должны подтверждаться выполнением �
 
 ## Как попробовать development-сборку
 
-В Horizon Launcher выбери отдельный тестовый instance → **Mods → Add from
-GitHub** и вставь ссылку на точный prerelease:
+Готовый development-файл лежит в [`artifacts/watery-1.2.2-dev.hnmod`](artifacts/watery-1.2.2-dev.hnmod)
+(тот же файл находится в корне репозитория). В Horizon Launcher выбери отдельный
+тестовый instance → **Mods → Add from GitHub** и вставь ссылку на точный prerelease:
 
 <https://github.com/maksummatatov10-spec1231/watery/releases/tag/watery-1.2.2-dev>
 
@@ -49,6 +50,10 @@ GitHub** и вставь ссылку на точный prerelease:
 этого репозитория: `.hnmod` не sandboxed и получает права игры/пользователя.
 Затем нажми **Build** для этого instance. Первая native-сборка может занять
 20–30 минут; Horizon может предложить использовать закреплённую версию исходников.
+Release не содержит прикреплённого бинарного asset: launcher получает
+`native-bundle/` из GitHub source archive и собирает bundle сам. Это та же
+разработческая исходная сборка, а не обычный Fabric `.jar`.
+
 После запуска войди в отдельный тестовый мир и выполни `/watery diagnostic water`
 (или `sand`, `lava`, `slime`), затем `/watery status`. `/watery clear` удаляет
 временную диагностическую область; она не записывает содержимое в мир.

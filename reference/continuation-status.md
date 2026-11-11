@@ -24,8 +24,16 @@ adapter запускает только диагностическую обла�
   `--locked` и project `target/`. Генераторы settings/uniforms аналогично ищут
   `rustfmt` через PATH.
 - `tools/package_native.py` теперь делает корневой `.hnmod` byte-identical
-  копией canonical-пакета в `artifacts/`. Integration test расширен проверкой
-  исходников/шейдера/ресурсов/лицензии и равенства двух файлов.
+  копией canonical-пакета в `artifacts/` и создаёт `native-bundle/` — его
+  распакованный источник для GitHub Launcher's source-archive fallback.
+  Integration test расширен проверкой исходников/шейдера/ресурсов/лицензии и
+  равенства двух `.hnmod` файлов.
+- `git push` ветки выполнен. Попытка прикрепить `.hnmod` к GitHub Release упёрлась
+  в EOF на `uploads.github.com`, поэтому asset нельзя считать загруженным.
+  Для установки через Horizon `Add from GitHub` выбран fallback: release/tag
+  source archive содержит `native-bundle/`; пользовательская загрузка получает
+  исходный пакет и перепаковывает его launcher'ом. Сам `.hnmod` также лежит в
+  `artifacts/` репозитория, но не является release asset.
 
 ## Технические детали адаптера, сохранённые в workspace
 
@@ -43,8 +51,8 @@ Collision boxes сохраняются до chunk invalidation; resolution 4 и�
 - После обновления документации, GPU-комментариев и сборщика
   `python3 tools/package_native.py` запущен дважды: обе сборки совпали, а `cmp`
   подтвердил идентичность `artifacts/watery-1.2.2-dev.hnmod` и корневой копии.
-  Пакет: 207 entries, 2 379 004 expanded bytes, SHA256
-  `c3048a652bdf04bb81757ae0be1b4fcdcac2024f77061ebb008adfa1ec525ccc`.
+  Пакет: 207 entries, 2 379 406 expanded bytes, SHA256
+  `2c52b8899c003730ef9017d9412a74c19be6cf29df1f927ac65b616a9f383f94`.
   `zipfile.testzip()` вернул `None`; JSON checksum совпадает с артефактом.
   Проверено наличие adapter/core/GPU source, composite shader, original GLSL,
   LICENSE и NOTICE.

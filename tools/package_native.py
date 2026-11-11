@@ -49,6 +49,13 @@ with zipfile.ZipFile(DEST,'w',zipfile.ZIP_DEFLATED) as z:
         info=zipfile.ZipInfo(name,date_time=(2026,11,11,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED
         z.writestr(info,data)
 package_bytes=DEST.read_bytes()
+# The launcher can install an unpacked .hnmod from a GitHub source archive when
+# a release asset is unavailable; keep that source tree byte-identical too.
+BUNDLE=ROOT/'native-bundle'
+for name,data in sorted(files.items()):
+    path=BUNDLE/name
+    path.parent.mkdir(parents=True,exist_ok=True)
+    path.write_bytes(data)
 # Keep the historical root-level convenience path byte-identical; artifacts/ is canonical.
 (ROOT/DEST.name).write_bytes(package_bytes)
 report=dict(package=DEST.name,sha256=hashlib.sha256(package_bytes).hexdigest(),entries=len(files),expanded_bytes=sum(map(len,files.values())),horizon=REV,status='development; full gameplay parity NOT implemented')

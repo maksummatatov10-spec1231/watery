@@ -1,0 +1,12 @@
+[package]
+name="mod-watery"
+version="1.2.2-dev"
+edition="2024"
+license="GPL-3.0-only"
+publish=false
+[dependencies]
+horizon-client={git="https://github.com/horizon-rust/horizon",rev="b880384691b88d317553067109d28e785990bda3"}
+watery-core={path="core"}
+watery-gpu={path="gpu"}
+wgpu={version="=30.0.1",default-features=false,features=["std","wgsl"]}
+glam="0.30.9"

@@ -59,12 +59,16 @@ runtime-корректности. Отдельные автономные GPU-т
 
 ## Как попробовать prerelease
 
+Предварительно собранный development-файл находится в
+`artifacts/watery-1.2.2-dev.hnmod` (byte-identical копия — в корне репозитория).
 В Horizon Launcher выберите отдельный тестовый instance, откройте **Mods → Add
 from GitHub** и укажите точную ссылку на prerelease:
 
 <https://github.com/maksummatatov10-spec1231/watery/releases/tag/watery-1.2.2-dev>
 
-Пакет исполняет нативный код с правами пользователя и не sandboxed. Принимайте
+У prerelease нет прикреплённого бинарного asset: Horizon Launcher получает
+`native-bundle/` из source archive, формирует `.hnmod` и проверяет его. Пакет
+исполняет нативный код с правами пользователя и не sandboxed. Принимайте
 предупреждение о доверии только если готовы запускать этот исходный код.
 Далее нажмите **Build** для выбранного instance; первая сборка может занять
 20–30 минут. Если launcher предупреждает о закреплённом Horizon revision,
