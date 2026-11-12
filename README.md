@@ -33,13 +33,13 @@
 игровой мод и не тратьте время на дополнительные игровые тесты**.
 
 Работа сосредоточена на поведении и производительности Rust-кода. Последний
-полный CI run `43204747250` на commit `cb5fba1` прошёл форматирование, core
-tests, строгий Clippy, paired benchmarks, детерминированную сборку пакета,
-Horizon adapter/package reader и GPU regressions. GPU report подтверждает 61/61
-shader pipelines и 7 ограниченных execution-проверок на llvmpipe/Vulkan. Это
-проверка компиляции и выбранных регрессий, а не доказательство физической
-эквивалентности, скорости GPU или поведения в Horizon runtime. Игровой adapter
-не является acceptance target.
+полный CI run `43253870317` на commit `9440234` прошёл rustfmt, core tests,
+строгий Clippy, paired benchmarks, детерминированную сборку пакета, Horizon
+adapter/package reader и GPU regressions. GPU report подтверждает 61/61 shader
+pipelines и 7 ограниченных execution-проверок на llvmpipe/Vulkan. Это проверка
+компиляции и выбранных регрессий, а не доказательство физической эквивалентности,
+скорости GPU или поведения в Horizon runtime. Игровой adapter не является
+acceptance target.
 
 ## Дальнейшая Rust-работа
 
@@ -69,23 +69,27 @@ voxelizer с block-major axis-mask вариантом, а также этало�
 даёт три маски занятых sample-координат; Cartesian product этих битов выставляет
 ячейки результата. При большей resolution сохраняется прямой fallback. В
 `SolidCache` интервалы подячеек precompute при создании кэша, затем маски
-классификатора собираются по каждой оси. Differential tests покрывают границы
-63/64/65, unions, вырожденные/внеблочные формы, отрицательные координаты и
-изменение отдельных блоков.
+классификатора собираются по каждой оси; `x`-mask сдвигается целой строкой.
+Differential tests покрывают границы 63/64/65, unions, вырожденные/внеблочные
+формы, отрицательные координаты и изменение отдельных блоков.
 
-Последний paired benchmark в CI run `43204747250` (один runner):
+Последний paired benchmark в CI run `43253870317` (один runner):
 
 | Workload | Baseline | Новая версия | Ускорение |
 | --- | ---: | ---: | ---: |
-| Terrain, 4×4×4, res 6 | 50,659 ns | 3,917 ns | 12.93× |
-| Terrain, 16×8×16, res 6 | 1,656,380 ns | 145,516 ns | 11.38× |
-| SolidCache section insert, 16×16×16, res 4 | 255,732 ns | 94,073 ns | 2.72× |
-| SolidCache extract, 4×4×4, res 4 | 3,266 ns | 2,159 ns | 1.51× |
-| SolidCache extract, 16×8×16, res 4 | 108,583 ns | 59,659 ns | 1.82× |
+| Terrain, 4×4×4, res 6 | 36,047 ns | 3,291 ns | 10.95× |
+| Terrain, 16×8×16, res 6 | 1,169,165 ns | 117,183 ns | 9.98× |
+| SolidCache insert, cellwise → axis-mask, 16³/res4 | 178,358 ns | 50,659 ns | 3.52× |
+| SolidCache insert, x-bit-loop → x-mask, 16³/res4 | 58,932 ns | 50,129 ns | 1.18× |
+| SolidCache extract, 4×4×4, res 4 | 2,466 ns | 1,690 ns | 1.46× |
+| SolidCache extract, 16×8×16, res 4 | 77,340 ns | 50,209 ns | 1.54× |
 
-Замеры синтетические и не обещают тот же коэффициент на другой машине; обе
-версии в каждой паре выполнялись поочерёдно в одном процессе, медиана 9 samples.
-`bench-reference` включает только benchmark oracle. Полный статус CI и
+Не все проверенные идеи оставлены: integer range-check для network sync показал
+0.67–0.69× baseline и удалён; запись terrain occupancy целыми X-диапазонами
+также проиграла прежнему set-bit traversal и откатана. Текущие bench-пары
+измеряют оставленные варианты отдельно. Замеры синтетические и не обещают тот
+же коэффициент на другой машине; в каждой паре 9 чередующихся samples одного
+runner. `bench-reference` включает только benchmark oracles. Полный статус CI и
 ограничения — в [`reference/continuation-status.md`](reference/continuation-status.md).
 
 Оригинальный мод: Watery 1.2.2, Fabric, Minecraft 26.3, Java ≥25,
