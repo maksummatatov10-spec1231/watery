@@ -8,6 +8,10 @@ publish = false
 [lib]
 path = "src/lib.rs"
 
+[[bench]]
+name = "terrain"
+harness = false
+
 [profile.release]
 lto = "thin"
 codegen-units = 1

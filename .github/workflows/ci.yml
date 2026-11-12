@@ -53,6 +53,14 @@ jobs:
       - name: Test core library
         run: cargo test --locked --manifest-path Cargo.toml
 
+      - name: Benchmark terrain voxelizer against original algorithm
+        run: |
+          cargo bench --locked --bench terrain 2>&1 | tee /tmp/terrain-bench.log
+          while IFS='|' read -r marker name metrics; do
+            echo "::notice title=Terrain benchmark::$name $metrics"
+            echo "- **$name**: $metrics" >> "$GITHUB_STEP_SUMMARY"
+          done < <(grep '^BENCH_RESULT|' /tmp/terrain-bench.log)
+
       - name: Verify deterministic development package
         run: |
           python3 tools/package_native.py
