@@ -32,15 +32,14 @@
 оставлен лишь как исторический diagnostic artifact; **не используйте его как
 игровой мод и не тратьте время на дополнительные игровые тесты**.
 
-Работа сосредоточена на поведении и производительности Rust-кода. В CI run
-`43161880409` прошли core tests, строгий Clippy для всех targets, paired
-benchmarks, детерминированная сборка пакета, Horizon adapter/package reader и
-GPU regressions; дополнительный полный run `43162602752` после обновления
-документации тоже прошёл. GPU report подтверждает 61/61 shader pipelines и 7
-ограниченных execution-проверок на llvmpipe/Vulkan. Это проверка компиляции и
-выбранных регрессий, а не доказательство физической эквивалентности, скорости
-GPU или поведения в Horizon runtime. Игровой adapter не является acceptance
-target.
+Работа сосредоточена на поведении и производительности Rust-кода. Последний
+полный CI run `43204747250` на commit `cb5fba1` прошёл форматирование, core
+tests, строгий Clippy, paired benchmarks, детерминированную сборку пакета,
+Horizon adapter/package reader и GPU regressions. GPU report подтверждает 61/61
+shader pipelines и 7 ограниченных execution-проверок на llvmpipe/Vulkan. Это
+проверка компиляции и выбранных регрессий, а не доказательство физической
+эквивалентности, скорости GPU или поведения в Horizon runtime. Игровой adapter
+не является acceptance target.
 
 ## Дальнейшая Rust-работа
 
@@ -64,16 +63,25 @@ cargo bench --locked --bench terrain --features bench-reference
 ```
 
 Bench проверяет точное совпадение результатов и сравнивает старый cell-major
-voxelizer с block-major вариантом, а также прежнее извлечение `SolidCache` с
-обходом секционными плитками. В CI run `43161880409` на одном runner получены
-следующие paired measurements:
+voxelizer с block-major axis-mask вариантом, а также эталонное извлечение
+`SolidCache` с обходом секционными плитками и эталонную классификацию при
+вставке секции. Для voxelizer при resolution ≤64 каждая collision box один раз
+даёт три маски занятых sample-координат; Cartesian product этих битов выставляет
+ячейки результата. При большей resolution сохраняется прямой fallback. В
+`SolidCache` интервалы подячеек precompute при создании кэша, затем маски
+классификатора собираются по каждой оси. Differential tests покрывают границы
+63/64/65, unions, вырожденные/внеблочные формы, отрицательные координаты и
+изменение отдельных блоков.
+
+Последний paired benchmark в CI run `43204747250` (один runner):
 
 | Workload | Baseline | Новая версия | Ускорение |
 | --- | ---: | ---: | ---: |
-| Terrain, 4×4×4, res 6 | 36,956 ns | 13,790 ns | 2.68× |
-| Terrain, 16×8×16, res 6 | 1,170,416 ns | 447,655 ns | 2.62× |
-| SolidCache, 4×4×4, res 4 | 2,694 ns | 1,612 ns | 1.67× |
-| SolidCache, 16×8×16, res 4 | 84,829 ns | 48,256 ns | 1.76× |
+| Terrain, 4×4×4, res 6 | 50,659 ns | 3,917 ns | 12.93× |
+| Terrain, 16×8×16, res 6 | 1,656,380 ns | 145,516 ns | 11.38× |
+| SolidCache section insert, 16×16×16, res 4 | 255,732 ns | 94,073 ns | 2.72× |
+| SolidCache extract, 4×4×4, res 4 | 3,266 ns | 2,159 ns | 1.51× |
+| SolidCache extract, 16×8×16, res 4 | 108,583 ns | 59,659 ns | 1.82× |
 
 Замеры синтетические и не обещают тот же коэффициент на другой машине; обе
 версии в каждой паре выполнялись поочерёдно в одном процессе, медиана 9 samples.
