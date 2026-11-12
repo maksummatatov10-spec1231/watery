@@ -1,9 +1,9 @@
-# Watery 1.2.2 → Rust / Horizon
+# Watery 1.2.2 — Rust rewrite / optimization
 
-**Статус: development-порт, не завершённый игровой порт и не production-релиз.**
-Исходный JAR сохранён без изменений. Ветка содержит Rust/GPU-реализацию и
-диагностический адаптер Horizon, но полного паритета с оригинальным Fabric-модом
-пока нет.
+**Цель: переписать и оптимизировать алгоритмическую логику на Rust. Это не
+задача по созданию игрового Horizon-мода.** Исходный JAR, ресурсы и bytecode
+сохранены для сверки поведения; Rust rewrite пока частичный. Horizon adapter и
+`.hnmod` — отдельный неудачный диагностический эксперимент, не результат порта.
 
 ## Что уже есть в репозитории
 
@@ -24,87 +24,43 @@
 - `.github/workflows/ci.yml` — CI для core/native/package reader и GPU-регрессий.
   Используется закреплённый снимок Horizon из `reference/horizon-source.json`.
 
-Пользовательский smoke test на Horizon 0.1.0 с Radeon RX 580 (Vulkan)
-подтвердил запуск игры, вход в мир и создание диагностического региона через
-`/watery diagnostic water`. Визуальный результат пользователь оценил как
-неприемлемый: почти прозрачная/зеркальная жидкость исчезает при контакте с
-блоками; наблюдался и некорректный высокий spawn. Это не игровой порт.
-На commit `0ecbb40` CI подтвердил core tests, компиляцию Horizon adapter и
-чтение `.hnmod`; GPU regression job пока падает.
+Пользовательский smoke test Horizon 0.1.0 / Radeon RX 580 (Vulkan) подтвердил
+только запуск и создание диагностического региона. Сам визуальный результат был
+неприемлем: почти прозрачная зеркальная жидкость исчезала при контакте с блоками,
+также наблюдался высокий spawn в воздухе. Пререлиз
+[`watery-1.2.2-dev.1`](https://github.com/maksummatatov10-spec1231/watery/releases/tag/watery-1.2.2-dev.1)
+оставлен лишь как исторический diagnostic artifact; **не используйте его как
+игровой мод и не тратьте время на дополнительные игровые тесты**.
 
-## Диагностический режим
+Работа сосредоточена на поведении и производительности Rust-кода. На CI commit
+`0ecbb40` core tests, adapter compilation и package reader прошли; отдельный GPU
+regression job остаётся failing и требует отдельного разбора. Игровой adapter не
+является acceptance target.
 
-После сборки адаптера команды `/watery diagnostic [water|sand|lava|slime]`,
-`/watery status`, `/watery pause` и `/watery clear` запускают или очищают
-ограниченную временную сцену. Область занимает 4×4×4 блока около камеры;
-размер сетки зависит от разрешения материала. Мир и сохранение не изменяются.
+## Дальнейшая Rust-работа
 
-Это стенд для интеграции и проверки рендеринга, а не реализация игрового
-создания жидкостей/песка. Не устанавливайте development-пакет в основной мир.
+- Сверять алгоритмы с исходным Java bytecode / GLSL и сохранять численную
+  совместимость regression-тестами.
+- Сначала находить hot paths на реалистичных данных, затем сравнивать baseline и
+  изменение в optimized bench profile; не принимать интуитивные micro-оптимизации.
+- Продолжить перенос и оптимизацию CPU/GPU алгоритмов. Исправление игрового
+  рендера, интеграция блоков, UI и выпуск Horizon-мода не входят в текущий scope.
+- Отдельно разобраться с падающим GPU regression CI; этот failure не скрывать.
 
-## Как попробовать development-сборку
+## Сборка и проверки Rust core
 
-**Исправление сборки:** прежний `watery-1.2.2-dev` не компилировался из-за
-отсутствующих `projection::water_level` и `projection::sand_layers`. Не нажимай
-Build снова для этой старой версии — удали её из тестового instance и добавь
-исправленный `watery-1.2.2-dev.1`.
-
-Готовый development-файл лежит в [`artifacts/watery-1.2.2-dev.1.hnmod`](artifacts/watery-1.2.2-dev.1.hnmod)
-(тот же файл находится в корне репозитория). В Horizon Launcher выбери отдельный
-тестовый instance → **Mods → Add from GitHub** и вставь ссылку на точный prerelease:
-
-<https://github.com/maksummatatov10-spec1231/watery/releases/tag/watery-1.2.2-dev.1>
-
-Подтверди предупреждение о доверии только если готов запускать native-код из
-этого репозитория: `.hnmod` не sandboxed и получает права игры/пользователя.
-Затем нажми **Build** для этого instance. Первая native-сборка может занять
-20–30 минут; Horizon может предложить использовать закреплённую версию исходников.
-Release не содержит прикреплённого бинарного asset: launcher получает
-`native-bundle/` из GitHub source archive и собирает bundle сам. Это та же
-разработческая исходная сборка, а не обычный Fabric `.jar`.
-
-После запуска войди в отдельный тестовый мир и выполни `/watery diagnostic water`
-(или `sand`, `lava`, `slime`), затем `/watery status`. `/watery clear` удаляет
-временную диагностическую область; она не записывает содержимое в мир.
-
-Если сборка, загрузка или рендер не проходят, пришли текст ошибки из окна
-сборки/лога и версию Horizon. Это development-пакет, поэтому возможен отказ;
-не используй его в основном instance или мире.
-
-## Что ещё не завершено
-
-- Полная игровая parity с Watery 1.2.2, сравнение Java/Rust на одинаковых сценах
-  и подтверждение производительности.
-- Игровые источники и вёдра, запись симуляции обратно в блоки мира, реакции
-  материалов и взаимодействия, полный server-authoritative network sync.
-- Сохранение/восстановление, UI, запись роликов и прочие игровые lifecycle hooks.
-- Проверка адаптера на реальном Horizon runtime, нескольких драйверах и GPU.
-- Проверка того, что закреплённая версия Horizon соответствует установленной у
-  пользователя игре и launcher.
-
-См. [`reference/native-development.md`](reference/native-development.md) и
-[`reference/continuation-status.md`](reference/continuation-status.md) для
-ограничений и фактического статуса проверок.
-
-## Сборка и проверки
-
-Требуется Rust toolchain из `rust-toolchain.toml` (Rust 1.99.1), Python 3 и
-закреплённый Horizon source в игнорируемом каталоге `vendor/horizon/`:
+Нужен Rust toolchain из `rust-toolchain.toml` (Rust 1.99.1):
 
 ```sh
-git clone https://github.com/horizon-rust/horizon.git vendor/horizon
-git -C vendor/horizon checkout --detach b880384691b88d317553067109d28e785990bda3
-python3 tools/verify_reference.py
 cargo test --locked
-python3 tools/package_native.py
-python3 tools/check_native.py --test
-cargo run --locked --manifest-path tools/gpu-check/Cargo.toml
+cargo bench --locked --bench terrain
 ```
 
-GPU execution требует Vulkan-совместимый адаптер; CI использует Mesa lavapipe.
-`tools/check_native.py` также доступен в режиме `cargo check` без `--test`.
-Сборка пакета намеренно помечена `1.2.2-dev.1`; она не является релизной
-установкой мода.
+Benchmark сравнивает прежний cell-major алгоритм с block-major вариантом на
+диагностическом объёме и более крупном регионе. На GitHub runner в одном
+сопоставимом прогоне получено около 2.9× для обоих размеров; это не универсальная
+цифра для всех машин. Полный статус CI и ограничения — в
+[`reference/continuation-status.md`](reference/continuation-status.md).
 
 Оригинальный мод: Watery 1.2.2, Fabric, Minecraft 26.3, Java ≥25,
 GPL-3.0-only. Автор оригинала — ItsBlueDD. SHA256 исходного JAR:

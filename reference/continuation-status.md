@@ -2,12 +2,11 @@
 
 ## Цель и статус
 
-Цель остаётся полной Rust/Horizon-реализацией Watery 1.2.2: lifecycle/render
-adapter, GPU-симуляция, terrain/material integrations, проверка Java-поведения,
-воспроизводимая сборка `.hnmod` и CI. Порт **не завершён**: текущий Horizon
-adapter запускает только диагностическую область и не означает gameplay parity.
-Вёдра, полная запись в мир, network sync, сохранение, UI/recording и другие
-игровые взаимодействия остаются незавершёнными.
+Актуальный scope по уточнению пользователя: переписывать и оптимизировать
+алгоритмическую логику оригинала на Rust, сохраняя поведение и проверяя его
+тестами/benchmarks. Horizon launcher, gameplay adapter и визуальный demo не
+являются целью или критерием приёмки. Текущий adapter — диагностический артефакт
+с неудовлетворительным рендером; дальнейшие игровые тесты пользователю не нужны.
 
 ## Действия этого продолжения
 
@@ -54,6 +53,17 @@ adapter запускает только диагностическую обла�
   simulation checks` завершился exit 101. Raw logs и GPU report artifact из Actions
   недоступны из этого окружения (EOF), точная причина не установлена. Это не
   полный зелёный CI и не проверка в реальном Horizon runtime.
+- Первый code-only optimization: `terrain::voxelize` теперь проходит блоками,
+  кеширует subcell centers, пропускает пустые блоки и заполняет full cubes rows.
+  Test сравнивает побайтную маску со старым cell-major oracle на resolution
+  1/2/3/4/7 и collision-box edge cases.
+- Добавлен dependency-free `cargo bench --bench terrain` с original baseline,
+  optimized bench profile, `black_box`, alternating order и median samples.
+  GitHub Actions run `43154198934` прошёл core tests и bench. На runner получено:
+  4×4×4 / res 6: 37 069 ns → 12 586 ns (2.945×); 16×8×16 / res 6:
+  1 175 548 ns → 410 072 ns (2.867×). Это сравнение двух алгоритмов в одном CI
+  run на заданных синтетических collision boxes, не универсальный коэффициент.
+  GPU regression job по-прежнему завершилась exit 101.
 - Версия `watery-1.2.2-dev.1` пересобрана дважды детерминированно: 207 entries,
   SHA256 `43f62d359bc6174bb516beb557f7e99d4a761dcce33cc5128f63465a19d60cdd`;
   root copy byte-identical, `native-bundle/` содержит исправленный `projection.rs`.
