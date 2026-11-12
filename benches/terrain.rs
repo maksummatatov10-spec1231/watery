@@ -1,6 +1,6 @@
 use std::{hint::black_box, time::Instant};
 use watery_core::{
-    solid_cache::{reference_extract_region, SolidCache},
+    solid_cache::{SolidCache, reference_extract_region},
     terrain::voxelize,
 };
 
@@ -9,24 +9,21 @@ const BATCH: usize = 4;
 const CACHE_RESOLUTION: usize = 4;
 const SECTION_BLOCKS: usize = 16 * 16 * 16;
 
-fn original_cell_major(
-    dims: [usize; 3],
-    resolution: usize,
-    blocks: &[Vec<[f64; 6]>],
-) -> Vec<u32> {
+fn original_cell_major(dims: [usize; 3], resolution: usize, blocks: &[Vec<[f64; 6]>]) -> Vec<u32> {
     let [nx, ny, nz] = dims.map(|v| v * resolution);
     let mut out = vec![0; nx * ny * nz];
     for z in 0..nz {
         for y in 0..ny {
             for x in 0..nx {
-                let block = x / resolution + dims[0] * (y / resolution + dims[1] * (z / resolution));
-                let p = [x, y, z].map(|v| {
-                    (v % resolution) as f64 / resolution as f64
-                        + 0.5 / resolution as f64
-                });
-                out[x + nx * (y + ny * z)] = u32::from(blocks[block].iter().any(|b| {
-                    (0..3).all(|i| p[i] >= b[i] && p[i] < b[i + 3])
-                }));
+                let block =
+                    x / resolution + dims[0] * (y / resolution + dims[1] * (z / resolution));
+                let p = [x, y, z]
+                    .map(|v| (v % resolution) as f64 / resolution as f64 + 0.5 / resolution as f64);
+                out[x + nx * (y + ny * z)] = u32::from(
+                    blocks[block]
+                        .iter()
+                        .any(|b| (0..3).all(|i| p[i] >= b[i] && p[i] < b[i + 3])),
+                );
             }
         }
     }
@@ -40,7 +37,10 @@ fn terrain_workload(dims: [usize; 3]) -> Vec<Vec<[f64; 6]>> {
         vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
         vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]],
         vec![[0.25, 0.25, 0.25, 0.75, 0.75, 0.75]],
-        vec![[-0.25, 0.2, 0.8, 0.5, 1.2, 1.5], [0.5, 0.5, 0.5, 0.5, 0.9, 0.9]],
+        vec![
+            [-0.25, 0.2, 0.8, 0.5, 1.2, 1.5],
+            [0.5, 0.5, 0.5, 0.5, 0.9, 0.9],
+        ],
         vec![[0.1, 0.1, 0.1, 0.9, 0.9, 0.9]],
         vec![],
     ];
@@ -87,7 +87,10 @@ fn compare_terrain(name: &str, dims: [usize; 3], resolution: usize) {
     let blocks = terrain_workload(dims);
     let expected = original_cell_major(dims, resolution, &blocks);
     let actual = voxelize(dims, resolution, &blocks).expect("valid terrain workload");
-    assert_eq!(actual, expected, "benchmark variants must produce identical masks");
+    assert_eq!(
+        actual, expected,
+        "benchmark variants must produce identical masks"
+    );
 
     let original = || {
         black_box(original_cell_major(
@@ -98,12 +101,8 @@ fn compare_terrain(name: &str, dims: [usize; 3], resolution: usize) {
     };
     let block_major = || {
         black_box(
-            voxelize(
-                black_box(dims),
-                resolution,
-                black_box(blocks.as_slice()),
-            )
-            .expect("valid terrain workload"),
+            voxelize(black_box(dims), resolution, black_box(blocks.as_slice()))
+                .expect("valid terrain workload"),
         );
     };
     let (original_ns, block_major_ns) = sample_pair(original, block_major);
@@ -114,7 +113,8 @@ fn compare_terrain(name: &str, dims: [usize; 3], resolution: usize) {
 }
 
 fn cache_boxes_at(pos: [i32; 3]) -> Vec<[f32; 6]> {
-    match (pos[0].rem_euclid(8) + 3 * pos[1].rem_euclid(8) + 5 * pos[2].rem_euclid(8)).rem_euclid(8) {
+    match (pos[0].rem_euclid(8) + 3 * pos[1].rem_euclid(8) + 5 * pos[2].rem_euclid(8)).rem_euclid(8)
+    {
         0 => vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
         1 => vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]],
         2 => vec![[0.25, 0.25, 0.25, 0.75, 0.75, 0.75]],
@@ -122,10 +122,7 @@ fn cache_boxes_at(pos: [i32; 3]) -> Vec<[f32; 6]> {
     }
 }
 
-fn cache_workload(
-    origin: [i32; 3],
-    dims: [usize; 3],
-) -> (SolidCache, Vec<Vec<[f64; 6]>>) {
+fn cache_workload(origin: [i32; 3], dims: [usize; 3]) -> (SolidCache, Vec<Vec<[f64; 6]>>) {
     let mut cache = SolidCache::new(CACHE_RESOLUTION).expect("valid cache resolution");
     for section in cache.missing_sections(origin, dims) {
         let mut blocks = vec![Vec::new(); SECTION_BLOCKS];
@@ -151,7 +148,11 @@ fn cache_workload(
     for z in 0..dims[2] {
         for y in 0..dims[1] {
             for x in 0..dims[0] {
-                let world = [origin[0] + x as i32, origin[1] + y as i32, origin[2] + z as i32];
+                let world = [
+                    origin[0] + x as i32,
+                    origin[1] + y as i32,
+                    origin[2] + z as i32,
+                ];
                 direct_boxes.push(
                     cache_boxes_at(world)
                         .iter()
@@ -170,10 +171,16 @@ fn compare_solid_cache(name: &str, origin: [i32; 3], dims: [usize; 3]) {
     let actual = cache
         .extract_region(origin, dims, true)
         .expect("valid cache extraction");
-    let reference = reference_extract_region(&cache, origin, dims, true)
-        .expect("valid reference extraction");
-    assert_eq!(actual, expected, "cache extraction must match direct voxelization");
-    assert_eq!(actual, reference, "cache variants must produce identical masks");
+    let reference =
+        reference_extract_region(&cache, origin, dims, true).expect("valid reference extraction");
+    assert_eq!(
+        actual, expected,
+        "cache extraction must match direct voxelization"
+    );
+    assert_eq!(
+        actual, reference,
+        "cache variants must produce identical masks"
+    );
 
     let reference_run = || {
         black_box(

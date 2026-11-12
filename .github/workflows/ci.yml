@@ -47,20 +47,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Format optimized Rust files and export formatted contents
-        run: |
-          rustfmt --edition 2024 src/terrain.rs src/solid_cache.rs benches/terrain.rs
-          python3 - <<'PY'
-          import base64
-          import zlib
-          from pathlib import Path
-          for name in ("src/terrain.rs", "src/solid_cache.rs", "benches/terrain.rs"):
-              encoded = base64.b64encode(zlib.compress(Path(name).read_bytes(), 9)).decode()
-              title = name.replace("/", "-")
-              for index, offset in enumerate(range(0, len(encoded), 3000)):
-                  chunk = encoded[offset:offset + 3000]
-                  print(f"::notice file=.github/workflows/ci.yml,line=1,title=rustfmt-zlib-{title}-{index:03}::{chunk}")
-          PY
+      - name: Check formatting of optimized Rust paths
+        run: rustfmt --edition 2024 --check src/terrain.rs src/solid_cache.rs benches/terrain.rs
 
       - name: Verify preserved original assets
         run: python3 tools/verify_reference.py
@@ -138,3 +126,13 @@ jobs:
           name: gpu-check-report
           path: reference/gpu-check-report.md
           if-no-files-found: ignore
+
+      - name: Publish GPU check report in workflow annotation
+        if: always()
+        run: |
+          if [ -f reference/gpu-check-report.md ]; then
+            report="$(base64 -w0 reference/gpu-check-report.md)"
+            echo "::notice title=GPU-check-report-base64::$report"
+          else
+            echo "::warning title=GPU-check-report::Report was not generated"
+          fi

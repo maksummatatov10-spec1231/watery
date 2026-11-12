@@ -109,9 +109,9 @@ fn classify_block(res: usize, boxes: &[[f32; 6]]) -> Result<(u8, u64), &'static 
             for sx in 0..res {
                 let min = [sx as f32 * step, sy as f32 * step, sz as f32 * step];
                 let max = [min[0] + step, min[1] + step, min[2] + step];
-                let solid = boxes.iter().any(|b| {
-                    (0..3).all(|a| b[a] < b[a + 3] && b[a + 3] > min[a] && b[a] < max[a])
-                });
+                let solid = boxes
+                    .iter()
+                    .any(|b| (0..3).all(|a| b[a] < b[a + 3] && b[a + 3] > min[a] && b[a] < max[a]));
                 if solid {
                     let bit = sx + res * (sy + res * sz);
                     bits |= 1u64 << bit;
@@ -473,7 +473,10 @@ mod tests {
         let expected = crate::terrain::voxelize(dims, res, &direct_boxes).unwrap();
         let actual = cache.extract_region(origin, dims, true).unwrap();
         assert_eq!(actual, expected);
-        assert_eq!(actual, reference_extract_region(&cache, origin, dims, true).unwrap());
+        assert_eq!(
+            actual,
+            reference_extract_region(&cache, origin, dims, true).unwrap()
+        );
     }
 
     #[test]
@@ -482,8 +485,7 @@ mod tests {
         let origin = [-17, 15, 31];
         let dims = [5, 3, 4];
         let mut blocks = vec![Vec::new(); SECTION_BLOCKS];
-        blocks[local_index(origin[0], origin[1], origin[2])] =
-            vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]];
+        blocks[local_index(origin[0], origin[1], origin[2])] = vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]];
         cache.insert_section([-2, 0, 1], &blocks).unwrap();
 
         for unloaded_solid in [false, true] {
@@ -498,12 +500,20 @@ mod tests {
     #[test]
     fn extraction_rejects_world_coordinate_overflow() {
         let cache = SolidCache::new(4).unwrap();
-        assert!(cache.extract_region([i32::MAX, 0, 0], [2, 1, 1], true).is_err());
-        assert!(cache
-            .extract_region([0; 3], [i32::MAX as usize + 2, 1, 1], true)
-            .is_err());
+        assert!(
+            cache
+                .extract_region([i32::MAX, 0, 0], [2, 1, 1], true)
+                .is_err()
+        );
+        assert!(
+            cache
+                .extract_region([0; 3], [i32::MAX as usize + 2, 1, 1], true)
+                .is_err()
+        );
         assert_eq!(
-            cache.extract_region([i32::MAX, 0, 0], [0, 1, 1], true).unwrap(),
+            cache
+                .extract_region([i32::MAX, 0, 0], [0, 1, 1], true)
+                .unwrap(),
             Vec::<u32>::new()
         );
     }

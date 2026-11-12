@@ -19,9 +19,10 @@ pub fn voxelize(
         .try_fold(1usize, |a, b| a.checked_mul(b))
         .ok_or("terrain overflow")?;
     if block_count != blocks.len()
-        || blocks.iter().flatten().any(|b| {
-            b.iter().any(|v| !v.is_finite()) || (0..3).any(|i| b[i] > b[i + 3])
-        })
+        || blocks
+            .iter()
+            .flatten()
+            .any(|b| b.iter().any(|v| !v.is_finite()) || (0..3).any(|i| b[i] > b[i + 3]))
     {
         return Err("invalid terrain boxes");
     }
@@ -120,14 +121,16 @@ mod tests {
         for z in 0..nz {
             for y in 0..ny {
                 for x in 0..nx {
-                    let block = x / resolution + dims[0] * (y / resolution + dims[1] * (z / resolution));
+                    let block =
+                        x / resolution + dims[0] * (y / resolution + dims[1] * (z / resolution));
                     let p = [x, y, z].map(|v| {
-                        (v % resolution) as f64 / resolution as f64
-                            + 0.5 / resolution as f64
+                        (v % resolution) as f64 / resolution as f64 + 0.5 / resolution as f64
                     });
-                    out[x + nx * (y + ny * z)] = u32::from(blocks[block].iter().any(|b| {
-                        (0..3).all(|i| p[i] >= b[i] && p[i] < b[i + 3])
-                    }));
+                    out[x + nx * (y + ny * z)] = u32::from(
+                        blocks[block]
+                            .iter()
+                            .any(|b| (0..3).all(|i| p[i] >= b[i] && p[i] < b[i + 3])),
+                    );
                 }
             }
         }
@@ -147,7 +150,10 @@ mod tests {
             vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
             vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]],
             vec![[0.25, 0.25, 0.25, 0.75, 0.75, 0.75]],
-            vec![[-0.25, 0.2, 0.8, 0.5, 1.2, 1.5], [0.5, 0.5, 0.5, 0.5, 0.9, 0.9]],
+            vec![
+                [-0.25, 0.2, 0.8, 0.5, 1.2, 1.5],
+                [0.5, 0.5, 0.5, 0.5, 0.9, 0.9],
+            ],
         ];
         let dims = [3, 2, 2];
         let blocks: Vec<_> = (0..dims.iter().product::<usize>())
