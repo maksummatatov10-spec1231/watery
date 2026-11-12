@@ -116,8 +116,27 @@ jobs:
           echo "Using Vulkan ICD: $icd"
           echo "VK_ICD_FILENAMES=$icd" >> "$GITHUB_ENV"
 
+      - name: Clear stale GPU check report
+        run: rm -f reference/gpu-check-report.md
+
       - name: Run GPU pipeline and simulation checks
-        run: cargo run --locked --manifest-path tools/gpu-check/Cargo.toml
+        run: |
+          set +e
+          cargo run --locked --manifest-path tools/gpu-check/Cargo.toml > /tmp/gpu-check.log 2>&1
+          result=$?
+          cat /tmp/gpu-check.log
+          if [ "$result" -ne 0 ]; then
+            python3 - <<'PY'
+          import base64
+          import gzip
+          from pathlib import Path
+          lines = Path("/tmp/gpu-check.log").read_text(errors="replace").splitlines()[-60:]
+          tail = ("\n".join(lines) + "\n").encode()
+          payload = base64.b64encode(gzip.compress(tail, compresslevel=9)).decode()
+          print(f"::notice title=GPU-log-gzip-base64::{payload}")
+          PY
+          fi
+          exit "$result"
 
       - name: Save GPU check report
         if: always()
