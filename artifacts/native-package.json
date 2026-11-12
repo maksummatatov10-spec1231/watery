@@ -1,8 +1,8 @@
 {
   "package": "watery-1.2.2-dev.2.hnmod",
-  "sha256": "4049f74aecc86f7363432f7c3163654943dbc1965082d6704d611235962930a6",
+  "sha256": "f1e007a10dfec8161fe0c5b63b52b2bd7090567770ad51a5b715778530309579",
   "entries": 207,
-  "expanded_bytes": 2406803,
+  "expanded_bytes": 2406984,
   "horizon": "b880384691b88d317553067109d28e785990bda3",
   "status": "experimental diagnostic pre-release; full gameplay parity NOT implemented"
 }
