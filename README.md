@@ -32,10 +32,11 @@
 оставлен лишь как исторический diagnostic artifact; **не используйте его как
 игровой мод и не тратьте время на дополнительные игровые тесты**.
 
-Работа сосредоточена на поведении и производительности Rust-кода. В последнем
-CI run `43161880409` прошли core tests, строгий Clippy для всех targets,
-paired benchmarks, детерминированная сборка пакета, Horizon adapter/package
-reader и GPU regressions. GPU report подтверждает 61/61 shader pipelines и 7
+Работа сосредоточена на поведении и производительности Rust-кода. В CI run
+`43161880409` прошли core tests, строгий Clippy для всех targets, paired
+benchmarks, детерминированная сборка пакета, Horizon adapter/package reader и
+GPU regressions; дополнительный полный run `43162602752` после обновления
+документации тоже прошёл. GPU report подтверждает 61/61 shader pipelines и 7
 ограниченных execution-проверок на llvmpipe/Vulkan. Это проверка компиляции и
 выбранных регрессий, а не доказательство физической эквивалентности, скорости
 GPU или поведения в Horizon runtime. Игровой adapter не является acceptance

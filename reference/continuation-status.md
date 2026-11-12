@@ -1,6 +1,6 @@
 # Состояние переноса Watery — 2026-11-11
 
-## Актуальный статус после CI run `43161880409` (code HEAD `dc7e25d`)
+## Актуальный статус по CI runs `43161880409` и `43162602752`
 
 - Текущий scope — исходная алгоритмическая логика на Rust с сохранением
   поведения; Horizon demo и визуальная интеграция не являются результатом или
@@ -18,9 +18,10 @@
 - В workflow добавлен строгий `cargo clippy --all-targets ... -D warnings`.
   Первый запуск выявил прежние lint warnings в atlas/network codecs; применены
   typed chunk slices и `NonZeroU64`, добавлен regression test для полностью
-  прозрачной текстуры. Последний run `43161880409` целиком зелёный: format,
-  tests, Clippy, paired benchmarks, deterministic package, pinned Horizon
-  compile/package reader и GPU validation.
+  прозрачной текстуры. Run `43161880409` целиком зелёный: format, tests, Clippy,
+  paired benchmarks, deterministic package, pinned Horizon compile/package
+  reader и GPU validation. Повторный run `43162602752` после обновления только
+  документации и GPU report также прошёл полностью.
 - GPU report [`gpu-check-report.md`](gpu-check-report.md) получен именно из
   run `43161880409`: 61/61 shader pipelines и семь execution checks на
   llvmpipe/Vulkan. Это не physics-equivalence, GPU-performance или Horizon
