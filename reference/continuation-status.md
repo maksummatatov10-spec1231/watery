@@ -1,5 +1,36 @@
 # Состояние переноса Watery — 2026-11-11
 
+## Актуальный статус после CI run `43161880409` (code HEAD `dc7e25d`)
+
+- Текущий scope — исходная алгоритмическая логика на Rust с сохранением
+  поведения; Horizon demo и визуальная интеграция не являются результатом или
+  критерием приёмки.
+- Сохранены две differential-tested CPU-оптимизации: block-major
+  `terrain::voxelize` и section-tiled `SolidCache::extract_region`. В paired
+  CI run `43161880409` измерены соответственно 2.62–2.68× и 1.67–1.76× на
+  двух размерах synthetic workload; числа в README — медианы одного runner,
+  не гарантия для другой машины.
+- GPU CI failure разобран. В run `43159597391` report на Radeon RX 580 был
+  устаревшим tracked-файлом, а не выводом текущего запуска. После добавления
+  очистки report CI показал настоящую compile-ошибку `E0382` в surface test
+  (`Globals` перемещался повторно); исправлено через `clone()` в commit
+  `0fc5b7c`. Run `43160670530` прошёл GPU и core jobs.
+- В workflow добавлен строгий `cargo clippy --all-targets ... -D warnings`.
+  Первый запуск выявил прежние lint warnings в atlas/network codecs; применены
+  typed chunk slices и `NonZeroU64`, добавлен regression test для полностью
+  прозрачной текстуры. Последний run `43161880409` целиком зелёный: format,
+  tests, Clippy, paired benchmarks, deterministic package, pinned Horizon
+  compile/package reader и GPU validation.
+- GPU report [`gpu-check-report.md`](gpu-check-report.md) получен именно из
+  run `43161880409`: 61/61 shader pipelines и семь execution checks на
+  llvmpipe/Vulkan. Это не physics-equivalence, GPU-performance или Horizon
+  runtime proof.
+- Локально `cargo`/`rustc`/`rustfmt` отсутствуют; compile, unit tests, Clippy и
+  benchmarks подтверждены последним GitHub Actions run. README, continuation
+  status и tracked GPU report синхронизированы с этим результатом.
+- Полный Rust rewrite остаётся частичным. Подтверждены ускорения двух CPU
+  функций; другие алгоритмы ещё не профилировались и их ускорение не заявляется.
+
 ## Цель и статус
 
 Актуальный scope по уточнению пользователя: переписывать и оптимизировать
@@ -8,7 +39,7 @@
 являются целью или критерием приёмки. Текущий adapter — диагностический артефакт
 с неудовлетворительным рендером; дальнейшие игровые тесты пользователю не нужны.
 
-## Действия этого продолжения
+## Предыдущая handoff-запись (до диагностики runs `43160126724`–`43161880409`)
 
 - Обновлены README и native development notes: убраны устаревшие заявления,
   что adapter и `.hnmod` отсутствуют; явно обозначены диагностический scope,
@@ -97,7 +128,7 @@ Collision boxes сохраняются до chunk invalidation; resolution 4 и�
 Core, Horizon adapter и чтение пакета прошли CI compilation/test; поведение этих
 GPU-путей внутри игры всё ещё требует визуальной проверки.
 
-## Проверено в текущем окружении
+## Проверки, записанные в предыдущем handoff (исторические)
 
 - `python3 tools/verify_reference.py` — PASS: JAR SHA256 не изменился,
   проверены 713 inventory entries и 165 byte-identical ресурсов.
@@ -135,16 +166,15 @@ checks, а также запуск 60 compute pipelines и сцен GPU на Rad
 
 ## Следующие шаги
 
-Пользователь уточнил приоритет: **переписать и оптимизировать исходную логику на
-Rust, а не добиваться playable Horizon demo**. Не просить дополнительных игровых
-тестов и не подавать текущую диагностическую визуализацию как результат порта.
+Продолжать автономно исходную Rust-работу; не просить пользователя проверять
+Horizon visuals и не заявлять parity без доказательств.
 
-1. Аудировать `src/` и `gpu/` по Java bytecode и оригинальным GLSL: фиксировать
-   алгоритмы/контракты прежде, чем менять поведение.
-2. Работать над корректностью и оптимизацией Rust core/GPU code; покрывать каждое
-   изменение regression tests и benchmarks без добавления game-facing features.
-3. Разобрать оставшийся GPU CI failure `43110851912` (exit 101), когда доступны
-   raw log/report; он относится к compute checks, а не оправдывает текущий
-   неудовлетворительный визуальный demo.
-4. Не обновлять/продвигать Horizon gameplay build, пока Rust implementation и
-   алгоритмическая parity не отвечают исходной задаче.
+1. Использовать сохранённые bytecode/GLSL и текущие regression tests, чтобы
+   выбрать следующий CPU/GPU алгоритм для профилирования; не оптимизировать код
+   только по интуиции.
+2. Для кандидата сначала добавить воспроизводимый workload/benchmark и
+   differential test, затем менять реализацию и сравнивать парные результаты.
+3. Сохранять зелёный strict Clippy/core/package/GPU CI; GPU pipeline report не
+   считать physics-equivalence или performance proof.
+4. Полный Rust rewrite и parity остаются незавершёнными; продолжать работу на
+   этой ветке и фиксировать оставшиеся ограничения/реальные замеры.

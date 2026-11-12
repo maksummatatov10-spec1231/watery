@@ -32,10 +32,14 @@
 оставлен лишь как исторический diagnostic artifact; **не используйте его как
 игровой мод и не тратьте время на дополнительные игровые тесты**.
 
-Работа сосредоточена на поведении и производительности Rust-кода. В CI run
-`43157229793` core tests, benchmark, adapter compilation и package reader прошли;
-отдельный GPU regression job всё ещё завершился exit 101, причина не установлена.
-Игровой adapter не является acceptance target.
+Работа сосредоточена на поведении и производительности Rust-кода. В последнем
+CI run `43161880409` прошли core tests, строгий Clippy для всех targets,
+paired benchmarks, детерминированная сборка пакета, Horizon adapter/package
+reader и GPU regressions. GPU report подтверждает 61/61 shader pipelines и 7
+ограниченных execution-проверок на llvmpipe/Vulkan. Это проверка компиляции и
+выбранных регрессий, а не доказательство физической эквивалентности, скорости
+GPU или поведения в Horizon runtime. Игровой adapter не является acceptance
+target.
 
 ## Дальнейшая Rust-работа
 
@@ -43,9 +47,10 @@
   совместимость regression-тестами.
 - Сначала находить hot paths на реалистичных данных, затем сравнивать baseline и
   изменение в optimized bench profile; не принимать интуитивные micro-оптимизации.
-- Продолжить перенос и оптимизацию CPU/GPU алгоритмов. Исправление игрового
-  рендера, интеграция блоков, UI и выпуск Horizon-мода не входят в текущий scope.
-- Отдельно разобраться с падающим GPU regression CI; этот failure не скрывать.
+- Продолжить перенос и оптимизацию CPU/GPU алгоритмов с differential-тестами;
+  измерять только сопоставимые версии на одинаковом workload.
+- Лавпайп-проверки считать shader/execution regressions, но не physics parity;
+  Horizon runtime, игровой рендер, UI и выпуск мода не входят в acceptance scope.
 
 ## Сборка и проверки Rust core
 
@@ -53,19 +58,21 @@
 
 ```sh
 cargo test --locked
+cargo clippy --locked --all-targets --features bench-reference -- -D warnings
 cargo bench --locked --bench terrain --features bench-reference
 ```
 
 Bench проверяет точное совпадение результатов и сравнивает старый cell-major
 voxelizer с block-major вариантом, а также прежнее извлечение `SolidCache` с
-обходом секционными плитками. В CI run `43157229793` на одном runner:
+обходом секционными плитками. В CI run `43161880409` на одном runner получены
+следующие paired measurements:
 
 | Workload | Baseline | Новая версия | Ускорение |
 | --- | ---: | ---: | ---: |
-| Terrain, 4×4×4, res 6 | 51,922 ns | 18,908 ns | 2.75× |
-| Terrain, 16×8×16, res 6 | 1,694,488 ns | 603,705 ns | 2.81× |
-| SolidCache, 4×4×4, res 4 | 3,135 ns | 2,106 ns | 1.49× |
-| SolidCache, 16×8×16, res 4 | 106,101 ns | 59,393 ns | 1.79× |
+| Terrain, 4×4×4, res 6 | 36,956 ns | 13,790 ns | 2.68× |
+| Terrain, 16×8×16, res 6 | 1,170,416 ns | 447,655 ns | 2.62× |
+| SolidCache, 4×4×4, res 4 | 2,694 ns | 1,612 ns | 1.67× |
+| SolidCache, 16×8×16, res 4 | 84,829 ns | 48,256 ns | 1.76× |
 
 Замеры синтетические и не обещают тот же коэффициент на другой машине; обе
 версии в каждой паре выполнялись поочерёдно в одном процессе, медиана 9 samples.

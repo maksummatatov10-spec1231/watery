@@ -1,6 +1,6 @@
 # GPU pipeline validation
 
-Adapter: AdapterInfo { name: "Radeon RX 580 Series", vendor: 4098, device: 26591, device_type: DiscreteGpu, device_pci_bus_id: "", driver: "AMD proprietary driver", driver_info: "26.5.2 (AMD proprietary shader compiler)", backend: Vulkan, subgroup_min_size: 64, subgroup_max_size: 64, transient_saves_memory: Some(false), limit_bucket: None }
+Adapter: AdapterInfo { name: "llvmpipe (LLVM 20.1.2, 256 bits)", vendor: 65541, device: 0, device_type: Cpu, device_pci_bus_id: "", driver: "llvmpipe", driver_info: "Mesa 25.2.8-0ubuntu0.24.04.4 (LLVM 20.1.2)", backend: Vulkan, subgroup_min_size: 8, subgroup_max_size: 8, transient_saves_memory: Some(false), limit_bucket: None }
 
 Pipeline creation and limited simulation regressions, not physics equivalence or performance measurement. Full adapter limits are requested; Horizon's device configuration must still be checked.
 
@@ -9,6 +9,8 @@ PASS args.wgsl
 PASS blast.wgsl
 
 PASS blockfill.wgsl
+
+PASS blockfill_mpm.wgsl
 
 PASS blur.wgsl
 
@@ -124,7 +126,7 @@ PASS zb_gather.wgsl
 
 PASS zb_splat.wgsl
 
-Total: 60 passed, 0 failed.
+Total: 61 passed, 0 failed.
 
 PASS execution: args/removal
 
