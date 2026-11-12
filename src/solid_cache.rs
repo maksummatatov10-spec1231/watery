@@ -48,6 +48,43 @@ fn local_index(x: i32, y: i32, z: i32) -> usize {
         | (((z.rem_euclid(16) as usize) & 15) << 8)
 }
 
+#[derive(Clone, Copy)]
+struct SectionSpan {
+    section: i32,
+    start: usize,
+    end: usize,
+}
+
+/// Split a world-axis interval into contiguous ranges within 16-block sections.
+fn section_spans(origin: i32, count: usize) -> Result<Vec<SectionSpan>, &'static str> {
+    if count == 0 {
+        return Ok(Vec::new());
+    }
+    let last_offset = i32::try_from(count - 1).map_err(|_| "world coordinate overflow")?;
+    origin
+        .checked_add(last_offset)
+        .ok_or("world coordinate overflow")?;
+
+    let mut spans = Vec::new();
+    let mut start = 0usize;
+    while start < count {
+        let offset = i32::try_from(start).map_err(|_| "world coordinate overflow")?;
+        let world = origin
+            .checked_add(offset)
+            .ok_or("world coordinate overflow")?;
+        let section = world.div_euclid(16);
+        let local = world.rem_euclid(16) as usize;
+        let end = start + (16 - local).min(count - start);
+        spans.push(SectionSpan {
+            section,
+            start,
+            end,
+        });
+        start = end;
+    }
+    Ok(spans)
+}
+
 fn classify_block(res: usize, boxes: &[[f32; 6]]) -> Result<(u8, u64), &'static str> {
     if boxes.is_empty() {
         return Ok((EMPTY, 0));
@@ -230,6 +267,104 @@ impl SolidCache {
             .checked_mul(gy)
             .and_then(|v| v.checked_mul(gz))
             .ok_or("grid size overflow")?;
+        if total == 0 {
+            return Ok(Vec::new());
+        }
+
+        // Split the region into section-sized tiles. Resolve the section map once
+        // per tile rather than once per block, and reuse the section's local layout.
+        let x_spans = section_spans(origin[0], dims_blocks[0])?;
+        let y_spans = section_spans(origin[1], dims_blocks[1])?;
+        let z_spans = section_spans(origin[2], dims_blocks[2])?;
+        let mut out = vec![0u32; total];
+
+        for z_span in &z_spans {
+            for y_span in &y_spans {
+                for x_span in &x_spans {
+                    let section_key = [x_span.section, y_span.section, z_span.section];
+                    let Some(section) = self.sections.get(&section_key) else {
+                        if !unloaded_solid {
+                            continue;
+                        }
+                        let row_width = (x_span.end - x_span.start) * res;
+                        for bz in z_span.start..z_span.end {
+                            for sz in 0..res {
+                                let cz = bz * res + sz;
+                                for by in y_span.start..y_span.end {
+                                    for sy in 0..res {
+                                        let cy = by * res + sy;
+                                        let row = gx * (cy + gy * cz) + x_span.start * res;
+                                        out[row..row + row_width].fill(1);
+                                    }
+                                }
+                            }
+                        }
+                        continue;
+                    };
+
+                    for bz in z_span.start..z_span.end {
+                        let wz = origin[2] + bz as i32;
+                        for by in y_span.start..y_span.end {
+                            let wy = origin[1] + by as i32;
+                            for bx in x_span.start..x_span.end {
+                                let wx = origin[0] + bx as i32;
+                                let idx = local_index(wx, wy, wz);
+                                let kind = section.kind[idx];
+                                if kind == EMPTY {
+                                    continue;
+                                }
+                                let bits = if kind == PARTIAL {
+                                    section.partial.get(&(idx as u16)).copied().unwrap_or(0)
+                                } else {
+                                    u64::MAX
+                                };
+                                for sz in 0..res {
+                                    let cz = bz * res + sz;
+                                    for sy in 0..res {
+                                        let cy = by * res + sy;
+                                        let row = gx * (cy + gy * cz) + bx * res;
+                                        if kind == FULL {
+                                            out[row..row + res].fill(1);
+                                        } else {
+                                            for sx in 0..res {
+                                                let bit = sx + res * (sy + res * sz);
+                                                if (bits >> bit) & 1 != 0 {
+                                                    out[row + sx] = 1;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Ok(out)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn reference_extract_region(
+        cache: &SolidCache,
+        origin: [i32; 3],
+        dims_blocks: [usize; 3],
+        unloaded_solid: bool,
+    ) -> Result<Vec<u32>, &'static str> {
+        let res = cache.res;
+        let [gx, gy, gz] = [
+            dims_blocks[0].checked_mul(res).ok_or("grid x overflow")?,
+            dims_blocks[1].checked_mul(res).ok_or("grid y overflow")?,
+            dims_blocks[2].checked_mul(res).ok_or("grid z overflow")?,
+        ];
+        let total = gx
+            .checked_mul(gy)
+            .and_then(|value| value.checked_mul(gz))
+            .ok_or("grid size overflow")?;
         let mut out = vec![0u32; total];
         for bz in 0..dims_blocks[2] {
             let wz = origin[2] + bz as i32;
@@ -237,19 +372,19 @@ impl SolidCache {
                 let wy = origin[1] + by as i32;
                 for bx in 0..dims_blocks[0] {
                     let wx = origin[0] + bx as i32;
-                    let sec_key = section_of([wx, wy, wz]);
-                    let (kind, bits) = match self.sections.get(&sec_key) {
-                        Some(sec) => {
+                    let section_key = section_of([wx, wy, wz]);
+                    let (kind, bits) = match cache.sections.get(&section_key) {
+                        Some(section) => {
                             let idx = local_index(wx, wy, wz);
-                            let k = sec.kind[idx];
-                            let b = if k == PARTIAL {
-                                sec.partial.get(&(idx as u16)).copied().unwrap_or(0)
-                            } else if k == FULL {
+                            let kind = section.kind[idx];
+                            let bits = if kind == PARTIAL {
+                                section.partial.get(&(idx as u16)).copied().unwrap_or(0)
+                            } else if kind == FULL {
                                 u64::MAX
                             } else {
                                 0
                             };
-                            (k, b)
+                            (kind, bits)
                         }
                         None if unloaded_solid => (FULL, u64::MAX),
                         None => (EMPTY, 0),
@@ -279,11 +414,6 @@ impl SolidCache {
         }
         Ok(out)
     }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
 
     #[test]
     fn matches_terrain_voxelize_across_section_boundaries_and_partial_shapes() {
@@ -341,6 +471,39 @@ mod tests {
         let expected = crate::terrain::voxelize(dims, res, &direct_boxes).unwrap();
         let actual = cache.extract_region(origin, dims, true).unwrap();
         assert_eq!(actual, expected);
+        assert_eq!(actual, reference_extract_region(&cache, origin, dims, true).unwrap());
+    }
+
+    #[test]
+    fn extraction_matches_reference_with_missing_sections_and_negative_coordinates() {
+        let mut cache = SolidCache::new(4).unwrap();
+        let origin = [-17, 15, 31];
+        let dims = [5, 3, 4];
+        let mut blocks = vec![Vec::new(); SECTION_BLOCKS];
+        blocks[local_index(origin[0], origin[1], origin[2])] =
+            vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]];
+        cache.insert_section([-2, 0, 1], &blocks).unwrap();
+
+        for unloaded_solid in [false, true] {
+            assert_eq!(
+                cache.extract_region(origin, dims, unloaded_solid).unwrap(),
+                reference_extract_region(&cache, origin, dims, unloaded_solid).unwrap(),
+                "unloaded_solid={unloaded_solid}"
+            );
+        }
+    }
+
+    #[test]
+    fn extraction_rejects_world_coordinate_overflow() {
+        let cache = SolidCache::new(4).unwrap();
+        assert!(cache.extract_region([i32::MAX, 0, 0], [2, 1, 1], true).is_err());
+        assert!(cache
+            .extract_region([0; 3], [i32::MAX as usize + 2, 1, 1], true)
+            .is_err());
+        assert_eq!(
+            cache.extract_region([i32::MAX, 0, 0], [0, 1, 1], true).unwrap(),
+            Vec::<u32>::new()
+        );
     }
 
     #[test]
