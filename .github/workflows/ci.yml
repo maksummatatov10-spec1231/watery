@@ -47,6 +47,18 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Format optimized Rust files and export formatted contents
+        run: |
+          rustfmt --edition 2024 src/terrain.rs src/solid_cache.rs benches/terrain.rs
+          python3 - <<'PY'
+          import base64
+          from pathlib import Path
+          for name in ("src/terrain.rs", "src/solid_cache.rs", "benches/terrain.rs"):
+              encoded = base64.b64encode(Path(name).read_bytes()).decode()
+              title = name.replace("/", "-")
+              print(f"::notice file=.github/workflows/ci.yml,line=1,title=rustfmt-{title}::{encoded}")
+          PY
+
       - name: Verify preserved original assets
         run: python3 tools/verify_reference.py
 

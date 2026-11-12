@@ -53,17 +53,26 @@
   simulation checks` завершился exit 101. Raw logs и GPU report artifact из Actions
   недоступны из этого окружения (EOF), точная причина не установлена. Это не
   полный зелёный CI и не проверка в реальном Horizon runtime.
-- Первый code-only optimization: `terrain::voxelize` теперь проходит блоками,
-  кеширует subcell centers, пропускает пустые блоки и заполняет full cubes rows.
-  Test сравнивает побайтную маску со старым cell-major oracle на resolution
-  1/2/3/4/7 и collision-box edge cases.
-- Добавлен dependency-free `cargo bench --bench terrain` с original baseline,
-  optimized bench profile, `black_box`, alternating order и median samples.
-  GitHub Actions run `43154198934` прошёл core tests и bench. На runner получено:
-  4×4×4 / res 6: 37 069 ns → 12 586 ns (2.945×); 16×8×16 / res 6:
-  1 175 548 ns → 410 072 ns (2.867×). Это сравнение двух алгоритмов в одном CI
-  run на заданных синтетических collision boxes, не универсальный коэффициент.
-  GPU regression job по-прежнему завершилась exit 101.
+- Первая measured-оптимизация: `terrain::voxelize` проходит блоками, кеширует
+  subcell centers, пропускает пустые блоки и рядами заполняет full cubes.
+  Differential test сравнивает маску со старым cell-major oracle на resolutions
+  1/2/3/4/7 и edge cases. На следующих paired CI runs результат колебался между
+  2.5× и 3.6× в зависимости от runner.
+- Добавлен paired benchmark для `SolidCache::extract_region` с сохранённым
+  reference-алгоритмом под feature `bench-reference`. Рефакторинг обходит регион
+  плитками 16×16×16 и делает lookup секции один раз на плитку вместо каждого
+  блока; добавлены differential tests для отрицательных координат, отсутствующих
+  секций и обоих режимов `unloaded_solid`, а также отказ на world-coordinate
+  overflow. В CI run `43157229793` core/test/bench и package job прошли. На
+  одинаковом runner получено: diagnostic 4×4×4 / res 4 — 3,135 → 2,106 ns
+  (1.49×); 16×8×16 / res 4 — 106,101 → 59,393 ns (1.79×). Это синтетические
+  paired measurements, не гарантированный коэффициент для других машин.
+- Тот же run подтвердил для terrain: 4×4×4 / res 6 — 51,922 → 18,908 ns
+  (2.75×); 16×8×16 / res 6 — 1,694,488 → 603,705 ns (2.81×).
+- GPU regression job в run `43157229793` снова завершилась exit 101. Check-run
+  подтверждает только exit code; raw log и 929-byte artifact
+  `gpu-check-report` не скачиваются из этого окружения (EOF), поэтому причина
+  остаётся неизвестной.
 - Версия `watery-1.2.2-dev.1` пересобрана дважды детерминированно: 207 entries,
   SHA256 `43f62d359bc6174bb516beb557f7e99d4a761dcce33cc5128f63465a19d60cdd`;
   root copy byte-identical, `native-bundle/` содержит исправленный `projection.rs`.

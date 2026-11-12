@@ -32,10 +32,10 @@
 оставлен лишь как исторический diagnostic artifact; **не используйте его как
 игровой мод и не тратьте время на дополнительные игровые тесты**.
 
-Работа сосредоточена на поведении и производительности Rust-кода. На CI commit
-`0ecbb40` core tests, adapter compilation и package reader прошли; отдельный GPU
-regression job остаётся failing и требует отдельного разбора. Игровой adapter не
-является acceptance target.
+Работа сосредоточена на поведении и производительности Rust-кода. В CI run
+`43157229793` core tests, benchmark, adapter compilation и package reader прошли;
+отдельный GPU regression job всё ещё завершился exit 101, причина не установлена.
+Игровой adapter не является acceptance target.
 
 ## Дальнейшая Rust-работа
 
@@ -53,14 +53,24 @@ regression job остаётся failing и требует отдельного �
 
 ```sh
 cargo test --locked
-cargo bench --locked --bench terrain
+cargo bench --locked --bench terrain --features bench-reference
 ```
 
-Benchmark сравнивает прежний cell-major алгоритм с block-major вариантом на
-диагностическом объёме и более крупном регионе. На GitHub runner в одном
-сопоставимом прогоне получено около 2.9× для обоих размеров; это не универсальная
-цифра для всех машин. Полный статус CI и ограничения — в
-[`reference/continuation-status.md`](reference/continuation-status.md).
+Bench проверяет точное совпадение результатов и сравнивает старый cell-major
+voxelizer с block-major вариантом, а также прежнее извлечение `SolidCache` с
+обходом секционными плитками. В CI run `43157229793` на одном runner:
+
+| Workload | Baseline | Новая версия | Ускорение |
+| --- | ---: | ---: | ---: |
+| Terrain, 4×4×4, res 6 | 51,922 ns | 18,908 ns | 2.75× |
+| Terrain, 16×8×16, res 6 | 1,694,488 ns | 603,705 ns | 2.81× |
+| SolidCache, 4×4×4, res 4 | 3,135 ns | 2,106 ns | 1.49× |
+| SolidCache, 16×8×16, res 4 | 106,101 ns | 59,393 ns | 1.79× |
+
+Замеры синтетические и не обещают тот же коэффициент на другой машине; обе
+версии в каждой паре выполнялись поочерёдно в одном процессе, медиана 9 samples.
+`bench-reference` включает только benchmark oracle. Полный статус CI и
+ограничения — в [`reference/continuation-status.md`](reference/continuation-status.md).
 
 Оригинальный мод: Watery 1.2.2, Fabric, Minecraft 26.3, Java ≥25,
 GPL-3.0-only. Автор оригинала — ItsBlueDD. SHA256 исходного JAR:
