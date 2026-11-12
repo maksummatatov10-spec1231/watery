@@ -453,6 +453,33 @@ pub fn reference_insert_section(
 
 #[cfg(any(test, feature = "bench-reference"))]
 #[doc(hidden)]
+pub fn reference_update_block(
+    cache: &mut SolidCache,
+    pos: [i32; 3],
+    boxes: &[[f32; 6]],
+) -> Result<bool, &'static str> {
+    let (new_kind, new_bits) = reference_classify_block(cache.res, boxes)?;
+    let Some(section) = cache.sections.get_mut(&section_of(pos)) else {
+        return Ok(false);
+    };
+    let index = local_index(pos[0], pos[1], pos[2]);
+    let old_kind = section.kind[index];
+    let old_bits = if old_kind == PARTIAL {
+        section.partial.get(&(index as u16)).copied().unwrap_or(0)
+    } else {
+        0
+    };
+    section.kind[index] = new_kind;
+    if new_kind == PARTIAL {
+        section.partial.insert(index as u16, new_bits);
+    } else {
+        section.partial.remove(&(index as u16));
+    }
+    Ok(old_kind != new_kind || (new_kind == PARTIAL && old_bits != new_bits))
+}
+
+#[cfg(any(test, feature = "bench-reference"))]
+#[doc(hidden)]
 pub fn reference_extract_region(
     cache: &SolidCache,
     origin: [i32; 3],
@@ -676,6 +703,48 @@ mod tests {
         actual.insert_section(section, &blocks).unwrap();
         reference_insert_section(&mut reference, section, &blocks).unwrap();
 
+        assert_eq!(
+            actual.extract_region(origin, [16; 3], false).unwrap(),
+            reference_extract_region(&reference, origin, [16; 3], false).unwrap()
+        );
+    }
+
+    #[test]
+    fn block_updates_match_cellwise_reference_for_mixed_shapes() {
+        let shapes = [
+            Vec::new(),
+            vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
+            vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]],
+            vec![[0.25, 0.25, 0.25, 0.75, 0.75, 0.75]],
+            vec![
+                [0.0, 0.0, 0.0, 0.5, 1.0, 1.0],
+                [0.5, 0.5, 0.0, 1.0, 1.0, 1.0],
+            ],
+            vec![[0.75, 0.0, 0.0, 0.25, 1.0, 1.0]],
+        ];
+        let blocks: Vec<_> = (0..SECTION_BLOCKS)
+            .map(|idx| shapes[idx % shapes.len()].clone())
+            .collect();
+        let section = [-1, 2, 0];
+        let origin = [-16, 32, 0];
+        let mut actual = SolidCache::new(4).unwrap();
+        let mut reference = SolidCache::new(4).unwrap();
+        let empty_blocks = vec![Vec::new(); SECTION_BLOCKS];
+        actual.insert_section(section, &empty_blocks).unwrap();
+        reference_insert_section(&mut reference, section, &empty_blocks).unwrap();
+
+        for (idx, boxes) in blocks.iter().enumerate() {
+            let pos = [
+                origin[0] + (idx & 15) as i32,
+                origin[1] + ((idx >> 4) & 15) as i32,
+                origin[2] + (idx >> 8) as i32,
+            ];
+            assert_eq!(
+                actual.update_block(pos, boxes).unwrap(),
+                reference_update_block(&mut reference, pos, boxes).unwrap(),
+                "block index {idx}"
+            );
+        }
         assert_eq!(
             actual.extract_region(origin, [16; 3], false).unwrap(),
             reference_extract_region(&reference, origin, [16; 3], false).unwrap()
