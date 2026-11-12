@@ -1,8 +1,10 @@
 use std::{hint::black_box, time::Instant};
-use watery_core::terrain::voxelize;
+use watery_core::{solid_cache::SolidCache, terrain::voxelize};
 
 const SAMPLES: usize = 9;
 const BATCH: usize = 4;
+const CACHE_RESOLUTION: usize = 4;
+const SECTION_BLOCKS: usize = 16 * 16 * 16;
 
 fn original_cell_major(
     dims: [usize; 3],
@@ -28,7 +30,7 @@ fn original_cell_major(
     out
 }
 
-fn workload(dims: [usize; 3]) -> Vec<Vec<[f64; 6]>> {
+fn terrain_workload(dims: [usize; 3]) -> Vec<Vec<[f64; 6]>> {
     let shapes = [
         vec![],
         vec![],
@@ -58,56 +60,139 @@ fn median(mut values: Vec<u128>) -> u128 {
     values[values.len() / 2]
 }
 
-fn compare(name: &str, dims: [usize; 3], resolution: usize) {
-    let blocks = workload(dims);
+fn sample_single(mut run: impl FnMut()) -> u128 {
+    for _ in 0..3 {
+        batch_ns(&mut run);
+    }
+    median((0..SAMPLES).map(|_| batch_ns(&mut run)).collect())
+}
+
+fn sample_pair(mut first: impl FnMut(), mut second: impl FnMut()) -> (u128, u128) {
+    for _ in 0..3 {
+        batch_ns(&mut first);
+        batch_ns(&mut second);
+    }
+    let mut first_samples = Vec::with_capacity(SAMPLES);
+    let mut second_samples = Vec::with_capacity(SAMPLES);
+    for i in 0..SAMPLES {
+        // Alternate order to reduce systematic bias from runner temperature/load.
+        if i % 2 == 0 {
+            first_samples.push(batch_ns(&mut first));
+            second_samples.push(batch_ns(&mut second));
+        } else {
+            second_samples.push(batch_ns(&mut second));
+            first_samples.push(batch_ns(&mut first));
+        }
+    }
+    (median(first_samples), median(second_samples))
+}
+
+fn compare_terrain(name: &str, dims: [usize; 3], resolution: usize) {
+    let blocks = terrain_workload(dims);
     let expected = original_cell_major(dims, resolution, &blocks);
-    let actual = voxelize(dims, resolution, &blocks).expect("valid benchmark workload");
+    let actual = voxelize(dims, resolution, &blocks).expect("valid terrain workload");
     assert_eq!(actual, expected, "benchmark variants must produce identical masks");
 
-    let mut original = || {
+    let original = || {
         black_box(original_cell_major(
             black_box(dims),
             resolution,
             black_box(blocks.as_slice()),
         ));
     };
-    let mut block_major = || {
+    let block_major = || {
         black_box(
             voxelize(
                 black_box(dims),
                 resolution,
                 black_box(blocks.as_slice()),
             )
-            .expect("valid benchmark workload"),
+            .expect("valid terrain workload"),
         );
     };
-
-    for _ in 0..3 {
-        batch_ns(&mut original);
-        batch_ns(&mut block_major);
-    }
-    let mut original_samples = Vec::with_capacity(SAMPLES);
-    let mut block_major_samples = Vec::with_capacity(SAMPLES);
-    for i in 0..SAMPLES {
-        // Alternate order to reduce systematic bias from runner temperature/load.
-        if i % 2 == 0 {
-            original_samples.push(batch_ns(&mut original));
-            block_major_samples.push(batch_ns(&mut block_major));
-        } else {
-            block_major_samples.push(batch_ns(&mut block_major));
-            original_samples.push(batch_ns(&mut original));
-        }
-    }
-
-    let original_ns = median(original_samples);
-    let block_major_ns = median(block_major_samples);
+    let (original_ns, block_major_ns) = sample_pair(original, block_major);
     let speedup = original_ns as f64 / block_major_ns as f64;
     println!(
         "BENCH_RESULT|{name}|original_ns={original_ns}|block_major_ns={block_major_ns}|speedup={speedup:.3}x"
     );
 }
 
+fn cache_boxes_at(pos: [i32; 3]) -> Vec<[f32; 6]> {
+    match (pos[0].rem_euclid(8) + 3 * pos[1].rem_euclid(8) + 5 * pos[2].rem_euclid(8)).rem_euclid(8) {
+        0 => vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
+        1 => vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]],
+        2 => vec![[0.25, 0.25, 0.25, 0.75, 0.75, 0.75]],
+        _ => Vec::new(),
+    }
+}
+
+fn cache_workload(
+    origin: [i32; 3],
+    dims: [usize; 3],
+) -> (SolidCache, Vec<Vec<[f64; 6]>>) {
+    let mut cache = SolidCache::new(CACHE_RESOLUTION).expect("valid cache resolution");
+    for section in cache.missing_sections(origin, dims) {
+        let mut blocks = vec![Vec::new(); SECTION_BLOCKS];
+        for z in 0..16 {
+            for y in 0..16 {
+                for x in 0..16 {
+                    let world = [
+                        section[0] * 16 + x,
+                        section[1] * 16 + y,
+                        section[2] * 16 + z,
+                    ];
+                    let index = x as usize + 16 * (y as usize + 16 * z as usize);
+                    blocks[index] = cache_boxes_at(world);
+                }
+            }
+        }
+        cache
+            .insert_section(section, &blocks)
+            .expect("valid section workload");
+    }
+
+    let mut direct_boxes = Vec::with_capacity(dims[0] * dims[1] * dims[2]);
+    for z in 0..dims[2] {
+        for y in 0..dims[1] {
+            for x in 0..dims[0] {
+                let world = [origin[0] + x as i32, origin[1] + y as i32, origin[2] + z as i32];
+                direct_boxes.push(
+                    cache_boxes_at(world)
+                        .iter()
+                        .map(|b| std::array::from_fn(|i| b[i] as f64))
+                        .collect(),
+                );
+            }
+        }
+    }
+    (cache, direct_boxes)
+}
+
+fn compare_solid_cache(name: &str, origin: [i32; 3], dims: [usize; 3]) {
+    let (cache, direct_boxes) = cache_workload(origin, dims);
+    let expected = voxelize(dims, CACHE_RESOLUTION, &direct_boxes).expect("valid cache workload");
+    let actual = cache
+        .extract_region(origin, dims, true)
+        .expect("valid cache extraction");
+    assert_eq!(actual, expected, "cache extraction must match direct voxelization");
+
+    let extract = || {
+        black_box(
+            cache
+                .extract_region(black_box(origin), black_box(dims), true)
+                .expect("valid cache extraction"),
+        );
+    };
+    let baseline_ns = sample_single(extract);
+    println!(
+        "BENCH_RESULT|{name}|extract_ns={baseline_ns}|dims={}x{}x{}|resolution={CACHE_RESOLUTION}",
+        dims[0], dims[1], dims[2]
+    );
+}
+
 fn main() {
-    compare("diagnostic-4x4x4-res6", [4, 4, 4], 6);
-    compare("chunk-region-16x8x16-res6", [16, 8, 16], 6);
+    compare_terrain("diagnostic-4x4x4-res6", [4, 4, 4], 6);
+    compare_terrain("chunk-region-16x8x16-res6", [16, 8, 16], 6);
+    compare_solid_cache("solid-cache-diagnostic-4x4x4-res4", [14, 63, -2], [4, 4, 4]);
+    compare_solid_cache("solid-cache-larger-16x8x16-res4", [14, 63, -2], [16, 8, 16]);
 }
