@@ -1,6 +1,9 @@
 use std::{hint::black_box, time::Instant};
 use watery_core::{
-    solid_cache::{SolidCache, reference_extract_region, reference_insert_section},
+    solid_cache::{
+        SolidCache, reference_extract_region, reference_insert_section,
+        reference_insert_section_axis_bitwise,
+    },
     terrain::voxelize,
 };
 
@@ -48,136 +51,6 @@ fn terrain_workload(dims: [usize; 3]) -> Vec<Vec<[f64; 6]>> {
     (0..count)
         .map(|i| shapes[i % shapes.len()].clone())
         .collect()
-}
-
-/// Pre-row-fill version of the block-major axis-mask voxelizer, kept as a paired
-/// benchmark baseline so the X-span write optimization can be isolated.
-fn axis_mask_bitwise(dims: [usize; 3], resolution: usize, blocks: &[Vec<[f64; 6]>]) -> Vec<u32> {
-    assert!(resolution > 0 && resolution <= 64 && !dims.contains(&0));
-    let block_count = dims.iter().product::<usize>();
-    assert_eq!(block_count, blocks.len());
-    assert!(
-        !blocks
-            .iter()
-            .flatten()
-            .any(|b| b.iter().any(|v| !v.is_finite()) || (0..3).any(|i| b[i] > b[i + 3]))
-    );
-    let [nx, ny, nz] = dims.map(|v| v * resolution);
-    let mut out = vec![0; nx * ny * nz];
-    let resolution_f64 = resolution as f64;
-    let half_step = 0.5 / resolution_f64;
-    let centers: Vec<f64> = (0..resolution)
-        .map(|i| i as f64 / resolution_f64 + half_step)
-        .collect();
-    let plane = nx * ny;
-    let full_axis_mask = if resolution == 64 {
-        u64::MAX
-    } else {
-        (1u64 << resolution) - 1
-    };
-
-    for bz in 0..dims[2] {
-        let plane_offset = bz * resolution * plane;
-        for by in 0..dims[1] {
-            let row_offset = plane_offset + by * resolution * nx;
-            for bx in 0..dims[0] {
-                let block_index = bx + dims[0] * (by + dims[1] * bz);
-                let boxes = &blocks[block_index];
-                if boxes.is_empty() {
-                    continue;
-                }
-                let fine_x = bx * resolution;
-                if boxes.iter().any(|b| {
-                    b[0] <= 0.0
-                        && b[1] <= 0.0
-                        && b[2] <= 0.0
-                        && b[3] >= 1.0
-                        && b[4] >= 1.0
-                        && b[5] >= 1.0
-                }) {
-                    for z in 0..resolution {
-                        for y in 0..resolution {
-                            let start = row_offset + z * plane + y * nx + fine_x;
-                            out[start..start + resolution].fill(1);
-                        }
-                    }
-                    continue;
-                }
-
-                let mut full = false;
-                for b in boxes {
-                    let mut axes = [0u64; 3];
-                    for (axis, mask) in axes.iter_mut().enumerate() {
-                        for (i, &center) in centers.iter().enumerate() {
-                            if center >= b[axis] && center < b[axis + 3] {
-                                *mask |= 1u64 << i;
-                            }
-                        }
-                    }
-                    if axes.contains(&0) {
-                        continue;
-                    }
-                    if axes.iter().all(|&mask| mask == full_axis_mask) {
-                        full = true;
-                        break;
-                    }
-
-                    let mut z_mask = axes[2];
-                    while z_mask != 0 {
-                        let z = z_mask.trailing_zeros() as usize;
-                        z_mask &= z_mask - 1;
-                        let mut y_mask = axes[1];
-                        while y_mask != 0 {
-                            let y = y_mask.trailing_zeros() as usize;
-                            y_mask &= y_mask - 1;
-                            let row = row_offset + z * plane + y * nx + fine_x;
-                            let mut x_mask = axes[0];
-                            while x_mask != 0 {
-                                let x = x_mask.trailing_zeros() as usize;
-                                x_mask &= x_mask - 1;
-                                out[row + x] = 1;
-                            }
-                        }
-                    }
-                }
-                if full {
-                    for z in 0..resolution {
-                        for y in 0..resolution {
-                            let start = row_offset + z * plane + y * nx + fine_x;
-                            out[start..start + resolution].fill(1);
-                        }
-                    }
-                }
-            }
-        }
-    }
-    out
-}
-
-fn compare_terrain_x_span(name: &str, dims: [usize; 3], resolution: usize) {
-    let blocks = terrain_workload(dims);
-    let bitwise = axis_mask_bitwise(dims, resolution, &blocks);
-    let row_spans = voxelize(dims, resolution, &blocks).expect("valid terrain workload");
-    assert_eq!(row_spans, bitwise, "axis-mask variants must match exactly");
-
-    let bitwise_run = || {
-        black_box(axis_mask_bitwise(
-            black_box(dims),
-            resolution,
-            black_box(blocks.as_slice()),
-        ));
-    };
-    let row_span_run = || {
-        black_box(
-            voxelize(black_box(dims), resolution, black_box(blocks.as_slice()))
-                .expect("valid terrain workload"),
-        );
-    };
-    let (bitwise_ns, row_span_ns) = sample_pair(bitwise_run, row_span_run);
-    let speedup = bitwise_ns as f64 / row_span_ns as f64;
-    println!(
-        "BENCH_RESULT|{name}|axis_bitwise_ns={bitwise_ns}|x_spans_ns={row_span_ns}|speedup={speedup:.3}x"
-    );
 }
 
 fn batch_ns(run: &mut impl FnMut()) -> u128 {
@@ -344,19 +217,30 @@ fn compare_solid_cache_insert() {
         })
         .collect();
     let mut reference = SolidCache::new(CACHE_RESOLUTION).expect("valid cache resolution");
+    let mut axis_bitwise = SolidCache::new(CACHE_RESOLUTION).expect("valid cache resolution");
     let mut section_insert = SolidCache::new(CACHE_RESOLUTION).expect("valid cache resolution");
     reference_insert_section(&mut reference, [0; 3], &blocks).expect("valid reference insertion");
+    reference_insert_section_axis_bitwise(&mut axis_bitwise, [0; 3], &blocks)
+        .expect("valid axis-bitwise insertion");
     section_insert
         .insert_section([0; 3], &blocks)
         .expect("valid section insertion");
+    let expected = reference
+        .extract_region([0; 3], [16; 3], false)
+        .expect("valid reference region");
     assert_eq!(
-        reference
+        expected,
+        axis_bitwise
             .extract_region([0; 3], [16; 3], false)
-            .expect("valid reference region"),
+            .expect("valid axis-bitwise region"),
+        "axis-bitwise and cellwise insertion must produce identical masks"
+    );
+    assert_eq!(
+        expected,
         section_insert
             .extract_region([0; 3], [16; 3], false)
             .expect("valid inserted region"),
-        "section insertion variants must produce identical masks"
+        "optimized and cellwise insertion must produce identical masks"
     );
 
     let reference_run = || {
@@ -365,25 +249,34 @@ fn compare_solid_cache_insert() {
             .expect("valid reference insertion");
         black_box(cache);
     };
-    let section_insert_run = || {
+    let axis_bitwise_run = || {
+        let mut cache = SolidCache::new(CACHE_RESOLUTION).expect("valid cache resolution");
+        reference_insert_section_axis_bitwise(&mut cache, [0; 3], black_box(blocks.as_slice()))
+            .expect("valid axis-bitwise insertion");
+        black_box(cache);
+    };
+    let mut section_insert_run = || {
         let mut cache = SolidCache::new(CACHE_RESOLUTION).expect("valid cache resolution");
         cache
             .insert_section([0; 3], black_box(blocks.as_slice()))
             .expect("valid section insertion");
         black_box(cache);
     };
-    let (reference_ns, section_insert_ns) = sample_pair(reference_run, section_insert_run);
+    let (reference_ns, section_insert_ns) = sample_pair(reference_run, &mut section_insert_run);
     let speedup = reference_ns as f64 / section_insert_ns as f64;
     println!(
         "BENCH_RESULT|solid-cache-section-insert-16x16x16-res4|reference_ns={reference_ns}|section_insert_ns={section_insert_ns}|speedup={speedup:.3}x|blocks={SECTION_BLOCKS}|resolution={CACHE_RESOLUTION}"
+    );
+    let (axis_bitwise_ns, mask_insert_ns) = sample_pair(axis_bitwise_run, &mut section_insert_run);
+    let mask_speedup = axis_bitwise_ns as f64 / mask_insert_ns as f64;
+    println!(
+        "BENCH_RESULT|solid-cache-axis-mask-xbit-insert-16x16x16-res4|axis_bitwise_ns={axis_bitwise_ns}|x_mask_ns={mask_insert_ns}|speedup={mask_speedup:.3}x|blocks={SECTION_BLOCKS}|resolution={CACHE_RESOLUTION}"
     );
 }
 
 fn main() {
     compare_terrain("diagnostic-4x4x4-res6", [4, 4, 4], 6);
     compare_terrain("chunk-region-16x8x16-res6", [16, 8, 16], 6);
-    compare_terrain_x_span("terrain-axis-row-fill-4x4x4-res6", [4, 4, 4], 6);
-    compare_terrain_x_span("terrain-axis-row-fill-16x8x16-res6", [16, 8, 16], 6);
     compare_solid_cache("solid-cache-diagnostic-4x4x4-res4", [14, 63, -2], [4, 4, 4]);
     compare_solid_cache("solid-cache-larger-16x8x16-res4", [14, 63, -2], [16, 8, 16]);
     compare_solid_cache_insert();

@@ -137,6 +137,7 @@ fn classify_block(
             continue;
         }
 
+        // X uses the low `res` bits of each row, so shift the whole mask at once.
         let x_mask = u64::from(axes[0]);
         let mut z_mask = axes[2];
         while z_mask != 0 {
@@ -199,6 +200,77 @@ fn reference_classify_block(res: usize, boxes: &[[f32; 6]]) -> Result<(u8, u64),
             }
         }
     }
+    if count == 0 {
+        Ok((EMPTY, 0))
+    } else if count == total {
+        Ok((FULL, u64::MAX))
+    } else {
+        Ok((PARTIAL, bits))
+    }
+}
+
+#[cfg(any(test, feature = "bench-reference"))]
+fn axis_bitwise_classify_block(
+    res: usize,
+    intervals: &[(f32, f32); 4],
+    boxes: &[[f32; 6]],
+) -> Result<(u8, u64), &'static str> {
+    if boxes.is_empty() {
+        return Ok((EMPTY, 0));
+    }
+    for b in boxes {
+        if b.iter().any(|v| !v.is_finite()) {
+            return Err("non-finite collision box");
+        }
+    }
+    if boxes.len() == 1 {
+        let b = boxes[0];
+        if b[0] <= 0.0 && b[1] <= 0.0 && b[2] <= 0.0 && b[3] >= 1.0 && b[4] >= 1.0 && b[5] >= 1.0 {
+            return Ok((FULL, u64::MAX));
+        }
+    }
+
+    let mut bits = 0u64;
+    for b in boxes {
+        let mut axes = [0u8; 3];
+        let mut valid = true;
+        for (axis, mask) in axes.iter_mut().enumerate() {
+            let min_box = b[axis];
+            let max_box = b[axis + 3];
+            if min_box >= max_box {
+                valid = false;
+                break;
+            }
+            for (cell, (min_cell, max_cell)) in intervals.iter().copied().take(res).enumerate() {
+                if max_box > min_cell && min_box < max_cell {
+                    *mask |= 1u8 << cell;
+                }
+            }
+        }
+        if !valid || axes.contains(&0) {
+            continue;
+        }
+
+        let mut z_mask = axes[2];
+        while z_mask != 0 {
+            let sz = z_mask.trailing_zeros() as usize;
+            z_mask &= z_mask - 1;
+            let mut y_mask = axes[1];
+            while y_mask != 0 {
+                let sy = y_mask.trailing_zeros() as usize;
+                y_mask &= y_mask - 1;
+                let mut x_mask = axes[0];
+                while x_mask != 0 {
+                    let sx = x_mask.trailing_zeros() as usize;
+                    x_mask &= x_mask - 1;
+                    bits |= 1u64 << (sx + res * (sy + res * sz));
+                }
+            }
+        }
+    }
+
+    let count = bits.count_ones() as usize;
+    let total = res * res * res;
     if count == 0 {
         Ok((EMPTY, 0))
     } else if count == total {
@@ -438,6 +510,28 @@ pub fn reference_insert_section(
     let mut sec = Section::default();
     for (idx, boxes) in blocks.iter().enumerate() {
         let (kind, bits) = reference_classify_block(cache.res, boxes)?;
+        sec.kind[idx] = kind;
+        if kind == PARTIAL {
+            sec.partial.insert(idx as u16, bits);
+        }
+    }
+    cache.sections.insert(section, sec);
+    Ok(())
+}
+
+#[cfg(any(test, feature = "bench-reference"))]
+#[doc(hidden)]
+pub fn reference_insert_section_axis_bitwise(
+    cache: &mut SolidCache,
+    section: [i32; 3],
+    blocks: &[Vec<[f32; 6]>],
+) -> Result<(), &'static str> {
+    if blocks.len() != SECTION_BLOCKS {
+        return Err("section requires 4096 block collision entries");
+    }
+    let mut sec = Section::default();
+    for (idx, boxes) in blocks.iter().enumerate() {
+        let (kind, bits) = axis_bitwise_classify_block(cache.res, &cache.cell_intervals, boxes)?;
         sec.kind[idx] = kind;
         if kind == PARTIAL {
             sec.partial.insert(idx as u16, bits);

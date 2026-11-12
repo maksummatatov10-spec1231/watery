@@ -105,19 +105,19 @@ pub fn voxelize(
                             break;
                         }
 
-                        // A half-open interval selects a contiguous run of ordered
-                        // sample centers on each axis, so walk those ranges directly
-                        // instead of extracting every set bit with trailing_zeros.
-                        let x_start = axes[0].trailing_zeros() as usize;
-                        let x_end = x_start + axes[0].count_ones() as usize;
-                        let y_start = axes[1].trailing_zeros() as usize;
-                        let y_end = y_start + axes[1].count_ones() as usize;
-                        let z_start = axes[2].trailing_zeros() as usize;
-                        let z_end = z_start + axes[2].count_ones() as usize;
-                        for z in z_start..z_end {
-                            for y in y_start..y_end {
+                        let mut z_mask = axes[2];
+                        while z_mask != 0 {
+                            let z = z_mask.trailing_zeros() as usize;
+                            z_mask &= z_mask - 1;
+                            let mut y_mask = axes[1];
+                            while y_mask != 0 {
+                                let y = y_mask.trailing_zeros() as usize;
+                                y_mask &= y_mask - 1;
                                 let row = row_offset + z * plane + y * nx + fine_x;
-                                for x in x_start..x_end {
+                                let mut x_mask = axes[0];
+                                while x_mask != 0 {
+                                    let x = x_mask.trailing_zeros() as usize;
+                                    x_mask &= x_mask - 1;
                                     out[row + x] = 1;
                                 }
                             }
