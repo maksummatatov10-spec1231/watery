@@ -29,6 +29,7 @@ impl Default for Section {
 #[derive(Clone, Debug)]
 pub struct SolidCache {
     res: usize,
+    cell_intervals: [(f32, f32); 4],
     sections: HashMap<[i32; 3], Section>,
 }
 
@@ -46,6 +47,16 @@ fn local_index(x: i32, y: i32, z: i32) -> usize {
     ((x.rem_euclid(16) as usize) & 15)
         | (((y.rem_euclid(16) as usize) & 15) << 4)
         | (((z.rem_euclid(16) as usize) & 15) << 8)
+}
+
+fn cell_intervals(res: usize) -> [(f32, f32); 4] {
+    let step = 1.0 / res as f32;
+    let mut intervals = [(0.0, 0.0); 4];
+    for (i, interval) in intervals.iter_mut().take(res).enumerate() {
+        let min = i as f32 * step;
+        *interval = (min, min + step);
+    }
+    intervals
 }
 
 #[derive(Clone, Copy)]
@@ -85,10 +96,78 @@ fn section_spans(origin: i32, count: usize) -> Result<Vec<SectionSpan>, &'static
     Ok(spans)
 }
 
-fn classify_block(res: usize, boxes: &[[f32; 6]]) -> Result<(u8, u64), &'static str> {
-    reference_classify_block(res, boxes)
+fn classify_block(
+    res: usize,
+    intervals: &[(f32, f32); 4],
+    boxes: &[[f32; 6]],
+) -> Result<(u8, u64), &'static str> {
+    if boxes.is_empty() {
+        return Ok((EMPTY, 0));
+    }
+    for b in boxes {
+        if b.iter().any(|v| !v.is_finite()) {
+            return Err("non-finite collision box");
+        }
+    }
+    if boxes.len() == 1 {
+        let b = boxes[0];
+        if b[0] <= 0.0 && b[1] <= 0.0 && b[2] <= 0.0 && b[3] >= 1.0 && b[4] >= 1.0 && b[5] >= 1.0 {
+            return Ok((FULL, u64::MAX));
+        }
+    }
+
+    let mut bits = 0u64;
+    for b in boxes {
+        let mut axes = [0u8; 3];
+        let mut valid = true;
+        for (axis, mask) in axes.iter_mut().enumerate() {
+            let min_box = b[axis];
+            let max_box = b[axis + 3];
+            if min_box >= max_box {
+                valid = false;
+                break;
+            }
+            for (cell, (min_cell, max_cell)) in intervals.iter().copied().take(res).enumerate() {
+                if max_box > min_cell && min_box < max_cell {
+                    *mask |= 1u8 << cell;
+                }
+            }
+        }
+        if !valid || axes.contains(&0) {
+            continue;
+        }
+
+        let mut z_mask = axes[2];
+        while z_mask != 0 {
+            let sz = z_mask.trailing_zeros() as usize;
+            z_mask &= z_mask - 1;
+            let mut y_mask = axes[1];
+            while y_mask != 0 {
+                let sy = y_mask.trailing_zeros() as usize;
+                y_mask &= y_mask - 1;
+                let mut x_mask = axes[0];
+                while x_mask != 0 {
+                    let sx = x_mask.trailing_zeros() as usize;
+                    x_mask &= x_mask - 1;
+                    let bit = sx + res * (sy + res * sz);
+                    bits |= 1u64 << bit;
+                }
+            }
+        }
+    }
+
+    let count = bits.count_ones() as usize;
+    let total = res * res * res;
+    if count == 0 {
+        Ok((EMPTY, 0))
+    } else if count == total {
+        Ok((FULL, u64::MAX))
+    } else {
+        Ok((PARTIAL, bits))
+    }
 }
 
+#[cfg(any(test, feature = "bench-reference"))]
 fn reference_classify_block(res: usize, boxes: &[[f32; 6]]) -> Result<(u8, u64), &'static str> {
     if boxes.is_empty() {
         return Ok((EMPTY, 0));
@@ -140,6 +219,7 @@ impl SolidCache {
         }
         Ok(Self {
             res,
+            cell_intervals: cell_intervals(res),
             sections: HashMap::new(),
         })
     }
@@ -179,7 +259,7 @@ impl SolidCache {
         pos: [i32; 3],
         boxes: &[[f32; 6]],
     ) -> Result<bool, &'static str> {
-        let (new_kind, new_bits) = classify_block(self.res, boxes)?;
+        let (new_kind, new_bits) = classify_block(self.res, &self.cell_intervals, boxes)?;
         let Some(sec) = self.sections.get_mut(&section_of(pos)) else {
             return Ok(false);
         };
@@ -210,7 +290,7 @@ impl SolidCache {
         }
         let mut sec = Section::default();
         for (idx, boxes) in blocks.iter().enumerate() {
-            let (kind, bits) = classify_block(self.res, boxes)?;
+            let (kind, bits) = classify_block(self.res, &self.cell_intervals, boxes)?;
             sec.kind[idx] = kind;
             if kind == PARTIAL {
                 sec.partial.insert(idx as u16, bits);
@@ -542,6 +622,34 @@ mod tests {
                 .unwrap(),
             Vec::<u32>::new()
         );
+    }
+
+    #[test]
+    fn axis_mask_classifier_matches_cellwise_reference_on_edges_and_unions() {
+        let shapes = [
+            Vec::new(),
+            vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
+            vec![[0.0, 0.0, 0.0, 0.5, 1.0, 1.0]],
+            vec![[0.5, 0.5, 0.5, 1.0, 1.0, 1.0]],
+            vec![[-0.25, 0.25, 0.25, 0.5, 0.75, 0.75]],
+            vec![[0.5, 0.0, 0.0, 0.5, 1.0, 1.0]],
+            vec![[0.75, 0.0, 0.0, 0.25, 1.0, 1.0]],
+            vec![
+                [0.0, 0.0, 0.0, 0.5, 1.0, 1.0],
+                [0.5, 0.0, 0.0, 1.0, 1.0, 1.0],
+            ],
+            vec![[f32::NAN, 0.0, 0.0, 1.0, 1.0, 1.0]],
+        ];
+        for res in [1, 2, 4] {
+            let intervals = cell_intervals(res);
+            for boxes in &shapes {
+                assert_eq!(
+                    classify_block(res, &intervals, boxes),
+                    reference_classify_block(res, boxes),
+                    "resolution {res}, boxes {boxes:?}"
+                );
+            }
+        }
     }
 
     #[test]
