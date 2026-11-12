@@ -52,11 +52,7 @@ fn terrain_workload(dims: [usize; 3]) -> Vec<Vec<[f64; 6]>> {
 
 /// Pre-row-fill version of the block-major axis-mask voxelizer, kept as a paired
 /// benchmark baseline so the X-span write optimization can be isolated.
-fn axis_mask_bitwise(
-    dims: [usize; 3],
-    resolution: usize,
-    blocks: &[Vec<[f64; 6]>],
-) -> Vec<u32> {
+fn axis_mask_bitwise(dims: [usize; 3], resolution: usize, blocks: &[Vec<[f64; 6]>]) -> Vec<u32> {
     assert!(resolution > 0 && resolution <= 64 && !dims.contains(&0));
     let block_count = dims.iter().product::<usize>();
     assert_eq!(block_count, blocks.len());
