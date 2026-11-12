@@ -197,15 +197,23 @@ pub fn in_sync_range(position: [i32; 3], player: [i32; 3], loaded: bool) -> bool
         return false;
     }
 
-    // BlockPos coordinates are i32. Widen before subtracting so even opposite
-    // extremes are safe; reject any axis outside the radius before squaring.
-    let dx = i64::from(position[0]) - i64::from(player[0]);
-    let dy = i64::from(position[1]) - i64::from(player[1]);
-    let dz = i64::from(position[2]) - i64::from(player[2]);
-    if dx.abs() > 512 || dy.abs() > 512 || dz.abs() > 512 {
+    // `abs_diff` is defined for every i32 pair (including MIN/MAX). Once an
+    // axis is bounded by the 512-block radius, its square and the partial sums
+    // fit in u32, so narrow integer math is sufficient and avoids i64 ops.
+    let dx = position[0].abs_diff(player[0]);
+    if dx > 512 {
         return false;
     }
-    dx * dx + dy * dy + dz * dz <= 262144
+    let dy = position[1].abs_diff(player[1]);
+    if dy > 512 {
+        return false;
+    }
+    let distance_sq = dx * dx + dy * dy;
+    if distance_sq > 262144 {
+        return false;
+    }
+    let dz = position[2].abs_diff(player[2]);
+    dz <= 512 && distance_sq + dz * dz <= 262144
 }
 
 #[cfg(test)]
