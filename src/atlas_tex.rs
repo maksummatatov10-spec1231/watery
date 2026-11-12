@@ -31,7 +31,7 @@ pub fn pack_rgba8(width: u32, height: u32, rgba: &[u8]) -> Result<Vec<i32>, &'st
 
     let (mut wr, mut wg, mut wb, mut wa) = (0u64, 0u64, 0u64, 0u64);
     let (mut sr, mut sg, mut sb) = (0u64, 0u64, 0u64);
-    for px in rgba[..count * 4].chunks_exact(4) {
+    for px in rgba[..count * 4].as_chunks::<4>().0 {
         let (r, g, b, a) = (px[0] as u64, px[1] as u64, px[2] as u64, px[3] as u64);
         wr += r * a;
         wg += g * a;
@@ -42,11 +42,19 @@ pub fn pack_rgba8(width: u32, height: u32, rgba: &[u8]) -> Result<Vec<i32>, &'st
         sb += b;
         out.push((((px[0] as i32) << 16) | ((px[1] as i32) << 8) | (px[2] as i32)) & 0x00ff_ffff);
     }
-    let (ar, ag, ab) = if wa > 0 {
-        ((wr + wa / 2) / wa, (wg + wa / 2) / wa, (wb + wa / 2) / wa)
-    } else {
-        let n = count as u64;
-        ((sr + n / 2) / n, (sg + n / 2) / n, (sb + n / 2) / n)
+    let (ar, ag, ab) = match std::num::NonZeroU64::new(wa) {
+        Some(alpha_weight) => {
+            let weight = alpha_weight.get();
+            (
+                (wr + weight / 2) / weight,
+                (wg + weight / 2) / weight,
+                (wb + weight / 2) / weight,
+            )
+        }
+        None => {
+            let n = count as u64;
+            ((sr + n / 2) / n, (sg + n / 2) / n, (sb + n / 2) / n)
+        }
     };
     out[2] = (((ar as i32) << 16) | ((ag as i32) << 8) | (ab as i32)) & 0x00ff_ffff;
     Ok(out)
@@ -106,16 +114,22 @@ mod tests {
     fn packs_header_average_and_crops_animated_strip() {
         let mut strip = vec![0u8; 2 * 4 * 4];
         // Frame 0: solid green (0x20, 0xc0, 0x40); Frame 1: solid red (should be cropped).
-        for px in strip[..2 * 2 * 4].chunks_exact_mut(4) {
+        for px in strip[..2 * 2 * 4].as_chunks_mut::<4>().0 {
             px.copy_from_slice(&[0x20, 0xc0, 0x40, 0xff]);
         }
-        for px in strip[2 * 2 * 4..].chunks_exact_mut(4) {
+        for px in strip[2 * 2 * 4..].as_chunks_mut::<4>().0 {
             px.copy_from_slice(&[0xff, 0x00, 0x00, 0xff]);
         }
         let packed = pack_rgba8(2, 4, &strip).unwrap();
         assert_eq!(packed.len(), 4 + 4);
         assert_eq!(&packed[..4], &[2, 2, 0x20c040, 0]);
         assert!(packed[4..].iter().all(|&c| c == 0x20c040));
+    }
+
+    #[test]
+    fn fully_transparent_texture_uses_unweighted_rgb_average() {
+        let packed = pack_rgba8(2, 1, &[200, 20, 40, 0, 10, 80, 120, 0]).unwrap();
+        assert_eq!(packed[2], 0x69_32_50);
     }
 
     #[test]
