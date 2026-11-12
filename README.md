@@ -33,7 +33,7 @@
 игровой мод и не тратьте время на дополнительные игровые тесты**.
 
 Работа сосредоточена на поведении и производительности Rust-кода. Последний
-полный CI run `43253870317` на commit `9440234` прошёл rustfmt, core tests,
+полный CI run `43254882848` на commit `e9629dd` прошёл rustfmt, core tests,
 строгий Clippy, paired benchmarks, детерминированную сборку пакета, Horizon
 adapter/package reader и GPU regressions. GPU report подтверждает 61/61 shader
 pipelines и 7 ограниченных execution-проверок на llvmpipe/Vulkan. Это проверка
@@ -73,24 +73,25 @@ voxelizer с block-major axis-mask вариантом, а также этало�
 Differential tests покрывают границы 63/64/65, unions, вырожденные/внеблочные
 формы, отрицательные координаты и изменение отдельных блоков.
 
-Последний paired benchmark в CI run `43253870317` (один runner):
+Последний paired benchmark в CI run `43254882848` (один runner):
 
 | Workload | Baseline | Новая версия | Ускорение |
 | --- | ---: | ---: | ---: |
-| Terrain, 4×4×4, res 6 | 36,047 ns | 3,291 ns | 10.95× |
-| Terrain, 16×8×16, res 6 | 1,169,165 ns | 117,183 ns | 9.98× |
-| SolidCache insert, cellwise → axis-mask, 16³/res4 | 178,358 ns | 50,659 ns | 3.52× |
-| SolidCache insert, x-bit-loop → x-mask, 16³/res4 | 58,932 ns | 50,129 ns | 1.18× |
-| SolidCache extract, 4×4×4, res 4 | 2,466 ns | 1,690 ns | 1.46× |
-| SolidCache extract, 16×8×16, res 4 | 77,340 ns | 50,209 ns | 1.54× |
+| Terrain, 4×4×4, res 6 | 51,587 ns | 3,987 ns | 12.94× |
+| Terrain, 16×8×16, res 6 | 1,660,644 ns | 147,419 ns | 11.27× |
+| SolidCache insert, cellwise → axis-mask, 16³/res4 | 258,722 ns | 79,266 ns | 3.26× |
+| SolidCache insert, x-bit-loop → x-mask, 16³/res4 | 91,230 ns | 79,466 ns | 1.15× |
+| SolidCache extract, 4×4×4, res 4 | 3,160 ns | 2,091 ns | 1.51× |
+| SolidCache extract, 16×8×16, res 4 | 103,200 ns | 60,511 ns | 1.71× |
 
 Не все проверенные идеи оставлены: integer range-check для network sync показал
 0.67–0.69× baseline и удалён; запись terrain occupancy целыми X-диапазонами
 также проиграла прежнему set-bit traversal и откатана. Текущие bench-пары
 измеряют оставленные варианты отдельно. Замеры синтетические и не обещают тот
 же коэффициент на другой машине; в каждой паре 9 чередующихся samples одного
-runner. `bench-reference` включает только benchmark oracles. Полный статус CI и
-ограничения — в [`reference/continuation-status.md`](reference/continuation-status.md).
+runner. `bench-reference` открывает только reference/benchmark helpers и не
+меняет runtime-состояние. Полный статус CI и ограничения — в
+[`reference/continuation-status.md`](reference/continuation-status.md).
 
 Оригинальный мод: Watery 1.2.2, Fabric, Minecraft 26.3, Java ≥25,
 GPL-3.0-only. Автор оригинала — ItsBlueDD. SHA256 исходного JAR:

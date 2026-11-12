@@ -1,8 +1,8 @@
 # Состояние переноса Watery — 2026-11-11
 
-## Текущий срез — HEAD `9440234`, CI run `43253870317`
+## Текущий срез — HEAD `e9629dd`, CI run `43254882848`
 
-- Полный CI run `43253870317` на `9440234` прошёл rustfmt, core tests, strict
+- Полный CI run `43254882848` на `e9629dd` прошёл rustfmt, core tests, strict
   Clippy, paired CPU benchmarks, deterministic package build, Horizon
   adapter/package-reader и GPU regressions. GPU job проверил 61/61 shader
   pipelines и семь ограниченных execution checks на llvmpipe/Vulkan. Это не
@@ -14,23 +14,23 @@
   цикла по X-битам. `extract_region` обходит секционные плитки. Тесты сравнивают
   результаты с cellwise oracle, покрывают resolution 63/64/65, unions, края,
   вырожденные формы, отрицательные координаты и одиночные block updates.
-- Paired measurements run `43253870317`, медиана 9 чередующихся samples одного
-  runner: terrain 4×4×4/res6 — 36,047 → 3,291 ns (10.95×), 16×8×16/res6 —
-  1,169,165 → 117,183 ns (9.98×); section insertion `SolidCache` 16³/res4 —
-  cellwise 178,358 → axis-mask 50,659 ns (3.52×). Отдельная пара изолирует
-  сдвиг X-mask: прежний x-bit loop 58,932 → 50,129 ns (1.18×). Extraction
-  4×4×4/res4 — 2,466 → 1,690 ns (1.46×), 16×8×16/res4 — 77,340 → 50,209 ns
-  (1.54×). Synthetic workload; цифры не гарантируются на других машинах.
+- Paired measurements run `43254882848`, медиана 9 чередующихся samples одного
+  runner: terrain 4×4×4/res6 — 51,587 → 3,987 ns (12.94×), 16×8×16/res6 —
+  1,660,644 → 147,419 ns (11.27×); section insertion `SolidCache` 16³/res4 —
+  cellwise 258,722 → axis-mask 79,266 ns (3.26×). Отдельная пара изолирует
+  сдвиг X-mask: прежний x-bit loop 91,230 → 79,466 ns (1.15×). Extraction
+  4×4×4/res4 — 3,160 → 2,091 ns (1.51×), 16×8×16/res4 — 103,200 → 60,511 ns
+  (1.71×). Synthetic workload; цифры не гарантируются на других машинах.
 - Неприбыльные варианты удалены, а не оставлены как «оптимизации»: integer
   `network::in_sync_range` замедлил paired workload до 0.67–0.69× baseline;
   замена terrain bit walk на X-span fill дала 0.96–0.99×, на обычные диапазонные
   циклы — 0.80–0.82×. В коде оставлен исходный double range check и быстрый
-  set-bit traversal terrain. Для X-mask packing в `SolidCache` оставлен прямой
-  положительный результат 1.18× относительно прежнего axis-bitwise classifier.
-- В локальном окружении нет `cargo`/`rustc`; компиляция, tests, Clippy,
-  benchmarks и official rustfmt проверены GitHub Actions, а не локальным Rust
-  toolchain. Локальный wasm formatter использовался только для форматирования;
-  последняя официальная CI-проверка rustfmt прошла.
+  set-bit traversal terrain. Для X-mask packing в `SolidCache` повторно измерен
+  прямой положительный результат 1.15× относительно прежнего axis-bitwise
+  classifier.
+- Локально нет `cargo`/`rustc`; компиляция, tests, Clippy, benchmarks и official
+  rustfmt проверены GitHub Actions. Локальный wasm formatter использовался лишь
+  для форматирования; последняя официальная CI-проверка rustfmt прошла.
 - Сверка сети с bytecode: `RealisticWater.isAuthority` допускает singleplayer
   owner **или** operator; receiver проверяет authority до постановки apply на
   server thread. `WaterSyncPayload.apply` для каждой позиции требует
