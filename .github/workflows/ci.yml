@@ -57,7 +57,23 @@ jobs:
         run: cargo test --locked --manifest-path Cargo.toml
 
       - name: Lint Rust core and benchmarks
-        run: cargo clippy --locked --all-targets --features bench-reference -- -D warnings
+        run: |
+          set +e
+          cargo clippy --locked --all-targets --features bench-reference -- -D warnings > /tmp/clippy.log 2>&1
+          result=$?
+          cat /tmp/clippy.log
+          if [ "$result" -ne 0 ]; then
+            python3 - <<'PY'
+          import base64
+          import gzip
+          from pathlib import Path
+          lines = Path("/tmp/clippy.log").read_text(errors="replace").splitlines()[-60:]
+          tail = ("\n".join(lines) + "\n").encode()
+          payload = base64.b64encode(gzip.compress(tail, compresslevel=9)).decode()
+          print(f"::notice title=Clippy-log-gzip-base64::{payload}")
+          PY
+          fi
+          exit "$result"
 
       - name: Benchmark CPU terrain and solid-cache hot paths
         run: |
