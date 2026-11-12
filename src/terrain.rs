@@ -105,6 +105,11 @@ pub fn voxelize(
                             break;
                         }
 
+                        // A half-open interval selects a contiguous run of ordered
+                        // sample centers on X; fill that row range rather than
+                        // visiting each set bit individually.
+                        let x_start = axes[0].trailing_zeros() as usize;
+                        let x_len = axes[0].count_ones() as usize;
                         let mut z_mask = axes[2];
                         while z_mask != 0 {
                             let z = z_mask.trailing_zeros() as usize;
@@ -113,13 +118,8 @@ pub fn voxelize(
                             while y_mask != 0 {
                                 let y = y_mask.trailing_zeros() as usize;
                                 y_mask &= y_mask - 1;
-                                let row = row_offset + z * plane + y * nx + fine_x;
-                                let mut x_mask = axes[0];
-                                while x_mask != 0 {
-                                    let x = x_mask.trailing_zeros() as usize;
-                                    x_mask &= x_mask - 1;
-                                    out[row + x] = 1;
-                                }
+                                let start = row_offset + z * plane + y * nx + fine_x + x_start;
+                                out[start..start + x_len].fill(1);
                             }
                         }
                     }
@@ -230,6 +230,7 @@ mod tests {
             vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
             vec![[0.001, 0.001, 0.001, 0.999, 0.999, 0.999]],
             vec![[0.0, 0.25, 0.5, 0.5, 0.75, 1.0]],
+            vec![[0.34, 0.0, 0.0, 0.35, 1.0, 1.0]],
             vec![
                 [-0.25, 0.0, 0.0, 0.5, 1.0, 0.75],
                 [0.5, 0.25, 0.25, 1.25, 0.75, 1.0],

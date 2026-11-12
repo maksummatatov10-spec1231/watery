@@ -137,6 +137,7 @@ fn classify_block(
             continue;
         }
 
+        let x_mask = u64::from(axes[0]);
         let mut z_mask = axes[2];
         while z_mask != 0 {
             let sz = z_mask.trailing_zeros() as usize;
@@ -145,13 +146,8 @@ fn classify_block(
             while y_mask != 0 {
                 let sy = y_mask.trailing_zeros() as usize;
                 y_mask &= y_mask - 1;
-                let mut x_mask = axes[0];
-                while x_mask != 0 {
-                    let sx = x_mask.trailing_zeros() as usize;
-                    x_mask &= x_mask - 1;
-                    let bit = sx + res * (sy + res * sz);
-                    bits |= 1u64 << bit;
-                }
+                let row_shift = res * (sy + res * sz);
+                bits |= x_mask << row_shift;
             }
         }
     }
