@@ -1,6 +1,6 @@
 use std::{hint::black_box, time::Instant};
 use watery_core::{
-    solid_cache::{SolidCache, reference_extract_region},
+    solid_cache::{SolidCache, reference_extract_region, reference_insert_section},
     terrain::voxelize,
 };
 
@@ -203,9 +203,56 @@ fn compare_solid_cache(name: &str, origin: [i32; 3], dims: [usize; 3]) {
     );
 }
 
+fn compare_solid_cache_insert() {
+    let blocks: Vec<_> = (0..SECTION_BLOCKS)
+        .map(|index| {
+            cache_boxes_at([
+                (index & 15) as i32,
+                ((index >> 4) & 15) as i32,
+                (index >> 8) as i32,
+            ])
+        })
+        .collect();
+    let mut reference = SolidCache::new(CACHE_RESOLUTION).expect("valid cache resolution");
+    let mut section_insert = SolidCache::new(CACHE_RESOLUTION).expect("valid cache resolution");
+    reference_insert_section(&mut reference, [0; 3], &blocks).expect("valid reference insertion");
+    section_insert
+        .insert_section([0; 3], &blocks)
+        .expect("valid section insertion");
+    assert_eq!(
+        reference
+            .extract_region([0; 3], [16; 3], false)
+            .expect("valid reference region"),
+        section_insert
+            .extract_region([0; 3], [16; 3], false)
+            .expect("valid inserted region"),
+        "section insertion variants must produce identical masks"
+    );
+
+    let reference_run = || {
+        let mut cache = SolidCache::new(CACHE_RESOLUTION).expect("valid cache resolution");
+        reference_insert_section(&mut cache, [0; 3], black_box(blocks.as_slice()))
+            .expect("valid reference insertion");
+        black_box(cache);
+    };
+    let section_insert_run = || {
+        let mut cache = SolidCache::new(CACHE_RESOLUTION).expect("valid cache resolution");
+        cache
+            .insert_section([0; 3], black_box(blocks.as_slice()))
+            .expect("valid section insertion");
+        black_box(cache);
+    };
+    let (reference_ns, section_insert_ns) = sample_pair(reference_run, section_insert_run);
+    let speedup = reference_ns as f64 / section_insert_ns as f64;
+    println!(
+        "BENCH_RESULT|solid-cache-section-insert-16x16x16-res4|reference_ns={reference_ns}|section_insert_ns={section_insert_ns}|speedup={speedup:.3}x|blocks={SECTION_BLOCKS}|resolution={CACHE_RESOLUTION}"
+    );
+}
+
 fn main() {
     compare_terrain("diagnostic-4x4x4-res6", [4, 4, 4], 6);
     compare_terrain("chunk-region-16x8x16-res6", [16, 8, 16], 6);
     compare_solid_cache("solid-cache-diagnostic-4x4x4-res4", [14, 63, -2], [4, 4, 4]);
     compare_solid_cache("solid-cache-larger-16x8x16-res4", [14, 63, -2], [16, 8, 16]);
+    compare_solid_cache_insert();
 }

@@ -86,6 +86,10 @@ fn section_spans(origin: i32, count: usize) -> Result<Vec<SectionSpan>, &'static
 }
 
 fn classify_block(res: usize, boxes: &[[f32; 6]]) -> Result<(u8, u64), &'static str> {
+    reference_classify_block(res, boxes)
+}
+
+fn reference_classify_block(res: usize, boxes: &[[f32; 6]]) -> Result<(u8, u64), &'static str> {
     if boxes.is_empty() {
         return Ok((EMPTY, 0));
     }
@@ -347,6 +351,28 @@ impl SolidCache {
 
 #[cfg(any(test, feature = "bench-reference"))]
 #[doc(hidden)]
+pub fn reference_insert_section(
+    cache: &mut SolidCache,
+    section: [i32; 3],
+    blocks: &[Vec<[f32; 6]>],
+) -> Result<(), &'static str> {
+    if blocks.len() != SECTION_BLOCKS {
+        return Err("section requires 4096 block collision entries");
+    }
+    let mut sec = Section::default();
+    for (idx, boxes) in blocks.iter().enumerate() {
+        let (kind, bits) = reference_classify_block(cache.res, boxes)?;
+        sec.kind[idx] = kind;
+        if kind == PARTIAL {
+            sec.partial.insert(idx as u16, bits);
+        }
+    }
+    cache.sections.insert(section, sec);
+    Ok(())
+}
+
+#[cfg(any(test, feature = "bench-reference"))]
+#[doc(hidden)]
 pub fn reference_extract_region(
     cache: &SolidCache,
     origin: [i32; 3],
@@ -515,6 +541,36 @@ mod tests {
                 .extract_region([i32::MAX, 0, 0], [0, 1, 1], true)
                 .unwrap(),
             Vec::<u32>::new()
+        );
+    }
+
+    #[test]
+    fn section_insertion_matches_cellwise_reference_for_mixed_shapes() {
+        let shapes = [
+            Vec::new(),
+            vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
+            vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]],
+            vec![[0.25, 0.25, 0.25, 0.75, 0.75, 0.75]],
+            vec![
+                [0.0, 0.0, 0.0, 0.5, 1.0, 1.0],
+                [0.5, 0.5, 0.0, 1.0, 1.0, 1.0],
+            ],
+            vec![[0.5, 0.0, 0.0, 0.5, 1.0, 1.0]],
+        ];
+        let blocks: Vec<_> = (0..SECTION_BLOCKS)
+            .map(|idx| shapes[idx % shapes.len()].clone())
+            .collect();
+        let section = [-1, 2, 0];
+        let origin = [-16, 32, 0];
+        let mut actual = SolidCache::new(4).unwrap();
+        let mut reference = SolidCache::new(4).unwrap();
+
+        actual.insert_section(section, &blocks).unwrap();
+        reference_insert_section(&mut reference, section, &blocks).unwrap();
+
+        assert_eq!(
+            actual.extract_region(origin, [16; 3], false).unwrap(),
+            reference_extract_region(&reference, origin, [16; 3], false).unwrap()
         );
     }
 
