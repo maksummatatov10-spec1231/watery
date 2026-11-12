@@ -1,5 +1,8 @@
 use std::{hint::black_box, time::Instant};
-use watery_core::{solid_cache::SolidCache, terrain::voxelize};
+use watery_core::{
+    solid_cache::{reference_extract_region, SolidCache},
+    terrain::voxelize,
+};
 
 const SAMPLES: usize = 9;
 const BATCH: usize = 4;
@@ -58,13 +61,6 @@ fn batch_ns(run: &mut impl FnMut()) -> u128 {
 fn median(mut values: Vec<u128>) -> u128 {
     values.sort_unstable();
     values[values.len() / 2]
-}
-
-fn sample_single(mut run: impl FnMut()) -> u128 {
-    for _ in 0..3 {
-        batch_ns(&mut run);
-    }
-    median((0..SAMPLES).map(|_| batch_ns(&mut run)).collect())
 }
 
 fn sample_pair(mut first: impl FnMut(), mut second: impl FnMut()) -> (u128, u128) {
@@ -174,18 +170,28 @@ fn compare_solid_cache(name: &str, origin: [i32; 3], dims: [usize; 3]) {
     let actual = cache
         .extract_region(origin, dims, true)
         .expect("valid cache extraction");
+    let reference = reference_extract_region(&cache, origin, dims, true)
+        .expect("valid reference extraction");
     assert_eq!(actual, expected, "cache extraction must match direct voxelization");
+    assert_eq!(actual, reference, "cache variants must produce identical masks");
 
-    let extract = || {
+    let reference_run = || {
+        black_box(
+            reference_extract_region(&cache, black_box(origin), black_box(dims), true)
+                .expect("valid reference extraction"),
+        );
+    };
+    let tiled_run = || {
         black_box(
             cache
                 .extract_region(black_box(origin), black_box(dims), true)
                 .expect("valid cache extraction"),
         );
     };
-    let baseline_ns = sample_single(extract);
+    let (reference_ns, tiled_ns) = sample_pair(reference_run, tiled_run);
+    let speedup = reference_ns as f64 / tiled_ns as f64;
     println!(
-        "BENCH_RESULT|{name}|extract_ns={baseline_ns}|dims={}x{}x{}|resolution={CACHE_RESOLUTION}",
+        "BENCH_RESULT|{name}|reference_ns={reference_ns}|section_tiled_ns={tiled_ns}|speedup={speedup:.3}x|dims={}x{}x{}|resolution={CACHE_RESOLUTION}",
         dims[0], dims[1], dims[2]
     );
 }

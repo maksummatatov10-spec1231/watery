@@ -345,66 +345,63 @@ impl SolidCache {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    fn reference_extract_region(
-        cache: &SolidCache,
-        origin: [i32; 3],
-        dims_blocks: [usize; 3],
-        unloaded_solid: bool,
-    ) -> Result<Vec<u32>, &'static str> {
-        let res = cache.res;
-        let [gx, gy, gz] = [
-            dims_blocks[0].checked_mul(res).ok_or("grid x overflow")?,
-            dims_blocks[1].checked_mul(res).ok_or("grid y overflow")?,
-            dims_blocks[2].checked_mul(res).ok_or("grid z overflow")?,
-        ];
-        let total = gx
-            .checked_mul(gy)
-            .and_then(|value| value.checked_mul(gz))
-            .ok_or("grid size overflow")?;
-        let mut out = vec![0u32; total];
-        for bz in 0..dims_blocks[2] {
-            let wz = origin[2] + bz as i32;
-            for by in 0..dims_blocks[1] {
-                let wy = origin[1] + by as i32;
-                for bx in 0..dims_blocks[0] {
-                    let wx = origin[0] + bx as i32;
-                    let section_key = section_of([wx, wy, wz]);
-                    let (kind, bits) = match cache.sections.get(&section_key) {
-                        Some(section) => {
-                            let idx = local_index(wx, wy, wz);
-                            let kind = section.kind[idx];
-                            let bits = if kind == PARTIAL {
-                                section.partial.get(&(idx as u16)).copied().unwrap_or(0)
-                            } else if kind == FULL {
-                                u64::MAX
-                            } else {
-                                0
-                            };
-                            (kind, bits)
-                        }
-                        None if unloaded_solid => (FULL, u64::MAX),
-                        None => (EMPTY, 0),
-                    };
-                    if kind == EMPTY {
-                        continue;
+#[cfg(any(test, feature = "bench-reference"))]
+#[doc(hidden)]
+pub fn reference_extract_region(
+    cache: &SolidCache,
+    origin: [i32; 3],
+    dims_blocks: [usize; 3],
+    unloaded_solid: bool,
+) -> Result<Vec<u32>, &'static str> {
+    let res = cache.res;
+    let [gx, gy, gz] = [
+        dims_blocks[0].checked_mul(res).ok_or("grid x overflow")?,
+        dims_blocks[1].checked_mul(res).ok_or("grid y overflow")?,
+        dims_blocks[2].checked_mul(res).ok_or("grid z overflow")?,
+    ];
+    let total = gx
+        .checked_mul(gy)
+        .and_then(|value| value.checked_mul(gz))
+        .ok_or("grid size overflow")?;
+    let mut out = vec![0u32; total];
+    for bz in 0..dims_blocks[2] {
+        let wz = origin[2] + bz as i32;
+        for by in 0..dims_blocks[1] {
+            let wy = origin[1] + by as i32;
+            for bx in 0..dims_blocks[0] {
+                let wx = origin[0] + bx as i32;
+                let section_key = section_of([wx, wy, wz]);
+                let (kind, bits) = match cache.sections.get(&section_key) {
+                    Some(section) => {
+                        let idx = local_index(wx, wy, wz);
+                        let kind = section.kind[idx];
+                        let bits = if kind == PARTIAL {
+                            section.partial.get(&(idx as u16)).copied().unwrap_or(0)
+                        } else if kind == FULL {
+                            u64::MAX
+                        } else {
+                            0
+                        };
+                        (kind, bits)
                     }
-                    for sz in 0..res {
-                        let cz = bz * res + sz;
-                        for sy in 0..res {
-                            let cy = by * res + sy;
-                            let row = gx * (cy + gy * cz) + bx * res;
-                            if kind == FULL {
-                                out[row..row + res].fill(1);
-                            } else {
-                                for sx in 0..res {
-                                    let bit = sx + res * (sy + res * sz);
-                                    if (bits >> bit) & 1 != 0 {
-                                        out[row + sx] = 1;
-                                    }
+                    None if unloaded_solid => (FULL, u64::MAX),
+                    None => (EMPTY, 0),
+                };
+                if kind == EMPTY {
+                    continue;
+                }
+                for sz in 0..res {
+                    let cz = bz * res + sz;
+                    for sy in 0..res {
+                        let cy = by * res + sy;
+                        let row = gx * (cy + gy * cz) + bx * res;
+                        if kind == FULL {
+                            out[row..row + res].fill(1);
+                        } else {
+                            for sx in 0..res {
+                                let bit = sx + res * (sy + res * sz);
+                                if (bits >> bit) & 1 != 0 {
+                                    out[row + sx] = 1;
                                 }
                             }
                         }
@@ -412,8 +409,13 @@ mod tests {
                 }
             }
         }
-        Ok(out)
     }
+    Ok(out)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
 
     #[test]
     fn matches_terrain_voxelize_across_section_boundaries_and_partial_shapes() {

@@ -8,6 +8,9 @@ publish = false
 [lib]
 path = "src/lib.rs"
 
+[features]
+bench-reference = []
+
 [[bench]]
 name = "terrain"
 harness = false
