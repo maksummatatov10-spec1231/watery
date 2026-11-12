@@ -1,6 +1,7 @@
 //! Watery SyncPayload and RemoveAllWaterPayload wire codecs:
 //! - SyncPayload: VarInt count, then big-endian `BlockPos` i64 + signed byte amount.
 //! - RemoveAllWaterPayload: VarInt `radiusChunks` (clamped to `1..=64` on apply) + material byte.
+//!
 //! Channel registration and authoritative application belong to the host adapter.
 use crate::material::Material;
 
@@ -126,7 +127,9 @@ pub fn decode(bytes: &[u8]) -> Result<Vec<BlockUpdate>, DecodeError> {
         return Err(DecodeError::Trailing);
     }
     Ok(bytes[prefix..]
-        .chunks_exact(9)
+        .as_chunks::<9>()
+        .0
+        .iter()
         .map(|row| BlockUpdate {
             position: i64::from_be_bytes(row[..8].try_into().unwrap()),
             amount: row[8] as i8,

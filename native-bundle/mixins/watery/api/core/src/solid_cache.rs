@@ -29,6 +29,7 @@ impl Default for Section {
 #[derive(Clone, Debug)]
 pub struct SolidCache {
     res: usize,
+    cell_intervals: [(f32, f32); 4],
     sections: HashMap<[i32; 3], Section>,
 }
 
@@ -48,7 +49,123 @@ fn local_index(x: i32, y: i32, z: i32) -> usize {
         | (((z.rem_euclid(16) as usize) & 15) << 8)
 }
 
-fn classify_block(res: usize, boxes: &[[f32; 6]]) -> Result<(u8, u64), &'static str> {
+fn cell_intervals(res: usize) -> [(f32, f32); 4] {
+    let step = 1.0 / res as f32;
+    let mut intervals = [(0.0, 0.0); 4];
+    for (i, interval) in intervals.iter_mut().take(res).enumerate() {
+        let min = i as f32 * step;
+        *interval = (min, min + step);
+    }
+    intervals
+}
+
+#[derive(Clone, Copy)]
+struct SectionSpan {
+    section: i32,
+    start: usize,
+    end: usize,
+}
+
+/// Split a world-axis interval into contiguous ranges within 16-block sections.
+fn section_spans(origin: i32, count: usize) -> Result<Vec<SectionSpan>, &'static str> {
+    if count == 0 {
+        return Ok(Vec::new());
+    }
+    let last_offset = i32::try_from(count - 1).map_err(|_| "world coordinate overflow")?;
+    origin
+        .checked_add(last_offset)
+        .ok_or("world coordinate overflow")?;
+
+    let mut spans = Vec::new();
+    let mut start = 0usize;
+    while start < count {
+        let offset = i32::try_from(start).map_err(|_| "world coordinate overflow")?;
+        let world = origin
+            .checked_add(offset)
+            .ok_or("world coordinate overflow")?;
+        let section = world.div_euclid(16);
+        let local = world.rem_euclid(16) as usize;
+        let end = start + (16 - local).min(count - start);
+        spans.push(SectionSpan {
+            section,
+            start,
+            end,
+        });
+        start = end;
+    }
+    Ok(spans)
+}
+
+fn classify_block(
+    res: usize,
+    intervals: &[(f32, f32); 4],
+    boxes: &[[f32; 6]],
+) -> Result<(u8, u64), &'static str> {
+    if boxes.is_empty() {
+        return Ok((EMPTY, 0));
+    }
+    for b in boxes {
+        if b.iter().any(|v| !v.is_finite()) {
+            return Err("non-finite collision box");
+        }
+    }
+    if boxes.len() == 1 {
+        let b = boxes[0];
+        if b[0] <= 0.0 && b[1] <= 0.0 && b[2] <= 0.0 && b[3] >= 1.0 && b[4] >= 1.0 && b[5] >= 1.0 {
+            return Ok((FULL, u64::MAX));
+        }
+    }
+
+    let mut bits = 0u64;
+    for b in boxes {
+        let mut axes = [0u8; 3];
+        let mut valid = true;
+        for (axis, mask) in axes.iter_mut().enumerate() {
+            let min_box = b[axis];
+            let max_box = b[axis + 3];
+            if min_box >= max_box {
+                valid = false;
+                break;
+            }
+            for (cell, (min_cell, max_cell)) in intervals.iter().copied().take(res).enumerate() {
+                if max_box > min_cell && min_box < max_cell {
+                    *mask |= 1u8 << cell;
+                }
+            }
+        }
+        if !valid || axes.contains(&0) {
+            continue;
+        }
+
+        // X uses the low `res` bits of each row, so shift the whole mask at once.
+        let x_mask = u64::from(axes[0]);
+        let mut z_mask = axes[2];
+        while z_mask != 0 {
+            let sz = z_mask.trailing_zeros() as usize;
+            z_mask &= z_mask - 1;
+            let mut y_mask = axes[1];
+            while y_mask != 0 {
+                let sy = y_mask.trailing_zeros() as usize;
+                y_mask &= y_mask - 1;
+                let row_shift = res * (sy + res * sz);
+                bits |= x_mask << row_shift;
+            }
+        }
+    }
+
+    let count = bits.count_ones() as usize;
+    let total = res * res * res;
+    if count == 0 {
+        Ok((EMPTY, 0))
+    } else if count == total {
+        Ok((FULL, u64::MAX))
+    } else {
+        Ok((PARTIAL, bits))
+    }
+}
+
+#[cfg(any(test, feature = "bench-reference"))]
+fn reference_classify_block(res: usize, boxes: &[[f32; 6]]) -> Result<(u8, u64), &'static str> {
     if boxes.is_empty() {
         return Ok((EMPTY, 0));
     }
@@ -72,9 +189,9 @@ fn classify_block(res: usize, boxes: &[[f32; 6]]) -> Result<(u8, u64), &'static 
             for sx in 0..res {
                 let min = [sx as f32 * step, sy as f32 * step, sz as f32 * step];
                 let max = [min[0] + step, min[1] + step, min[2] + step];
-                let solid = boxes.iter().any(|b| {
-                    (0..3).all(|a| b[a] < b[a + 3] && b[a + 3] > min[a] && b[a] < max[a])
-                });
+                let solid = boxes
+                    .iter()
+                    .any(|b| (0..3).all(|a| b[a] < b[a + 3] && b[a + 3] > min[a] && b[a] < max[a]));
                 if solid {
                     let bit = sx + res * (sy + res * sz);
                     bits |= 1u64 << bit;
@@ -92,6 +209,77 @@ fn classify_block(res: usize, boxes: &[[f32; 6]]) -> Result<(u8, u64), &'static 
     }
 }
 
+#[cfg(any(test, feature = "bench-reference"))]
+fn axis_bitwise_classify_block(
+    res: usize,
+    intervals: &[(f32, f32); 4],
+    boxes: &[[f32; 6]],
+) -> Result<(u8, u64), &'static str> {
+    if boxes.is_empty() {
+        return Ok((EMPTY, 0));
+    }
+    for b in boxes {
+        if b.iter().any(|v| !v.is_finite()) {
+            return Err("non-finite collision box");
+        }
+    }
+    if boxes.len() == 1 {
+        let b = boxes[0];
+        if b[0] <= 0.0 && b[1] <= 0.0 && b[2] <= 0.0 && b[3] >= 1.0 && b[4] >= 1.0 && b[5] >= 1.0 {
+            return Ok((FULL, u64::MAX));
+        }
+    }
+
+    let mut bits = 0u64;
+    for b in boxes {
+        let mut axes = [0u8; 3];
+        let mut valid = true;
+        for (axis, mask) in axes.iter_mut().enumerate() {
+            let min_box = b[axis];
+            let max_box = b[axis + 3];
+            if min_box >= max_box {
+                valid = false;
+                break;
+            }
+            for (cell, (min_cell, max_cell)) in intervals.iter().copied().take(res).enumerate() {
+                if max_box > min_cell && min_box < max_cell {
+                    *mask |= 1u8 << cell;
+                }
+            }
+        }
+        if !valid || axes.contains(&0) {
+            continue;
+        }
+
+        let mut z_mask = axes[2];
+        while z_mask != 0 {
+            let sz = z_mask.trailing_zeros() as usize;
+            z_mask &= z_mask - 1;
+            let mut y_mask = axes[1];
+            while y_mask != 0 {
+                let sy = y_mask.trailing_zeros() as usize;
+                y_mask &= y_mask - 1;
+                let mut x_mask = axes[0];
+                while x_mask != 0 {
+                    let sx = x_mask.trailing_zeros() as usize;
+                    x_mask &= x_mask - 1;
+                    bits |= 1u64 << (sx + res * (sy + res * sz));
+                }
+            }
+        }
+    }
+
+    let count = bits.count_ones() as usize;
+    let total = res * res * res;
+    if count == 0 {
+        Ok((EMPTY, 0))
+    } else if count == total {
+        Ok((FULL, u64::MAX))
+    } else {
+        Ok((PARTIAL, bits))
+    }
+}
+
 impl SolidCache {
     pub fn new(res: usize) -> Result<Self, &'static str> {
         if !matches!(res, 1 | 2 | 4) {
@@ -99,6 +287,7 @@ impl SolidCache {
         }
         Ok(Self {
             res,
+            cell_intervals: cell_intervals(res),
             sections: HashMap::new(),
         })
     }
@@ -138,7 +327,7 @@ impl SolidCache {
         pos: [i32; 3],
         boxes: &[[f32; 6]],
     ) -> Result<bool, &'static str> {
-        let (new_kind, new_bits) = classify_block(self.res, boxes)?;
+        let (new_kind, new_bits) = classify_block(self.res, &self.cell_intervals, boxes)?;
         let Some(sec) = self.sections.get_mut(&section_of(pos)) else {
             return Ok(false);
         };
@@ -169,7 +358,7 @@ impl SolidCache {
         }
         let mut sec = Section::default();
         for (idx, boxes) in blocks.iter().enumerate() {
-            let (kind, bits) = classify_block(self.res, boxes)?;
+            let (kind, bits) = classify_block(self.res, &self.cell_intervals, boxes)?;
             sec.kind[idx] = kind;
             if kind == PARTIAL {
                 sec.partial.insert(idx as u16, bits);
@@ -230,45 +419,72 @@ impl SolidCache {
             .checked_mul(gy)
             .and_then(|v| v.checked_mul(gz))
             .ok_or("grid size overflow")?;
+        if total == 0 {
+            return Ok(Vec::new());
+        }
+
+        // Split the region into section-sized tiles. Resolve the section map once
+        // per tile rather than once per block, and reuse the section's local layout.
+        let x_spans = section_spans(origin[0], dims_blocks[0])?;
+        let y_spans = section_spans(origin[1], dims_blocks[1])?;
+        let z_spans = section_spans(origin[2], dims_blocks[2])?;
         let mut out = vec![0u32; total];
-        for bz in 0..dims_blocks[2] {
-            let wz = origin[2] + bz as i32;
-            for by in 0..dims_blocks[1] {
-                let wy = origin[1] + by as i32;
-                for bx in 0..dims_blocks[0] {
-                    let wx = origin[0] + bx as i32;
-                    let sec_key = section_of([wx, wy, wz]);
-                    let (kind, bits) = match self.sections.get(&sec_key) {
-                        Some(sec) => {
-                            let idx = local_index(wx, wy, wz);
-                            let k = sec.kind[idx];
-                            let b = if k == PARTIAL {
-                                sec.partial.get(&(idx as u16)).copied().unwrap_or(0)
-                            } else if k == FULL {
-                                u64::MAX
-                            } else {
-                                0
-                            };
-                            (k, b)
+
+        for z_span in &z_spans {
+            for y_span in &y_spans {
+                for x_span in &x_spans {
+                    let section_key = [x_span.section, y_span.section, z_span.section];
+                    let Some(section) = self.sections.get(&section_key) else {
+                        if !unloaded_solid {
+                            continue;
                         }
-                        None if unloaded_solid => (FULL, u64::MAX),
-                        None => (EMPTY, 0),
-                    };
-                    if kind == EMPTY {
+                        let row_width = (x_span.end - x_span.start) * res;
+                        for bz in z_span.start..z_span.end {
+                            for sz in 0..res {
+                                let cz = bz * res + sz;
+                                for by in y_span.start..y_span.end {
+                                    for sy in 0..res {
+                                        let cy = by * res + sy;
+                                        let row = gx * (cy + gy * cz) + x_span.start * res;
+                                        out[row..row + row_width].fill(1);
+                                    }
+                                }
+                            }
+                        }
                         continue;
-                    }
-                    for sz in 0..res {
-                        let cz = bz * res + sz;
-                        for sy in 0..res {
-                            let cy = by * res + sy;
-                            let row = gx * (cy + gy * cz) + bx * res;
-                            if kind == FULL {
-                                out[row..row + res].fill(1);
-                            } else {
-                                for sx in 0..res {
-                                    let bit = sx + res * (sy + res * sz);
-                                    if (bits >> bit) & 1 != 0 {
-                                        out[row + sx] = 1;
+                    };
+
+                    for bz in z_span.start..z_span.end {
+                        let wz = origin[2] + bz as i32;
+                        for by in y_span.start..y_span.end {
+                            let wy = origin[1] + by as i32;
+                            for bx in x_span.start..x_span.end {
+                                let wx = origin[0] + bx as i32;
+                                let idx = local_index(wx, wy, wz);
+                                let kind = section.kind[idx];
+                                if kind == EMPTY {
+                                    continue;
+                                }
+                                let bits = if kind == PARTIAL {
+                                    section.partial.get(&(idx as u16)).copied().unwrap_or(0)
+                                } else {
+                                    u64::MAX
+                                };
+                                for sz in 0..res {
+                                    let cz = bz * res + sz;
+                                    for sy in 0..res {
+                                        let cy = by * res + sy;
+                                        let row = gx * (cy + gy * cz) + bx * res;
+                                        if kind == FULL {
+                                            out[row..row + res].fill(1);
+                                        } else {
+                                            for sx in 0..res {
+                                                let bit = sx + res * (sy + res * sz);
+                                                if (bits >> bit) & 1 != 0 {
+                                                    out[row + sx] = 1;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -279,6 +495,145 @@ impl SolidCache {
         }
         Ok(out)
     }
+}
+
+#[cfg(any(test, feature = "bench-reference"))]
+#[doc(hidden)]
+pub fn reference_insert_section(
+    cache: &mut SolidCache,
+    section: [i32; 3],
+    blocks: &[Vec<[f32; 6]>],
+) -> Result<(), &'static str> {
+    if blocks.len() != SECTION_BLOCKS {
+        return Err("section requires 4096 block collision entries");
+    }
+    let mut sec = Section::default();
+    for (idx, boxes) in blocks.iter().enumerate() {
+        let (kind, bits) = reference_classify_block(cache.res, boxes)?;
+        sec.kind[idx] = kind;
+        if kind == PARTIAL {
+            sec.partial.insert(idx as u16, bits);
+        }
+    }
+    cache.sections.insert(section, sec);
+    Ok(())
+}
+
+#[cfg(any(test, feature = "bench-reference"))]
+#[doc(hidden)]
+pub fn reference_insert_section_axis_bitwise(
+    cache: &mut SolidCache,
+    section: [i32; 3],
+    blocks: &[Vec<[f32; 6]>],
+) -> Result<(), &'static str> {
+    if blocks.len() != SECTION_BLOCKS {
+        return Err("section requires 4096 block collision entries");
+    }
+    let mut sec = Section::default();
+    for (idx, boxes) in blocks.iter().enumerate() {
+        let (kind, bits) = axis_bitwise_classify_block(cache.res, &cache.cell_intervals, boxes)?;
+        sec.kind[idx] = kind;
+        if kind == PARTIAL {
+            sec.partial.insert(idx as u16, bits);
+        }
+    }
+    cache.sections.insert(section, sec);
+    Ok(())
+}
+
+#[cfg(any(test, feature = "bench-reference"))]
+#[doc(hidden)]
+pub fn reference_update_block(
+    cache: &mut SolidCache,
+    pos: [i32; 3],
+    boxes: &[[f32; 6]],
+) -> Result<bool, &'static str> {
+    let (new_kind, new_bits) = reference_classify_block(cache.res, boxes)?;
+    let Some(section) = cache.sections.get_mut(&section_of(pos)) else {
+        return Ok(false);
+    };
+    let index = local_index(pos[0], pos[1], pos[2]);
+    let old_kind = section.kind[index];
+    let old_bits = if old_kind == PARTIAL {
+        section.partial.get(&(index as u16)).copied().unwrap_or(0)
+    } else {
+        0
+    };
+    section.kind[index] = new_kind;
+    if new_kind == PARTIAL {
+        section.partial.insert(index as u16, new_bits);
+    } else {
+        section.partial.remove(&(index as u16));
+    }
+    Ok(old_kind != new_kind || (new_kind == PARTIAL && old_bits != new_bits))
+}
+
+#[cfg(any(test, feature = "bench-reference"))]
+#[doc(hidden)]
+pub fn reference_extract_region(
+    cache: &SolidCache,
+    origin: [i32; 3],
+    dims_blocks: [usize; 3],
+    unloaded_solid: bool,
+) -> Result<Vec<u32>, &'static str> {
+    let res = cache.res;
+    let [gx, gy, gz] = [
+        dims_blocks[0].checked_mul(res).ok_or("grid x overflow")?,
+        dims_blocks[1].checked_mul(res).ok_or("grid y overflow")?,
+        dims_blocks[2].checked_mul(res).ok_or("grid z overflow")?,
+    ];
+    let total = gx
+        .checked_mul(gy)
+        .and_then(|value| value.checked_mul(gz))
+        .ok_or("grid size overflow")?;
+    let mut out = vec![0u32; total];
+    for bz in 0..dims_blocks[2] {
+        let wz = origin[2] + bz as i32;
+        for by in 0..dims_blocks[1] {
+            let wy = origin[1] + by as i32;
+            for bx in 0..dims_blocks[0] {
+                let wx = origin[0] + bx as i32;
+                let section_key = section_of([wx, wy, wz]);
+                let (kind, bits) = match cache.sections.get(&section_key) {
+                    Some(section) => {
+                        let idx = local_index(wx, wy, wz);
+                        let kind = section.kind[idx];
+                        let bits = if kind == PARTIAL {
+                            section.partial.get(&(idx as u16)).copied().unwrap_or(0)
+                        } else if kind == FULL {
+                            u64::MAX
+                        } else {
+                            0
+                        };
+                        (kind, bits)
+                    }
+                    None if unloaded_solid => (FULL, u64::MAX),
+                    None => (EMPTY, 0),
+                };
+                if kind == EMPTY {
+                    continue;
+                }
+                for sz in 0..res {
+                    let cz = bz * res + sz;
+                    for sy in 0..res {
+                        let cy = by * res + sy;
+                        let row = gx * (cy + gy * cz) + bx * res;
+                        if kind == FULL {
+                            out[row..row + res].fill(1);
+                        } else {
+                            for sx in 0..res {
+                                let bit = sx + res * (sy + res * sz);
+                                if (bits >> bit) & 1 != 0 {
+                                    out[row + sx] = 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    Ok(out)
 }
 
 #[cfg(test)]
@@ -341,6 +696,149 @@ mod tests {
         let expected = crate::terrain::voxelize(dims, res, &direct_boxes).unwrap();
         let actual = cache.extract_region(origin, dims, true).unwrap();
         assert_eq!(actual, expected);
+        assert_eq!(
+            actual,
+            reference_extract_region(&cache, origin, dims, true).unwrap()
+        );
+    }
+
+    #[test]
+    fn extraction_matches_reference_with_missing_sections_and_negative_coordinates() {
+        let mut cache = SolidCache::new(4).unwrap();
+        let origin = [-17, 15, 31];
+        let dims = [5, 3, 4];
+        let mut blocks = vec![Vec::new(); SECTION_BLOCKS];
+        blocks[local_index(origin[0], origin[1], origin[2])] = vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]];
+        cache.insert_section([-2, 0, 1], &blocks).unwrap();
+
+        for unloaded_solid in [false, true] {
+            assert_eq!(
+                cache.extract_region(origin, dims, unloaded_solid).unwrap(),
+                reference_extract_region(&cache, origin, dims, unloaded_solid).unwrap(),
+                "unloaded_solid={unloaded_solid}"
+            );
+        }
+    }
+
+    #[test]
+    fn extraction_rejects_world_coordinate_overflow() {
+        let cache = SolidCache::new(4).unwrap();
+        assert!(
+            cache
+                .extract_region([i32::MAX, 0, 0], [2, 1, 1], true)
+                .is_err()
+        );
+        assert!(
+            cache
+                .extract_region([0; 3], [i32::MAX as usize + 2, 1, 1], true)
+                .is_err()
+        );
+        assert_eq!(
+            cache
+                .extract_region([i32::MAX, 0, 0], [0, 1, 1], true)
+                .unwrap(),
+            Vec::<u32>::new()
+        );
+    }
+
+    #[test]
+    fn axis_mask_classifier_matches_cellwise_reference_on_edges_and_unions() {
+        let shapes = [
+            Vec::new(),
+            vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
+            vec![[0.0, 0.0, 0.0, 0.5, 1.0, 1.0]],
+            vec![[0.5, 0.5, 0.5, 1.0, 1.0, 1.0]],
+            vec![[-0.25, 0.25, 0.25, 0.5, 0.75, 0.75]],
+            vec![[0.5, 0.0, 0.0, 0.5, 1.0, 1.0]],
+            vec![[0.75, 0.0, 0.0, 0.25, 1.0, 1.0]],
+            vec![
+                [0.0, 0.0, 0.0, 0.5, 1.0, 1.0],
+                [0.5, 0.0, 0.0, 1.0, 1.0, 1.0],
+            ],
+            vec![[f32::NAN, 0.0, 0.0, 1.0, 1.0, 1.0]],
+        ];
+        for res in [1, 2, 4] {
+            let intervals = cell_intervals(res);
+            for boxes in &shapes {
+                assert_eq!(
+                    classify_block(res, &intervals, boxes),
+                    reference_classify_block(res, boxes),
+                    "resolution {res}, boxes {boxes:?}"
+                );
+            }
+        }
+    }
+
+    #[test]
+    fn section_insertion_matches_cellwise_reference_for_mixed_shapes() {
+        let shapes = [
+            Vec::new(),
+            vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
+            vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]],
+            vec![[0.25, 0.25, 0.25, 0.75, 0.75, 0.75]],
+            vec![
+                [0.0, 0.0, 0.0, 0.5, 1.0, 1.0],
+                [0.5, 0.5, 0.0, 1.0, 1.0, 1.0],
+            ],
+            vec![[0.5, 0.0, 0.0, 0.5, 1.0, 1.0]],
+        ];
+        let blocks: Vec<_> = (0..SECTION_BLOCKS)
+            .map(|idx| shapes[idx % shapes.len()].clone())
+            .collect();
+        let section = [-1, 2, 0];
+        let origin = [-16, 32, 0];
+        let mut actual = SolidCache::new(4).unwrap();
+        let mut reference = SolidCache::new(4).unwrap();
+
+        actual.insert_section(section, &blocks).unwrap();
+        reference_insert_section(&mut reference, section, &blocks).unwrap();
+
+        assert_eq!(
+            actual.extract_region(origin, [16; 3], false).unwrap(),
+            reference_extract_region(&reference, origin, [16; 3], false).unwrap()
+        );
+    }
+
+    #[test]
+    fn block_updates_match_cellwise_reference_for_mixed_shapes() {
+        let shapes = [
+            Vec::new(),
+            vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
+            vec![[0.0, 0.0, 0.0, 1.0, 0.5, 1.0]],
+            vec![[0.25, 0.25, 0.25, 0.75, 0.75, 0.75]],
+            vec![
+                [0.0, 0.0, 0.0, 0.5, 1.0, 1.0],
+                [0.5, 0.5, 0.0, 1.0, 1.0, 1.0],
+            ],
+            vec![[0.75, 0.0, 0.0, 0.25, 1.0, 1.0]],
+        ];
+        let blocks: Vec<_> = (0..SECTION_BLOCKS)
+            .map(|idx| shapes[idx % shapes.len()].clone())
+            .collect();
+        let section = [-1, 2, 0];
+        let origin = [-16, 32, 0];
+        let mut actual = SolidCache::new(4).unwrap();
+        let mut reference = SolidCache::new(4).unwrap();
+        let empty_blocks = vec![Vec::new(); SECTION_BLOCKS];
+        actual.insert_section(section, &empty_blocks).unwrap();
+        reference_insert_section(&mut reference, section, &empty_blocks).unwrap();
+
+        for (idx, boxes) in blocks.iter().enumerate() {
+            let pos = [
+                origin[0] + (idx & 15) as i32,
+                origin[1] + ((idx >> 4) & 15) as i32,
+                origin[2] + (idx >> 8) as i32,
+            ];
+            assert_eq!(
+                actual.update_block(pos, boxes).unwrap(),
+                reference_update_block(&mut reference, pos, boxes).unwrap(),
+                "block index {idx}"
+            );
+        }
+        assert_eq!(
+            actual.extract_region(origin, [16; 3], false).unwrap(),
+            reference_extract_region(&reference, origin, [16; 3], false).unwrap()
+        );
     }
 
     #[test]

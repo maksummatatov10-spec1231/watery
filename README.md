@@ -1,9 +1,9 @@
 # Watery 1.2.2 — Rust rewrite / optimization
 
-**Цель: переписать и оптимизировать алгоритмическую логику на Rust. Это не
-задача по созданию игрового Horizon-мода.** Исходный JAR, ресурсы и bytecode
-сохранены для сверки поведения; Rust rewrite пока частичный. Horizon adapter и
-`.hnmod` — отдельный неудачный диагностический эксперимент, не результат порта.
+**Это частичный Rust-перенос, а не полный игровой порт Watery.** Исходный JAR,
+ресурсы и bytecode сохранены для сверки поведения. Horizon adapter и prerelease
+`.hnmod` — экспериментальный диагностический стенд: они не добавляют оригинальные
+предметы в креатив и не реализуют всю игровую логику воды, песка и лавы.
 
 ## Что уже есть в репозитории
 
@@ -18,28 +18,28 @@
 - `native/src/` — Horizon hooks для **диагностической** области около камеры:
   получение collision snapshot, загрузка текстур материала, команды, GPU-запись
   кадров и асинхронный block-fill readback для звуковых событий.
-- `artifacts/watery-1.2.2-dev.1.hnmod` — воспроизводимый development-пакет;
-  `watery-1.2.2-dev.1.hnmod` в корне — его byte-identical копия для удобства.
+- `artifacts/watery-1.2.2-dev.2.hnmod` — воспроизводимый экспериментальный
+  prerelease-пакет; `watery-1.2.2-dev.2.hnmod` в корне — его byte-identical копия.
   Проверка пакета через `Bundle::read` находится в `native/tests/package.rs`.
 - `.github/workflows/ci.yml` — CI для core/native/package reader и GPU-регрессий.
   Используется закреплённый снимок Horizon из `reference/horizon-source.json`.
 
-Пользовательский smoke test Horizon 0.1.0 / Radeon RX 580 (Vulkan) подтвердил
-только запуск и создание диагностического региона. Сам визуальный результат был
-неприемлем: почти прозрачная зеркальная жидкость исчезала при контакте с блоками,
-также наблюдался высокий spawn в воздухе. Пререлиз
-[`watery-1.2.2-dev.1`](https://github.com/maksummatatov10-spec1231/watery/releases/tag/watery-1.2.2-dev.1)
-оставлен лишь как исторический diagnostic artifact; **не используйте его как
-игровой мод и не тратьте время на дополнительные игровые тесты**.
+Пользовательский smoke test `watery-1.2.2-dev.1` на Horizon 0.1.0 / Radeon RX 580
+(Vulkan) подтвердил только запуск и создание диагностического региона. Визуальный
+результат был неприемлем: почти прозрачная зеркальная жидкость пропадала при
+контакте с блоками, также наблюдался высокий spawn в воздухе. По запросу подготовлен
+новый экспериментальный prerelease
+[`watery-1.2.2-dev.2`](https://github.com/maksummatatov10-spec1231/watery/releases/tag/watery-1.2.2-dev.2)
+для ограниченного повторного smoke test. Он не заявляет об исправлении прежних
+проблем и не содержит полного порта или оригинальных creative items; проверяйте
+только в отдельном тестовом instance и мире.
 
-Работа сосредоточена на поведении и производительности Rust-кода. Последний
-полный CI run `43254882848` на commit `e9629dd` прошёл rustfmt, core tests,
-строгий Clippy, paired benchmarks, детерминированную сборку пакета, Horizon
-adapter/package reader и GPU regressions. GPU report подтверждает 61/61 shader
-pipelines и 7 ограниченных execution-проверок на llvmpipe/Vulkan. Это проверка
-компиляции и выбранных регрессий, а не доказательство физической эквивалентности,
-скорости GPU или поведения в Horizon runtime. Игровой adapter не является
-acceptance target.
+До подготовки prerelease `dev.2` полный CI run `43255847284` на commit
+`bb11011` прошёл rustfmt, core tests, строгий Clippy, paired benchmarks,
+детерминированную сборку пакета, Horizon adapter/package reader и GPU regressions.
+GPU report подтвердил 61/61 shader pipelines и 7 ограниченных execution-проверок
+на llvmpipe/Vulkan. Эти проверки не доказывают полную физическую эквивалентность
+или поведение в Horizon runtime; новый `dev.2` также требует отдельного smoke test.
 
 ## Дальнейшая Rust-работа
 

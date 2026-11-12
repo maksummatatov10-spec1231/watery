@@ -86,10 +86,10 @@ jobs:
       - name: Verify deterministic development package
         run: |
           python3 tools/package_native.py
-          cmp artifacts/watery-1.2.2-dev.1.hnmod watery-1.2.2-dev.1.hnmod
-          sha256sum artifacts/watery-1.2.2-dev.1.hnmod > /tmp/watery-package.sha256
+          cmp artifacts/watery-1.2.2-dev.2.hnmod watery-1.2.2-dev.2.hnmod
+          sha256sum artifacts/watery-1.2.2-dev.2.hnmod > /tmp/watery-package.sha256
           python3 tools/package_native.py
-          cmp artifacts/watery-1.2.2-dev.1.hnmod watery-1.2.2-dev.1.hnmod
+          cmp artifacts/watery-1.2.2-dev.2.hnmod watery-1.2.2-dev.2.hnmod
           sha256sum --check /tmp/watery-package.sha256
 
       - name: Compile adapter and read the package with Horizon
