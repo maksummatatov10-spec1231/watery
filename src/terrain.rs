@@ -4,8 +4,9 @@
 /// Convert block collision boxes into a fine-grid solid mask.
 ///
 /// The traversal is block-major: each block's collision list and subcell centers
-/// are reused, avoiding a block-index division and three floating-point divisions
-/// for every fine cell. Empty blocks are skipped and full cubes are filled by rows.
+/// are reused, and resolutions up to 64 combine per-axis occupancy masks instead
+/// of retesting every box for every fine cell. Empty blocks are skipped and full
+/// cubes are filled by rows; larger resolutions keep the direct cell traversal.
 pub fn voxelize(
     dims: [usize; 3],
     resolution: usize,
@@ -47,6 +48,11 @@ pub fn voxelize(
         .map(|i| i as f64 / resolution_f64 + half_step)
         .collect();
     let plane = nx * ny; // Safe because nx * ny * nz was checked above and nz > 0.
+    let full_axis_mask = match resolution {
+        64 => u64::MAX,
+        1..=63 => (1u64 << resolution) - 1,
+        _ => 0,
+    };
 
     for bz in 0..dims[2] {
         let fine_z = bz * resolution;
@@ -80,22 +86,70 @@ pub fn voxelize(
                     continue;
                 }
 
-                for z in 0..resolution {
-                    let pz = centers[z];
-                    let z_row = row_offset + z * plane;
-                    for y in 0..resolution {
-                        let py = centers[y];
-                        let row = z_row + y * nx + fine_x;
-                        for (x, &px) in centers.iter().enumerate() {
-                            if boxes.iter().any(|b| {
-                                px >= b[0]
-                                    && py >= b[1]
-                                    && pz >= b[2]
-                                    && px < b[3]
-                                    && py < b[4]
-                                    && pz < b[5]
-                            }) {
-                                out[row + x] = 1;
+                if resolution <= 64 {
+                    let mut full = false;
+                    for b in boxes {
+                        let mut axes = [0u64; 3];
+                        for (axis, mask) in axes.iter_mut().enumerate() {
+                            for (i, &center) in centers.iter().enumerate() {
+                                if center >= b[axis] && center < b[axis + 3] {
+                                    *mask |= 1u64 << i;
+                                }
+                            }
+                        }
+                        if axes.contains(&0) {
+                            continue;
+                        }
+                        if axes.iter().all(|&mask| mask == full_axis_mask) {
+                            full = true;
+                            break;
+                        }
+
+                        let mut z_mask = axes[2];
+                        while z_mask != 0 {
+                            let z = z_mask.trailing_zeros() as usize;
+                            z_mask &= z_mask - 1;
+                            let mut y_mask = axes[1];
+                            while y_mask != 0 {
+                                let y = y_mask.trailing_zeros() as usize;
+                                y_mask &= y_mask - 1;
+                                let row = row_offset + z * plane + y * nx + fine_x;
+                                let mut x_mask = axes[0];
+                                while x_mask != 0 {
+                                    let x = x_mask.trailing_zeros() as usize;
+                                    x_mask &= x_mask - 1;
+                                    out[row + x] = 1;
+                                }
+                            }
+                        }
+                    }
+                    if full {
+                        for z in 0..resolution {
+                            let z_row = row_offset + z * plane;
+                            for y in 0..resolution {
+                                let start = z_row + y * nx + fine_x;
+                                out[start..start + resolution].fill(1);
+                            }
+                        }
+                    }
+                } else {
+                    for z in 0..resolution {
+                        let pz = centers[z];
+                        let z_row = row_offset + z * plane;
+                        for y in 0..resolution {
+                            let py = centers[y];
+                            let row = z_row + y * nx + fine_x;
+                            for (x, &px) in centers.iter().enumerate() {
+                                if boxes.iter().any(|b| {
+                                    px >= b[0]
+                                        && py >= b[1]
+                                        && pz >= b[2]
+                                        && px < b[3]
+                                        && py < b[4]
+                                        && pz < b[5]
+                                }) {
+                                    out[row + x] = 1;
+                                }
                             }
                         }
                     }
@@ -166,6 +220,30 @@ mod tests {
                 reference_voxelize(dims, resolution, &blocks),
                 "resolution {resolution}"
             );
+        }
+    }
+
+    #[test]
+    fn bitmask_edges_at_63_64_and_fallback_resolution_match_reference() {
+        let shapes = [
+            Vec::new(),
+            vec![[0.0, 0.0, 0.0, 1.0, 1.0, 1.0]],
+            vec![[0.001, 0.001, 0.001, 0.999, 0.999, 0.999]],
+            vec![[0.0, 0.25, 0.5, 0.5, 0.75, 1.0]],
+            vec![
+                [-0.25, 0.0, 0.0, 0.5, 1.0, 0.75],
+                [0.5, 0.25, 0.25, 1.25, 0.75, 1.0],
+            ],
+        ];
+        for resolution in [63, 64, 65] {
+            for shape in &shapes {
+                let blocks = [shape.clone()];
+                assert_eq!(
+                    voxelize([1; 3], resolution, &blocks).unwrap(),
+                    reference_voxelize([1; 3], resolution, &blocks),
+                    "resolution {resolution}, shape {shape:?}"
+                );
+            }
         }
     }
 
