@@ -52,13 +52,14 @@ jobs:
           rustfmt --edition 2024 src/terrain.rs src/solid_cache.rs benches/terrain.rs
           python3 - <<'PY'
           import base64
+          import zlib
           from pathlib import Path
           for name in ("src/terrain.rs", "src/solid_cache.rs", "benches/terrain.rs"):
-              encoded = base64.b64encode(Path(name).read_bytes()).decode()
+              encoded = base64.b64encode(zlib.compress(Path(name).read_bytes(), 9)).decode()
               title = name.replace("/", "-")
               for index, offset in enumerate(range(0, len(encoded), 3000)):
                   chunk = encoded[offset:offset + 3000]
-                  print(f"::notice file=.github/workflows/ci.yml,line=1,title=rustfmt-{title}-{index:03}::{chunk}")
+                  print(f"::notice file=.github/workflows/ci.yml,line=1,title=rustfmt-zlib-{title}-{index:03}::{chunk}")
           PY
 
       - name: Verify preserved original assets
