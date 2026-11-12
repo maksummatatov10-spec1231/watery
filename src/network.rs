@@ -176,10 +176,9 @@ impl RemoveAllPayload {
     }
 }
 
-/// Double-based oracle from `SyncPayload.apply`; available to tests and paired benchmarks.
-#[cfg(any(test, feature = "bench-reference"))]
-#[doc(hidden)]
-pub fn reference_in_sync_range(position: [i32; 3], player: [i32; 3], loaded: bool) -> bool {
+/// Same loaded-chunk and 512-block spherical bound as `SyncPayload.apply`.
+/// Authorization (singleplayer owner or operator) must precede this check.
+pub fn in_sync_range(position: [i32; 3], player: [i32; 3], loaded: bool) -> bool {
     loaded
         && position
             .into_iter()
@@ -187,33 +186,6 @@ pub fn reference_in_sync_range(position: [i32; 3], player: [i32; 3], loaded: boo
             .map(|(a, b)| (f64::from(a) - f64::from(b)).powi(2))
             .sum::<f64>()
             <= 262144.0
-}
-
-/// Same loaded-chunk and inclusive 512-block spherical bound as `SyncPayload.apply`.
-/// Its receiver first requires singleplayer-owner or operator authority.
-#[inline]
-pub fn in_sync_range(position: [i32; 3], player: [i32; 3], loaded: bool) -> bool {
-    if !loaded {
-        return false;
-    }
-
-    // `abs_diff` is defined for every i32 pair (including MIN/MAX). Once an
-    // axis is bounded by the 512-block radius, its square and the partial sums
-    // fit in u32, so narrow integer math is sufficient and avoids i64 ops.
-    let dx = position[0].abs_diff(player[0]);
-    if dx > 512 {
-        return false;
-    }
-    let dy = position[1].abs_diff(player[1]);
-    if dy > 512 {
-        return false;
-    }
-    let distance_sq = dx * dx + dy * dy;
-    if distance_sq > 262144 {
-        return false;
-    }
-    let dz = position[2].abs_diff(player[2]);
-    dz <= 512 && distance_sq + dz * dz <= 262144
 }
 
 #[cfg(test)]
@@ -267,54 +239,6 @@ mod tests {
         assert!(!in_sync_range([512, 1, 0], [0; 3], true));
         assert!(!in_sync_range([0; 3], [0; 3], false));
         assert!(!in_sync_range([i32::MAX; 3], [i32::MIN; 3], true));
-    }
-
-    #[test]
-    fn integer_range_guard_matches_bytecode_double_oracle() {
-        let points = [
-            [0, 0, 0],
-            [512, 0, 0],
-            [-512, 0, 0],
-            [512, 1, 0],
-            [0, -512, 0],
-            [0, 0, 512],
-            [362, 362, 0],
-            [363, 362, 0],
-            [i32::MAX; 3],
-            [i32::MIN; 3],
-            [i32::MAX, i32::MIN, 0],
-            [i32::MIN, i32::MAX, -1],
-        ];
-        for &position in &points {
-            for &player in &points {
-                for loaded in [false, true] {
-                    assert_eq!(
-                        in_sync_range(position, player, loaded),
-                        reference_in_sync_range(position, player, loaded),
-                        "position {position:?}, player {player:?}, loaded {loaded}"
-                    );
-                }
-            }
-        }
-
-        let mut seed = 0x5741_5445_5259_u64;
-        for _ in 0..4096 {
-            let position = std::array::from_fn(|_| {
-                seed = seed.wrapping_mul(6_364_136_223_846_793_005).wrapping_add(1);
-                (seed >> 32) as u32 as i32
-            });
-            let player = std::array::from_fn(|_| {
-                seed = seed.wrapping_mul(6_364_136_223_846_793_005).wrapping_add(1);
-                (seed >> 32) as u32 as i32
-            });
-            for loaded in [false, true] {
-                assert_eq!(
-                    in_sync_range(position, player, loaded),
-                    reference_in_sync_range(position, player, loaded),
-                    "position {position:?}, player {player:?}, loaded {loaded}"
-                );
-            }
-        }
     }
     #[test]
     fn block_pos_pack_roundtrip_and_remove_all_codec() {

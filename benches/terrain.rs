@@ -1,6 +1,5 @@
 use std::{hint::black_box, time::Instant};
 use watery_core::{
-    network::{MAX_ENTRIES, in_sync_range, reference_in_sync_range},
     solid_cache::{SolidCache, reference_extract_region, reference_insert_section},
     terrain::voxelize,
 };
@@ -250,68 +249,10 @@ fn compare_solid_cache_insert() {
     );
 }
 
-fn compare_sync_range() {
-    let player = [100, 80, -200];
-    let entries: Vec<_> = (0..MAX_ENTRIES)
-        .map(|index| {
-            let index = index as i32;
-            let offsets = [
-                (index * 37 % 257) - 128,
-                (index * 73 % 257) - 128,
-                (index * 109 % 257) - 128,
-            ];
-            (
-                [
-                    player[0] + offsets[0],
-                    player[1] + offsets[1],
-                    player[2] + offsets[2],
-                ],
-                player,
-                index % 8 != 0,
-            )
-        })
-        .collect();
-    let reference_count = entries
-        .iter()
-        .filter(|entry| reference_in_sync_range(entry.0, entry.1, entry.2))
-        .count();
-    let optimized_count = entries
-        .iter()
-        .filter(|entry| in_sync_range(entry.0, entry.1, entry.2))
-        .count();
-    assert_eq!(
-        reference_count, optimized_count,
-        "range-check variants must accept the same updates"
-    );
-
-    let reference_run = || {
-        black_box(
-            black_box(entries.as_slice())
-                .iter()
-                .filter(|entry| reference_in_sync_range(entry.0, entry.1, entry.2))
-                .count(),
-        );
-    };
-    let integer_run = || {
-        black_box(
-            black_box(entries.as_slice())
-                .iter()
-                .filter(|entry| in_sync_range(entry.0, entry.1, entry.2))
-                .count(),
-        );
-    };
-    let (reference_ns, integer_ns) = sample_pair(reference_run, integer_run);
-    let speedup = reference_ns as f64 / integer_ns as f64;
-    println!(
-        "BENCH_RESULT|network-sync-range-32768|reference_ns={reference_ns}|integer_ns={integer_ns}|speedup={speedup:.3}x|entries={MAX_ENTRIES}"
-    );
-}
-
 fn main() {
     compare_terrain("diagnostic-4x4x4-res6", [4, 4, 4], 6);
     compare_terrain("chunk-region-16x8x16-res6", [16, 8, 16], 6);
     compare_solid_cache("solid-cache-diagnostic-4x4x4-res4", [14, 63, -2], [4, 4, 4]);
     compare_solid_cache("solid-cache-larger-16x8x16-res4", [14, 63, -2], [16, 8, 16]);
     compare_solid_cache_insert();
-    compare_sync_range();
 }
