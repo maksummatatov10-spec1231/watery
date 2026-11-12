@@ -24,7 +24,7 @@ pub fn run(device:&wgpu::Device,queue:&wgpu::Queue)->Result<(),Box<dyn std::erro
  )?;
  surface.upload_globals(queue,&g)?;
  for field in 0..3 {
-  let mut invalid=g;
+  let mut invalid=g.clone();
   match field {0=>invalid.caps[0]+=1,1=>invalid.fine[3]+=1,_=>invalid.fineBoxMax[3]+=1}
   assert!(surface.upload_globals(queue,&invalid).is_err(),"changed allocation contract accepted");
  }
