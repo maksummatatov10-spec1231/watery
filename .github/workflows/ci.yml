@@ -56,7 +56,9 @@ jobs:
           for name in ("src/terrain.rs", "src/solid_cache.rs", "benches/terrain.rs"):
               encoded = base64.b64encode(Path(name).read_bytes()).decode()
               title = name.replace("/", "-")
-              print(f"::notice file=.github/workflows/ci.yml,line=1,title=rustfmt-{title}::{encoded}")
+              for index, offset in enumerate(range(0, len(encoded), 3000)):
+                  chunk = encoded[offset:offset + 3000]
+                  print(f"::notice file=.github/workflows/ci.yml,line=1,title=rustfmt-{title}-{index:03}::{chunk}")
           PY
 
       - name: Verify preserved original assets
